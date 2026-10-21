@@ -11,7 +11,7 @@
         <el-button :icon="IconFolderPlus" :disabled="loading || editing || !listing || !!browseError" @click="manageEntry('mkdir')">新建文件夹</el-button>
       </div>
       <el-alert v-if="browseError" :title="browseError" type="error" :closable="false" />
-      <el-table v-loading="loading" :data="listing?.entries ?? []" height="300" emptyText="当前目录为空">
+      <el-table v-loading="loading" :data="listing?.entries ?? []" height="300" emptyText="当前目录为空" :rowClassName="entryRowClass" @rowClick="enterDirectory">
         <el-table-column label="名称" minWidth="160">
           <template #default="{ row }">
             <el-button v-if="row.type === 'directory'" class="entryName" link :icon="IconFolder" :title="row.name" :disabled="loading || editing" @click="loadDirectory([listing?.path, row.path].filter(Boolean).join('/'))">{{ row.name }}</el-button>
@@ -101,6 +101,17 @@ async function loadDirectory(path: string) {
   } finally { loading.value = false; }
 }
 
+function entryRowClass({ row }: { row: WorkspaceEntry }) {
+  return row.type === "directory" ? "directoryRow" : "";
+}
+
+function enterDirectory(row: WorkspaceEntry, _column: unknown, event: MouseEvent) {
+  if (row.type !== "directory" || loading.value || editing.value) return;
+  // 行内已有独立按钮（进入、重命名、删除），只处理空白区域的点击。
+  if ((event.target as HTMLElement | null)?.closest("button")) return;
+  void loadDirectory([listing.value?.path, row.path].filter(Boolean).join("/"));
+}
+
 async function manageEntry(action: "mkdir" | "rename" | "remove", entry?: WorkspaceEntry) {
   const directory = listing.value;
   if (!directory || loading.value || editing.value || browseError.value || (action !== "mkdir" && !entry)) return;
@@ -185,5 +196,7 @@ function confirmDirectory() {
     svg { flex-shrink: 0; color: var(--el-text-color-secondary); }
     span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   }
+
+  :deep(.directoryRow) { cursor: pointer; }
 }
 </style>
