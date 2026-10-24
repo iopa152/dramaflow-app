@@ -171,7 +171,7 @@ import { VueDraggable } from "vue-draggable-plus";
 import { Vector3 } from "three";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls.js";
 import type { SceneRuntime } from "threejson/core";
-import type { NodeAiModel } from "@toonflow/nodes-scaffold/runtime";
+import type { NodeAiModel } from "@dramaflow/nodes-scaffold/runtime";
 import { applyLighting, applySceneSettings, captureCamera, createStage, disposeStage, type LightingSettings, type SceneDocument, type SceneSettings } from "./scene";
 import { anchorSchema, applyCamera, prepareMotion, sampleMotion, type CameraAnchor } from "./motion";
 import { prepareSceneAnimation, type DirectorPlan, type DirectorPlanItem, type DirectorGeneration } from "./sceneAnimation";

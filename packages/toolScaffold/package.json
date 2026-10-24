@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/tools-scaffold",
+  "name": "@dramaflow/tools-scaffold",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -12,10 +12,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@toonflow/asr": "workspace:*",
-    "@toonflow/file": "workspace:*",
-    "@toonflow/ffmpeg": "workspace:*",
-    "@toonflow/providers": "workspace:*",
+    "@dramaflow/asr": "workspace:*",
+    "@dramaflow/file": "workspace:*",
+    "@dramaflow/ffmpeg": "workspace:*",
+    "@dramaflow/providers": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.8",
     "vite": "^8.2.2",
     "zod": "^4.6.2"

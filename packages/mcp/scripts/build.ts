@@ -1,4 +1,4 @@
-import { cp, mkdir, writeFile } from "@toonflow/file";
+import { cp, mkdir, writeFile } from "@dramaflow/file";
 import { resolve } from "node:path";
 
 const packageRoot = resolve(import.meta.dir, "..");
@@ -17,11 +17,11 @@ await cp(resolve(packageRoot, "skills"), resolve(output, "skills"), { recursive:
 await cp(resolve(packageRoot, "README.md"), resolve(output, "README.md"));
 await cp(resolve(packageRoot, "src/skill.d.ts"), resolve(output, "skill.d.ts"));
 await writeFile(resolve(output, "package.json"), JSON.stringify({
-  name: "@toonflow/mcp",
+  name: "@dramaflow/mcp",
   version: "0.0.0",
   type: "module",
-  exports: { ".": "./index.js", "./skill": { types: "./skill.d.ts", default: "./skills/toonflow/SKILL.md" } },
-  bin: { "toonflow-mcp": "./stdio.js" },
+  exports: { ".": "./index.js", "./skill": { types: "./skill.d.ts", default: "./skills/dramaflow/SKILL.md" } },
+  bin: { "dramaflow-mcp": "./stdio.js" },
   peerDependencies: { express: "^5.2.1" },
 }, null, 2));
 console.log(`MCP 已构建到 ${output}`);

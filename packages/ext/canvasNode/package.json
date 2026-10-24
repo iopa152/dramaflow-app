@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/ext-canvas-node",
+  "name": "@dramaflow/ext-canvas-node",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
     "dev": "vite build --config viteConfig.ts --watch",
     "typecheck": "vue-tsc --noEmit"
   },
-  "dependencies": { "@toonflow/ext-scaffold": "workspace:*" },
+  "dependencies": { "@dramaflow/ext-scaffold": "workspace:*" },
   "peerDependencies": { "vue": "^3.5.42" },
   "devDependencies": { "vite": "^8.2.2", "typescript": "~6.0.3", "vue-tsc": "^3.3.11" }
 }

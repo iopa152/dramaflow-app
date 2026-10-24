@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/node-frame-analysis",
+  "name": "@dramaflow/node-frame-analysis",
   "version": "1.3.0",
   "private": true,
   "type": "module",
@@ -17,9 +17,9 @@
     "@tabler/icons-vue": "^3.46.0"
   },
   "devDependencies": {
-    "@toonflow/node-shared": "workspace:*",
-    "@toonflow/node-video": "workspace:*",
-    "@toonflow/nodes-scaffold": "workspace:*",
+    "@dramaflow/node-shared": "workspace:*",
+    "@dramaflow/node-video": "workspace:*",
+    "@dramaflow/nodes-scaffold": "workspace:*",
     "sass": "1.104.0",
     "typescript": "~6.0.3",
     "vite": "^8.2.2",

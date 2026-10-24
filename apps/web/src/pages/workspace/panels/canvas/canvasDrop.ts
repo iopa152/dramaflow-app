@@ -1,11 +1,11 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 import type { useVueFlow } from "@vue-flow/core";
-import { uploadNodeFile } from "@toonflow/nodes-scaffold/workspaceFiles";
-import type { NodeOutput } from "@toonflow/nodes-scaffold/values";
+import { uploadNodeFile } from "@dramaflow/nodes-scaffold/workspaceFiles";
+import type { NodeOutput } from "@dramaflow/nodes-scaffold/values";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
 
-const assetDragType = "application/toonflow-asset";
+const assetDragType = "application/dramaflow-asset";
 const fileMimeTypes: Record<string, string> = {
   png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", webp: "image/webp", gif: "image/gif",
   avif: "image/avif", apng: "image/apng", bmp: "image/bmp", svg: "image/svg+xml", ico: "image/x-icon",

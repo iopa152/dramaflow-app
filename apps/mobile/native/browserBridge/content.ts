@@ -8,11 +8,11 @@ declare const browser: {
 };
 declare function cloneInto(value: unknown, target: Window): unknown;
 
-const port = browser.runtime.connectNative("toonflow");
+const port = browser.runtime.connectNative("dramaflow");
 port.onMessage.addListener(message => {
   if (message.type !== "save" || typeof message.detail?.requestId !== "string" || typeof message.detail.saved !== "boolean") return;
-  window.dispatchEvent(new CustomEvent("toonflow:mobile-save", { detail: cloneInto(message.detail, window) }));
+  window.dispatchEvent(new CustomEvent("dramaflow:mobile-save", { detail: cloneInto(message.detail, window) }));
 });
 
-const probe = document.querySelector<HTMLMetaElement>('meta[name="toonflowBrowserProbe"]');
+const probe = document.querySelector<HTMLMetaElement>('meta[name="dramaflowBrowserProbe"]');
 if (probe?.content) port.postMessage({ type: "probe", result: JSON.parse(probe.content) });

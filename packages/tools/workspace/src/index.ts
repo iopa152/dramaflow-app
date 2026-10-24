@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ToolDefinition, ToolPlugin } from "@toonflow/tools-scaffold/runtime";
+import type { ToolDefinition, ToolPlugin } from "@dramaflow/tools-scaffold/runtime";
 
 const configSchema = z.object({ readOnly: z.boolean().default(false) }).strict();
 const downloadImageSchema = z.object({ url: z.string().trim().min(1).max(8192).describe("公开 HTTP(S) 图片直链") }).strict();

@@ -113,21 +113,21 @@
 import { computed, nextTick, onMounted, onScopeDispose, ref, watch } from "vue";
 import { ElButton, ElCard, ElSelect, ElOption, ElOptionGroup, ElLoading, ElImageViewer } from "element-plus";
 import { IconCheck, IconPhotoAi, IconSparkles, IconArrowUp, IconPlayerStop, IconTransfer, IconLayoutGrid, IconBrush, IconPencil, IconSun, IconCameraRotate, IconPanoramaHorizontal, IconChevronDown } from "@tabler/icons-vue";
-import { nodeSkeleton, nodeTools, useNode, z, type NodeMediaModel, type NodeImageRequest, type NodeHandle } from "@toonflow/nodes-scaffold/runtime";
-import { groupNodeModels } from "@toonflow/node-shared/groupNodeModels";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
-import { useNodeGeneration } from "@toonflow/node-shared/useNodeGeneration";
-import { useNodeReferences } from "@toonflow/node-shared/useNodeReferences";
-import promptInput from "@toonflow/node-shared/promptInput";
-import referenceItem from "@toonflow/node-shared/referenceItem";
-import mediaHistory from "@toonflow/node-shared/mediaHistory";
-import mediaPrice from "@toonflow/node-shared/mediaPrice";
-import imageGridSplit from "@toonflow/node-image/imageGridSplit";
-import imageEditor from "@toonflow/node-image/imageEditor";
-import { buildInpaintRequest, useImageInpaint, type ImageInpaint } from "@toonflow/node-image/imageInpaint";
-import imageLighting from "@toonflow/node-image/imageLighting";
-import imagePanorama from "@toonflow/node-image/imagePanorama";
-import imageMultiAngle from "@toonflow/node-image/imageMultiAngle";
+import { nodeSkeleton, nodeTools, useNode, z, type NodeMediaModel, type NodeImageRequest, type NodeHandle } from "@dramaflow/nodes-scaffold/runtime";
+import { groupNodeModels } from "@dramaflow/node-shared/groupNodeModels";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
+import { useNodeGeneration } from "@dramaflow/node-shared/useNodeGeneration";
+import { useNodeReferences } from "@dramaflow/node-shared/useNodeReferences";
+import promptInput from "@dramaflow/node-shared/promptInput";
+import referenceItem from "@dramaflow/node-shared/referenceItem";
+import mediaHistory from "@dramaflow/node-shared/mediaHistory";
+import mediaPrice from "@dramaflow/node-shared/mediaPrice";
+import imageGridSplit from "@dramaflow/node-image/imageGridSplit";
+import imageEditor from "@dramaflow/node-image/imageEditor";
+import { buildInpaintRequest, useImageInpaint, type ImageInpaint } from "@dramaflow/node-image/imageInpaint";
+import imageLighting from "@dramaflow/node-image/imageLighting";
+import imagePanorama from "@dramaflow/node-image/imagePanorama";
+import imageMultiAngle from "@dramaflow/node-image/imageMultiAngle";
 import generationSettings from "./components/generationSettings.vue";
 
 defineOptions({
@@ -240,19 +240,19 @@ const previewUrl = files.useFileUrl(
 );
 
 onMounted(() => {
-  window.addEventListener("toonflow:plugin-installed", refreshProviderModels);
-  window.addEventListener("toonflow:provider-config-changed", refreshProviderModels);
+  window.addEventListener("dramaflow:plugin-installed", refreshProviderModels);
+  window.addEventListener("dramaflow:provider-config-changed", refreshProviderModels);
   void loadModels().catch(error => { if (!disposed) showNodeError(error, "模型读取失败"); });
 });
 onScopeDispose(() => {
   disposed = true;
-  window.removeEventListener("toonflow:plugin-installed", refreshProviderModels);
-  window.removeEventListener("toonflow:provider-config-changed", refreshProviderModels);
+  window.removeEventListener("dramaflow:plugin-installed", refreshProviderModels);
+  window.removeEventListener("dramaflow:provider-config-changed", refreshProviderModels);
   generationController?.abort();
 });
 
 async function refreshProviderModels(event: Event) {
-  if (event.type === "toonflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
+  if (event.type === "dramaflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
   try {
     await generation;
     if (!disposed && !deleting.value) await loadModels();

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ToolDefinition, ToolPlugin } from "@toonflow/tools-scaffold/runtime";
+import type { ToolDefinition, ToolPlugin } from "@dramaflow/tools-scaffold/runtime";
 import { audioGenerationSchema, imageGenerationSchema, listMediaModelsSchema, videoGenerationSchema } from "./runtime";
 
 const configSchema = z.strictObject({

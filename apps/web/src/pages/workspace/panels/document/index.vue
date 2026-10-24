@@ -11,7 +11,7 @@
 import { onActivated, onBeforeUnmount, onDeactivated, ref, shallowReactive, shallowRef, watch } from "vue";
 import { DockviewVue, type DockviewApi, type DockviewReadyEvent } from "dockview-vue";
 import { ElMessage } from "element-plus";
-import type { ExtResource } from "@toonflow/ext-scaffold/runtime";
+import type { ExtResource } from "@dramaflow/ext-scaffold/runtime";
 import { useWorkspaceStore } from "@/stores/workspace";
 import { settings, settingsStorage } from "@/stores/settings";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
@@ -25,7 +25,7 @@ import workspaceSearch from "./components/workspaceSearch.vue";
 import editorHost from "./editorHost.vue";
 import { createDocumentSession, documentError, type DocumentSession, type EditorParams, type EditorView, type TabAction } from "./documentSession";
 import { theme } from "./theme";
-import { locale, t } from "@toonflow/i18n/vue";
+import { locale, t } from "@dramaflow/i18n/vue";
 import { extensionCandidates, extensionRevision, listExtensions, resolveExtension } from "./extensions";
 import "dockview-vue/dist/styles/dockview.css";
 
@@ -69,7 +69,7 @@ let restoring = false;
 let rebuilding = false;
 let treeWidth = 260;
 let layoutTimer: ReturnType<typeof setTimeout> | undefined;
-const layoutKey = `toonflow:documentLayout:${directory}`;
+const layoutKey = `dramaflow:documentLayout:${directory}`;
 type SavedTab = { id?: string; preview?: boolean; selection: TreeSelection; extensionId: string };
 type SavedLayout = { layout: ReturnType<DockviewApi["toJSON"]>; tabs: SavedTab[]; treeWidth: number };
 const closedTabs: SavedTab[] = [];
@@ -591,7 +591,7 @@ async function performFileAction(currentDirectory: string, action: "copy" | "ren
   await executeFileAction(action, { key: path, path, name: path.split(/[\\/]/).at(-1)!, type: entryType }, target);
   refreshFileTree();
 }
-window.addEventListener("toonflow:ext-updated", refreshExtensions);
+window.addEventListener("dramaflow:ext-updated", refreshExtensions);
 function beforeUnload(event: BeforeUnloadEvent) {
   saveLayout();
   if (![...sessions.values()].some(session => session.context.dirty)) return;
@@ -651,7 +651,7 @@ window.addEventListener("keydown", onDocumentKeydown, true);
 onActivated(() => { active.value = true; for (const session of uniqueSessions()) session.context.active = true; refreshDocuments(true); refreshFileTree(); });
 onDeactivated(() => { active.value = false; refreshQueue.clear(); visibleSessions.clear(); for (const session of uniqueSessions()) session.context.active = false; });
 onBeforeUnmount(() => {
-  window.removeEventListener("toonflow:ext-updated", refreshExtensions);
+  window.removeEventListener("dramaflow:ext-updated", refreshExtensions);
   window.removeEventListener("beforeunload", beforeUnload);
   window.removeEventListener("focus", onWindowFocus);
   window.removeEventListener("keydown", onDocumentKeydown, true);
@@ -675,7 +675,7 @@ defineExpose({ ready, flushSave, cancelSave, getDocument, openDocument, writeDoc
   overflow: hidden;
   background: var(--el-bg-color);
   .documentLayout { width: 100%; height: 100%; border-top: 1px solid var(--el-border-color); }
-  .dockviewToonflow {
+  .dockviewDramaflow {
     --dv-background-color: var(--el-bg-color);
     --dv-group-view-background-color: var(--el-bg-color);
     --dv-tabs-and-actions-container-background-color: var(--el-fill-color-light);

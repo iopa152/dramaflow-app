@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dramaflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Dramaflow" width="100%" />
 
 <p>
   <a href="https://github.com/HBAI-Ltd/Toonflow-app">
@@ -45,13 +45,13 @@
 <div align="center">
 
 <p align="center">
-  <img src="../images/logo.png" alt="Toonflow 標誌" width="120" height="120" />
+  <img src="../images/logo.png" alt="Dramaflow 標誌" width="120" height="120" />
 </p>
 
 <a href="https://git.io/typing-svg">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;AI%20%E7%9F%AD%E5%8A%87%E5%B7%A5%E5%BB%A0;%E8%AE%93%E9%9D%88%E6%84%9F%E6%88%90%E7%82%BA%E7%9C%8B%E5%BE%97%E8%A6%8B%E7%9A%84%E6%95%85%E4%BA%8B" />
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;AI%20%E7%9F%AD%E5%8A%87%E5%B7%A5%E5%BB%A0;%E8%AE%93%E9%9D%88%E6%84%9F%E6%88%90%E7%82%BA%E7%9C%8B%E5%BE%97%E8%A6%8B%E7%9A%84%E6%95%85%E4%BA%8B" alt="Toonflow · AI 短劇工廠 · 讓靈感成為看得見的故事" width="600" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20%E7%9F%AD%E5%8A%87%E5%B7%A5%E5%BB%A0;%E8%AE%93%E9%9D%88%E6%84%9F%E6%88%90%E7%82%BA%E7%9C%8B%E5%BE%97%E8%A6%8B%E7%9A%84%E6%95%85%E4%BA%8B" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20%E7%9F%AD%E5%8A%87%E5%B7%A5%E5%BB%A0;%E8%AE%93%E9%9D%88%E6%84%9F%E6%88%90%E7%82%BA%E7%9C%8B%E5%BE%97%E8%A6%8B%E7%9A%84%E6%95%85%E4%BA%8B" alt="Dramaflow · AI 短劇工廠 · 讓靈感成為看得見的故事" width="600" />
   </picture>
 </a>
 
@@ -134,12 +134,12 @@
     <tr>
       <td width="50%" align="center">
         <a href="../images/gStar.png">
-          <img src="../images/gStar.png" alt="Toonflow AtomGit G-Star 認證證書 No.540" width="100%" />
+          <img src="../images/gStar.png" alt="Dramaflow AtomGit G-Star 認證證書 No.540" width="100%" />
         </a>
       </td>
       <td width="50%" align="center">
         <a href="../images/gvp.jpg">
-          <img src="../images/gvp.jpg" alt="Toonflow Gitee GVP 認證證書" width="100%" />
+          <img src="../images/gvp.jpg" alt="Dramaflow Gitee GVP 認證證書" width="100%" />
         </a>
       </td>
     </tr>
@@ -158,7 +158,7 @@
 
 ## 1. 💛 贊助與支持
 
-感謝以下合作夥伴對 Toonflow 開源專案的支持。
+感謝以下合作夥伴對 Dramaflow 開源專案的支持。
 
 <table>
   <tr>
@@ -168,18 +168,18 @@
       <sub>提供高性價比的 MiniMax H3 影片生成服務：768P 僅人民幣 0.09 元/秒，2K 僅人民幣 0.15 元/秒；支援原生 2K、影音同步，API 相容 OpenAI 協定，同時支援 ComfyUI、無限畫布，無需自行部署 GPU。透過<a href="https://metaso.cn/minimax-h3/?s=toon">專屬連結註冊</a>即可領取贈送額度及專屬優惠，商務洽談可加微信 metasota12。</sub>
     </td>
     <td width="50%" valign="top">
-      <a href="https://go.apimart.ai/gh-toonflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
+      <a href="https://go.apimart.ai/gh-dramaflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
       <br />
-      <sub>感謝 APIMart 贊助本專案！專注於 AI 圖片與影片生成的平價 API 平台，GPT-Image-2 每張低至 $0.006，1 美元可生成 160+ 張圖片；圖片與影片共用一套非同步 API，提交任務取得 ID，透過回呼取得結果，批次處理上萬張也不逾時，切換模型無需修改程式碼，按用量計費、無月費。透過此<a href="https://go.apimart.ai/gh-toonflow-app">註冊連結</a>註冊即可使用。</sub>
+      <sub>感謝 APIMart 贊助本專案！專注於 AI 圖片與影片生成的平價 API 平台，GPT-Image-2 每張低至 $0.006，1 美元可生成 160+ 張圖片；圖片與影片共用一套非同步 API，提交任務取得 ID，透過回呼取得結果，批次處理上萬張也不逾時，切換模型無需修改程式碼，按用量計費、無月費。透過此<a href="https://go.apimart.ai/gh-dramaflow-app">註冊連結</a>註冊即可使用。</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow"><img src="../images/sponsors/compShare.png" alt="優雲智算" height="28" valign="middle" /> <strong>優雲智算</strong></a>
+      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow"><img src="../images/sponsors/compShare.png" alt="優雲智算" height="28" valign="middle" /> <strong>優雲智算</strong></a>
       <br />
       <sub>優雲智算提供高性價比 H3 影片生成服務，涵蓋文字生成影片、首尾影格及全能參考。支援最長 30 秒影片、原生 2K 畫質，768P 僅人民幣 0.08 元/秒。支援 API 呼叫、企業高併發、自助開立發票。</sub>
       <br /><br />
-      <sub>🎁 透過<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow">專屬連結註冊</a>，即可獲得免費人民幣 5 元平台體驗金！</sub>
+      <sub>🎁 透過<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow">專屬連結註冊</a>，即可獲得免費人民幣 5 元平台體驗金！</sub>
     </td>
     <td width="50%" valign="top"></td>
   </tr>
@@ -200,7 +200,7 @@
 
 ## 2. 🌟 亮點
 
-Toonflow 是面向短劇、動態漫畫與短影片製作的開源 AI 創作平台，將劇本、素材與影片片段整合到同一張無限畫布。
+Dramaflow 是面向短劇、動態漫畫與短影片製作的開源 AI 創作平台，將劇本、素材與影片片段整合到同一張無限畫布。
 
 | 功能 | 說明 |
 | --- | --- |
@@ -224,25 +224,25 @@ Toonflow 是面向短劇、動態漫畫與短影片製作的開源 AI 創作平�
 
 <div align="center">
 
-<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Toonflow 專案首頁與靈感創作" width="80%" /></a><br /><sub>專案首頁與靈感創作</sub>
+<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Dramaflow 專案首頁與靈感創作" width="80%" /></a><br /><sub>專案首頁與靈感創作</sub>
 
-<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Toonflow 首次啟動與快速設定" width="80%" /></a><br /><sub>首次啟動與快速設定</sub>
+<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Dramaflow 首次啟動與快速設定" width="80%" /></a><br /><sub>首次啟動與快速設定</sub>
 
-<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Toonflow 深色主題畫布與 AI 助手" width="80%" /></a><br /><sub>創作畫布 · 深色主題</sub>
+<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Dramaflow 深色主題畫布與 AI 助手" width="80%" /></a><br /><sub>創作畫布 · 深色主題</sub>
 
-<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Toonflow 淺色主題畫布與 AI 助手" width="80%" /></a><br /><sub>創作畫布 · 淺色主題</sub>
+<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Dramaflow 淺色主題畫布與 AI 助手" width="80%" /></a><br /><sub>創作畫布 · 淺色主題</sub>
 
-<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Toonflow 角色、場景與道具素材畫布" width="80%" /></a><br /><sub>角色、場景與道具素材</sub>
+<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Dramaflow 角色、場景與道具素材畫布" width="80%" /></a><br /><sub>角色、場景與道具素材</sub>
 
-<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Toonflow 3D 導演台與鏡頭預演" width="80%" /></a><br /><sub>3D 導演台與鏡頭預演</sub>
+<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Dramaflow 3D 導演台與鏡頭預演" width="80%" /></a><br /><sub>3D 導演台與鏡頭預演</sub>
 
-<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Toonflow 角色三視圖圖片生成" width="80%" /></a><br /><sub>角色三視圖與圖片生成</sub>
+<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Dramaflow 角色三視圖圖片生成" width="80%" /></a><br /><sub>角色三視圖與圖片生成</sub>
 
-<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Toonflow 多參考素材影片生成" width="80%" /></a><br /><sub>多參考素材影片生成</sub>
+<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Dramaflow 多參考素材影片生成" width="80%" /></a><br /><sub>多參考素材影片生成</sub>
 
-<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Toonflow 節點選單與群組操作" width="80%" /></a><br /><sub>節點選單與群組操作</sub>
+<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Dramaflow 節點選單與群組操作" width="80%" /></a><br /><sub>節點選單與群組操作</sub>
 
-<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Toonflow 外掛市集" width="80%" /></a><br /><sub>外掛市集</sub>
+<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Dramaflow 外掛市集" width="80%" /></a><br /><sub>外掛市集</sub>
 
 </div>
 
@@ -258,25 +258,25 @@ Toonflow 是面向短劇、動態漫畫與短影片製作的開源 AI 創作平�
 | macOS | [發行版本](https://github.com/HBAI-Ltd/Toonflow-app/releases) |
 | Android ARM64 | [下載 APK](https://github.com/HBAI-Ltd/Toonflow-app/releases/latest) |
 
-Android 版僅支援 ARM64 裝置，下載發行頁面的 `toonflow-版本號-android-arm64.apk` 安裝。手機內建本機 Bun 後端，可獨立執行；也可從首頁「裝置互聯」掃描 QR Code 或手動連接已開啟共享的電腦或遠端後端（支援區域網路與公開網路）。
+Android 版僅支援 ARM64 裝置，下載發行頁面的 `dramaflow-版本號-android-arm64.apk` 安裝。手機內建本機 Bun 後端，可獨立執行；也可從首頁「裝置互聯」掃描 QR Code 或手動連接已開啟共享的電腦或遠端後端（支援區域網路與公開網路）。
 
 Windows 安裝程式會自動偵測並安裝 WebView2；如果安裝後開啟時閃退，請前往 [WebView2 下載頁面](https://developer.microsoft.com/microsoft-edge/webview2/) 手動安裝執行階段。
 
-macOS（Apple Silicon）將 Toonflow 拖入「應用程式」後直接開啟即可，無需事先執行終端機指令。若遇到系統安全提示，請依以下順序處理。
+macOS（Apple Silicon）將 Dramaflow 拖入「應用程式」後直接開啟即可，無需事先執行終端機指令。若遇到系統安全提示，請依以下順序處理。
 
 <details>
 <summary><strong>macOS 無法安裝或開啟時的處理方式</strong></summary>
 
-**1. 在「隱私權與安全性」中允許 Toonflow**
+**1. 在「隱私權與安全性」中允許 Dramaflow**
 
-如果提示「無法驗證開發者」或「Apple 無法檢查 App 是否包含惡意軟體」，先嘗試開啟 Toonflow，再前往「系統設定 → 隱私權與安全性」，找到 Toonflow 被阻擋的提示，按一下「強制打開」，並依提示確認。詳見 [Apple 官方說明](https://support.apple.com/zh-cn/102445)。
+如果提示「無法驗證開發者」或「Apple 無法檢查 App 是否包含惡意軟體」，先嘗試開啟 Dramaflow，再前往「系統設定 → 隱私權與安全性」，找到 Dramaflow 被阻擋的提示，按一下「強制打開」，並依提示確認。詳見 [Apple 官方說明](https://support.apple.com/zh-cn/102445)。
 
 **2. 仍因系統隔離限制無法開啟時，再嘗試移除隔離屬性**
 
 確認應用程式來自官方發行頁面，並已放入「應用程式」後，在終端機執行以下指令，再重新開啟。若應用程式名稱或安裝位置不同，請調整路徑。
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/toonflow.app
+sudo xattr -rd com.apple.quarantine /Applications/dramaflow.app
 ```
 
 **3. 最後手段：暫時允許任何來源的 App**
@@ -308,16 +308,16 @@ sudo spctl --master-disable
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 docker compose up -d --build
 ```
 
 首次建置會安裝相依套件，並編譯內建節點、工具、Web 與 Server。啟動後造訪 `http://127.0.0.1:3000`；遠端主機可依下方「存取與資料說明」透過 SSH 通道存取。首次啟動會初始化內建外掛，並提供 `myProject` 工作目錄。
 
-設定、外掛與專案檔案儲存在 Docker 具名磁碟區 `toonflowData` 中，掛載至容器的 `/app/data/`。磁碟區的實際名稱帶有 Compose 專案前綴；停止或重建容器會保留資料，**請勿使用 `docker compose down -v`，此指令會刪除資料磁碟區**。
+設定、外掛與專案檔案儲存在 Docker 具名磁碟區 `dramaflowData` 中，掛載至容器的 `/app/data/`。磁碟區的實際名稱帶有 Compose 專案前綴；停止或重建容器會保留資料，**請勿使用 `docker compose down -v`，此指令會刪除資料磁碟區**。
 
 ```sh
-docker compose logs -f toonflow  # 查看記錄
+docker compose logs -f dramaflow  # 查看記錄
 docker compose stop             # 停止服務
 docker compose start            # 再次啟動
 docker compose down             # 刪除容器，保留資料磁碟區
@@ -326,14 +326,14 @@ docker compose down             # 刪除容器，保留資料磁碟區
 需要增加專案目錄時，可在頁面的「選擇伺服器工作目錄」對話框中按一下「新增資料夾」。對話框也支援檔案與資料夾的重新命名、刪除。也可在服務執行期間透過命令列建立：
 
 ```sh
-docker compose exec toonflow mkdir -p /app/data/workspaces/newProject
+docker compose exec dramaflow mkdir -p /app/data/workspaces/newProject
 ```
 
 備份時先停止服務，複製完成後再啟動：
 
 ```sh
 docker compose stop
-docker compose cp toonflow:/app/data ./toonflowBackup
+docker compose cp dramaflow:/app/data ./dramaflowBackup
 docker compose start
 ```
 
@@ -362,7 +362,7 @@ bun --version
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install --frozen-lockfile
 
 # 建置內建節點、工具、Web 與 Server
@@ -388,7 +388,7 @@ bun run start:server
 
 ### 4.5 雲端平台部署
 
-合作平台[智星雲](https://www.ai-galaxy.com/)提供官方授權的 Toonflow 商用映像檔，可直接使用預先安裝的環境。具體步驟請參閱[映像檔部署圖文教學](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1)。
+合作平台[智星雲](https://www.ai-galaxy.com/)提供官方授權的 Dramaflow 商用映像檔，可直接使用預先安裝的環境。具體步驟請參閱[映像檔部署圖文教學](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1)。
 
 ---
 
@@ -418,19 +418,19 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
   </a>
 </p>
 
-TF-Router 是 Toonflow 自營的官方模型中轉平台，歡迎使用。平台原始碼已完全開源，可自行部署與稽核：[HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router)。
+TF-Router 是 Dramaflow 自營的官方模型中轉平台，歡迎使用。平台原始碼已完全開源，可自行部署與稽核：[HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router)。
 
 <details>
-<summary><strong>致 Toonflow 社群的一封信（發於 2026-06-08）</strong></summary>
+<summary><strong>致 Dramaflow 社群的一封信（發於 2026-06-08）</strong></summary>
 
-> ### 致 Toonflow 社群的一封信
+> ### 致 Dramaflow 社群的一封信
 > 130 天。
 > 不長，但足夠讓我們看清楚一些事情。
 > 從第一行程式碼提交到今天，我們走過了 130 天，發布了 20 個版本，留下了 800+ 次 Commit，寫下了 213,765 行程式碼、640,810 個字元。
 > 兩次重構，一套供應商系統，一個我們引以為傲的工作流程。
 > 我們以為這已經足夠了。
 > 但它不夠。
-> 有人跟我們說，想在 Toonflow 裡加一個自己的模組，改了半天還是看不懂。
+> 有人跟我們說，想在 Dramaflow 裡加一個自己的模組，改了半天還是看不懂。
 > 有人跟我們說，社群太小，遇到問題找不到人。
 > 有人跟我們說，商業條款讓他們的專案無法落實。
 > 我們聽到了。
@@ -438,7 +438,7 @@ TF-Router 是 Toonflow 自營的官方模型中轉平台，歡迎使用。平台
 > 不是因為我們有多少錢。
 > 是因為我們相信這件事值得做。
 > 所以，我們決定進行第三次重構。
-> Toonflow 的每一次重構，都朝更開源、更開放的方向發展。
+> Dramaflow 的每一次重構，都朝更開源、更開放的方向發展。
 > 這一次重構，我們選擇：徹底開放。
 > 　
 > 一、MIT License
@@ -473,9 +473,9 @@ TF-Router 是 Toonflow 自營的官方模型中轉平台，歡迎使用。平台
 > 重構需要時間。這段時間裡，伺服器在運作，網域要續費，團隊在熬夜，咖啡在漲價。
 > 我們沒有募資，沒有廣告，也沒有任何隱藏的商業計畫。
 > 但我們需要活下去，才能繼續把這件事做完。
-> 所以我們推出了「Toonflow 官方模型中轉平台」TF-Router。
+> 所以我們推出了「Dramaflow 官方模型中轉平台」TF-Router。
 > 說實話，這個平台讓我們猶豫了很久。
-> 這個平台並不是我們原本想做的，我們不想因為一個中轉平台，讓人覺得 Toonflow 開始只顧著賺錢了。
+> 這個平台並不是我們原本想做的，我們不想因為一個中轉平台，讓人覺得 Dramaflow 開始只顧著賺錢了。
 > 這個包袱，我們背了很久。
 > 但很多使用者沒有取得白名單資格，用不上 Seedance 2.0，反覆問我們有沒有辦法。
 > 我們想了很久，最後沒有其他辦法，只能決定架設一個平台，並自行與火山簽訂 Seedance 年度框架合約。
@@ -485,11 +485,11 @@ TF-Router 是 Toonflow 自營的官方模型中轉平台，歡迎使用。平台
 > 你不信任我們？沒關係，你可以自己看程式碼、自己部署、自己執行。
 > 這就是我們的態度。
 > 如果你願意試用，就是對我們目前唯一能繼續支撐下去的方式，投下一票信任。
-> 如果你不願意，也沒關係，繼續使用 Toonflow，繼續罵我們，繼續提出需求。
+> 如果你不願意，也沒關係，繼續使用 Dramaflow，繼續罵我們，繼續提出需求。
 > 我們都在。
 > 最後說一句真心話。
 > 我們只是一群相信「創作工具應該屬於每個人」的普通人。
-> Toonflow 從來不是我們的產品。
+> Dramaflow 從來不是我們的產品。
 > 它是我們一起寫的故事。
 > 第三次重構，不是終點。
 > 是我們重新出發的地方。
@@ -505,7 +505,7 @@ TF-Router 是 Toonflow 自營的官方模型中轉平台，歡迎使用。平台
 
 入群小幫手：
 
-<img src="../images/qr.png" alt="Toonflow 入群 QR Code" height="400"/>
+<img src="../images/qr.png" alt="Dramaflow 入群 QR Code" height="400"/>
 
 也可以點擊圖示加入 Discord：
 
@@ -517,15 +517,15 @@ TF-Router 是 Toonflow 自營的官方模型中轉平台，歡迎使用。平台
 
 ## 8. 💌 聯絡我們
 
-📧 電子郵件：[ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 電子郵件：[ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Dramaflow咨询)
 
 ---
 
 ## 9. 📜 開源授權
 
-Toonflow 採用 [MIT 授權條款](../../LICENSE)。第三方相依套件與素材遵循各自的授權及著作權聲明。
+Dramaflow 採用 [MIT 授權條款](../../LICENSE)。第三方相依套件與素材遵循各自的授權及著作權聲明。
 
-[![Toonflow 星標歷史](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
+[![Dramaflow 星標歷史](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
 
 > **不溯及既往條款**：在 v1.0.8 發布前依 AGPL-3.0 使用的使用者，繼續適用 AGPL-3.0；v1.0.8 ~ v1.1.8 繼續適用 Apache-2.0 與附加協議，不受本次授權變更影響。
 
@@ -546,4 +546,4 @@ Copyright © 2026 北京爱阿科技有限公司
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Toonflow 頁尾" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Dramaflow 頁尾" width="100%" />

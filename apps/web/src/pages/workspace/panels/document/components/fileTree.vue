@@ -91,7 +91,7 @@ import useWorkspaceFiles from "@/lib/workspaceFiles";
 import { settingsStorage } from "@/stores/settings";
 import { writeClipboardText } from "@/lib/clipboard";
 import { isMobile, isRemoteConnection } from "@/lib/platform";
-import { t } from "@toonflow/i18n/vue";
+import { t } from "@dramaflow/i18n/vue";
 import { isCanvasFile } from "@/pages/workspace/canvasFile";
 import { extensionCandidates, extensionIcon, listExtensions } from "../extensions";
 import { getNodeIcon } from "../../canvas/loadNodeComponent";
@@ -149,7 +149,7 @@ const clipboard = shallowRef<{ directory: string; items: FileTreeItem[]; cut: bo
 const dragged = shallowRef<typeof clipboard.value>();
 const draggedKey = ref<string>();
 const dropTargetKey = ref<string>();
-const treeDragType = "application/x-toonflow-file-tree";
+const treeDragType = "application/x-dramaflow-file-tree";
 let expandTimer: ReturnType<typeof setTimeout> | undefined;
 const multiple = ref(false);
 const checkedItems = shallowRef<FileTreeItem[]>([]);
@@ -208,7 +208,7 @@ function pathIdentity(path: string) {
 }
 function storageKey(workspaceDirectory = directory.value ?? "") {
   const normalized = workspaceDirectory.replaceAll("\\", "/").replace(/\/+$/, "");
-  return `toonflow:documentTree:${/^(?:[a-z]:[\\/]|\\\\|\/\/)/i.test(workspaceDirectory) ? normalized.toLowerCase() : normalized}`;
+  return `dramaflow:documentTree:${/^(?:[a-z]:[\\/]|\\\\|\/\/)/i.test(workspaceDirectory) ? normalized.toLowerCase() : normalized}`;
 }
 function persistTreeState(workspaceDirectory = directory.value) {
   if (!workspaceDirectory) return;
@@ -675,7 +675,7 @@ async function readCanvasItems(currentDirectory: string, path: string, signal: A
     return canvasItems({ nodes: nodes.map(node => ({ id: node.nodeId, type: node.nodeType, parentNode: node.parentNode, data: { label: node.label } })) }, path);
   }
   const canvas = await useWorkspaceFiles(currentDirectory).readJson(path, signal);
-  if (!isRecord(canvas) || canvas.toonflowCanvas !== true || !Array.isArray(canvas.nodes)) throw new Error("不是有效的画布文件");
+  if (!isRecord(canvas) || (canvas.dramaflowCanvas ?? canvas.toonflowCanvas) !== true || !Array.isArray(canvas.nodes)) throw new Error("不是有效的画布文件");
   return canvasItems(canvas, path);
 }
 

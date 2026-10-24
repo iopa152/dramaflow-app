@@ -4,8 +4,8 @@
     <aside id="homeSidebar" class="homeSidebar" aria-label="首页侧栏">
       <div class="sidebarHeader">
         <div class="sidebarBrand">
-          <el-image class="sidebarLogo" :src="logoUrl" fit="contain" alt="Toonflow" />
-          <span class="brandName">Toonflow</span>
+          <el-image class="sidebarLogo" :src="logoUrl" fit="contain" alt="Dramaflow" />
+          <span class="brandName">光影AIGC</span>
         </div>
         <button class="sidebarToggle" type="button" :aria-label="sidebarCollapsed ? '展开侧栏' : '收起侧栏'" :title="sidebarCollapsed ? '展开侧栏' : '收起侧栏'" :aria-expanded="!sidebarCollapsed" aria-controls="homeSidebar" @click="sidebarCollapsed = !sidebarCollapsed">
           <icon-layout-sidebar-left-expand v-if="sidebarCollapsed" :size="18" aria-hidden="true" />
@@ -38,10 +38,6 @@
           </span>
           <span class="sidebarText">设置</span>
         </button>
-        <a class="sidebarItem githubLink" href="https://github.com/HBAI-Ltd/Toonflow-app" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
-          <icon-brand-github :size="18" aria-hidden="true" />
-          <span class="sidebarText">GitHub</span>
-        </a>
       </div>
     </aside>
     <el-scrollbar ref="pageScroll" class="pageScroll" @scroll="updateActiveSection">
@@ -49,7 +45,7 @@
         <el-main class="pageContent">
           <section class="creationPanel" data-home-section="home" aria-label="创建项目">
             <div class="brand">
-              <el-image class="brandLogo" :src="logoUrl" fit="contain" alt="Toonflow" />
+              <el-image class="brandLogo" :src="logoUrl" fit="contain" alt="Dramaflow" />
               <h1>今天要做点什么？</h1>
             </div>
             <div class="promptArea">
@@ -122,13 +118,13 @@
 </template>
 
 <script setup lang="ts">
-import { locale, translate } from "@toonflow/i18n/vue";
+import { locale, translate } from "@dramaflow/i18n/vue";
 import axios from "axios";
 import { storeToRefs } from "pinia";
 import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage, ElMessageBox, type InputInstance, type ScrollbarInstance } from "element-plus";
-import { getReadableFileMimeType, readableFileAccept } from "@toonflow/server/documentFormats";
+import { getReadableFileMimeType, readableFileAccept } from "@dramaflow/server/documentFormats";
 import {
   IconQrcode, IconDeviceDesktop, IconHome, IconCompass,
   IconArrowUp, IconPlus, IconLoader2,
@@ -139,7 +135,7 @@ import modelPopover from "@/components/modelPopover.vue";
 import attachmentList from "@/components/agent/attachmentList.vue";
 import { createPastedTextFile, readTextAttachment } from "@/components/agent/textAttachments";
 import type { AgentAttachment } from "@/components/agent/types";
-import logoUrl from "@toonflow/assets/logo.svg";
+import logoUrl from "@dramaflow/assets/logo.svg";
 import { useWorkspaceStore, type Project } from "@/stores/workspace";
 import { hasDesktopUpdate } from "@/stores/desktopUpdate";
 import { deviceHubEnabled, mobileConnection, mobileConnectionLabel } from "@/lib/mobile";
@@ -437,7 +433,7 @@ async function createProject(fromPrompt = true) {
   try {
     const { directory, empty } = await useWorkspaceFiles(path).list();
     if (fromPrompt && !empty) return ElMessage.warning("该文件夹不为空，请重新选择空文件夹；已有项目请使用“新建项目”入口或点击项目列表打开。");
-    if (empty) await useWorkspaceFiles(directory).writeJson("画布1.json", { toonflowCanvas: true, nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } }, true);
+    if (empty) await useWorkspaceFiles(directory).writeJson("画布1.json", { dramaflowCanvas: true, nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } }, true);
     await workspaceStore.openProject(directory);
     if (fromPrompt && (prompt.value.trim() || promptAttachments.value.length)) {
       workspaceStore.pendingAgentMessage = { directory: workspaceStore.project!.directory, prompt: prompt.value, attachments: [...promptAttachments.value], model: selectedModel.value, reasoningEffort: reasoningEffort.value };

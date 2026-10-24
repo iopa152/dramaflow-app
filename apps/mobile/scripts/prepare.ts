@@ -1,5 +1,5 @@
-import { existsSync, mkdir, rename, writeAtomic } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import { existsSync, mkdir, rename, writeAtomic } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { join, resolve } from "node:path";
 
 const buildRoot = resolve(import.meta.dir, "../../../build/mobile");

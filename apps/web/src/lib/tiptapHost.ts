@@ -16,6 +16,6 @@ import * as view from "@tiptap/pm/view";
 import * as marked from "marked";
 import dompurify from "dompurify";
 
-Object.assign(globalThis, { toonflowTiptapHost: {
+Object.assign(globalThis, { dramaflowTiptapHost: {
   core, vue3, starterKit, markdown, findAndReplace, highlight, image, list, subscript, superscript, table, textAlign, model, state, view, marked, dompurify,
 } });

@@ -1,9 +1,9 @@
 # 文件基础能力
 
-`@toonflow/file` 是 Node/Bun 共用的文件操作入口，只管理原子提交和进程内文件队列。全局文件由所属模块决定路径；工作区文件仍先经过 server 的 `resolveWorkspacePath`、业务锁和接口权限校验。模块保留安装事务、回滚、数据格式及错误提示。
+`@dramaflow/file` 是 Node/Bun 共用的文件操作入口，只管理原子提交和进程内文件队列。全局文件由所属模块决定路径；工作区文件仍先经过 server 的 `resolveWorkspacePath`、业务锁和接口权限校验。模块保留安装事务、回滚、数据格式及错误提示。
 
 ```ts
-import { readFile, writeAtomic } from "@toonflow/file";
+import { readFile, writeAtomic } from "@dramaflow/file";
 
 await writeAtomic(absolutePath, JSON.stringify(snapshot));
 const content = await readFile(absolutePath, "utf8");
@@ -17,7 +17,7 @@ const content = await readFile(absolutePath, "utf8");
 - `rename` 和原子提交使用 `stubborn-fs` 有限重试，最多约 5 秒；持续占用仍抛出原始错误。不要重试整个多步安装事务，也不要重试已经消费的输入流。原子写入只清理本次创建的临时文件，关闭或清理失败不能掩盖原始写入错误；提交成功后的临时文件清理失败仅记录警告，不将已保存内容报告为失败。
 - `withFileAccess(paths, kind, action, signal?)` 供 HTTP/SDK 等模块适配原生 I/O；回调必须等操作真正完成。它不是可重入锁，不在相同路径的回调里再次调用本包的受管 I/O；需要组合操作时由业务模块决定事务范围。
 
-Bun 文件方法从 `@toonflow/file/bun` 导入 `file`、`write`。返回值保持真实 Blob 身份，`text/json/arrayBuffer/bytes/formData/stream/write/delete/unlink` 接入队列；字符串、URL 和字节路径共用同一文件队列。`file` 不接受外部 fd；同步 `FileSink.writer` 不暴露，流式写入使用 `createWriteStream`。把 Blob 交给 `Response` 等原生消费者后，消费生命周期由调用模块负责；需要与修改协调时在模块中使用 `withFileAccess`。
+Bun 文件方法从 `@dramaflow/file/bun` 导入 `file`、`write`。返回值保持真实 Blob 身份，`text/json/arrayBuffer/bytes/formData/stream/write/delete/unlink` 接入队列；字符串、URL 和字节路径共用同一文件队列。`file` 不接受外部 fd；同步 `FileSink.writer` 不暴露，流式写入使用 `createWriteStream`。把 Blob 交给 `Response` 等原生消费者后，消费生命周期由调用模块负责；需要与修改协调时在模块中使用 `withFileAccess`。
 
 `write` 和 `file(...).write` 只接受非流数据；`Response`、`Request`、`ReadableStream` 使用标准 `pipeline` 配合 `createWriteStream`，并向流和 `pipeline` 同时传入取消信号。Bun 1.3.14 的部分异常输入流会使原生 `Bun.write` 永不结束，本包直接拒绝这些输入，避免占住文件队列。
 

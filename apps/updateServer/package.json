@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/updateServer",
+  "name": "@dramaflow/updateServer",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@toonflow/file": "workspace:*",
+    "@dramaflow/file": "workspace:*",
     "express": "^5.2.1"
   },
   "devDependencies": {

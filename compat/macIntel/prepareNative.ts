@@ -1,5 +1,5 @@
 import { $ } from "bun";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "@toonflow/file";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "@dramaflow/file";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
@@ -10,7 +10,7 @@ export default async function prepareNative() {
   const sdkDir = resolve(import.meta.dir, "node_modules/electrobun");
   const sdkVersion = JSON.parse(readFileSync(resolve(sdkDir, "package.json"), "utf8")).version;
   if (sdkVersion !== "1.18.1") throw new Error(`原生兼容构建仅适用于 Electrobun 1.18.1，当前为 ${sdkVersion}。`);
-  const cacheDir = resolve(import.meta.dir, "node_modules/.toonflowNative");
+  const cacheDir = resolve(import.meta.dir, "node_modules/.dramaflowNative");
   const distDir = resolve(sdkDir, "dist-macos-x64");
   const cmake = process.env.CMAKE || "cmake";
   const nativeEnv = { ...process.env, MACOSX_DEPLOYMENT_TARGET: minimumMacVersion };

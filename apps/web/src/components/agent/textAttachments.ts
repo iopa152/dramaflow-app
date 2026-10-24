@@ -1,7 +1,7 @@
-import { translate } from "@toonflow/i18n";
+import { translate } from "@dramaflow/i18n";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
 import type { AgentAttachment } from "./types";
-import { decodeTextFile } from "@toonflow/server/documentFormats";
+import { decodeTextFile } from "@dramaflow/server/documentFormats";
 
 export function createPastedTextFile(text: string): File | undefined {
   if (text.length <= 2000 && text.split(/\r\n|\r|\n/).length <= 30) return;

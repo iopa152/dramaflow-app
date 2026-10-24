@@ -1,6 +1,6 @@
 import axios from "axios";
 import { computed, ref, shallowRef, watch } from "vue";
-import type { updateSnapshot } from "@toonflow/server/desktop";
+import type { updateSnapshot } from "@dramaflow/server/desktop";
 import { settings } from "@/stores/settings";
 import { isRemoteConnection } from "@/lib/platform";
 
@@ -115,7 +115,7 @@ export function runDesktopUpdate(nextAction: NonNullable<typeof desktopUpdateAct
     const progressTask = progressController && observeDownloadProgress(source, AbortSignal.any([controller.signal, progressController.signal]));
     try {
       const { data } = await axios.post<{ data: updateSnapshot }>(`/api/desktop/update/${nextAction}`, null, {
-        headers: { "x-toonflow-desktop": "1" }, signal: controller.signal,
+        headers: { "x-dramaflow-desktop": "1" }, signal: controller.signal,
         timeout: nextAction === "check" ? 45000 : nextAction === "apply" ? 180000 : 0,
       }).finally(async () => {
         progressController?.abort();

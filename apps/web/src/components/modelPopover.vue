@@ -3,7 +3,7 @@
     <el-popover
       v-model:visible="visible"
       trigger="click"
-      placement="top-start"
+      placement="top-end"
       :width="340"
       :offset="10"
       :showArrow="false"
@@ -34,15 +34,15 @@
             </el-option-group>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="reasoningLevels.length" label="思考强度">
+        <el-form-item label="思考强度">
           <div class="reasoningSettings">
             <div class="reasoningGrid" role="radiogroup" aria-label="思考强度" :aria-describedby="`${reasoningId}Hint`" :style="{ gridTemplateColumns: `repeat(${reasoningColumns}, minmax(0, 1fr))` }">
               <label v-for="option in reasoningOptions" :key="option.value" class="reasoningOption">
-                <input v-model="reasoningEffort" type="radio" :name="reasoningId" :value="option.value" :disabled="disabled" />
+                <input v-model="reasoningEffort" type="radio" :name="reasoningId" :value="option.value" :disabled="disabled || (option.value !== '' && !reasoningLevels.length)" />
                 <span class="reasoningOptionLabel">{{ option.label }}</span>
               </label>
             </div>
-            <div :id="`${reasoningId}Hint`" class="reasoningHint">默认由模型决定</div>
+            <div :id="`${reasoningId}Hint`" class="reasoningHint">{{ reasoningLevels.length ? "默认由模型决定" : "当前模型不支持思考强度" }}</div>
           </div>
         </el-form-item>
       </el-form>
@@ -53,8 +53,8 @@
 <script setup lang="ts">
 import { computed, ref, useId, watch } from "vue";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-vue";
-import { modelIcon } from "@toonflow/model-icons";
-import type { ThinkingLevel } from "@toonflow/server/modelReasoning";
+import { modelIcon } from "@dramaflow/model-icons";
+import type { ThinkingLevel } from "@dramaflow/server/modelReasoning";
 import { customProviders, modelChoices } from "@/stores/settings";
 
 const selectedModel = defineModel<string>({ default: "" });
@@ -66,7 +66,8 @@ const reasoningLabels: Record<ThinkingLevel, string> = { off: "关闭", minimal:
 const modelGroups = computed(() => customProviders.value.toSorted((left, right) => Number(right.id === "tfRouter") - Number(left.id === "tfRouter")));
 const selectedModelChoice = computed(() => modelChoices.value.find(item => item.value === selectedModel.value));
 const reasoningLevels = computed(() => selectedModelChoice.value?.reasoningLevels ?? []);
-const reasoningOptions = computed(() => [{ label: "默认", value: "" }, ...reasoningLevels.value.map(value => ({ label: reasoningLabels[value], value }))]);
+// 模型目录未声明档位时保留旧版「默认/低/中/高」观感；不支持档位的选项置灰，避免提交后被服务端拒绝。
+const reasoningOptions = computed(() => [{ label: "默认", value: "" }, ...(reasoningLevels.value.length ? reasoningLevels.value : (["low", "medium", "high"] as const)).map(value => ({ label: reasoningLabels[value], value }))]);
 const reasoningColumns = computed(() => Math.min(4, reasoningOptions.value.length > 4 ? Math.ceil(reasoningOptions.value.length / 2) : reasoningOptions.value.length));
 const reasoningLabel = computed(() => reasoningOptions.value.find(item => item.value === reasoningEffort.value)?.label ?? "默认");
 watch(modelChoices, items => {

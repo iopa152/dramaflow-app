@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { Artifact, createTeamAgentCard, createTeamA2aRouter, type TeamA2aRequest } from "@toonflow/teams-scaffold/a2a";
-import { teamNameSchema } from "@toonflow/teams-scaffold/runtime";
-import type { CanvasContext } from "@toonflow/tools-scaffold/runtime";
+import { Artifact, createTeamAgentCard, createTeamA2aRouter, type TeamA2aRequest } from "@dramaflow/teams-scaffold/a2a";
+import { teamNameSchema } from "@dramaflow/teams-scaffold/runtime";
+import type { CanvasContext } from "@dramaflow/tools-scaffold/runtime";
 import { createAgentModel } from "@/agent/runtime/model";
 import { createAgentTools } from "@/agent/tools";
 import { createTeamRunner } from "@/agent/teams";

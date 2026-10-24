@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dramaflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Dramaflow" width="100%" />
 
 <p>
   <a href="https://github.com/HBAI-Ltd/Toonflow-app">
@@ -45,13 +45,13 @@
 <div align="center">
 
 <p align="center">
-  <img src="../images/logo.png" alt="Toonflow லோகோ" width="120" height="120" />
+  <img src="../images/logo.png" alt="Dramaflow லோகோ" width="120" height="120" />
 </p>
 
 <a href="https://git.io/typing-svg">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" />
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" alt="Toonflow · AI குறுநாடக ஸ்டுடியோ · யோசனைகளை கதைகளாக மாற்றவும்" width="600" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" alt="Dramaflow · AI குறுநாடக ஸ்டுடியோ · யோசனைகளை கதைகளாக மாற்றவும்" width="600" />
   </picture>
 </a>
 
@@ -134,12 +134,12 @@
     <tr>
       <td width="50%" align="center">
         <a href="../images/gStar.png">
-          <img src="../images/gStar.png" alt="Toonflow AtomGit ஜி-ஸ்டார் சான்றிதழ் எண்.540" width="100%" />
+          <img src="../images/gStar.png" alt="Dramaflow AtomGit ஜி-ஸ்டார் சான்றிதழ் எண்.540" width="100%" />
         </a>
       </td>
       <td width="50%" align="center">
         <a href="../images/gvp.jpg">
-          <img src="../images/gvp.jpg" alt="Toonflow Gitee GVP சான்றிதழ்" width="100%" />
+          <img src="../images/gvp.jpg" alt="Dramaflow Gitee GVP சான்றிதழ்" width="100%" />
         </a>
       </td>
     </tr>
@@ -158,7 +158,7 @@
 
 ## 1. 💛 ஆதரவாளர்களும் பங்களிப்பும்
 
-Toonflow திறந்த மூல திட்டத்திற்கு ஆதரவளித்த பின்வரும் கூட்டாளர்களுக்கு நன்றி.
+Dramaflow திறந்த மூல திட்டத்திற்கு ஆதரவளித்த பின்வரும் கூட்டாளர்களுக்கு நன்றி.
 
 <table>
   <tr>
@@ -168,18 +168,18 @@ Toonflow திறந்த மூல திட்டத்திற்கு �
       <sub>சிக்கனமான MiniMax H3 வீடியோ உருவாக்கம்: 768P-க்கு வினாடிக்கு ¥0.09, 2K-க்கு வினாடிக்கு ¥0.15 (CNY) மட்டுமே. உங்கள் சொந்த GPU அமைப்பை நிறுவாமல் நேட்டிவ் 2K, ஒத்திசைந்த ஒலி மற்றும் ஒளி, OpenAI-இணக்கமான API, ComfyUI மற்றும் எல்லையற்ற கேன்வாஸ் ஆகியவற்றைப் பயன்படுத்தலாம். கூடுதல் கிரெடிட்களையும் சிறப்புச் சலுகைகளையும் பெற <a href="https://metaso.cn/minimax-h3/?s=toon">இந்தச் சிறப்பு இணைப்பின் வழியாகப் பதிவு செய்யவும்</a>. வணிகத் தொடர்புகளுக்கு WeChat-இல் metasota12-ஐ அணுகவும்.</sub>
     </td>
     <td width="50%" valign="top">
-<a href="https://go.apimart.ai/gh-toonflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
+<a href="https://go.apimart.ai/gh-dramaflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
       <br />
-      <sub>இந்தத் திட்டத்தை ஆதரித்த APIMart-க்கு நன்றி! AI மூலம் படங்களையும் வீடியோக்களையும் உருவாக்க APIMart ஒரு சிக்கனமான API தளத்தை வழங்குகிறது. GPT-Image-2-இல் ஒரு படத்தின் விலை $0.006 முதல்; $1-க்கு 160+ படங்களைப் பெறலாம். படங்களுக்கும் வீடியோக்களுக்கும் ஒரே ஒத்திசைவற்ற API: பணியைச் சமர்ப்பித்து அதன் ID-ஐப் பெற்று, callback மூலம் முடிவுகளைப் பெறலாம். நேரக்கெடு முடிவடையும் பிழைகள் இல்லாமல் 10,000 படங்களைத் தொகுதியாகச் செயலாக்கலாம்; குறியீட்டை மாற்றாமல் மாதிரிகளை மாற்றலாம். மாதக் கட்டணம் இல்லை; பயன்படுத்திய அளவுக்கு மட்டும் செலுத்துங்கள். தொடங்க <a href="https://go.apimart.ai/gh-toonflow-app">இங்கே பதிவு செய்யவும்</a>.</sub>
+      <sub>இந்தத் திட்டத்தை ஆதரித்த APIMart-க்கு நன்றி! AI மூலம் படங்களையும் வீடியோக்களையும் உருவாக்க APIMart ஒரு சிக்கனமான API தளத்தை வழங்குகிறது. GPT-Image-2-இல் ஒரு படத்தின் விலை $0.006 முதல்; $1-க்கு 160+ படங்களைப் பெறலாம். படங்களுக்கும் வீடியோக்களுக்கும் ஒரே ஒத்திசைவற்ற API: பணியைச் சமர்ப்பித்து அதன் ID-ஐப் பெற்று, callback மூலம் முடிவுகளைப் பெறலாம். நேரக்கெடு முடிவடையும் பிழைகள் இல்லாமல் 10,000 படங்களைத் தொகுதியாகச் செயலாக்கலாம்; குறியீட்டை மாற்றாமல் மாதிரிகளை மாற்றலாம். மாதக் கட்டணம் இல்லை; பயன்படுத்திய அளவுக்கு மட்டும் செலுத்துங்கள். தொடங்க <a href="https://go.apimart.ai/gh-dramaflow-app">இங்கே பதிவு செய்யவும்</a>.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
+<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
       <br />
       <sub>CompShare சிக்கனமான H3 வீடியோ உருவாக்கத்தை வழங்குகிறது. உரையிலிருந்து வீடியோ, முதல் மற்றும் கடைசி ஃபிரேம் கட்டுப்பாடு, ஒருங்கிணைந்த குறிப்புப் பட முறைகள் ஆகியவை இதில் உள்ளன. நேட்டிவ் 2K-இல் அதிகபட்சம் 30 வினாடி வீடியோக்களை உருவாக்கலாம்; 768P-க்கு வினாடிக்கு CNY 0.08 மட்டுமே. API இணைப்பு, நிறுவனங்களுக்கான அதிக எண்ணிக்கையிலான ஒரேநேரக் கோரிக்கைகள் மற்றும் சுயசேவை விலைப்பட்டியல் வசதிகளும் உள்ளன.</sub>
 <br /><br />
-      <sub>🎁 தளத்தை இலவசமாக முயற்சிக்க CNY 5 கிரெடிட் பெற <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow">இந்தச் சிறப்பு இணைப்பின் வழியாகப் பதிவு செய்யவும்</a>!</sub>
+      <sub>🎁 தளத்தை இலவசமாக முயற்சிக்க CNY 5 கிரெடிட் பெற <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow">இந்தச் சிறப்பு இணைப்பின் வழியாகப் பதிவு செய்யவும்</a>!</sub>
     </td>
 <td width="50%" valign="top"></td>
   </tr>
@@ -200,7 +200,7 @@ Toonflow திறந்த மூல திட்டத்திற்கு �
 
 ## 2. 🌟 சிறப்பம்சங்கள்
 
-Toonflow என்பது குறுநாடகங்கள், அனிமேஷன் காமிக்ஸ் மற்றும் குறுகிய வீடியோக்களை உருவாக்குவதற்கான திறந்த மூல AI தளம். திரைக்கதைகள், படைப்பு வளங்கள் மற்றும் வீடியோ கிளிப்புகள் அனைத்தையும் ஒரே எல்லையற்ற கேன்வாஸில் ஒருங்கிணைக்கிறது.
+Dramaflow என்பது குறுநாடகங்கள், அனிமேஷன் காமிக்ஸ் மற்றும் குறுகிய வீடியோக்களை உருவாக்குவதற்கான திறந்த மூல AI தளம். திரைக்கதைகள், படைப்பு வளங்கள் மற்றும் வீடியோ கிளிப்புகள் அனைத்தையும் ஒரே எல்லையற்ற கேன்வாஸில் ஒருங்கிணைக்கிறது.
 
 | திறன் | விளக்கம் |
 | --- | --- |
@@ -224,25 +224,25 @@ Toonflow என்பது குறுநாடகங்கள், அனி�
 
 <div align="center">
 
-<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Toonflow · திட்ட முகப்பும் யோசனை உருவாக்கமும்" width="80%" /></a><br /><sub>திட்ட முகப்பும் யோசனை உருவாக்கமும்</sub>
+<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Dramaflow · திட்ட முகப்பும் யோசனை உருவாக்கமும்" width="80%" /></a><br /><sub>திட்ட முகப்பும் யோசனை உருவாக்கமும்</sub>
 
-<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Toonflow · முதல் தொடக்கமும் விரைவு அமைப்பும்" width="80%" /></a><br /><sub>முதல் தொடக்கமும் விரைவு அமைப்பும்</sub>
+<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Dramaflow · முதல் தொடக்கமும் விரைவு அமைப்பும்" width="80%" /></a><br /><sub>முதல் தொடக்கமும் விரைவு அமைப்பும்</sub>
 
-<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Toonflow · படைப்புக் கேன்வாஸ் · இருண்ட தோற்றம்" width="80%" /></a><br /><sub>படைப்புக் கேன்வாஸ் · இருண்ட தோற்றம்</sub>
+<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Dramaflow · படைப்புக் கேன்வாஸ் · இருண்ட தோற்றம்" width="80%" /></a><br /><sub>படைப்புக் கேன்வாஸ் · இருண்ட தோற்றம்</sub>
 
-<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Toonflow · படைப்புக் கேன்வாஸ் · வெளிர் தோற்றம்" width="80%" /></a><br /><sub>படைப்புக் கேன்வாஸ் · வெளிர் தோற்றம்</sub>
+<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Dramaflow · படைப்புக் கேன்வாஸ் · வெளிர் தோற்றம்" width="80%" /></a><br /><sub>படைப்புக் கேன்வாஸ் · வெளிர் தோற்றம்</sub>
 
-<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Toonflow · கதாபாத்திரங்கள், காட்சிகள் மற்றும் பொருட்களுக்கான வளங்கள்" width="80%" /></a><br /><sub>கதாபாத்திரங்கள், காட்சிகள் மற்றும் பொருட்களுக்கான வளங்கள்</sub>
+<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Dramaflow · கதாபாத்திரங்கள், காட்சிகள் மற்றும் பொருட்களுக்கான வளங்கள்" width="80%" /></a><br /><sub>கதாபாத்திரங்கள், காட்சிகள் மற்றும் பொருட்களுக்கான வளங்கள்</sub>
 
-<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Toonflow · 3D இயக்குநர் அரங்கமும் காட்சிப் பதிவு முன்னோட்டமும்" width="80%" /></a><br /><sub>3D இயக்குநர் அரங்கமும் காட்சிப் பதிவு முன்னோட்டமும்</sub>
+<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Dramaflow · 3D இயக்குநர் அரங்கமும் காட்சிப் பதிவு முன்னோட்டமும்" width="80%" /></a><br /><sub>3D இயக்குநர் அரங்கமும் காட்சிப் பதிவு முன்னோட்டமும்</sub>
 
-<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Toonflow · கதாபாத்திரத்தின் மூன்று கோணத் தோற்றங்களும் பட உருவாக்கமும்" width="80%" /></a><br /><sub>கதாபாத்திரத்தின் மூன்று கோணத் தோற்றங்களும் பட உருவாக்கமும்</sub>
+<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Dramaflow · கதாபாத்திரத்தின் மூன்று கோணத் தோற்றங்களும் பட உருவாக்கமும்" width="80%" /></a><br /><sub>கதாபாத்திரத்தின் மூன்று கோணத் தோற்றங்களும் பட உருவாக்கமும்</sub>
 
-<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Toonflow · பல குறிப்புப் படங்களுடன் வீடியோ உருவாக்கம்" width="80%" /></a><br /><sub>பல குறிப்புப் படங்களுடன் வீடியோ உருவாக்கம்</sub>
+<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Dramaflow · பல குறிப்புப் படங்களுடன் வீடியோ உருவாக்கம்" width="80%" /></a><br /><sub>பல குறிப்புப் படங்களுடன் வீடியோ உருவாக்கம்</sub>
 
-<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Toonflow · முனை மெனுவும் குழுவாக்கச் செயல்களும்" width="80%" /></a><br /><sub>முனை மெனுவும் குழுவாக்கச் செயல்களும்</sub>
+<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Dramaflow · முனை மெனுவும் குழுவாக்கச் செயல்களும்" width="80%" /></a><br /><sub>முனை மெனுவும் குழுவாக்கச் செயல்களும்</sub>
 
-<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Toonflow · செருகுநிரல் சந்தை" width="80%" /></a><br /><sub>செருகுநிரல் சந்தை</sub>
+<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Dramaflow · செருகுநிரல் சந்தை" width="80%" /></a><br /><sub>செருகுநிரல் சந்தை</sub>
 
 </div>
 
@@ -258,25 +258,25 @@ Toonflow என்பது குறுநாடகங்கள், அனி�
 | macOS | [வெளியீடு](https://github.com/HBAI-Ltd/Toonflow-app/releases) |
 | Android ARM64 | [APK பதிவிறக்கம்](https://github.com/HBAI-Ltd/Toonflow-app/releases/latest) |
 
-Android செயலி ARM64 சாதனங்களை மட்டுமே ஆதரிக்கிறது. வெளியீட்டுப் பக்கத்திலிருந்து `toonflow-VERSION-android-arm64.apk` கோப்பைப் பதிவிறக்கி நிறுவவும். உள்ளூர் Bun பின்தளம் உள்ளடங்கியுள்ளதால் தனியாக இயங்க முடியும். முகப்புப் பக்கத்தில் உள்ள «சாதன இணைப்பு» மூலம் QR குறியீட்டை ஸ்கேன் செய்தோ இணைப்பு விவரங்களை உள்ளீடு செய்தோ உள்ளூர் வலையமைப்பு அல்லது இணையத்தில் பகிர்வு இயக்கப்பட்டுள்ள கணினி அல்லது பின்தளத்துடன் இணைக்கலாம்.
+Android செயலி ARM64 சாதனங்களை மட்டுமே ஆதரிக்கிறது. வெளியீட்டுப் பக்கத்திலிருந்து `dramaflow-VERSION-android-arm64.apk` கோப்பைப் பதிவிறக்கி நிறுவவும். உள்ளூர் Bun பின்தளம் உள்ளடங்கியுள்ளதால் தனியாக இயங்க முடியும். முகப்புப் பக்கத்தில் உள்ள «சாதன இணைப்பு» மூலம் QR குறியீட்டை ஸ்கேன் செய்தோ இணைப்பு விவரங்களை உள்ளீடு செய்தோ உள்ளூர் வலையமைப்பு அல்லது இணையத்தில் பகிர்வு இயக்கப்பட்டுள்ள கணினி அல்லது பின்தளத்துடன் இணைக்கலாம்.
 
 Windows நிறுவி தானாகவே WebView2 கண்டறிந்து நிறுவுகிறது. நிறுவிய பின் ஆப்ஸ் உடனடியாக மூடப்பட்டால், [WebView2 டவுன்லோட் பக்கம்](https://developer.microsoft.com/microsoft-edge/webview2/) இலிருந்து இயக்க நேரத்தை கைமுறையாக பதிவிறக்கி நிறுவவும்.
 
-macOS (Apple Silicon)-இல் Toonflow-ஐ Applications கோப்புறைக்கு இழுத்துச் சென்று நேரடியாகத் திறக்கலாம். அதற்கு முன் Terminal கட்டளைகளை இயக்கத் தேவையில்லை. macOS பாதுகாப்பு எச்சரிக்கை காட்டினால், கீழுள்ள படிகளை வரிசையாகப் பின்பற்றவும்.
+macOS (Apple Silicon)-இல் Dramaflow-ஐ Applications கோப்புறைக்கு இழுத்துச் சென்று நேரடியாகத் திறக்கலாம். அதற்கு முன் Terminal கட்டளைகளை இயக்கத் தேவையில்லை. macOS பாதுகாப்பு எச்சரிக்கை காட்டினால், கீழுள்ள படிகளை வரிசையாகப் பின்பற்றவும்.
 
 <details>
-<summary><strong>macOS-இல் Toonflow-ஐ நிறுவவோ திறக்கவோ முடியாவிட்டால்</strong></summary>
+<summary><strong>macOS-இல் Dramaflow-ஐ நிறுவவோ திறக்கவோ முடியாவிட்டால்</strong></summary>
 
-**1. தனியுரிமை மற்றும் பாதுகாப்பில் Toonflow ஐ அனுமதிக்கவும்**
+**1. தனியுரிமை மற்றும் பாதுகாப்பில் Dramaflow ஐ அனுமதிக்கவும்**
 
-டெவலப்பரைச் சரிபார்க்க முடியவில்லை அல்லது Apple தீங்கிழைக்கும் மென்பொருளுக்கான பயன்பாட்டைச் சரிபார்க்க முடியாது என்ற எச்சரிக்கையை நீங்கள் கண்டால், முதலில் Toonflow ஐத் திறக்க முயற்சிக்கவும். பின்னர் கணினி அமைப்புகள் → தனியுரிமை & பாதுகாப்பு என்பதற்குச் சென்று, Toonflow தடுக்கப்பட்ட செய்தியைக் கண்டறிந்து, எப்படியும் திற என்பதைக் கிளிக் செய்து, கேட்கப்பட்டதை உறுதிப்படுத்தவும். [Apple இன் அதிகாரப்பூர்வ வழிமுறைகளைப் பார்க்கவும்](https://support.apple.com/zh-cn/102445).
+டெவலப்பரைச் சரிபார்க்க முடியவில்லை அல்லது Apple தீங்கிழைக்கும் மென்பொருளுக்கான பயன்பாட்டைச் சரிபார்க்க முடியாது என்ற எச்சரிக்கையை நீங்கள் கண்டால், முதலில் Dramaflow ஐத் திறக்க முயற்சிக்கவும். பின்னர் கணினி அமைப்புகள் → தனியுரிமை & பாதுகாப்பு என்பதற்குச் சென்று, Dramaflow தடுக்கப்பட்ட செய்தியைக் கண்டறிந்து, எப்படியும் திற என்பதைக் கிளிக் செய்து, கேட்கப்பட்டதை உறுதிப்படுத்தவும். [Apple இன் அதிகாரப்பூர்வ வழிமுறைகளைப் பார்க்கவும்](https://support.apple.com/zh-cn/102445).
 
 **2. தனிமைப்படுத்தப்பட்ட கட்டுப்பாடுகள் இன்னும் திறப்பதைத் தடுக்கிறது என்றால், தனிமைப்படுத்தப்பட்ட பண்புக்கூறை அகற்ற முயற்சிக்கவும்**
 
 பயன்பாடு அதிகாரப்பூர்வ வெளியீட்டுப் பக்கத்திலிருந்து வந்தது மற்றும் பயன்பாடுகளில் உள்ளது என்பதை உறுதிசெய்த பிறகு, பின்வரும் கட்டளையை டெர்மினலில் இயக்கி, அதை மீண்டும் திறக்க முயற்சிக்கவும். பயன்பாட்டின் பெயர் அல்லது நிறுவல் இடம் வேறுபட்டால் பாதையை சரிசெய்யவும்.
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/toonflow.app
+sudo xattr -rd com.apple.quarantine /Applications/dramaflow.app
 ```
 
 **3. கடைசி முயற்சி: எங்கிருந்தும் ஆப்ஸை தற்காலிகமாக அனுமதி**
@@ -308,16 +308,16 @@ sudo spctl --master-disable
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 docker compose up -d --build
 ```
 
 முதல் உருவாக்கம் சார்புகளை நிறுவுகிறது மற்றும் தொகுக்கப்பட்ட முனைகள், கருவிகள், Web மற்றும் Server ஆகியவற்றை உருவாக்குகிறது. தொடங்கியதும், `http://127.0.0.1:3000`ஐத் திறக்கவும். ரிமோட் ஹோஸ்டுக்கு, கீழே உள்ள "அணுகல் மற்றும் தரவு" என்பதன் கீழ் விவரிக்கப்பட்டுள்ளபடி SSH சுரங்கப்பாதையைப் பயன்படுத்தவும். முதல் தொடக்கமானது தொகுக்கப்பட்ட செருகுநிரல்களை துவக்குகிறது மற்றும் `myProject` வேலை செய்யும் கோப்பகத்தை வழங்குகிறது.
 
-அமைப்புகள், செருகுநிரல்கள் மற்றும் திட்டக் கோப்புகள் `toonflowData` என்ற Docker volume-இல் சேமிக்கப்படுகின்றன. அது கொள்கலனுக்குள் `/app/data/`-இல் இணைக்கப்படுகிறது. உண்மையான volume பெயருக்கு முன் Compose திட்டப் பெயர் இருக்கும். கொள்கலனை நிறுத்தினாலும் மீண்டும் உருவாக்கினாலும் தரவு பாதுகாக்கப்படும். **`docker compose down -v` கட்டளையைப் பயன்படுத்த வேண்டாம்: அது தரவு volume-ஐ நீக்கிவிடும்.**
+அமைப்புகள், செருகுநிரல்கள் மற்றும் திட்டக் கோப்புகள் `dramaflowData` என்ற Docker volume-இல் சேமிக்கப்படுகின்றன. அது கொள்கலனுக்குள் `/app/data/`-இல் இணைக்கப்படுகிறது. உண்மையான volume பெயருக்கு முன் Compose திட்டப் பெயர் இருக்கும். கொள்கலனை நிறுத்தினாலும் மீண்டும் உருவாக்கினாலும் தரவு பாதுகாக்கப்படும். **`docker compose down -v` கட்டளையைப் பயன்படுத்த வேண்டாம்: அது தரவு volume-ஐ நீக்கிவிடும்.**
 
 ```sh
-docker compose logs -f toonflow  # View logs
+docker compose logs -f dramaflow  # View logs
 docker compose stop             # Stop the service
 docker compose start            # Start it again
 docker compose down             # Remove containers, retaining the data volume
@@ -326,14 +326,14 @@ docker compose down             # Remove containers, retaining the data volume
 திட்டக் கோப்பகத்தைச் சேர்க்க, "Server பணிக் கோப்பகத்தைத் தேர்ந்தெடு" உரையாடலில் உள்ள "புதிய கோப்புறை" என்பதைக் கிளிக் செய்யவும். கோப்புகள் மற்றும் கோப்புறைகளை மறுபெயரிடுதல் மற்றும் நீக்குதல் ஆகியவற்றை உரையாடல் ஆதரிக்கிறது. மாற்றாக, சேவை இயங்கும் போது கட்டளை வரியிலிருந்து ஒரு கோப்பகத்தை உருவாக்கவும்:
 
 ```sh
-docker compose exec toonflow mkdir -p /app/data/workspaces/newProject
+docker compose exec dramaflow mkdir -p /app/data/workspaces/newProject
 ```
 
 காப்புப்பிரதிக்கு, முதலில் சேவையை நிறுத்தி, தரவை நகலெடுத்து, மறுதொடக்கம் செய்யுங்கள்:
 
 ```sh
 docker compose stop
-docker compose cp toonflow:/app/data ./toonflowBackup
+docker compose cp dramaflow:/app/data ./dramaflowBackup
 docker compose start
 ```
 
@@ -362,7 +362,7 @@ bun --version
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install --frozen-lockfile
 
 # Build bundled nodes, tools, Web, and Server
@@ -388,7 +388,7 @@ bun run start:server
 
 ### 4.5 கிளவுட் வரிசைப்படுத்தல்
 
-எங்கள் கூட்டாளர் [AI Galaxy (智星云)](https://www.ai-galaxy.com/) அதிகாரப்பூர்வமாக அனுமதிக்கப்பட்ட வணிக Toonflow இமேஜை வழங்குகிறது; அதில் பயன்படுத்தத் தயாரான சூழல் உள்ளது. செயல்முறைக்கு [படங்களுடன் கூடிய இமேஜ் நிறுவல் வழிகாட்டியைப்](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1) பார்க்கவும்.
+எங்கள் கூட்டாளர் [AI Galaxy (智星云)](https://www.ai-galaxy.com/) அதிகாரப்பூர்வமாக அனுமதிக்கப்பட்ட வணிக Dramaflow இமேஜை வழங்குகிறது; அதில் பயன்படுத்தத் தயாரான சூழல் உள்ளது. செயல்முறைக்கு [படங்களுடன் கூடிய இமேஜ் நிறுவல் வழிகாட்டியைப்](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1) பார்க்கவும்.
 
 ---
 
@@ -418,19 +418,19 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
   </a>
 </p>
 
-TF-Router என்பது Toonflow இன் அதிகாரப்பூர்வ, சுயமாக இயக்கப்படும் மாதிரி நுழைவாயில் ஆகும். அதைப் பயன்படுத்த நீங்கள் வரவேற்கப்படுகிறீர்கள். அதன் முழு மூலக் குறியீடும் ஓப்பன் சோர்ஸ் மற்றும் சுய ஹோஸ்டிங் மற்றும் தணிக்கைக்குக் கிடைக்கிறது: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
+TF-Router என்பது Dramaflow இன் அதிகாரப்பூர்வ, சுயமாக இயக்கப்படும் மாதிரி நுழைவாயில் ஆகும். அதைப் பயன்படுத்த நீங்கள் வரவேற்கப்படுகிறீர்கள். அதன் முழு மூலக் குறியீடும் ஓப்பன் சோர்ஸ் மற்றும் சுய ஹோஸ்டிங் மற்றும் தணிக்கைக்குக் கிடைக்கிறது: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
 
 <details>
-<summary><strong>Toonflow சமூகத்திற்கான கடிதம் (வெளியீடு: 2026-06-08)</strong></summary>
+<summary><strong>Dramaflow சமூகத்திற்கான கடிதம் (வெளியீடு: 2026-06-08)</strong></summary>
 
-> ### Toonflow சமூகத்திற்கு ஒரு கடிதம்
+> ### Dramaflow சமூகத்திற்கு ஒரு கடிதம்
 > 130 நாட்கள்.
 > நீண்ட நேரம் இல்லை, ஆனால் சில விஷயங்களைத் தெளிவாகப் பார்க்க நமக்கு போதுமானது.
 > எங்களின் முதல் வரிசைக் குறியீட்டிலிருந்து இன்று வரை, 130 நாட்கள் கடந்துவிட்டன. நாங்கள் 20 பதிப்புகளை வெளியிட்டு, 800+ கமிட்களை உருவாக்கி, 640,810 எழுத்துகளைக் கொண்ட 213,765 குறியீடு வரிகளை எழுதியுள்ளோம்.
 > இருமுறை புதிதாக எழுதப்பட்ட நிரல், ஒரு வழங்குநர் அமைப்பு, நாங்கள் பெருமைப்படும் ஒரு பணிப்பாய்வு.
 > அது போதும் என்று நினைத்தோம்.
 > ஆனால் அது இல்லை.
-> சிலர் Toonflow இல் தங்களுடைய சொந்த மாட்யூலைச் சேர்க்க விரும்புவதாக எங்களிடம் சொன்னார்கள், ஆனால் அதை எப்படி மாற்றுவது என்பதைப் புரிந்துகொள்ள பல மணிநேரம் செலவழித்துள்ளனர்.
+> சிலர் Dramaflow இல் தங்களுடைய சொந்த மாட்யூலைச் சேர்க்க விரும்புவதாக எங்களிடம் சொன்னார்கள், ஆனால் அதை எப்படி மாற்றுவது என்பதைப் புரிந்துகொள்ள பல மணிநேரம் செலவழித்துள்ளனர்.
 > சிலர் எங்களிடம் சமூகம் மிகவும் சிறியதாக இருப்பதாகவும், பிரச்சனைகளில் சிக்கியபோது அவர்களால் உதவி கிடைக்கவில்லை என்றும் கூறினார்கள்.
 > வணிக விதிமுறைகள் காரணமாகத் தங்கள் திட்டங்களை நடைமுறைப் பயன்பாட்டிற்குக் கொண்டுவர முடியவில்லை என்றும் சிலர் கூறினார்கள்.
 > உங்கள் கருத்துகளைக் கேட்டோம்.
@@ -438,7 +438,7 @@ TF-Router என்பது Toonflow இன் அதிகாரப்பூ�
 > நம்மிடம் நிறைய பணம் இருப்பதால் அல்ல.
 > ஆனால் இதைச் செய்வது மதிப்புக்குரியது என்று நாங்கள் நம்புவதால்.
 > எனவே மூன்றாவது முறையாக நிரலைப் புதிதாக எழுத முடிவு செய்துள்ளோம்.
-> ஒவ்வொரு Toonflow மீண்டும் எழுதுவதும் அதிக திறந்த தன்மை மற்றும் திறந்த மூலத்தை நோக்கி நகர்ந்துள்ளது.
+> ஒவ்வொரு Dramaflow மீண்டும் எழுதுவதும் அதிக திறந்த தன்மை மற்றும் திறந்த மூலத்தை நோக்கி நகர்ந்துள்ளது.
 > இம்முறை அனைத்தையும் முழுமையாகத் திறக்க முடிவு செய்துள்ளோம்.
 >
 > 1. MIT License
@@ -473,9 +473,9 @@ TF-Router என்பது Toonflow இன் அதிகாரப்பூ�
 > மீண்டும் எழுத நேரம் எடுக்கும். அந்த நேரத்தில், சேவையகங்கள் தொடர்ந்து இயங்கும், டொமைன்கள் புதுப்பிக்கப்பட வேண்டும், குழு தாமதமாக வேலை செய்கிறது, மேலும் காபி விலை அதிகமாகிறது.
 > எங்களிடம் முதலீட்டு நிதி இல்லை, விளம்பரம் இல்லை, மறைக்கப்பட்ட வணிகத் திட்டங்கள் எதுவும் இல்லை.
 > ஆனால் தொடங்கியதை முடிக்க, எங்கள் பணியைத் தொடர்ந்து நடத்துவதற்கான வசதி தேவை.
-> அதனால்தான் நாங்கள் அதிகாரப்பூர்வமான Toonflow மாதிரி நுழைவாயிலான TF-Router ஐ அறிமுகப்படுத்தினோம்.
+> அதனால்தான் நாங்கள் அதிகாரப்பூர்வமான Dramaflow மாதிரி நுழைவாயிலான TF-Router ஐ அறிமுகப்படுத்தினோம்.
 > உண்மையைச் சொன்னால், இந்தத் தளத்தைப் பற்றி நீண்ட காலம் தயங்கினோம்.
-> நாங்கள் உருவாக்க விரும்பிய ஒன்றல்ல. Toonflow "பணமாக்கல்" தொடங்கிவிட்டது என்று மக்கள் உணர ஒரு நுழைவாயிலை நாங்கள் விரும்பவில்லை.
+> நாங்கள் உருவாக்க விரும்பிய ஒன்றல்ல. Dramaflow "பணமாக்கல்" தொடங்கிவிட்டது என்று மக்கள் உணர ஒரு நுழைவாயிலை நாங்கள் விரும்பவில்லை.
 > அந்தச் சுமையை நீண்ட காலம் சுமந்தோம்.
 > ஆனால் பல பயனர்கள் Seedance 2.0 க்கு அங்கீகரிக்கப்பட்ட அணுகலைப் பெற முடியவில்லை, மேலும் அதைப் பயன்படுத்த வழி இருக்கிறதா என்று எங்களிடம் தொடர்ந்து கேட்கிறார்கள்.
 > நீண்ட யோசனைக்குப் பிறகு, நாமே ஒன்றை உருவாக்க முடிவு செய்து, Volcengine உடன் வருடாந்திர Seedance கட்டமைப்பு ஒப்பந்தத்தில் கையெழுத்திட்டோம்.
@@ -485,11 +485,11 @@ TF-Router என்பது Toonflow இன் அதிகாரப்பூ�
 > எங்களை நம்பவில்லையா? அதிலும் தவறில்லை. குறியீட்டைப் படித்து, நீங்களே நிறுவி, நீங்களே இயக்கலாம்.
 > அங்கேதான் நிற்கிறோம்.
 > முயற்சி செய்ய நீங்கள் தேர்வுசெய்தால், இந்த வேலையைத் தொடர நாங்கள் தற்போது வைத்திருக்கும் ஒரே வழியில் உங்கள் நம்பிக்கையை வைக்கிறீர்கள்.
-> செய்யாவிட்டால் அதுவும் பரவாயில்லை. Toonflow ஐத் தொடர்ந்து பயன்படுத்துங்கள், எங்களை விமர்சித்துக்கொண்டே இருங்கள் மற்றும் அம்சங்களைக் கேட்டுக்கொண்டே இருங்கள்.
+> செய்யாவிட்டால் அதுவும் பரவாயில்லை. Dramaflow ஐத் தொடர்ந்து பயன்படுத்துங்கள், எங்களை விமர்சித்துக்கொண்டே இருங்கள் மற்றும் அம்சங்களைக் கேட்டுக்கொண்டே இருங்கள்.
 > நாங்கள் இங்கே இருக்கிறோம்.
 > கடைசியாக ஒரு விஷயம், இதயத்திலிருந்து:
 > படைப்பாற்றல் கருவிகள் அனைவருக்கும் சொந்தமானதாக இருக்க வேண்டும் என்று நம்பும் சாதாரண மக்களின் ஒரு குழுவாக நாங்கள் இருக்கிறோம்.
-> Toonflow ஒருபோதும் எங்களுக்கு மட்டுமே உரிய தயாரிப்பாக இருந்ததில்லை.
+> Dramaflow ஒருபோதும் எங்களுக்கு மட்டுமே உரிய தயாரிப்பாக இருந்ததில்லை.
 > நாங்கள் சேர்ந்து எழுதும் கதை இது.
 > மூன்றாவது மறுஎழுத்தாக்கம் முடிவல்ல.
 > இங்குதான் மீண்டும் தொடங்குகிறோம்.
@@ -505,7 +505,7 @@ TF-Router என்பது Toonflow இன் அதிகாரப்பூ�
 
 குழு அழைப்பிதழ் உதவியாளரைத் தொடர்புகொள்ள QR குறியீட்டை ஸ்கேன் செய்யவும்:
 
-<img src="../images/qr.png" alt="Toonflow சமூக QR குறியீடு" height="400"/>
+<img src="../images/qr.png" alt="Dramaflow சமூக QR குறியீடு" height="400"/>
 
 Discord இல் சேர ஐகானையும் கிளிக் செய்யலாம்:
 
@@ -517,15 +517,15 @@ Discord இல் சேர ஐகானையும் கிளிக் ச�
 
 ## 8. 💌 எங்களை தொடர்பு கொள்ளவும்
 
-📧 மின்னஞ்சல்: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 மின்னஞ்சல்: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Dramaflow咨询)
 
 ---
 
 ## 9. 📜 திறந்த மூல உரிமம்
 
-Toonflow ஆனது [MIT License](../../LICENSE) இன் கீழ் உரிமம் பெற்றது. மூன்றாம் தரப்பு சார்புகள் மற்றும் சொத்துக்கள் அந்தந்த உரிமங்கள் மற்றும் பதிப்புரிமை அறிவிப்புகளுக்கு உட்பட்டவை.
+Dramaflow ஆனது [MIT License](../../LICENSE) இன் கீழ் உரிமம் பெற்றது. மூன்றாம் தரப்பு சார்புகள் மற்றும் சொத்துக்கள் அந்தந்த உரிமங்கள் மற்றும் பதிப்புரிமை அறிவிப்புகளுக்கு உட்பட்டவை.
 
-[![Toonflow நட்சத்திர வரலாறு](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
+[![Dramaflow நட்சத்திர வரலாறு](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
 
 > **முந்தைய பதிப்புகளுக்குப் பொருந்தாத மாற்றம்**: v1.0.8-க்கு முந்தைய பதிப்புகளை AGPL-3.0-இன் கீழ் பயன்படுத்தியவர்களுக்கு AGPL-3.0 தொடர்ந்து பொருந்தும். v1.0.8 முதல் v1.1.8 வரையிலான பதிப்புகளுக்கு Apache-2.0 மற்றும் அதன் கூடுதல் ஒப்பந்தம் தொடர்ந்து பொருந்தும். இந்த உரிம மாற்றம் அவர்களைப் பாதிக்காது.
 
@@ -546,4 +546,4 @@ Xi'an Zhongxing Digital Intelligence Technology Co., Ltd. (西安中星数字智
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Toonflow அடிக்குறிப்பு" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Dramaflow அடிக்குறிப்பு" width="100%" />

@@ -4,13 +4,13 @@ import { createWorkspaceFfmpeg } from "@/utils/ffmpeg";
 import { createBrowserContext } from "@/utils/browser";
 import { importImage } from "@/utils/workspace/chatImages";
 import { basename, dirname, join, relative, resolve } from "node:path";
-import { access, constants, copyFile, lstat, mkdir, readFile, readdir, rm, rmdir, stat, withFileAccess } from "@toonflow/file";
+import { access, constants, copyFile, lstat, mkdir, readFile, readdir, rm, rmdir, stat, withFileAccess } from "@dramaflow/file";
 import {
   defineTool, createReadToolDefinition, createWriteToolDefinition, createEditToolDefinition, createLsToolDefinition,
   detectSupportedImageMimeTypeFromFile, type ToolDefinition,
 } from "@earendil-works/pi-coding-agent";
-import type { CanvasContext, QuestionContext, ToolContext, ToolFiles } from "@toonflow/tools-scaffold/runtime";
-import { asrRequestSchema } from "@toonflow/tools-scaffold/runtime";
+import type { CanvasContext, QuestionContext, ToolContext, ToolFiles } from "@dramaflow/tools-scaffold/runtime";
+import { asrRequestSchema } from "@dramaflow/tools-scaffold/runtime";
 import conf from "@/utils/conf";
 import { isWithin, resolveWorkspacePath, writeWorkspaceFile, renameWorkspaceFile, lockWorkspaceFiles, protectWorkspaceRoot } from "@/utils/workspace/files";
 import { listTools, loadTool, validateToolConfig } from "@/utils/plugins/tools";

@@ -31,17 +31,19 @@ export async function isCanvasFile(files: Pick<ReturnType<typeof useWorkspaceFil
     const header = await files.readText(path, headerBytes, signal);
     signal?.throwIfAborted();
     if (!/^\s*\{/.test(header)) return false;
-    // ACT: 自有保存格式将标记置于根对象首字段；其他顺序完整解析，避免嵌套标记误判。
-    if (/^\s*\{\s*"toonflowCanvas"\s*:\s*true\s*[,}]/.test(header)) return true;
+    // ACT: 自有保存格式将标记置于根对象首字段；其他顺序完整解析，避免嵌套标记误判。toonflowCanvas 为改名前的旧标记。
+    if (/^\s*\{\s*"(?:dramaflow|toonflow)Canvas"\s*:\s*true\s*[,}]/.test(header)) return true;
     try {
-      return JSON.parse(header.trimStart())?.toonflowCanvas === true;
+      const parsed = JSON.parse(header.trimStart()) as { dramaflowCanvas?: boolean; toonflowCanvas?: boolean } | null;
+      return (parsed?.dramaflowCanvas ?? parsed?.toonflowCanvas) === true;
     } catch (error) {
       if (!(error instanceof SyntaxError)) throw error;
       if (new TextEncoder().encode(header).byteLength < headerBytes) return false;
     }
     const content = await files.readText(path, undefined, signal);
     signal?.throwIfAborted();
-    return JSON.parse(content.trimStart())?.toonflowCanvas === true;
+    const parsed = JSON.parse(content.trimStart()) as { dramaflowCanvas?: boolean; toonflowCanvas?: boolean } | null;
+    return (parsed?.dramaflowCanvas ?? parsed?.toonflowCanvas) === true;
   } catch (error) {
     signal?.throwIfAborted();
     if (error instanceof SyntaxError) return false;

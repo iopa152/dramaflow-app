@@ -1,5 +1,5 @@
 import ffmpeg from "@renmu/fluent-ffmpeg";
-import { lstatSync, realpathSync, statSync } from "@toonflow/file";
+import { lstatSync, realpathSync, statSync } from "@dramaflow/file";
 import { createRequire } from "node:module";
 import { dirname, isAbsolute, join, parse, relative, resolve, sep } from "node:path";
 import type { Readable } from "node:stream";

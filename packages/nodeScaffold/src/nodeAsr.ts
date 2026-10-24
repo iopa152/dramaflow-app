@@ -1,9 +1,9 @@
 import { onScopeDispose } from "vue";
-import { isBrowserAudioAsrSupported, transcribeBrowserAudio, type BrowserAudioAsrOptions } from "@toonflow/asr";
+import { isBrowserAudioAsrSupported, transcribeBrowserAudio, type BrowserAudioAsrOptions } from "@dramaflow/asr";
 import { useNodeFiles } from "./workspaceFiles";
 
-export { createBrowserAsr, isBrowserAsrSupported, isBrowserAudioAsrSupported } from "@toonflow/asr";
-export type { BrowserAsrState, BrowserAsrResult, BrowserAsrError, BrowserAsrOptions, BrowserAudioAsrOptions } from "@toonflow/asr";
+export { createBrowserAsr, isBrowserAsrSupported, isBrowserAudioAsrSupported } from "@dramaflow/asr";
+export type { BrowserAsrState, BrowserAsrResult, BrowserAsrError, BrowserAsrOptions, BrowserAudioAsrOptions } from "@dramaflow/asr";
 
 export function useNodeAsr() {
   const files = useNodeFiles();

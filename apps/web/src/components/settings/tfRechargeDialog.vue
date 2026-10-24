@@ -61,7 +61,7 @@
 
 <script setup lang="ts">
 import axios from "axios";
-import { locale } from "@toonflow/i18n/vue";
+import { locale } from "@dramaflow/i18n/vue";
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { IconBrandAlipay, IconBrandWechat, IconCreditCard, IconExternalLink, IconRefresh } from "@tabler/icons-vue";
 import tf, { type TfPayment, type TfPayParams, type TfRechargeSku } from "@/lib/tf";

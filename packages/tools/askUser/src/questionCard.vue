@@ -70,7 +70,7 @@ import "element-plus/es/components/checkbox-group/style/css";
 import "element-plus/es/components/radio/style/css";
 import "element-plus/es/components/radio-group/style/css";
 import { IconMessageQuestion } from "@tabler/icons-vue";
-import type { ToolCall } from "@toonflow/tools-scaffold/runtime";
+import type { ToolCall } from "@dramaflow/tools-scaffold/runtime";
 
 for (const component of [
   ElForm, ElFormItem, ElRow, ElCol, ElInput, ElInputNumber, ElSwitch,
@@ -148,7 +148,7 @@ async function submitAnswer(skip: boolean) {
       ...(props.toolSessionId ? { sessionId: props.toolSessionId } : { directory: props.directory }),
       callId,
       ...(skip ? { skipped: true } : formRules.value.length ? { values: formApi.value!.formData() } : { answer: value }),
-    }, { headers: { "x-toonflow-workspace": "1" } });
+    }, { headers: { "x-dramaflow-workspace": "1" } });
     if (response.data.code !== 200) throw new Error(response.data.message || "提交回答失败");
     submittedAnswer.value = response.data.data.answer;
     submittedSkipped.value = response.data.data.skipped === true;

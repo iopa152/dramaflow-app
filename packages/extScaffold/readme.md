@@ -13,7 +13,7 @@ bun run --cwd packages/ext/myEditor typecheck
 bun run --cwd packages/ext/myEditor build
 ```
 
-参数是小驼峰名称，不带 `ext-`；例如 `myEditor` 生成 ID `ext-myEditor` 和包名 `@toonflow/ext-myeditor`。已有同名目录时拒绝创建。命令只创建目录和文件，不隐式安装依赖、构建或修改宿主配置。
+参数是小驼峰名称，不带 `ext-`；例如 `myEditor` 生成 ID `ext-myEditor` 和包名 `@dramaflow/ext-myeditor`。已有同名目录时拒绝创建。命令只创建目录和文件，不隐式安装依赖、构建或修改宿主配置。
 
 写入中途失败时保留已创建文件，修复原因后可补齐或手动清理；脚手架不会递归删除目录回滚。
 
@@ -35,7 +35,7 @@ packages/ext/myEditor/
 
 ```ts
 // src/metadata.ts
-import type { ExtDefinition } from "@toonflow/ext-scaffold/runtime";
+import type { ExtDefinition } from "@dramaflow/ext-scaffold/runtime";
 
 export default {
   id: "ext-myEditor",
@@ -50,7 +50,7 @@ export default {
 入口 `src/index.ts` 将声明与组件加载函数组合：
 
 ```ts
-import { defineExt } from "@toonflow/ext-scaffold/runtime";
+import { defineExt } from "@dramaflow/ext-scaffold/runtime";
 import metadata from "./metadata";
 
 export default defineExt({ ...metadata, load: () => import("./index.vue") });
@@ -69,7 +69,7 @@ export default defineExt({ ...metadata, load: () => import("./index.vue") });
 ## 组件上下文
 
 ```ts
-import type { ExtContext } from "@toonflow/ext-scaffold/runtime";
+import type { ExtContext } from "@dramaflow/ext-scaffold/runtime";
 
 const props = defineProps<{ context: ExtContext }>();
 ```
@@ -115,18 +115,18 @@ const editor = new Editor({
 });
 ```
 
-共享模块包括 `@tiptap/core`、`@tiptap/vue-3`、`@tiptap/starter-kit`、`@tiptap/markdown`，以及 `extension-find-and-replace`、`extension-highlight`、`extension-image`、`extension-list`、`extension-subscript`、`extension-superscript`、`extension-table`、`extension-text-align`（均为 `@tiptap/` 前缀）；还包括 `@tiptap/pm/model`、`@tiptap/pm/state`、`@tiptap/pm/view`、`marked` 和 `dompurify`。构建产物引用 `window.toonflowTiptapHost` 中对应的依赖，不重复打包这些实现。
+共享模块包括 `@tiptap/core`、`@tiptap/vue-3`、`@tiptap/starter-kit`、`@tiptap/markdown`，以及 `extension-find-and-replace`、`extension-highlight`、`extension-image`、`extension-list`、`extension-subscript`、`extension-superscript`、`extension-table`、`extension-text-align`（均为 `@tiptap/` 前缀）；还包括 `@tiptap/pm/model`、`@tiptap/pm/state`、`@tiptap/pm/view`、`marked` 和 `dompurify`。构建产物引用 `window.dramaflowTiptapHost` 中对应的依赖，不重复打包这些实现。
 
 Tiptap 统一使用具名导入，例如 `{ StarterKit }`、`{ Image }`、`{ Highlight }`、`{ Superscript }`、`{ Subscript }`、`{ TextAlign }`、`{ FindAndReplace }`。当前 Vite 8 UMD 的默认导入会取整个外部模块对象，不能用于这些共享模块；DOMPurify 单独共享默认函数，继续使用 `import DOMPurify from "dompurify"`。无需启用影响所有依赖的旧版 CJS 兼容开关。
 
-宿主先检查 UMD 是否引用 `toonflowTiptapHost`，仅在需要时动态加载共享依赖，后续复用同一个 ES 模块；普通图片、视频或纯文本插件不会因此预载 Tiptap。组件的挂载、销毁、隐藏状态、正文更新和文件保存仍由各包管理。使用共享依赖的产物需要配套宿主版本。
+宿主先检查 UMD 是否引用 `dramaflowTiptapHost`，仅在需要时动态加载共享依赖，后续复用同一个 ES 模块；普通图片、视频或纯文本插件不会因此预载 Tiptap。组件的挂载、销毁、隐藏状态、正文更新和文件保存仍由各包管理。使用共享依赖的产物需要配套宿主版本。
 
 ## 独立构建与开发
 
 `viteConfig.ts` 使用共享配置：
 
 ```ts
-import { createExtConfig } from "@toonflow/ext-scaffold";
+import { createExtConfig } from "@dramaflow/ext-scaffold";
 import metadata from "./src/metadata.ts";
 
 export default createExtConfig(metadata, import.meta.url);
@@ -134,17 +134,17 @@ export default createExtConfig(metadata, import.meta.url);
 
 声明文件不导入组件，避免配置打包器提前解析 Vue 文件。每次重建重新读取声明及其依赖，后缀、图标与设置变更会同步进入 UMD 元数据；修改扩展 ID 后须重启构建。
 
-产物为 `build/ext/<id>.umd.js`，例如 `build/ext/ext-image.umd.js`，包含 `toonflowExt` JSON 元数据注释、版本、说明文档和自动注入的组件样式。产物导出 `window.toonflowExts[id]`，结构为 `ExtDefinition`。Vue、Element Plus 与 Toonflow 语言状态由宿主共享：
+产物为 `build/ext/<id>.umd.js`，例如 `build/ext/ext-image.umd.js`，包含 `dramaflowExt` JSON 元数据注释、版本、说明文档和自动注入的组件样式。产物导出 `window.dramaflowExts[id]`，结构为 `ExtDefinition`。Vue、Element Plus 与 Dramaflow 语言状态由宿主共享：
 
 ```ts
 import * as vue from "vue";
 import * as elementPlus from "element-plus";
-import * as i18n from "@toonflow/i18n/vue";
+import * as i18n from "@dramaflow/i18n/vue";
 
-Object.assign(window, { toonflowExtHost: { vue, elementPlus, i18n } });
+Object.assign(window, { dramaflowExtHost: { vue, elementPlus, i18n } });
 ```
 
-运行时使用 `@toonflow/ext-scaffold/runtime`；构建配置使用 `@toonflow/ext-scaffold`，避免把 Vite 与文件系统代码打包到浏览器。Element Plus 的基础样式由宿主加载，扩展自身的组件样式会打入产物。
+运行时使用 `@dramaflow/ext-scaffold/runtime`；构建配置使用 `@dramaflow/ext-scaffold`，避免把 Vite 与文件系统代码打包到浏览器。Element Plus 的基础样式由宿主加载，扩展自身的组件样式会打入产物。
 
 `bun run --cwd packages/ext/myEditor dev` 持续构建，并把产物原子替换到 `data/ext/`，供本机插件市场与文档宿主读取。`NODE_ENV=dev` 或 `--mode development` 的单次构建同样同步；生产构建只输出 `build/ext/`。
 

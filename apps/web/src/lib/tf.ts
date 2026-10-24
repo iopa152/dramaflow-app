@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { NodeHandle } from "@toonflow/nodes-scaffold/connection";
+import type { NodeHandle } from "@dramaflow/nodes-scaffold/connection";
 import { customProviders, settings } from "@/stores/settings";
 
 type TfRequestOptions = { apiKey?: string; signal?: AbortSignal };

@@ -1,6 +1,6 @@
 import { TextDecoder } from "node:util";
 import { z } from "zod";
-import type { ToolDefinition, ToolPlugin } from "@toonflow/tools-scaffold/runtime";
+import type { ToolDefinition, ToolPlugin } from "@dramaflow/tools-scaffold/runtime";
 
 const configSchema = z.object({
   timeoutMs: z.number().int().min(1000).max(60000).default(20000),
@@ -23,7 +23,7 @@ async function fetchText(value: string, signal: AbortSignal) {
     const response = await fetch(url, {
       redirect: "manual",
       signal,
-      headers: { "user-agent": "Toonflow/2.0", accept: "text/html, text/plain, application/json, application/xml;q=0.9, */*;q=0.5" },
+      headers: { "user-agent": "Dramaflow/2.0", accept: "text/html, text/plain, application/json, application/xml;q=0.9, */*;q=0.5" },
     });
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       await response.body?.cancel();

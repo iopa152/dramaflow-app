@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, statSync } from "@toonflow/file";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, rmSync, statSync } from "@dramaflow/file";
 import { tmpdir } from "node:os";
 import { basename, join, resolve } from "node:path";
 
@@ -65,11 +65,11 @@ function run(args) {
   }
   const dark = $.NSColor.colorWithCalibratedWhiteAlpha(0.15, 1);
   const muted = $.NSColor.colorWithCalibratedWhiteAlpha(0.4, 1);
-  text("安装 Toonflow", 320, 28, dark);
+  text("安装 Dramaflow", 320, 28, dark);
   text("将左侧应用拖到右侧 Applications 文件夹", 282, 17, muted);
   text("→", 165, 56, $.NSColor.colorWithCalibratedRedGreenBlueAlpha(0.25, 0.45, 0.9, 1));
-  text("等待复制完成，再从“应用程序”打开 Toonflow。", 64, 15, dark);
-  text("Drag Toonflow to Applications to install.", 34, 13, muted);
+  text("等待复制完成，再从“应用程序”打开 Dramaflow。", 64, 15, dark);
+  text("Drag Dramaflow to Applications to install.", 34, 13, muted);
   image.unlockFocus;
   const bitmap = $.NSBitmapImageRep.imageRepWithData(image.TIFFRepresentation);
   if (!bitmap.representationUsingTypeProperties($.NSPNGFileType, $({})).writeToFileAtomically(args[0], true)) {
@@ -78,7 +78,7 @@ function run(args) {
 }
 `);
 
-  const temporary = mkdtempSync(join(tmpdir(), "toonflowDmg"));
+  const temporary = mkdtempSync(join(tmpdir(), "dramaflowDmg"));
   const imagePath = join(temporary, "install.dmg");
   try {
     const createArgs = [...args];

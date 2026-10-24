@@ -227,12 +227,12 @@
 </template>
 
 <script setup lang="ts">
-import { translate } from "@toonflow/i18n/vue";
+import { translate } from "@dramaflow/i18n/vue";
 import { computed, nextTick, onBeforeUnmount, onDeactivated, onMounted, ref, shallowRef, watch } from "vue";
 import { ElButton, ElDropdown, ElDropdownItem, ElDropdownMenu, ElInput, ElMessage, ElMessageBox, ElPopover, ElTooltip, type InputInstance } from "element-plus";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import type { ChainedCommands, EditorOptions } from "@tiptap/core";
-import type { ExtContext } from "@toonflow/ext-scaffold/runtime";
+import type { ExtContext } from "@dramaflow/ext-scaffold/runtime";
 import markdownExtensions, { parseMarkdownContent, resolveDocumentPath, serializeMarkdown } from "./markdownExtensions";
 import {
   IconBold,

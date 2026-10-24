@@ -1,5 +1,5 @@
 import { translateError, translateMessage } from "./i18n";
-import type { MessageDescriptor } from "@toonflow/i18n";
+import type { MessageDescriptor } from "@dramaflow/i18n";
 import { z } from "zod";
 export interface ApiResponse<T = unknown> {
   code: number;

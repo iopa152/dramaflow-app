@@ -1,4 +1,4 @@
-import { readFile } from "@toonflow/file";
+import { readFile } from "@dramaflow/file";
 import { spawn, type SpawnOptions } from "node:child_process";
 import { once } from "node:events";
 import { registerHooks } from "node:module";
@@ -19,7 +19,7 @@ type NativeBinding = {
 };
 
 function nativeBinding(): NativeBinding {
-  return (process as NodeJS.Process & { _linkedBinding(name: string): NativeBinding })._linkedBinding("toonflowNative");
+  return (process as NodeJS.Process & { _linkedBinding(name: string): NativeBinding })._linkedBinding("dramaflowNative");
 }
 
 export const ready = (url: string) => nativeBinding().ready(url);
@@ -89,21 +89,21 @@ export function createTranspiler(options: { loader: "js" | "ts"; target?: string
 }
 
 export function registerToolZod(zod: Record<string, unknown>) {
-  const key = Symbol.for("toonflow.ohos.toolZod");
+  const key = Symbol.for("dramaflow.ohos.toolZod");
   const registry = globalThis as typeof globalThis & { [key: symbol]: unknown };
   if (registry[key]) {
     if (registry[key] !== zod) throw new Error("工具 Zod 已绑定到另一个宿主实例");
     return;
   }
   registry[key] = zod;
-  const source = 'const host = globalThis[Symbol.for("toonflow.ohos.toolZod")];\n' + Object.keys(zod)
+  const source = 'const host = globalThis[Symbol.for("dramaflow.ohos.toolZod")];\n' + Object.keys(zod)
     .map((name, index) => "const value" + index + " = host[" + JSON.stringify(name) + "]; export { value" + index + " as " + JSON.stringify(name) + " };").join("\n");
   registerHooks({
     resolve(specifier, context, nextResolve) {
-      return specifier === "toonflow:tool-zod" ? { url: specifier, shortCircuit: true } : nextResolve(specifier, context);
+      return specifier === "dramaflow:tool-zod" ? { url: specifier, shortCircuit: true } : nextResolve(specifier, context);
     },
     load(url, context, nextLoad) {
-      return url === "toonflow:tool-zod" ? { format: "module", source, shortCircuit: true } : nextLoad(url, context);
+      return url === "dramaflow:tool-zod" ? { format: "module", source, shortCircuit: true } : nextLoad(url, context);
     },
   });
 }
@@ -131,7 +131,7 @@ function processImage(bytes: Uint8Array, options: ImageOptions): Promise<ImageRe
   const worker = new Worker(`
     const { parentPort, workerData } = require('node:worker_threads');
     try {
-      const native = process._linkedBinding('toonflowNative');
+      const native = process._linkedBinding('dramaflowNative');
       const { bytes, options } = workerData;
       if (options.format === 'source') options.format = native.processImage(bytes, 0, 0, '', 80).format;
       const result = native.processImage(bytes, options.width, options.height, options.format, options.quality);

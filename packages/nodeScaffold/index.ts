@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, rename, rm } from "@toonflow/file";
+import { copyFile, mkdir, readFile, rename, rm } from "@dramaflow/file";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
@@ -8,23 +8,23 @@ import { z } from "zod";
 import postcssConfig from "../../postcss.config.ts";
 
 const tiptapGlobals = {
-  "@tiptap/core": "toonflowTiptapHost.core",
-  "@tiptap/vue-3": "toonflowTiptapHost.vue3",
-  "@tiptap/starter-kit": "toonflowTiptapHost.starterKit",
-  "@tiptap/markdown": "toonflowTiptapHost.markdown",
-  "@tiptap/extension-find-and-replace": "toonflowTiptapHost.findAndReplace",
-  "@tiptap/extension-highlight": "toonflowTiptapHost.highlight",
-  "@tiptap/extension-image": "toonflowTiptapHost.image",
-  "@tiptap/extension-list": "toonflowTiptapHost.list",
-  "@tiptap/extension-subscript": "toonflowTiptapHost.subscript",
-  "@tiptap/extension-superscript": "toonflowTiptapHost.superscript",
-  "@tiptap/extension-table": "toonflowTiptapHost.table",
-  "@tiptap/extension-text-align": "toonflowTiptapHost.textAlign",
-  "@tiptap/pm/model": "toonflowTiptapHost.model",
-  "@tiptap/pm/state": "toonflowTiptapHost.state",
-  "@tiptap/pm/view": "toonflowTiptapHost.view",
-  "marked": "toonflowTiptapHost.marked",
-  "dompurify": "toonflowTiptapHost.dompurify",
+  "@tiptap/core": "dramaflowTiptapHost.core",
+  "@tiptap/vue-3": "dramaflowTiptapHost.vue3",
+  "@tiptap/starter-kit": "dramaflowTiptapHost.starterKit",
+  "@tiptap/markdown": "dramaflowTiptapHost.markdown",
+  "@tiptap/extension-find-and-replace": "dramaflowTiptapHost.findAndReplace",
+  "@tiptap/extension-highlight": "dramaflowTiptapHost.highlight",
+  "@tiptap/extension-image": "dramaflowTiptapHost.image",
+  "@tiptap/extension-list": "dramaflowTiptapHost.list",
+  "@tiptap/extension-subscript": "dramaflowTiptapHost.subscript",
+  "@tiptap/extension-superscript": "dramaflowTiptapHost.superscript",
+  "@tiptap/extension-table": "dramaflowTiptapHost.table",
+  "@tiptap/extension-text-align": "dramaflowTiptapHost.textAlign",
+  "@tiptap/pm/model": "dramaflowTiptapHost.model",
+  "@tiptap/pm/state": "dramaflowTiptapHost.state",
+  "@tiptap/pm/view": "dramaflowTiptapHost.view",
+  "marked": "dramaflowTiptapHost.marked",
+  "dompurify": "dramaflowTiptapHost.dompurify",
 };
 
 export interface NodeConfig {
@@ -80,7 +80,7 @@ export function createNodeConfig(config: NodeConfig, configUrl: string) {
             throw error;
           });
           // 压缩后再写入，防止元数据注释被移除。
-          chunk.code = `/*! toonflowNode:${JSON.stringify({ ...metadata, version, readme }).replaceAll("/", "\\u002f")} */\n${chunk.code}`;
+          chunk.code = `/*! dramaflowNode:${JSON.stringify({ ...metadata, version, readme }).replaceAll("/", "\\u002f")} */\n${chunk.code}`;
         },
         async writeBundle() {
           if (!syncToData) return;
@@ -104,7 +104,7 @@ export function createNodeConfig(config: NodeConfig, configUrl: string) {
       cssCodeSplit: true,
       lib: {
         entry: resolve(root, "src/index.vue"),
-        name: `toonflowNodes.${nodeName}`,
+        name: `dramaflowNodes.${nodeName}`,
         formats: ["umd"],
         fileName: () => fileName,
       },
@@ -114,14 +114,14 @@ export function createNodeConfig(config: NodeConfig, configUrl: string) {
           exports: "default",
           globals: {
             ...tiptapGlobals,
-            vue: "toonflowNodeHost.vue",
-            "@vue/runtime-core": "toonflowNodeHost.vue",
-            "@vue/runtime-dom": "toonflowNodeHost.vue",
-            "@vue-flow/core": "toonflowNodeHost.vueFlow",
-            "element-plus": "toonflowNodeHost.elementPlus",
-            three: "toonflowNodeHost.three",
-            "@earendil-works/pi-agent-core": "toonflowNodeHost.ai",
-            "@earendil-works/pi-ai": "toonflowNodeHost.ai",
+            vue: "dramaflowNodeHost.vue",
+            "@vue/runtime-core": "dramaflowNodeHost.vue",
+            "@vue/runtime-dom": "dramaflowNodeHost.vue",
+            "@vue-flow/core": "dramaflowNodeHost.vueFlow",
+            "element-plus": "dramaflowNodeHost.elementPlus",
+            three: "dramaflowNodeHost.three",
+            "@earendil-works/pi-agent-core": "dramaflowNodeHost.ai",
+            "@earendil-works/pi-ai": "dramaflowNodeHost.ai",
           },
         },
       },

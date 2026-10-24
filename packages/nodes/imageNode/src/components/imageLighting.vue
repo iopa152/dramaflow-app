@@ -62,7 +62,7 @@ import { computed, ref, watch } from "vue";
 import { useNode } from "@vue-flow/core";
 import { ElButton, ElInput, ElSwitch } from "element-plus";
 import { IconSun, IconX } from "@tabler/icons-vue";
-import type { NodeMediaValue } from "@toonflow/nodes-scaffold/runtime";
+import type { NodeMediaValue } from "@dramaflow/nodes-scaffold/runtime";
 import { buildLightingPrompt, lightingPresets, readLightingSettings, type LightingSettings } from "../imageLighting";
 import imageLightingStage from "./imageLightingStage.vue";
 import imageVariationGenerator from "./imageVariationGenerator.vue";

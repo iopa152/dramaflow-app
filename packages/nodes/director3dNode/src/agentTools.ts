@@ -1,4 +1,4 @@
-import { z, type NodeAiTool } from "@toonflow/nodes-scaffold/runtime";
+import { z, type NodeAiTool } from "@dramaflow/nodes-scaffold/runtime";
 import { sceneSchema, type SceneDocument } from "./scene";
 import { directorPlanSchema, type DirectorPlan, type DirectorPlanItem } from "./sceneAnimation";
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { lstat } from "@toonflow/file";
+import { lstat } from "@dramaflow/file";
 import { sendFile } from "@/utils/fileHttp";
 import { dirname, resolve } from "node:path";
 import { z } from "zod";

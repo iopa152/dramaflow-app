@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dramaflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Dramaflow" width="100%" />
 
 <p>
   <a href="https://github.com/HBAI-Ltd/Toonflow-app">
@@ -45,13 +45,13 @@
 <div align="center">
 
 <p align="center">
-  <img src="../images/logo.png" alt="Logo Toonflow" width="120" height="120" />
+  <img src="../images/logo.png" alt="Logo Dramaflow" width="120" height="120" />
 </p>
 
 <a href="https://git.io/typing-svg">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" />
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" alt="Toonflow · Studio Drama Pendek AI · Ubah ide menjadi cerita" width="600" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" alt="Dramaflow · Studio Drama Pendek AI · Ubah ide menjadi cerita" width="600" />
   </picture>
 </a>
 
@@ -134,12 +134,12 @@
     <tr>
       <td width="50%" align="center">
         <a href="../images/gStar.png">
-          <img src="../images/gStar.png" alt="Sertifikat Toonflow AtomGit G-Star No.540" width="100%" />
+          <img src="../images/gStar.png" alt="Sertifikat Dramaflow AtomGit G-Star No.540" width="100%" />
         </a>
       </td>
       <td width="50%" align="center">
         <a href="../images/gvp.jpg">
-          <img src="../images/gvp.jpg" alt="Sertifikat Toonflow Gitee GVP" width="100%" />
+          <img src="../images/gvp.jpg" alt="Sertifikat Dramaflow Gitee GVP" width="100%" />
         </a>
       </td>
     </tr>
@@ -158,7 +158,7 @@
 
 ## 1. 💛 Sponsor dan Dukungan
 
-Terima kasih kepada para mitra berikut atas dukungannya untuk proyek sumber terbuka Toonflow.
+Terima kasih kepada para mitra berikut atas dukungannya untuk proyek sumber terbuka Dramaflow.
 
 <table>
   <tr>
@@ -168,18 +168,18 @@ Terima kasih kepada para mitra berikut atas dukungannya untuk proyek sumber terb
       <sub>Pembuatan video MiniMax H3 dengan biaya terjangkau: hanya ¥0,09/detik untuk 768P dan ¥0,15/detik untuk 2K (CNY). Mendukung 2K native, audio dan video yang tersinkronisasi, API yang kompatibel dengan OpenAI, ComfyUI, serta kanvas tanpa batas, tanpa perlu menyiapkan GPU sendiri. <a href="https://metaso.cn/minimax-h3/?s=toon">Daftar melalui tautan khusus ini</a> untuk mendapatkan kredit bonus dan penawaran eksklusif. Untuk pertanyaan bisnis, hubungi metasota12 melalui WeChat.</sub>
     </td>
     <td width="50%" valign="top">
-      <a href="https://go.apimart.ai/gh-toonflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
+      <a href="https://go.apimart.ai/gh-dramaflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
       <br />
-      <sub>Terima kasih kepada APIMart yang telah mensponsori proyek ini! APIMart adalah platform API terjangkau untuk pembuatan gambar dan video AI. GPT-Image-2 mulai dari $0,006 per gambar, sehingga $1 cukup untuk lebih dari 160 gambar. Gambar dan video menggunakan satu API asinkron: kirim tugas, terima ID-nya, lalu dapatkan hasil melalui callback. Proses 10.000 gambar sekaligus tanpa batas waktu terlampaui dan ganti model tanpa mengubah kode. Bayar sesuai penggunaan, tanpa biaya bulanan. <a href="https://go.apimart.ai/gh-toonflow-app">Daftar di sini</a> untuk memulai.</sub>
+      <sub>Terima kasih kepada APIMart yang telah mensponsori proyek ini! APIMart adalah platform API terjangkau untuk pembuatan gambar dan video AI. GPT-Image-2 mulai dari $0,006 per gambar, sehingga $1 cukup untuk lebih dari 160 gambar. Gambar dan video menggunakan satu API asinkron: kirim tugas, terima ID-nya, lalu dapatkan hasil melalui callback. Proses 10.000 gambar sekaligus tanpa batas waktu terlampaui dan ganti model tanpa mengubah kode. Bayar sesuai penggunaan, tanpa biaya bulanan. <a href="https://go.apimart.ai/gh-dramaflow-app">Daftar di sini</a> untuk memulai.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
+      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
       <br />
       <sub>CompShare menawarkan pembuatan video H3 yang terjangkau, termasuk teks ke video, kontrol bingkai awal dan akhir, serta mode referensi terpadu. Buat video hingga 30 detik dalam 2K native, dengan harga 768P hanya CNY 0,08 per detik. Mendukung akses API, pemrosesan serentak berskala besar untuk perusahaan, dan penerbitan faktur mandiri.</sub>
       <br /><br />
-      <sub>🎁 <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow">Daftar melalui tautan khusus ini</a> untuk mendapatkan kredit uji coba platform gratis senilai CNY 5!</sub>
+      <sub>🎁 <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow">Daftar melalui tautan khusus ini</a> untuk mendapatkan kredit uji coba platform gratis senilai CNY 5!</sub>
     </td>
     <td width="50%" valign="top"></td>
   </tr>
@@ -200,7 +200,7 @@ Terima kasih kepada para mitra berikut atas dukungannya untuk proyek sumber terb
 
 ## 2. 🌟 Fitur Unggulan
 
-Toonflow adalah platform kreasi AI sumber terbuka untuk drama pendek, komik animasi, dan video pendek yang menyatukan naskah, aset, serta klip video di satu kanvas tanpa batas.
+Dramaflow adalah platform kreasi AI sumber terbuka untuk drama pendek, komik animasi, dan video pendek yang menyatukan naskah, aset, serta klip video di satu kanvas tanpa batas.
 
 | Kemampuan | Deskripsi |
 | --- | --- |
@@ -224,25 +224,25 @@ Bahasa yang didukung: 简体中文, 繁體中文, English, 日本語, Русск
 
 <div align="center">
 
-<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Beranda proyek dan pengembangan ide Toonflow" width="80%" /></a><br /><sub>Beranda proyek dan pengembangan ide</sub>
+<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Beranda proyek dan pengembangan ide Dramaflow" width="80%" /></a><br /><sub>Beranda proyek dan pengembangan ide</sub>
 
-<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Peluncuran pertama dan penyiapan cepat Toonflow" width="80%" /></a><br /><sub>Peluncuran pertama dan penyiapan cepat</sub>
+<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Peluncuran pertama dan penyiapan cepat Dramaflow" width="80%" /></a><br /><sub>Peluncuran pertama dan penyiapan cepat</sub>
 
-<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Kanvas gelap dan asisten AI Toonflow" width="80%" /></a><br /><sub>Kanvas kreatif · Tema gelap</sub>
+<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Kanvas gelap dan asisten AI Dramaflow" width="80%" /></a><br /><sub>Kanvas kreatif · Tema gelap</sub>
 
-<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Kanvas terang dan asisten AI Toonflow" width="80%" /></a><br /><sub>Kanvas kreatif · Tema terang</sub>
+<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Kanvas terang dan asisten AI Dramaflow" width="80%" /></a><br /><sub>Kanvas kreatif · Tema terang</sub>
 
-<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Kanvas Toonflow untuk aset karakter, adegan, dan properti" width="80%" /></a><br /><sub>Aset karakter, adegan, dan properti</sub>
+<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Kanvas Dramaflow untuk aset karakter, adegan, dan properti" width="80%" /></a><br /><sub>Aset karakter, adegan, dan properti</sub>
 
-<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Studio sutradara 3D dan pravisualisasi pengambilan gambar Toonflow" width="80%" /></a><br /><sub>Studio sutradara 3D dan pravisualisasi pengambilan gambar</sub>
+<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Studio sutradara 3D dan pravisualisasi pengambilan gambar Dramaflow" width="80%" /></a><br /><sub>Studio sutradara 3D dan pravisualisasi pengambilan gambar</sub>
 
-<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Lembar karakter tiga tampak dan pembuatan gambar Toonflow" width="80%" /></a><br /><sub>Lembar karakter tiga tampak dan pembuatan gambar</sub>
+<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Lembar karakter tiga tampak dan pembuatan gambar Dramaflow" width="80%" /></a><br /><sub>Lembar karakter tiga tampak dan pembuatan gambar</sub>
 
-<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Pembuatan video Toonflow dengan berbagai aset referensi" width="80%" /></a><br /><sub>Pembuatan video dengan berbagai aset referensi</sub>
+<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Pembuatan video Dramaflow dengan berbagai aset referensi" width="80%" /></a><br /><sub>Pembuatan video dengan berbagai aset referensi</sub>
 
-<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Menu node dan operasi pengelompokan Toonflow" width="80%" /></a><br /><sub>Menu node dan operasi pengelompokan</sub>
+<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Menu node dan operasi pengelompokan Dramaflow" width="80%" /></a><br /><sub>Menu node dan operasi pengelompokan</sub>
 
-<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Marketplace Plugin Toonflow" width="80%" /></a><br /><sub>Marketplace Plugin</sub>
+<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Marketplace Plugin Dramaflow" width="80%" /></a><br /><sub>Marketplace Plugin</sub>
 
 </div>
 
@@ -258,25 +258,25 @@ Bahasa yang didukung: 简体中文, 繁體中文, English, 日本語, Русск
 | macOS | [Rilis](https://github.com/HBAI-Ltd/Toonflow-app/releases) |
 | Android ARM64 | [Unduh APK](https://github.com/HBAI-Ltd/Toonflow-app/releases/latest) |
 
-Aplikasi Android hanya mendukung perangkat ARM64. Unduh dan instal `toonflow-VERSION-android-arm64.apk` dari halaman rilis. Aplikasi menyertakan backend Bun lokal dan dapat berjalan mandiri. Anda juga dapat menggunakan Koneksi perangkat di halaman utama untuk memindai kode QR atau terhubung secara manual ke komputer atau backend yang telah mengaktifkan berbagi koneksi di jaringan lokal maupun internet.
+Aplikasi Android hanya mendukung perangkat ARM64. Unduh dan instal `dramaflow-VERSION-android-arm64.apk` dari halaman rilis. Aplikasi menyertakan backend Bun lokal dan dapat berjalan mandiri. Anda juga dapat menggunakan Koneksi perangkat di halaman utama untuk memindai kode QR atau terhubung secara manual ke komputer atau backend yang telah mengaktifkan berbagi koneksi di jaringan lokal maupun internet.
 
 Penginstal Windows mendeteksi dan memasang WebView2 secara otomatis. Jika aplikasi langsung tertutup setelah instalasi, unduh dan pasang runtime secara manual dari [halaman unduhan WebView2](https://developer.microsoft.com/microsoft-edge/webview2/).
 
-Di macOS (Apple Silicon), seret Toonflow ke Applications lalu buka langsung. Tidak perlu menjalankan perintah terminal terlebih dahulu. Jika macOS menampilkan peringatan keamanan, ikuti langkah berikut secara berurutan.
+Di macOS (Apple Silicon), seret Dramaflow ke Applications lalu buka langsung. Tidak perlu menjalankan perintah terminal terlebih dahulu. Jika macOS menampilkan peringatan keamanan, ikuti langkah berikut secara berurutan.
 
 <details>
-<summary><strong>Jika Toonflow tidak dapat diinstal atau dibuka di macOS</strong></summary>
+<summary><strong>Jika Dramaflow tidak dapat diinstal atau dibuka di macOS</strong></summary>
 
-**1. Izinkan Toonflow di Privasi & Keamanan**
+**1. Izinkan Dramaflow di Privasi & Keamanan**
 
-Jika muncul peringatan bahwa pengembang tidak dapat diverifikasi atau Apple tidak dapat memeriksa perangkat lunak berbahaya dalam aplikasi, coba buka Toonflow terlebih dahulu. Lalu masuk ke Pengaturan Sistem → Privasi & Keamanan, cari pesan bahwa Toonflow diblokir, klik Tetap Buka, dan konfirmasikan sesuai petunjuk. Lihat [petunjuk resmi Apple](https://support.apple.com/zh-cn/102445).
+Jika muncul peringatan bahwa pengembang tidak dapat diverifikasi atau Apple tidak dapat memeriksa perangkat lunak berbahaya dalam aplikasi, coba buka Dramaflow terlebih dahulu. Lalu masuk ke Pengaturan Sistem → Privasi & Keamanan, cari pesan bahwa Dramaflow diblokir, klik Tetap Buka, dan konfirmasikan sesuai petunjuk. Lihat [petunjuk resmi Apple](https://support.apple.com/zh-cn/102445).
 
 **2. Jika pembatasan karantina masih mencegah aplikasi dibuka, coba hapus atribut karantina**
 
 Setelah memastikan bahwa aplikasi berasal dari halaman rilis resmi dan berada di Applications, jalankan perintah berikut di Terminal lalu coba buka kembali. Sesuaikan jalurnya jika nama aplikasi atau lokasi instalasi berbeda.
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/toonflow.app
+sudo xattr -rd com.apple.quarantine /Applications/dramaflow.app
 ```
 
 **3. Pilihan terakhir: izinkan sementara aplikasi dari mana saja**
@@ -308,16 +308,16 @@ Kloning kode sumber dan jalankan perintah berikut dari direktori utama repositor
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 docker compose up -d --build
 ```
 
 Build pertama memasang dependensi dan membangun node, alat, Web, serta Server yang disertakan. Setelah berjalan, buka `http://127.0.0.1:3000`. Untuk host jarak jauh, gunakan terowongan SSH sebagaimana dijelaskan dalam bagian “Akses dan Data” di bawah. Saat pertama kali dijalankan, plugin bawaan diinisialisasi dan direktori kerja `myProject` disediakan.
 
-Pengaturan, plugin, dan berkas proyek disimpan dalam volume bernama Docker `toonflowData`, yang dipasang di `/app/data/` di dalam kontainer. Nama volume sebenarnya menyertakan awalan proyek Compose. Menghentikan atau membangun ulang kontainer tidak menghapus data Anda. **Jangan gunakan `docker compose down -v`: perintah ini menghapus volume data.**
+Pengaturan, plugin, dan berkas proyek disimpan dalam volume bernama Docker `dramaflowData`, yang dipasang di `/app/data/` di dalam kontainer. Nama volume sebenarnya menyertakan awalan proyek Compose. Menghentikan atau membangun ulang kontainer tidak menghapus data Anda. **Jangan gunakan `docker compose down -v`: perintah ini menghapus volume data.**
 
 ```sh
-docker compose logs -f toonflow  # View logs
+docker compose logs -f dramaflow  # View logs
 docker compose stop             # Stop the service
 docker compose start            # Start it again
 docker compose down             # Remove containers, retaining the data volume
@@ -326,14 +326,14 @@ docker compose down             # Remove containers, retaining the data volume
 Untuk menambahkan direktori proyek, klik “Folder Baru” di dialog “Pilih Direktori Kerja Server”. Dialog ini juga mendukung penggantian nama serta penghapusan berkas dan folder. Sebagai alternatif, buat direktori melalui baris perintah saat layanan sedang berjalan:
 
 ```sh
-docker compose exec toonflow mkdir -p /app/data/workspaces/newProject
+docker compose exec dramaflow mkdir -p /app/data/workspaces/newProject
 ```
 
 Untuk mencadangkan data, hentikan layanan terlebih dahulu, salin data, lalu jalankan kembali layanan:
 
 ```sh
 docker compose stop
-docker compose cp toonflow:/app/data ./toonflowBackup
+docker compose cp dramaflow:/app/data ./dramaflowBackup
 docker compose start
 ```
 
@@ -362,7 +362,7 @@ Kloning kode sumber dan mulai layanan:
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install --frozen-lockfile
 
 # Build bundled nodes, tools, Web, and Server
@@ -388,7 +388,7 @@ Ketika muncul “服务启动成功” (layanan berhasil dimulai), buka `http://
 
 ### 4.5 Penerapan Cloud
 
-Mitra kami [AI Galaxy (智星云)](https://www.ai-galaxy.com/) menyediakan image Toonflow komersial yang telah mendapat izin resmi, dengan lingkungan siap pakai. Untuk petunjuknya, lihat [panduan penerapan image bergambar](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1).
+Mitra kami [AI Galaxy (智星云)](https://www.ai-galaxy.com/) menyediakan image Dramaflow komersial yang telah mendapat izin resmi, dengan lingkungan siap pakai. Untuk petunjuknya, lihat [panduan penerapan image bergambar](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1).
 
 ---
 
@@ -418,19 +418,19 @@ Biaya ini adalah angka yang dicatat untuk contoh tersebut dan hanya diberikan se
   </a>
 </p>
 
-TF-Router adalah gateway model resmi Toonflow yang kami kelola sendiri. Silakan mencobanya. Seluruh kode sumbernya terbuka dan tersedia untuk dihosting sendiri maupun diaudit: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
+TF-Router adalah gateway model resmi Dramaflow yang kami kelola sendiri. Silakan mencobanya. Seluruh kode sumbernya terbuka dan tersedia untuk dihosting sendiri maupun diaudit: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
 
 <details>
-<summary><strong>Surat untuk Komunitas Toonflow (diterbitkan 2026-06-08)</strong></summary>
+<summary><strong>Surat untuk Komunitas Dramaflow (diterbitkan 2026-06-08)</strong></summary>
 
-> ### Surat untuk Komunitas Toonflow
+> ### Surat untuk Komunitas Dramaflow
 > 130 hari.
 > Tidak lama, tetapi cukup untuk membuat kami melihat beberapa hal dengan jelas.
 > Sejak baris kode pertama yang kami commit hingga hari ini, 130 hari telah berlalu. Kami telah merilis 20 versi, membuat lebih dari 800 commit, dan menulis 213.765 baris kode yang berisi 640.810 karakter.
 > Dua kali penulisan ulang, sebuah sistem penyedia, dan alur kerja yang kami banggakan.
 > Kami pikir itu sudah cukup.
 > Ternyata belum.
-> Ada yang mengatakan ingin menambahkan modul mereka sendiri ke Toonflow, tetapi tetap tidak memahami cara mengubah kodenya meskipun sudah mencoba selama berjam-jam.
+> Ada yang mengatakan ingin menambahkan modul mereka sendiri ke Dramaflow, tetapi tetap tidak memahami cara mengubah kodenya meskipun sudah mencoba selama berjam-jam.
 > Ada yang mengatakan komunitasnya terlalu kecil dan mereka sulit mendapat bantuan ketika menghadapi masalah.
 > Ada yang mengatakan ketentuan komersial menghalangi mereka untuk menggunakan proyeknya secara nyata.
 > Kami mendengarkan Anda.
@@ -438,7 +438,7 @@ TF-Router adalah gateway model resmi Toonflow yang kami kelola sendiri. Silakan 
 > Bukan karena kami punya banyak uang.
 > Tetapi karena kami yakin hal ini layak dikerjakan.
 > Karena itu, kami memutuskan untuk melakukan penulisan ulang yang ketiga.
-> Setiap penulisan ulang Toonflow membawa kami menuju keterbukaan dan sumber terbuka yang lebih luas.
+> Setiap penulisan ulang Dramaflow membawa kami menuju keterbukaan dan sumber terbuka yang lebih luas.
 > Kali ini, kami memilih untuk membuka semuanya.
 >
 > 1. MIT License
@@ -473,9 +473,9 @@ TF-Router adalah gateway model resmi Toonflow yang kami kelola sendiri. Silakan 
 > Penulisan ulang membutuhkan waktu. Selama itu, server tetap berjalan, domain perlu diperpanjang, tim bekerja hingga larut, dan harga kopi terus naik.
 > Kami tidak memiliki pendanaan investasi, iklan, maupun rencana komersial tersembunyi.
 > Namun, kami perlu bertahan untuk menyelesaikan apa yang sudah kami mulai.
-> Itulah alasan kami meluncurkan TF-Router, gateway model resmi Toonflow.
+> Itulah alasan kami meluncurkan TF-Router, gateway model resmi Dramaflow.
 > Sejujurnya, kami lama ragu tentang platform ini.
-> Ini bukan sesuatu yang ingin kami bangun. Kami tidak ingin keberadaan gateway membuat orang merasa Toonflow mulai “mencari keuntungan semata”.
+> Ini bukan sesuatu yang ingin kami bangun. Kami tidak ingin keberadaan gateway membuat orang merasa Dramaflow mulai “mencari keuntungan semata”.
 > Beban pikiran itu kami bawa cukup lama.
 > Namun, banyak pengguna tidak bisa mendapatkan persetujuan akses ke Seedance 2.0 dan terus bertanya apakah ada cara untuk menggunakannya.
 > Setelah mempertimbangkannya dengan matang, akhirnya kami memutuskan untuk membangunnya sendiri dan menandatangani perjanjian kerangka kerja tahunan Seedance dengan Volcengine.
@@ -485,11 +485,11 @@ TF-Router adalah gateway model resmi Toonflow yang kami kelola sendiri. Silakan 
 > Tidak percaya kepada kami? Tidak masalah. Baca kodenya, terapkan sendiri, dan jalankan sendiri.
 > Itulah sikap kami.
 > Jika Anda memilih untuk mencobanya, Anda sedang menaruh kepercayaan pada satu-satunya cara yang saat ini kami miliki untuk melanjutkan pekerjaan ini.
-> Jika tidak, itu pun tidak masalah. Terus gunakan Toonflow, terus kritik kami, dan terus ajukan fitur.
+> Jika tidak, itu pun tidak masalah. Terus gunakan Dramaflow, terus kritik kami, dan terus ajukan fitur.
 > Kami tetap di sini.
 > Satu hal terakhir, dari hati:
 > Kami hanyalah sekelompok orang biasa yang percaya bahwa alat kreatif seharusnya menjadi milik semua orang.
-> Toonflow tidak pernah sekadar menjadi produk kami.
+> Dramaflow tidak pernah sekadar menjadi produk kami.
 > Ini adalah kisah yang kita tulis bersama.
 > Penulisan ulang ketiga bukanlah garis akhir.
 > Inilah awal baru bagi kami.
@@ -505,7 +505,7 @@ TF-Router adalah gateway model resmi Toonflow yang kami kelola sendiri. Silakan 
 
 Pindai kode QR untuk menghubungi asisten undangan grup:
 
-<img src="../images/qr.png" alt="Kode QR komunitas Toonflow" height="400"/>
+<img src="../images/qr.png" alt="Kode QR komunitas Dramaflow" height="400"/>
 
 Anda juga dapat mengeklik ikon untuk bergabung di Discord:
 
@@ -517,15 +517,15 @@ Atau gunakan tautan undangan: [https://discord.gg/HEjKmpNpAZ](https://discord.gg
 
 ## 8. 💌 Hubungi Kami
 
-📧 Email: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 Email: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Dramaflow咨询)
 
 ---
 
 ## 9. 📜 Lisensi Sumber Terbuka
 
-Toonflow dilisensikan di bawah [MIT License](../../LICENSE). Dependensi dan aset pihak ketiga tetap tunduk pada lisensi serta pemberitahuan hak cipta masing-masing.
+Dramaflow dilisensikan di bawah [MIT License](../../LICENSE). Dependensi dan aset pihak ketiga tetap tunduk pada lisensi serta pemberitahuan hak cipta masing-masing.
 
-[![Riwayat Star Toonflow](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
+[![Riwayat Star Dramaflow](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
 
 > **Ketentuan tidak berlaku surut**: Pengguna yang menggunakan versi sebelum v1.0.8 berdasarkan AGPL-3.0 tetap tunduk pada AGPL-3.0. Versi v1.0.8 hingga v1.1.8 tetap tunduk pada Apache-2.0 dan perjanjian tambahannya. Perubahan lisensi ini tidak mengikat para pengguna tersebut.
 
@@ -546,4 +546,4 @@ Hak cipta © 2026 北京爱阿科技有限公司
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Bagian bawah halaman Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Bagian bawah halaman Dramaflow" width="100%" />

@@ -1,11 +1,11 @@
 import { t, translateError, translateMessage } from "@/lib/i18n";
 import { dirname, join } from "node:path";
-import { build, createFfmpeg, downloadSources, getToolStatus, installFfmpeg, target } from "@toonflow/ffmpeg";
-import type { DownloadState, FfmpegMode, SourceId } from "@toonflow/ffmpeg";
+import { build, createFfmpeg, downloadSources, getToolStatus, installFfmpeg, target } from "@dramaflow/ffmpeg";
+import type { DownloadState, FfmpegMode, SourceId } from "@dramaflow/ffmpeg";
 import conf from "@/utils/conf";
 import { getRuntimePlatform } from "@/lib/platform";
 
-export { executeRemoteFfmpeg } from "@toonflow/ffmpeg";
+export { executeRemoteFfmpeg } from "@dramaflow/ffmpeg";
 
 const directory = join(dirname(conf.path), "ffmpeg", target);
 let download: DownloadState = { phase: "idle", received: 0 };

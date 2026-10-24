@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { chainMethods, executeRemoteFfmpeg, queryMethods, runMethods } from "@toonflow/ffmpeg/remote";
-import type { ToolPlugin } from "@toonflow/tools-scaffold/runtime";
+import { chainMethods, executeRemoteFfmpeg, queryMethods, runMethods } from "@dramaflow/ffmpeg/remote";
+import type { ToolPlugin } from "@dramaflow/tools-scaffold/runtime";
 
 const configSchema = z.strictObject({});
 const probeSchema = z.strictObject({

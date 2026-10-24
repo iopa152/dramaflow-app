@@ -52,8 +52,8 @@
 import { computed, ref } from "vue";
 import { IconMusic, IconUpload, IconTransfer, IconScissors, IconGauge, IconTextRecognition, IconPlayerStop } from "@tabler/icons-vue";
 import { ElButton, ElMessage } from "element-plus";
-import { nodeSkeleton, nodeTools, useNode, z, type NodeHandle } from "@toonflow/nodes-scaffold/runtime";
-import { useAudioTranscription } from "@toonflow/node-shared/useAudioTranscription";
+import { nodeSkeleton, nodeTools, useNode, z, type NodeHandle } from "@dramaflow/nodes-scaffold/runtime";
+import { useAudioTranscription } from "@dramaflow/node-shared/useAudioTranscription";
 import audioPlayer from "./components/audioPlayer.vue";
 import audioActions from "./components/audioActions.vue";
 

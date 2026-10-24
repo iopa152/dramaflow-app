@@ -1,4 +1,4 @@
-import type { ToolDefinition } from "@toonflow/tools-scaffold/runtime";
+import type { ToolDefinition } from "@dramaflow/tools-scaffold/runtime";
 import type { AgentEvent } from "../../agent/runtime/types";
 
 export type SingleAgentToolDescriptor = {

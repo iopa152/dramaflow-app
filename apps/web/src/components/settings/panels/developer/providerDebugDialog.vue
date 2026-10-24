@@ -115,14 +115,14 @@
 </template>
 
 <script setup lang="ts">
-import { locale, translate } from "@toonflow/i18n/vue";
+import { locale, translate } from "@dramaflow/i18n/vue";
 import { computed, nextTick, onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import axios from "axios";
 import formCreate, { type Api, type Options, type Rule } from "../../formCreate";
 import { ElMessage } from "element-plus";
 import { IconFolderOpen, IconRefresh, IconPlus, IconX, IconMusic, IconDownload, IconPlayerPlay, IconPlayerStop } from "@tabler/icons-vue";
-import type { Provider } from "@toonflow/providers";
-import { invalidateNodeModels } from "@toonflow/nodes-scaffold/nodeAi";
+import type { Provider } from "@dramaflow/providers";
+import { invalidateNodeModels } from "@dramaflow/nodes-scaffold/nodeAi";
 import { isDesktop } from "@/lib/platform";
 
 type DebugProvider = { id: string; label: string; rules: Rule[]; models: Provider["models"] };
@@ -172,7 +172,7 @@ const statusLabel = computed(() => ({
   "已停止": translate("已停止"),
 })[status.value]);
 const elapsed = ref(0);
-const desktopHeaders = { "x-toonflow-desktop": "1" };
+const desktopHeaders = { "x-dramaflow-desktop": "1" };
 let controller: AbortController | undefined;
 
 function showError(error: unknown) {

@@ -2,7 +2,7 @@ import { onScopeDispose } from "vue";
 import { runAgentLoop, type AgentTool, type AgentToolResult } from "@earendil-works/pi-agent-core";
 import { createAssistantMessageEventStream, type AssistantMessage, type Context, type Message, type Model } from "@earendil-works/pi-ai";
 import { EventSourceParserStream } from "eventsource-parser/stream";
-import type { MediaGenerationRequest, MediaModel } from "@toonflow/tools-scaffold/runtime";
+import type { MediaGenerationRequest, MediaModel } from "@dramaflow/tools-scaffold/runtime";
 import type { NodeOutput } from "./values";
 
 export type NodeAiModel = {
@@ -66,7 +66,7 @@ async function readResult<T>(response: Response): Promise<T> {
 }
 
 // ACT: 独立 UMD 各有模块作用域，共用宿主缓存；模型设置保存后失效，不按节点重复请求。
-const modelCacheKey = Symbol.for("toonflow.nodeModels");
+const modelCacheKey = Symbol.for("dramaflow.nodeModels");
 const modelCacheHost = globalThis as typeof globalThis & { [modelCacheKey]?: Map<string, Promise<unknown[]>> };
 const modelCache = modelCacheHost[modelCacheKey] ??= new Map<string, Promise<unknown[]>>();
 
@@ -74,24 +74,24 @@ type MediaPriceCache = {
   prices: Map<string, { expires: number; value: Promise<NodeMediaPrice | null> }>;
   requestedAt: Map<string, number>;
 };
-const mediaPriceCacheKey = Symbol.for("toonflow.nodeMediaPrices");
+const mediaPriceCacheKey = Symbol.for("dramaflow.nodeMediaPrices");
 const mediaPriceCacheHost = globalThis as typeof globalThis & { [mediaPriceCacheKey]?: MediaPriceCache };
 const mediaPriceCache = mediaPriceCacheHost[mediaPriceCacheKey] ??= (() => {
   const cache: MediaPriceCache = { prices: new Map(), requestedAt: new Map() };
   if (typeof window !== "undefined") {
     const invalidate = (event: Event) => {
-      if (event.type === "toonflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
+      if (event.type === "dramaflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
       cache.prices.clear();
     };
-    window.addEventListener("toonflow:provider-config-changed", invalidate);
-    window.addEventListener("toonflow:plugin-installed", invalidate);
+    window.addEventListener("dramaflow:provider-config-changed", invalidate);
+    window.addEventListener("dramaflow:plugin-installed", invalidate);
   }
   return cache;
 })();
 
 type MediaTaskResult = { code: number; data: (NodeImageResult | NodeVideoResult | NodeAudioResult)[] | null; message: string };
 type PendingMediaTask = { directory: string; failedAt?: number; finish: (result: MediaTaskResult) => void; fail: (error: unknown) => void };
-const mediaTasksKey = Symbol.for("toonflow.nodeMediaTasks");
+const mediaTasksKey = Symbol.for("dramaflow.nodeMediaTasks");
 const mediaTasksHost = globalThis as typeof globalThis & { [mediaTasksKey]?: ReturnType<typeof createMediaTasks> };
 // ACT: 图片、视频等独立 UMD 共用短轮询；每批最多 100 项，不按节点占用长连接。
 const mediaTasks = mediaTasksHost[mediaTasksKey] ??= createMediaTasks();
@@ -124,7 +124,7 @@ function createMediaTasks() {
         for (let offset = 0; offset < taskIds.length; offset += 100) {
           // 取消失败由服务端无心跳过期兜底，不重新提交生成请求。
           await fetch("/api/ai/media/tasks/cancel", {
-            method: "POST", headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+            method: "POST", headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
             body: JSON.stringify({ directory, taskIds: taskIds.slice(offset, offset + 100) }), signal: AbortSignal.timeout(10000),
           }).then(readResult).catch(() => {});
         }
@@ -137,7 +137,7 @@ function createMediaTasks() {
           if (!batch.length) continue;
           try {
             const results = await fetch("/api/ai/media/tasks/status", {
-              method: "POST", headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+              method: "POST", headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
               body: JSON.stringify({ directory, taskIds: batch }), signal: AbortSignal.timeout(10000),
             }).then(readResult<{ taskId: string; result?: MediaTaskResult }[]>);
             const byId = new Map(results.map(result => [result.taskId, result]));
@@ -231,7 +231,7 @@ async function requestModel(input: NodeAiRequest, context: Context, model: Model
   try {
     signal.throwIfAborted();
     const response = await fetch("/api/ai/generate", {
-      method: "POST", headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+      method: "POST", headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
       body: JSON.stringify({ providerId, modelId, context, directory, references }), signal,
     });
     if (!response.ok) await readResult(response);
@@ -320,7 +320,7 @@ export function useNodeAi() {
       // ACT: 最多缓存 500 条 / 30 秒；参考文件没有前端修订号，只合并进行中的查询，避免同路径覆盖后复用旧价。
       pending.value = fetch("/api/ai/media/price", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+        headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
         body: JSON.stringify(input),
         signal: AbortSignal.timeout(15000),
       }).then(readResult<NodeMediaPrice | null>).then(price => {
@@ -357,7 +357,7 @@ export function useNodeAi() {
     // 提交使用独立超时；用户取消立即结束等待，提交收尾后再取消，避免先取消后登记的竞态。
     const submitted = fetch("/api/ai/media/generate", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+      headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
       body: JSON.stringify({ ...input, mediaType, taskId }), signal: AbortSignal.timeout(30000),
     }).then(readResult<{ taskId: string }>);
     let abort = () => {};

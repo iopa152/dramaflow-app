@@ -1,4 +1,4 @@
-import { cp, readFile, realpath, rm } from "@toonflow/file";
+import { cp, readFile, realpath, rm } from "@dramaflow/file";
 import { dirname, resolve } from "node:path";
 
 export default async function copyDocumentPackages(nodeModulesDirectory: string) {

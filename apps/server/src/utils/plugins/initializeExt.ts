@@ -1,4 +1,4 @@
-import { lstat, mkdir, readFile, readdir, writeAtomic } from "@toonflow/file";
+import { lstat, mkdir, readFile, readdir, writeAtomic } from "@dramaflow/file";
 import { resolve } from "node:path";
 import { parseExt } from "@/utils/plugins/ext";
 import { requireNewerVersion } from "@/utils/plugins/install";

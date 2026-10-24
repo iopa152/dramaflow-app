@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import type { BrowserStreamEvent } from "@toonflow/tool-browser/protocol";
+import type { BrowserStreamEvent } from "@dramaflow/tool-browser/protocol";
 import { validateFields } from "@/lib/middleware";
 import u from "@/utils";
 import { getRuntimePlatform } from "@/lib/platform";

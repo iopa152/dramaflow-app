@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/ext-md",
+  "name": "@dramaflow/ext-md",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "@tabler/icons-vue": "^3.46.0",
-    "@toonflow/i18n": "workspace:*",
-    "@toonflow/ext-scaffold": "workspace:*"
+    "@dramaflow/i18n": "workspace:*",
+    "@dramaflow/ext-scaffold": "workspace:*"
   },
   "devDependencies": {
     "sass": "^1.104.0",

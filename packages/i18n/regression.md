@@ -1,6 +1,6 @@
 # 多语言回归记录
 
-日期：2026-09-30。验证仓库：`F:/aa/toonflow2`。
+日期：2026-09-30。验证仓库：`F:/aa/dramaflow2`。
 
 本次增加繁体中文、英语、日语、俄语、越南语、泰语、韩语、印地语，连同原有简体中文共九种语言。安装器未改动。所有配置和接口写入验证使用临时数据目录，没有修改真实用户配置，也没有运行付费生成。
 
@@ -163,7 +163,7 @@ git -c core.safecrlf=false diff --check
 
 ## Element Plus 完整语言包（2026-10-01）
 
-以 Element Plus 2.14.5 为基准，在 `src/elementPlus/` 保存 21 份完整 JSON，每份 142 项组件文案，保留上游 MIT 授权。`@toonflow/i18n/elementPlus` 统一导出，App 的 ConfigProvider 直接响应所选语言；删除 `fil/ur/mr/pa` 的英语回退和零散关闭按钮补丁。Web 声明并复用锁文件已有的 Day.js 1.11.23，注册对应日期包，`fil` 使用 `tl-ph`，Gurmukhi `pa` 使用 `pa-in`。TDesign、Zod 的缺失语言策略不属于本轮改动。
+以 Element Plus 2.14.5 为基准，在 `src/elementPlus/` 保存 21 份完整 JSON，每份 142 项组件文案，保留上游 MIT 授权。`@dramaflow/i18n/elementPlus` 统一导出，App 的 ConfigProvider 直接响应所选语言；删除 `fil/ur/mr/pa` 的英语回退和零散关闭按钮补丁。Web 声明并复用锁文件已有的 Day.js 1.11.23，注册对应日期包，`fil` 使用 `tl-ph`，Gurmukhi `pa` 使用 `pa-in`。TDesign、Zod 的缺失语言策略不属于本轮改动。
 
 除补齐英语残留外，修正官方韩语增减方向颠倒、马来语被翻译的 `{color}` / `{max}` 参数与两个无效键、泰米尔语清空按钮误义、泰卢固语日期键盘提示误义、印尼语删除键提示、阿拉伯语关闭对话框与重置筛选误义等。颜色 alpha 按 0 透明、100 不透明的实际数值方向翻译；表格行、季度、轮播与验证码按组件操作语义校对。
 

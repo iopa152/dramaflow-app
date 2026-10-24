@@ -14,7 +14,7 @@ export type ProviderPriceReference = NonNullable<ProviderPriceRequest["images"]>
 export type ProviderBalance = Awaited<ReturnType<NonNullable<Provider["getBalance"]>>>;
 export type ProviderTools = ProviderContext["tool"];
 export type AudioConvertOptions = Parameters<ProviderTools["audio"]["convert"]>[1];
-export type { FfmpegFactory, FfmpegCommand } from "@toonflow/ffmpeg/types";
+export type { FfmpegFactory, FfmpegCommand } from "@dramaflow/ffmpeg/types";
 
 export const languageProviders = [tfRouterLanguage, deepSeek] as const;
 export const mediaProviders = [tfRouterMedia, apiMart, metaso, compshare] as const;

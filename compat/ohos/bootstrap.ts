@@ -5,24 +5,24 @@ import { pathToFileURL } from "node:url";
 // ACT: Node 24.2 的这些懒加载全局会提前编译 WASM；先移除访问器，再复用已安装 Undici 的 Web API。
 const webGlobals = ["fetch", "Headers", "Response", "Request", "FormData", "WebSocket", "CloseEvent", "MessageEvent", "EventSource", "ErrorEvent"] as const;
 for (const name of webGlobals) Reflect.deleteProperty(globalThis, name);
-const webApi = require("toonflow:webApi") as typeof globalThis;
+const webApi = require("dramaflow:webApi") as typeof globalThis;
 for (const name of webGlobals) if (name !== "fetch") Reflect.set(globalThis, name, webApi[name]);
 // Node 24.2 为 HTTP 的 ESM 命名导出读取全部属性，连带触发这三个旧 Undici 访问器。
 const http = require("node:http");
 for (const name of ["WebSocket", "CloseEvent", "MessageEvent"] as const) {
   Object.defineProperty(http, name, { value: webApi[name], configurable: true, enumerable: true, writable: true });
 }
-const { getRequestState } = require("toonflow:webRequest") as {
+const { getRequestState } = require("dramaflow:webRequest") as {
   getRequestState(request: Request): { body: { source: unknown } | null };
 };
-const { getResponseState } = require("toonflow:webResponse") as {
+const { getResponseState } = require("dramaflow:webResponse") as {
   getResponseState(response: Response): { urlList: URL[]; type: string };
 };
 
 const native = (process as NodeJS.Process & {
   _linkedBinding(name: string): { log(message: string): void };
-})._linkedBinding("toonflowNative");
-const nodeFetch = (require("toonflow:nodeFetch") as {
+})._linkedBinding("dramaflowNative");
+const nodeFetch = (require("dramaflow:nodeFetch") as {
   default(url: string, options: { method: string; headers: Record<string, string>; body?: Readable | Blob; signal: AbortSignal; redirect: Request["redirect"] }):
     Promise<{ body: Readable; status: number; statusText: string; headers: { raw(): Record<string, string[]> }; url: string; redirected: boolean }>;
 }).default;

@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/node-image-generation",
+  "name": "@dramaflow/node-image-generation",
   "version": "2.0.0",
   "private": true,
   "type": "module",
@@ -17,9 +17,9 @@
     "@tabler/icons-vue": "^3.46.0"
   },
   "devDependencies": {
-    "@toonflow/node-shared": "workspace:*",
-    "@toonflow/node-image": "workspace:*",
-    "@toonflow/nodes-scaffold": "workspace:*",
+    "@dramaflow/node-shared": "workspace:*",
+    "@dramaflow/node-image": "workspace:*",
+    "@dramaflow/nodes-scaffold": "workspace:*",
     "typescript": "~6.0.3",
     "vite": "^8.2.2",
     "vue-tsc": "^3.3.11"

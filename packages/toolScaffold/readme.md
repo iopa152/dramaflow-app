@@ -12,17 +12,17 @@
 
 在工具包目录执行 `bun run build`，只输出 `build/tools/<name>.tool.js`。开发时在根目录执行 `bun run dev:plugins`，或以 `NODE_ENV=dev` 构建工具，才复制同步到 `data/tools/`。Pi 工具构造函数由宿主的 `context.sdk` 注入；`zod` 由 Server 共享，其余运行依赖随插件打包。单包构建保留其他工具的已有产物。
 
-`import { z } from "zod"` 无需修改：构建时将 `zod` 转为外部模块 `toonflow:tool-zod`，Server 在加载工具前通过 Bun 虚拟模块提供完整的 Zod 4 导出。仅共享精确的 `zod` 导入，子路径仍随工具打包。发布这些新产物时须同步更新 Server；旧版自带 Zod 的工具仍可加载。
+`import { z } from "zod"` 无需修改：构建时将 `zod` 转为外部模块 `dramaflow:tool-zod`，Server 在加载工具前通过 Bun 虚拟模块提供完整的 Zod 4 导出。仅共享精确的 `zod` 导入，子路径仍随工具打包。发布这些新产物时须同步更新 Server；旧版自带 Zod 的工具仍可加载。
 
 在仓库根目录运行 `bun run build:tools` 会清空 `build/tools` 后构建全部工具，不改动 `data/tools`；`dev:desktop` 会先执行 `dev:plugins` 同步开发产物。在“设置 → 插件市场”中安装 `.tool.js`、启停、卸载或编辑配置；配置写入 `data/settings.json` 的 `toolConfigs`，下一次发送消息时生效。桌面构建会携带默认工具，首次启动初始化后，用户卸载的工具不会因普通重启而自动恢复。
 
-文件首行 `/*! toonflowTool:<JSON> */` 包含 `ToolMetadata`，其中 `version` 为工具版本，随单个 `.tool.js` 文件安装和分享。服务端可以读取这段数据而不执行插件；旧工具没有版本时仍可加载，列表返回空字符串表示未知版本，不推断或补造版本号。
+文件首行 `/*! dramaflowTool:<JSON> */` 包含 `ToolMetadata`，其中 `version` 为工具版本，随单个 `.tool.js` 文件安装和分享。服务端可以读取这段数据而不执行插件；旧工具没有版本时仍可加载，列表返回空字符串表示未知版本，不推断或补造版本号。
 
 `configRules` 直接使用 `@form-create/element-ui` 的 `Rule[]`，与节点配置使用相同格式；`type`、`field`、`title`、`value`、`props`、`options`、`validate` 等遵循库的原生规则。`field` 对应配置属性，`value` 为默认值。规则以 JSON 写入元数据，最多 100 项，不能包含函数或其它非 JSON 值。前端共用配置弹窗，通过 `<form-create>` 渲染，并使用 `copyRules` 隔离表单修改。插件必须在 `validateConfig` 中校验配置，不能仅依赖前端表单限制。
 
-配置 `components` 时，构建器使用 Vite 编译 Vue 组件，第二行 `/*! toonflowToolClient:<JSON> */` 保存独立 UMD 代码及 CSS，元数据只保存组件对应的工具名称。组件必须显式导入所用 UI 组件与样式，不依赖 web 自动导入；Vue、Element Plus、Axios 和 form-create 复用 `toonflowToolHost` 的宿主实例。其余客户端依赖随组件打包，不生成安装包外的资源文件。
+配置 `components` 时，构建器使用 Vite 编译 Vue 组件，第二行 `/*! dramaflowToolClient:<JSON> */` 保存独立 UMD 代码及 CSS，元数据只保存组件对应的工具名称。组件必须显式导入所用 UI 组件与样式，不依赖 web 自动导入；Vue、Element Plus、Axios 和 form-create 复用 `dramaflowToolHost` 的宿主实例。其余客户端依赖随组件打包，不生成安装包外的资源文件。
 
-`/api/tools/renderers` 仅列出已启用的组件映射及内容版本地址，`/api/tools/client` 只下发对应浏览器代码与样式，不执行或暴露服务端入口、配置和密钥。web 使用 `@toonflow/tools-scaffold/client` 的 `loadToolComponent(tool.name)`，统一向组件传入 `{ tool: ToolCall, directory?: string }`；无组件时展示普通工具消息，加载失败时提示用户停止后重试。历史消息可能只有 `args/result`，组件不能假定一定存在实时交互信息。`askUser` 的回答、跳过和历史展示均由包内 `src/questionCard.vue` 维护，web 不导入该组件。
+`/api/tools/renderers` 仅列出已启用的组件映射及内容版本地址，`/api/tools/client` 只下发对应浏览器代码与样式，不执行或暴露服务端入口、配置和密钥。web 使用 `@dramaflow/tools-scaffold/client` 的 `loadToolComponent(tool.name)`，统一向组件传入 `{ tool: ToolCall, directory?: string }`；无组件时展示普通工具消息，加载失败时提示用户停止后重试。历史消息可能只有 `args/result`，组件不能假定一定存在实时交互信息。`askUser` 的回答、跳过和历史展示均由包内 `src/questionCard.vue` 维护，web 不导入该组件。
 
 `createTools(context)` 返回 Pi 的工具定义数组，一个插件可提供多个工具。宿主传入当前工作区 `cwd`、仅属于该工具且已校验的配置 `config`、统一文件能力 `files`，以及 Pi SDK 工具构造函数。不传入应用全局设置或其他工具的配置；工具需要的密钥通过自身配置项填写。工作区文件插件通过宿主方法限制路径；只读模式只注册 `read` 与 `ls`。
 
@@ -30,9 +30,9 @@
 
 `context.skills` 提供统一的技能扫描、读取、新建和修改，复用宿主的 SDK 扫描与文件落盘。`skillOperator` 据此操作工作区 `skill/` 和全局 `data/skills/`，无需把 Pi SDK 打入工具。读取、新建、修改默认开启，可在工具配置中分别关闭；目录查询始终保留，普通工作区文件的写入范围不因此扩大。
 
-`await context.asr.transcribe(path, { lang?, signal? })` 使用 `@toonflow/asr` 将工作区音频识别为文本，`path` 支持工作区内的相对路径或绝对路径，默认语言为 `zh-CN`。音频不能为空且不能超过 100 MB。工具在服务端执行，识别通过本轮绑定画布转交发起对话的浏览器；未连接画布时明确报错。此宿主能力不额外注册 Agent 工具。浏览器须支持音轨识别，API 存在不保证识别服务可用；当前复用画布通道的串行队列，转写不受普通画布操作的 120 秒总时限限制，沿用 ASR 的 30 秒无响应/播放停滞与 15 秒收尾超时。停止整轮对话或切换工作区会取消浏览器识别；单独取消工具的 `signal` 会立即结束服务端等待，浏览器仍可能运行至自然结束或自身超时。浏览器原生识别可能使用其供应商的在线服务，不能视为离线识别。
+`await context.asr.transcribe(path, { lang?, signal? })` 使用 `@dramaflow/asr` 将工作区音频识别为文本，`path` 支持工作区内的相对路径或绝对路径，默认语言为 `zh-CN`。音频不能为空且不能超过 100 MB。工具在服务端执行，识别通过本轮绑定画布转交发起对话的浏览器；未连接画布时明确报错。此宿主能力不额外注册 Agent 工具。浏览器须支持音轨识别，API 存在不保证识别服务可用；当前复用画布通道的串行队列，转写不受普通画布操作的 120 秒总时限限制，沿用 ASR 的 30 秒无响应/播放停滞与 15 秒收尾超时。停止整轮对话或切换工作区会取消浏览器识别；单独取消工具的 `signal` 会立即结束服务端等待，浏览器仍可能运行至自然结束或自身超时。浏览器原生识别可能使用其供应商的在线服务，不能视为离线识别。
 
-工具的浏览器组件可从 `@toonflow/tools-scaffold/client` 导入 `createBrowserAsr`、`isBrowserAsrSupported`、`isBrowserAudioAsrSupported`、`transcribeBrowserAudio` 及相关类型，直接复用 `@toonflow/asr`。这些浏览器函数不从服务端 `runtime` 入口导出。
+工具的浏览器组件可从 `@dramaflow/tools-scaffold/client` 导入 `createBrowserAsr`、`isBrowserAsrSupported`、`isBrowserAudioAsrSupported`、`transcribeBrowserAudio` 及相关类型，直接复用 `@dramaflow/asr`。这些浏览器函数不从服务端 `runtime` 入口导出。
 
 `await context.ffmpeg(signal?)` 获取绑定 `context.cwd` 的原生 `@renmu/fluent-ffmpeg` 工厂，全局工具和团队私有工具均可使用；工具无需打包执行库。工厂构造参数、链式方法、事件、流、`.run()`、`.save()`、`.pipe()`、`.clone()` 和 `ffprobe` 回调均沿用原生 API，不再记录 JSON 计划。
 
@@ -58,7 +58,7 @@ ffmpeg.ffprobe("assets/first.mp4", (error, data) => {
 
 输出覆盖、超时、事件和错误处理沿用原生库，调用方负责使用新文件名保护素材。`signal` 仅取消工厂准备阶段；运行中的命令由调用方监听取消并调用 `command.kill("SIGKILL")`，同时处理启动前已取消的情况和监听器清理。入口按需检查 FFmpeg/FFprobe，缺失时仍通知前端下载并抛出 `FfmpegRequiredError`；不自动安装或重试。
 
-工具不再使用 `convert`、配置回调或 JSON plan。`FfmpegFactory`、`FfmpegCommand`、`FfprobeData` 从 `@toonflow/ffmpeg/types` 和 `@toonflow/tools-scaffold/runtime` 导出，直接复用原生类型。浏览器节点通过 `await useNode().ffmpeg(signal?)` 使用对应的文件型链式 API，由 HTTP 事件流交给同一宿主执行，具体边界见 `packages/nodeScaffold/readme.md`。
+工具不再使用 `convert`、配置回调或 JSON plan。`FfmpegFactory`、`FfmpegCommand`、`FfprobeData` 从 `@dramaflow/ffmpeg/types` 和 `@dramaflow/tools-scaffold/runtime` 导出，直接复用原生类型。浏览器节点通过 `await useNode().ffmpeg(signal?)` 使用对应的文件型链式 API，由 HTTP 事件流交给同一宿主执行，具体边界见 `packages/nodeScaffold/readme.md`。
 
 工具包的静态提示词在 `build.ts` 的 `createToolConfig({ ..., prompt: "工具操作规则", configRules: [...] }, import.meta.url)` 中声明。`prompt` 为可选字符串，最多 20000 个字符，支持多行文本；随元数据打包，旧插件未声明时按空字符串处理。
 
@@ -70,7 +70,7 @@ ffmpeg.ffprobe("assets/first.mp4", (error, data) => {
 
 - `skillOperator`：通过 `action: list/read/create/update` 聚合技能目录与读写，支持按 `name`、`scope`、技能相对 `path` 操作正文及资料。默认同名工作区技能优先；新建默认工作区，`SKILL.md` 校验名称和描述，新建不覆盖、修改只针对已有文件。启用后由此工具按需查询目录，保留 `/skill:名称` 调用。
 - `askUser`：提问器，通过 `context.question.ask` 一次发送一个或多个问题，等待用户回答或明确跳过后继续执行。简单提问传 `{ title, question, options? }`，返回 `{ answer }`；多个问题传 `{ title, question, fields }`，前端使用 `@form-create/element-ui` 渲染，返回 `{ answer, values }`。`fields` 最多 12 项，每项一个问题，包含唯一 `field`、`title`、`type`，默认可留空，可设置 `required`、`placeholder`；支持 `input`、`textarea`、`radio`、`checkbox`、`select`、`inputNumber`、`switch`，选择类字段必须提供 `options`。动态表单与顶层 `options` 不同时使用。点击“跳过”返回 `{ answer: "用户跳过了本次提问", skipped: true }`，不要求填写必填项，也不停止 Agent；停止或断开对话仍会取消等待。问题、回答和跳过结果沿用 Pi 工具调用历史保存。
-- `canvas`：画布操作工具，通过可选的 `context.canvas` 控制本轮绑定的激活画布。读取工具为概览 `getCanvas`、筛选分页 `findCanvasNodes`、按 ID 投影/分段读取 `getCanvasNodes`、局部连接 `getCanvasEdges`、目标节点函数查询 `getNodeTools`；每次最多 64 KiB，按 `hasMore/nextCursor` 续读，大节点值沿 `path` 配合文本或对象/数组偏移继续读取。`context.canvas` 只需要画布 ID 和调用入口，不注入全部函数清单。变更工具提供 `addNode`、`deleteNodes`、`moveNodes`、`renameNodes`、`connectNodes`、`deleteEdges`、`selectNodes`、`fitCanvas`，以及节点注册函数的统一执行入口 `nodeTools`；`deleteNodes`/`moveNodes`/`renameNodes`/`connectNodes`/`deleteEdges` 均一次接受多个目标进行批量操作。参数规则由 `@toonflow/tool-canvas/runtime` 的 Zod schema 共享。没有激活画布时不提供这些工具；空画布仍可新增节点，再查询并调用新节点的函数。执行走 Agent 流与回传接口，修改由当前 Vue Flow 实例完成并复用画布保存逻辑，读取不触发保存，不通过直接编辑 JSON 控制画布。
+- `canvas`：画布操作工具，通过可选的 `context.canvas` 控制本轮绑定的激活画布。读取工具为概览 `getCanvas`、筛选分页 `findCanvasNodes`、按 ID 投影/分段读取 `getCanvasNodes`、局部连接 `getCanvasEdges`、目标节点函数查询 `getNodeTools`；每次最多 64 KiB，按 `hasMore/nextCursor` 续读，大节点值沿 `path` 配合文本或对象/数组偏移继续读取。`context.canvas` 只需要画布 ID 和调用入口，不注入全部函数清单。变更工具提供 `addNode`、`deleteNodes`、`moveNodes`、`renameNodes`、`connectNodes`、`deleteEdges`、`selectNodes`、`fitCanvas`，以及节点注册函数的统一执行入口 `nodeTools`；`deleteNodes`/`moveNodes`/`renameNodes`/`connectNodes`/`deleteEdges` 均一次接受多个目标进行批量操作。参数规则由 `@dramaflow/tool-canvas/runtime` 的 Zod schema 共享。没有激活画布时不提供这些工具；空画布仍可新增节点，再查询并调用新节点的函数。执行走 Agent 流与回传接口，修改由当前 Vue Flow 实例完成并复用画布保存逻辑，读取不触发保存，不通过直接编辑 JSON 控制画布。
 - `workspace`：工作区读取、写入、编辑和目录列表，可开启只读模式。
 - `webSearch`：默认使用免密钥的 DuckDuckGo，可配置切换 DeepSeek 或 Tavily 并填写对应密钥；支持设置结果数量和超时。
 - `webFetch`：使用 Bun 原生 fetch 读取网页，可设置超时与正文长度；最多 5 次重定向和 2 MiB 响应正文，不预判 DNS 公网地址，兼容 Fake-IP，网络隔离由部署环境负责。

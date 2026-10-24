@@ -47,7 +47,7 @@
 import { computed, ref } from "vue";
 import { ElButton, ElPopover, ElSelect, ElOption, ElSwitch } from "element-plus";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-vue";
-import type { NodeMediaModel } from "@toonflow/nodes-scaffold/runtime";
+import type { NodeMediaModel } from "@dramaflow/nodes-scaffold/runtime";
 
 const props = defineProps<{ model?: NodeMediaModel; disabled?: boolean; ratios: string[] }>();
 const settingsVisible = ref(false);

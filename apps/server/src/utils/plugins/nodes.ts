@@ -1,5 +1,5 @@
 import { t } from "@/lib/i18n";
-import { lstat, readFile } from "@toonflow/file";
+import { lstat, readFile } from "@dramaflow/file";
 import { dirname, resolve } from "node:path";
 import { z } from "zod";
 import conf from "@/utils/conf";
@@ -21,7 +21,7 @@ export async function readNode(name: string) {
   const source = await readFile(path, "utf8");
   let metadata: Record<string, unknown> = {};
   try {
-    const header = source.match(/^\/\*! toonflowNode:([^\r\n]*) \*\/(?:\r?\n|$)/)?.[1];
+    const header = source.match(/^\/\*! dramaflowNode:([^\r\n]*) \*\/(?:\r?\n|$)/)?.[1];
     const parsed = header ? JSON.parse(header) : null;
     if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) metadata = parsed;
   } catch {

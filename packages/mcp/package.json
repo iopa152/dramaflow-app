@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/mcp",
+  "name": "@dramaflow/mcp",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -8,24 +8,24 @@
     "./client": "./src/client.ts",
     "./skill": {
       "types": "./src/skill.d.ts",
-      "default": "./skills/toonflow/SKILL.md"
+      "default": "./skills/dramaflow/SKILL.md"
     }
   },
   "bin": {
-    "toonflow-mcp": "./src/stdio.ts"
+    "dramaflow-mcp": "./src/stdio.ts"
   },
   "scripts": {
     "build": "bun scripts/build.ts",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@toonflow/file": "workspace:*",
+    "@dramaflow/file": "workspace:*",
     "@modelcontextprotocol/client": "^2.0.0",
     "@modelcontextprotocol/core": "^2.0.0",
     "@modelcontextprotocol/node": "^2.0.0",
     "@modelcontextprotocol/server": "^2.0.0",
     "zod": "^4.6.2",
-    "@toonflow/i18n": "workspace:*"
+    "@dramaflow/i18n": "workspace:*"
   },
   "peerDependencies": {
     "express": "^5.2.1"

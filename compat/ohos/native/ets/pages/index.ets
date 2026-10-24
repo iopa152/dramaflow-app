@@ -6,7 +6,7 @@ import url from "@ohos.url";
 import util from "@ohos.util";
 import webview from "@ohos.web.webview";
 import zlib from "@ohos.zlib";
-import runtime from "libtoonflowRuntime.so";
+import runtime from "libdramaflowRuntime.so";
 import browserCompatibility from "../browserCompatibility";
 
 interface BrowserProbe {
@@ -26,7 +26,7 @@ let payloadPreparation: Promise<void> = Promise.resolve();
 @Entry
 @Component
 struct mobilePage {
-  @State private message: string = "正在准备 Toonflow…";
+  @State private message: string = "正在准备 Dramaflow…";
   @State private failed: boolean = false;
   @State private ready: boolean = false;
   @State private browserEnabled: boolean = false;
@@ -185,7 +185,7 @@ struct mobilePage {
     this.stage = "starting";
     this.origin = "";
     this.token = "";
-    this.message = "正在准备 Toonflow…";
+    this.message = "正在准备 Dramaflow…";
     runtime.stop();
     try {
       const preparation = payloadPreparation.then(() => this.preparePayload());
@@ -193,7 +193,7 @@ struct mobilePage {
       await preparation;
       if (this.disposed || this.startupId !== startupId) return;
       this.message = "正在启动本地服务…";
-      this.setTimeout("本地服务启动超时，请退出后重新打开 Toonflow。", 60000);
+      this.setTimeout("本地服务启动超时，请退出后重新打开 Dramaflow。", 60000);
       const files = this.context.filesDir;
       const address: string = await runtime.start(`${files}/app`, `${files}/data`, this.context.cacheDir);
       if (this.disposed || this.startupId !== startupId || this.failed) return;
@@ -211,11 +211,11 @@ struct mobilePage {
       this.stage = "probe";
       this.message = "正在检查鸿蒙浏览器能力…";
       this.browserUrl = `${address}&probe=1`;
-      this.setTimeout("鸿蒙浏览器启动超时，请退出后重新打开 Toonflow。", 30000);
+      this.setTimeout("鸿蒙浏览器启动超时，请退出后重新打开 Dramaflow。", 30000);
       this.controller = new webview.WebviewController();
       this.browserEnabled = true;
     } catch (error) {
-      if (startupId === this.startupId) this.showError(`无法启动 Toonflow：${(error as Error).message}`);
+      if (startupId === this.startupId) this.showError(`无法启动 Dramaflow：${(error as Error).message}`);
     } finally {
       this.starting = false;
     }
@@ -246,20 +246,20 @@ struct mobilePage {
     if (this.stage === "probe" && parsed.params.get("probe") === "1") {
       this.stage = "checking";
       try {
-        const raw = await this.controller.runJavaScript("JSON.stringify(window.toonflowBrowserProbe)");
+        const raw = await this.controller.runJavaScript("JSON.stringify(window.dramaflowBrowserProbe)");
         const value = JSON.parse(raw) as BrowserProbe | string;
         const probe = typeof value === "string" ? JSON.parse(value) as BrowserProbe : value;
         if (!probe || !Array.isArray(probe.missing) || typeof probe.userAgent !== "string" || !probe.userAgent) {
           throw new Error("鸿蒙浏览器未返回有效的能力检测结果");
         }
         if (probe.missing.length > 0) {
-          throw new Error(`当前鸿蒙浏览器缺少所需能力：${probe.missing.join("、")}。请更新系统后重新打开 Toonflow。`);
+          throw new Error(`当前鸿蒙浏览器缺少所需能力：${probe.missing.join("、")}。请更新系统后重新打开 Dramaflow。`);
         }
         if (this.disposed || this.failed) return;
         console.info(`ArkWeb 能力检测通过：${probe.userAgent}`);
         this.stage = "page";
-        this.message = "正在加载 Toonflow…";
-        this.setTimeout("Toonflow 页面加载超时，请退出后重新打开。", 30000);
+        this.message = "正在加载 Dramaflow…";
+        this.setTimeout("Dramaflow 页面加载超时，请退出后重新打开。", 30000);
         this.controller.loadUrl(`${this.origin}/?mobile=1`);
       } catch (error) {
         this.showError((error as Error).message);
@@ -277,7 +277,7 @@ struct mobilePage {
     if (this.isLocal(address)) return false;
     try {
       const parsed = new url.URL(address);
-      if (mainFrame && parsed.protocol === "toonflow:" && this.isLocalPage()) {
+      if (mainFrame && parsed.protocol === "dramaflow:" && this.isLocalPage()) {
         if (parsed.hostname === "restart") this.start();
         else if (parsed.hostname === "save") this.saveFile(parsed);
         return true;
@@ -298,7 +298,7 @@ struct mobilePage {
     const request = http.createHttp();
     try {
       return await request.request(address, {
-        method, header: { Cookie: `toonflowMobile=${token}` }, expectDataType: http.HttpDataType.ARRAY_BUFFER,
+        method, header: { Cookie: `dramaflowMobile=${token}` }, expectDataType: http.HttpDataType.ARRAY_BUFFER,
         usingCache: false, usingProxy: false, connectTimeout: 10000, readTimeout: 30000, maxLimit: 100 * 1024 * 1024,
       });
     } finally {
@@ -346,7 +346,7 @@ struct mobilePage {
         }
       }
       if (this.isLocalPage() && this.origin === origin) {
-        this.controller.runJavaScript(`window.dispatchEvent(new CustomEvent("toonflow:mobile-save",{detail:${JSON.stringify(result)}}))`)
+        this.controller.runJavaScript(`window.dispatchEvent(new CustomEvent("dramaflow:mobile-save",{detail:${JSON.stringify(result)}}))`)
           .catch((error: Error) => console.error(`无法返回文件保存结果：${error.message}`));
       }
     }
@@ -379,7 +379,7 @@ struct mobilePage {
               this.showError(`本地页面返回 HTTP ${event.response.getResponseCode()}`);
             }
           })
-          .onRenderExited(() => this.showError("鸿蒙浏览器进程已退出，请重新打开 Toonflow。"))
+          .onRenderExited(() => this.showError("鸿蒙浏览器进程已退出，请重新打开 Dramaflow。"))
         }
         if (!this.ready) {
           Column({ space: 20 }) {

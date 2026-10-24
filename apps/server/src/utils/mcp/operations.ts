@@ -1,6 +1,6 @@
 import { getLocale, t, validationOptions } from "@/lib/i18n";
 import { z } from "zod";
-import { toolNameSchema } from "@toonflow/tools-scaffold/runtime";
+import { toolNameSchema } from "@dramaflow/tools-scaffold/runtime";
 import { mediaModelsSchema, mediaProviderFileSchema } from "@/utils/media/provider";
 import { getAppRequestHeaders, getMcpRuntime } from "@/utils/mcp/runtime";
 
@@ -146,9 +146,9 @@ export async function runAppOperation(name: string, parameters: Record<string, u
   if (!operation) throw new Error(t`未知应用操作：${name}`);
   const args = operation.parameters.parse(parameters, validationOptions()) as Record<string, unknown>;
   const origin = getMcpRuntime().appOrigin;
-  if (!origin) throw new Error("Toonflow 服务尚未就绪");
+  if (!origin) throw new Error("Dramaflow 服务尚未就绪");
   const url = new URL(operation.path, origin);
-  const headers: Record<string, string> = { ...getAppRequestHeaders(), "x-toonflow-workspace": "1", Origin: origin, Referer: `${origin}/`, "Accept-Language": getLocale() };
+  const headers: Record<string, string> = { ...getAppRequestHeaders(), "x-dramaflow-workspace": "1", Origin: origin, Referer: `${origin}/`, "Accept-Language": getLocale() };
   let body: string | ArrayBuffer | undefined;
   if (operation.name === "saveAsset") {
     url.searchParams.set("path", args.path as string);

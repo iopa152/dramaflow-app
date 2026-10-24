@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
-import { readFile, readdir } from "@toonflow/file";
+import { readFile, readdir } from "@dramaflow/file";
 import type { Request, Response, NextFunction } from "express";
 import buildRoute from "@/core";
 import { errorFromCause } from "@/lib/responseFormat";
@@ -11,7 +11,7 @@ import desktopRequest from "@/lib/desktop";
 import { getRuntimePlatform } from "@/lib/platform";
 import initializePlugins from "@/utils/plugins/initialize";
 import { languageRequest, resolveRequestLocale, runWithLocale, setLocaleFallback, translateError, translateMessage } from "@/lib/i18n";
-import { detectLocale, normalizeLocale } from "@toonflow/i18n";
+import { detectLocale, normalizeLocale } from "@dramaflow/i18n";
 
 const autoInstallProviders = ["tfRouter.ts", "apiMart.ts", "metaso.ts", "compshare.ts"];
 
@@ -39,7 +39,7 @@ export async function createApp({
   pluginRevision?: string;
 }) {
   // conf 由下方的路由动态加载，必须先确定整个进程共用的数据目录。
-  if (dataDirectory) process.env.TOONFLOW_DATA_DIR = resolve(dataDirectory);
+  if (dataDirectory) process.env.DRAMAFLOW_DATA_DIR = resolve(dataDirectory);
   const { default: conf } = await import("@/utils/conf");
   setLocaleFallback(() => normalizeLocale((conf.get("settings", {}).ui as { language?: unknown } | undefined)?.language)
     ?? detectLocale([Intl.DateTimeFormat().resolvedOptions().locale]));
@@ -104,7 +104,7 @@ export async function createApp({
   const router = await import("@/router");
   router.default(app);
   const [{ createMcpRouter }, { getMcpTools }, { authorizeMcp }, { skillResources }] = await Promise.all([
-    import("@toonflow/mcp"),
+    import("@dramaflow/mcp"),
     import("@/utils/mcp/tools"),
     import("@/utils/mcp/control"),
     import("@/utils/mcp/resources"),

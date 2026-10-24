@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, shallowRef, watch, watchEffect } from "vue";
 import { ElMessage, useZIndex } from "element-plus";
-import { elementLocales } from "@toonflow/i18n/elementPlus";
+import { elementLocales } from "@dramaflow/i18n/elementPlus";
 import { ConfigProvider, type GlobalConfigProvider } from "tdesign-vue-next";
 import tdesignZhCn from "tdesign-vue-next/es/locale/zh_CN";
 import tdesignZhTw from "tdesign-vue-next/es/locale/zh_TW";
@@ -51,8 +51,8 @@ import tdesignJa from "tdesign-vue-next/es/locale/ja_JP";
 import tdesignRu from "tdesign-vue-next/es/locale/ru_RU";
 import tdesignKo from "tdesign-vue-next/es/locale/ko_KR";
 import tdesignAr from "tdesign-vue-next/es/locale/ar_KW";
-import { locale } from "@toonflow/i18n/vue";
-import type { updateSnapshot } from "@toonflow/server/desktop";
+import { locale } from "@dramaflow/i18n/vue";
+import type { updateSnapshot } from "@dramaflow/server/desktop";
 import { chatLocale } from "@/lib/i18n";
 import { isMobile, isDesktop } from "@/lib/platform";
 import { saveSettings, settings, uiSettings } from "@/stores/settings";

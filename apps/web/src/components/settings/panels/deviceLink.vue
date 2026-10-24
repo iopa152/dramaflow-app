@@ -2,7 +2,7 @@
   <div v-loading="loading" class="deviceLink">
     <section v-if="isRemoteConnection" class="remoteConnection" aria-label="当前连接设备">
       <el-tag :type="mobileConnection.online === true ? mobileConnectionVersionWarning ? 'warning' : 'success' : mobileConnection.online === false ? 'danger' : 'info'">{{ mobileConnectionLabel }}</el-tag>
-      <h3>{{ mobileConnection.name || 'Toonflow' }}</h3>
+      <h3>{{ mobileConnection.name || 'Dramaflow' }}</h3>
       <code>{{ mobileConnection.url }}</code>
       <p class="description">当前使用这个设备的项目与配置。断开后恢复独立运行，才可以允许其他设备连接。</p>
       <el-alert v-if="mobileConnectionVersionWarning" :title="mobileConnectionVersionWarning" type="warning" :closable="false" showIcon />
@@ -14,7 +14,7 @@
       <div class="sectionHeader">
         <div class="settingInfo">
           <h3 id="deviceLinkTitle">允许其他设备连接</h3>
-          <p class="description">其他电脑、安卓设备可使用这里的项目与配置。连接时请保持 Toonflow 运行。</p>
+          <p class="description">其他电脑、安卓设备可使用这里的项目与配置。连接时请保持 Dramaflow 运行。</p>
         </div>
         <el-switch :modelValue="form.enabled" :disabled="busy || !status" aria-label="允许其他设备连接" @change="value => saveConfig(value === true)" />
       </div>
@@ -89,10 +89,10 @@
                 <el-option v-for="address in status?.addresses ?? []" :key="address" :label="address" :value="address" />
               </el-select>
               <code v-else class="connectionAddress">{{ selectedAddress || '未找到可用地址' }}</code>
-              <p class="description">无法连接时可尝试其他地址，并检查电脑防火墙是否允许 Toonflow 联网。</p>
+              <p class="description">无法连接时可尝试其他地址，并检查电脑防火墙是否允许 Dramaflow 联网。</p>
             </el-form-item>
             <el-form-item v-if="addressMode === 'public'" label="公网 HTTPS 地址">
-              <el-input v-model="form.publicUrl" placeholder="https://toonflow.example.com" aria-label="公网 HTTPS 地址" />
+              <el-input v-model="form.publicUrl" placeholder="https://dramaflow.example.com" aria-label="公网 HTTPS 地址" />
               <p class="description">请将这个 HTTPS 地址转发到下方互联端口，保留请求路径。保存后生效。</p>
             </el-form-item>
             <el-form-item label="互联端口">
@@ -123,7 +123,7 @@
 
 <script setup lang="ts">
 import axios from "axios";
-import { msg, translate, type MessageDescriptor } from "@toonflow/i18n/vue";
+import { msg, translate, type MessageDescriptor } from "@dramaflow/i18n/vue";
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { QRCode } from "tdesign-vue-next";
@@ -140,7 +140,7 @@ type ApiResponse<T> = { code: number; data: T; message?: string };
 
 const props = withDefaults(defineProps<{ visible?: boolean }>(), { visible: true });
 const workspaceStore = useWorkspaceStore();
-const headers = { "x-toonflow-mobile-link": "1" };
+const headers = { "x-dramaflow-mobile-link": "1" };
 const status = ref<LinkStatus>();
 const form = reactive({ enabled: false, port: 43123, publicUrl: "", directories: [] as string[] });
 const directoryPicker = ref<InstanceType<typeof workspacePicker>>();
@@ -316,7 +316,7 @@ async function revokeDevice(id: string) {
   revoking.value = true;
   error.value = "";
   try {
-    await ElMessageBox.confirm("撤销后，这个设备将无法继续访问当前 Toonflow。", "撤销设备授权", { confirmButtonText: "撤销授权", cancelButtonText: "取消", type: "warning" });
+    await ElMessageBox.confirm("撤销后，这个设备将无法继续访问当前 Dramaflow。", "撤销设备授权", { confirmButtonText: "撤销授权", cancelButtonText: "取消", type: "warning" });
     const { data } = await axios.post<ApiResponse<unknown>>("/api/mobileLink/revoke", { id }, { headers });
     if (data.code !== 200) throw new Error(data.message || "撤销授权失败");
     await loadStatus(false);

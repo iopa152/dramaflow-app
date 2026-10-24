@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, readdirSync, readFileSync, realpathSync, renameSync, rmSync } from "@toonflow/file";
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, realpathSync, renameSync, rmSync } from "@dramaflow/file";
 import { dirname, join, resolve } from "node:path";
 
 const args = process.argv.slice(2);

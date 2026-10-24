@@ -1,6 +1,6 @@
 import { $ } from "bun";
-import { copyFileSync, existsSync, mkdirSync, mkdtempSync, realpathSync, renameSync, rmSync } from "@toonflow/file";
-import { file, write } from "@toonflow/file/bun";
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, realpathSync, renameSync, rmSync } from "@dramaflow/file";
+import { file, write } from "@dramaflow/file/bun";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import desktopConfig from "../../../electrobun.config";
@@ -13,7 +13,7 @@ const projectDir = realpathSync(resolve(import.meta.dirname, "../../.."));
 process.chdir(projectDir);
 const nsisDir = resolve("build/desktop/nsis");
 const artifactDir = resolve(desktopConfig.build.artifactFolder);
-const outputFile = join(artifactDir, `toonflow-${desktopConfig.app.version}-Setup.exe`);
+const outputFile = join(artifactDir, `dramaflow-${desktopConfig.app.version}-Setup.exe`);
 const installerDir = resolve("apps/desktop/installer");
 const appIcon = resolve("packages/assets/logo.ico");
 const makensis = process.env.NSIS_PATH ?? "C:/Program Files (x86)/NSIS/makensis.exe";

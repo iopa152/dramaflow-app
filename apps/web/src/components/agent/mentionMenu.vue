@@ -39,14 +39,14 @@
 </template>
 
 <script setup lang="ts">
-import { translate } from "@toonflow/i18n/vue";
+import { translate } from "@dramaflow/i18n/vue";
 
 import { computed, nextTick, onBeforeUnmount, ref, useId, watch, type CSSProperties } from "vue";
 import { ClickOutside as vClickOutside, type ScrollbarInstance } from "element-plus";
 import { useVirtualizer } from "@tanstack/vue-virtual";
 import { IconAt, IconBox, IconCheck, IconChevronLeft, IconChevronRight, IconFileText, IconFolder, IconVector, IconVideo, IconMusic, IconPhoto, IconSearch, IconX } from "@tabler/icons-vue";
-import type { AgentMention } from "@toonflow/server/agent/types";
-import { mentionAssetType } from "@toonflow/server/agent/mentionSources";
+import type { AgentMention } from "@dramaflow/server/agent/types";
+import { mentionAssetType } from "@dramaflow/server/agent/mentionSources";
 import { useMentionSources, type MentionAsset, type MentionNode, type MentionOutput } from "./mentionSources";
 import mentionThumbnail from "./mentionThumbnail.vue";
 

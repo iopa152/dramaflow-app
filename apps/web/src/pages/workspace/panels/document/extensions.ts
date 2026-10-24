@@ -1,13 +1,13 @@
 import axios from "axios";
 import * as vue from "vue";
 import * as elementPlus from "element-plus";
-import * as i18n from "@toonflow/i18n/vue";
+import * as i18n from "@dramaflow/i18n/vue";
 import { saveSettings, settings } from "@/stores/settings";
-import { defineExt, type ExtDefinition, type ExtResource } from "@toonflow/ext-scaffold/runtime";
+import { defineExt, type ExtDefinition, type ExtResource } from "@dramaflow/ext-scaffold/runtime";
 
 export type InstalledExtension = Omit<ExtDefinition, "load"> & { name: string; enabled: boolean; url: string; version: string; revision?: string; loadError?: string; config?: Record<string, unknown> };
-const host = window as typeof window & { toonflowExts?: Record<string, ExtDefinition> };
-Object.assign(host, { toonflowExtHost: { vue, elementPlus, i18n } });
+const host = window as typeof window & { dramaflowExts?: Record<string, ExtDefinition> };
+Object.assign(host, { dramaflowExtHost: { vue, elementPlus, i18n } });
 const requests = new Map<string, Promise<ExtDefinition>>();
 const scriptQueues = new Map<string, Promise<unknown>>();
 const configSaves = new Map<string, Promise<void>>();
@@ -50,7 +50,7 @@ export function listExtensions(refresh = false): Promise<InstalledExtension[]> {
   if (!installed) {
     const requestedRevision = revision;
     const requestedConfigRevision = configRevision;
-    installed = axios.get<{ data: InstalledExtension[] }>("/api/ext/list", { headers: { "x-toonflow-workspace": "1" } })
+    installed = axios.get<{ data: InstalledExtension[] }>("/api/ext/list", { headers: { "x-dramaflow-workspace": "1" } })
       .then(({ data }): InstalledExtension[] | Promise<InstalledExtension[]> => {
         if (requestedRevision !== revision) return listExtensions();
         definitions.value = data.data.map(extension => {
@@ -84,7 +84,7 @@ function loadExtension(extension: InstalledExtension) {
       const response = await fetch(url.href);
       if (!response.ok) throw new Error(`扩展加载失败：${extension.displayName}（HTTP ${response.status}）`);
       const code = await response.text();
-      if (code.includes("toonflowTiptapHost")) await import("@/lib/tiptapHost");
+      if (code.includes("dramaflowTiptapHost")) await import("@/lib/tiptapHost");
       if (requestedRevision !== revision) throw new Error("文件扩展已更新，请重新打开");
       return new Promise<ExtDefinition>((resolve, reject) => {
         const script = document.createElement("script");
@@ -93,13 +93,13 @@ function loadExtension(extension: InstalledExtension) {
           script.remove();
           try {
             if (requestedRevision !== revision) throw new Error("文件扩展已更新，请重新打开");
-            const definition = host.toonflowExts?.[extension.id];
+            const definition = host.dramaflowExts?.[extension.id];
             if (!definition || definition.id !== extension.id) throw new Error("扩展没有导出对应组件");
             resolve(defineExt(definition));
           } catch (error) { reject(error); }
         };
         script.onerror = () => { script.remove(); reject(new Error(`扩展加载失败：${extension.displayName}`)); };
-        delete host.toonflowExts?.[extension.id];
+        delete host.dramaflowExts?.[extension.id];
         document.head.append(script);
       });
     }).catch(error => { requests.delete(key); throw error; });
@@ -143,8 +143,8 @@ export function updateExtensionConfig(id: string, config: Record<string, unknown
 export function saveExtensionConfig(name: string, config: Record<string, unknown>) {
   const snapshot = structuredClone(vue.toRaw(config));
   const saving = (configSaves.get(name) ?? Promise.resolve()).catch(() => {}).then(async () => {
-    const { data } = await axios.put<{ data: Record<string, unknown> }>("/api/ext/save", { name, config: snapshot }, { headers: { "x-toonflow-workspace": "1" } });
-    window.dispatchEvent(new CustomEvent("toonflow:ext-config-updated", { detail: { name, config: data.data } }));
+    const { data } = await axios.put<{ data: Record<string, unknown> }>("/api/ext/save", { name, config: snapshot }, { headers: { "x-dramaflow-workspace": "1" } });
+    window.dispatchEvent(new CustomEvent("dramaflow:ext-config-updated", { detail: { name, config: data.data } }));
   });
   configSaves.set(name, saving);
   return saving;
@@ -162,11 +162,11 @@ function configUpdated(event: Event) {
   }
 }
 
-window.addEventListener("toonflow:ext-updated", extensionsUpdated);
-window.addEventListener("toonflow:ext-config-updated", configUpdated);
+window.addEventListener("dramaflow:ext-updated", extensionsUpdated);
+window.addEventListener("dramaflow:ext-config-updated", configUpdated);
 import.meta.hot?.dispose(() => {
-  window.removeEventListener("toonflow:ext-updated", extensionsUpdated);
-  window.removeEventListener("toonflow:ext-config-updated", configUpdated);
+  window.removeEventListener("dramaflow:ext-updated", extensionsUpdated);
+  window.removeEventListener("dramaflow:ext-config-updated", configUpdated);
 });
 
 export async function resolveExtension(resource: ExtResource, id: string): Promise<ExtDefinition> {

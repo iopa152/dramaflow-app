@@ -88,8 +88,8 @@
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { ElAlert, ElButton, ElDialog, ElRadioButton, ElRadioGroup, ElScrollbar, ElTabPane, ElTabs } from "element-plus";
 import { IconClock, IconDownload, IconMovie, IconSparkles, IconWaveSine } from "@tabler/icons-vue";
-import { useNodeFiles } from "@toonflow/nodes-scaffold/workspaceFiles";
-import type { NodeMediaValue } from "@toonflow/nodes-scaffold/values";
+import { useNodeFiles } from "@dramaflow/nodes-scaffold/workspaceFiles";
+import type { NodeMediaValue } from "@dramaflow/nodes-scaffold/values";
 import type { AnalysisResult } from "./videoAnalysis";
 import { formatSceneTime } from "./resultNodes";
 

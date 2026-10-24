@@ -1,4 +1,4 @@
-import { open, opendir, readFile, stat } from "@toonflow/file";
+import { open, opendir, readFile, stat } from "@dramaflow/file";
 import { basename } from "node:path";
 import u from "@/utils";
 import { createCanvasMention, mentionAssetType, mentionNodeOutputs, mentionRecord, queryMentionNodes,
@@ -36,7 +36,7 @@ async function readCanvas(directory: string, canvasId: string) {
     const canvas: unknown = JSON.parse(await readFile(path, "utf8"));
     const latest = await stat(path);
     if (latest.mtimeMs !== info.mtimeMs || latest.size !== info.size) throw Object.assign(new Error("画布正在保存，请重试"), { status: 409 });
-    if (!mentionRecord(canvas) || canvas.toonflowCanvas !== true || !Array.isArray(canvas.nodes)) throw Object.assign(new Error("文件不是有效画布"), { status: 400 });
+    if (!mentionRecord(canvas) || (canvas.dramaflowCanvas ?? canvas.toonflowCanvas) !== true || !Array.isArray(canvas.nodes)) throw Object.assign(new Error("文件不是有效画布"), { status: 400 });
     const nodes = canvas.nodes.filter((node): node is MentionCanvasNode => mentionRecord(node) && typeof node.id === "string");
     return { revision, nodes, byId: new Map(nodes.map(node => [node.id, node])) };
   })();
@@ -70,7 +70,7 @@ export async function listMentionCanvases(directory: string, signal: AbortSignal
       try {
         const header = Buffer.alloc(4096);
         const { bytesRead } = await file.read(header, 0, header.length, 0);
-        if (/^\s*\{/.test(header.toString("utf8", 0, bytesRead)) && /"toonflowCanvas"\s*:\s*true\s*[,}]/.test(header.toString("utf8", 0, bytesRead))) {
+        if (/^\s*\{/.test(header.toString("utf8", 0, bytesRead)) && /"(?:dramaflow|toonflow)Canvas"\s*:\s*true\s*[,}]/.test(header.toString("utf8", 0, bytesRead))) {
           canvases.push({ id: relativePath, name: relativePath.slice(0, -5) });
         }
       } finally { await file.close(); }

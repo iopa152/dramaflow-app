@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { basename } from "node:path";
-import { readFile, stat, unlink } from "@toonflow/file";
+import { readFile, stat, unlink } from "@dramaflow/file";
 import {
   createAgentSession,
   SessionManager,
 } from "@earendil-works/pi-coding-agent";
-import type { CanvasContext, QuestionContext } from "@toonflow/tools-scaffold/runtime";
+import type { CanvasContext, QuestionContext } from "@dramaflow/tools-scaffold/runtime";
 import type { AgentEvent, AgentMention, AgentToolCall } from "@/agent/runtime/types";
 import { agentMentionsSchema, mentionPrompt, snapshotMentions, validateMentionTokens } from "@/agent/runtime/mentions";
 import { readAiReferences, referenceContent } from "@/utils/ai";
@@ -162,7 +162,7 @@ export async function run(
     if (resendFrom && (resendEntry?.type !== "message" || resendEntry.message.role !== "user")) {
       throw Object.assign(new Error("重发消息不在当前对话中，请重新打开对话"), { status: 400 });
     }
-    const savedMentions = resendFrom ? history.getBranch().findLast(entry => entry.type === "custom" && entry.customType === "toonflowUserMessage" && (entry.data as { messageId?: string })?.messageId === resendFrom) : undefined;
+    const savedMentions = resendFrom ? history.getBranch().findLast(entry => entry.type === "custom" && entry.customType === "dramaflowUserMessage" && (entry.data as { messageId?: string })?.messageId === resendFrom) : undefined;
     const previousMentions = savedMentions?.type === "custom" ? agentMentionsSchema.safeParse((savedMentions.data as { mentions?: unknown })?.mentions) : undefined;
     const snapshots = await snapshotMentions(cwd, mentions, previousMentions?.success ? previousMentions.data : [], signal);
     mentionFiles = snapshots.created;
@@ -171,7 +171,7 @@ export async function run(
     if (previous.model && (previous.model.provider !== providerId || previous.model.modelId !== modelId))
       history.appendModelChange(providerId, modelId);
     if (previous.messages.length && previous.thinkingLevel !== effectiveThinkingLevel) history.appendThinkingLevelChange(effectiveThinkingLevel);
-    history.appendCustomEntry("toonflowReasoning", { thinkingLevel: thinkingLevel ?? null });
+    history.appendCustomEntry("dramaflowReasoning", { thinkingLevel: thinkingLevel ?? null });
     const { session } = await createAgentSession({
       cwd,
       ...resources,
@@ -206,17 +206,17 @@ export async function run(
       const body = (await onPayload?.(payload, requestModel) ?? payload) as Record<string, unknown>;
       sendUserMessage();
       const imageReferences = new Map(history.getBranch().flatMap(entry => {
-        const reference = entry.type === "custom" && entry.customType === "toonflowImageAttachment"
-          ? getAgentImageReference({ type: "text", text: "", toonflowImage: entry.data }) : undefined;
+        const reference = entry.type === "custom" && entry.customType === "dramaflowImageAttachment"
+          ? getAgentImageReference({ type: "text", text: "", dramaflowImage: entry.data }) : undefined;
         return reference ? [[reference.id, reference] as const] : [];
       }));
       const offloadedImages = new Set(history.getBranch().flatMap(entry => {
-        const images = entry.type === "custom" && entry.customType === "toonflowImageOffload" ? (entry.data as { images?: unknown })?.images : undefined;
+        const images = entry.type === "custom" && entry.customType === "dramaflowImageOffload" ? (entry.data as { images?: unknown })?.images : undefined;
         return Array.isArray(images) ? images.filter((id): id is string => typeof id === "string") : [];
       }));
       const mediaMessages = new Map<string, { id: string; references: Parameters<typeof readAiReferences>[1] }>();
       for (const entry of history.getBranch()) {
-        if (entry.type !== "custom" || !["toonflowAttachments", "toonflowUserMessage"].includes(entry.customType)) continue;
+        if (entry.type !== "custom" || !["dramaflowAttachments", "dramaflowUserMessage"].includes(entry.customType)) continue;
         const parsed = z.object({ messageId: z.string(), attachments: agentAttachmentsSchema, mentions: agentMentionsSchema.optional() }).safeParse(entry.data);
         if (!parsed.success) continue;
         const references: Parameters<typeof readAiReferences>[1] = [
@@ -257,7 +257,7 @@ export async function run(
               ? readAgentImage(cwd, saved, signal).then(image => [{ dataType: "IMAGE", value: `data:${image.mimeType};base64,${image.data}` }])
               : readAiReferences(cwd, [media], signal, provider));
             content.push(...referenceContent(provider.protocol, "", await mediaContents.get(key)!, index).slice(1).map(content =>
-              ["image", "image_url", "input_image"].includes((content as { type: string }).type) ? { ...content, toonflowImageId: id } : content));
+              ["image", "image_url", "input_image"].includes((content as { type: string }).type) ? { ...content, dramaflowImageId: id } : content));
           }
           return content;
         }));
@@ -274,7 +274,7 @@ export async function run(
       const firstMessage = !messageAccepted;
       messageAccepted = true;
       if (firstMessage && (attachments.length || mentions.length || prompt.trimStart().startsWith("/skill:"))) {
-        history.appendCustomEntry("toonflowUserMessage", { messageId: entry.id, content: prompt.trim(), attachments, mentions });
+        history.appendCustomEntry("dramaflowUserMessage", { messageId: entry.id, content: prompt.trim(), attachments, mentions });
         if (!history.getSessionName() && history.getBranch().filter((item) => item.type === "message" && item.message.role === "user").length === 1) {
           history.appendSessionInfo((prompt.trim().replace(/\{\{mention:([^{}]+)\}\}/g, (text, id: string) => {
             const mention = mentions.find(item => item.id === id);
@@ -282,7 +282,7 @@ export async function run(
           }) || attachments[0]?.name || mentions[0]?.label || "新对话").slice(0, 60));
         }
       }
-      const saved = history.getBranch().findLast(item => item.type === "custom" && item.customType === "toonflowUserMessage" && (item.data as { messageId?: string })?.messageId === entry.id);
+      const saved = history.getBranch().findLast(item => item.type === "custom" && item.customType === "dramaflowUserMessage" && (item.data as { messageId?: string })?.messageId === entry.id);
       const original = saved?.type === "custom" ? saved.data as { content: string; attachments: z.infer<typeof agentAttachmentsSchema>; mentions?: AgentMention[] } : undefined;
       const content = entry.type === "message" && entry.message.role === "user" ? entry.message.content : "";
       send({ type: "userMessage", id: entry.id, content: original?.content ?? (typeof content === "string" ? content : getToolResultText(content)), attachments: original?.attachments, mentions: original?.mentions });
@@ -399,7 +399,7 @@ export async function run(
         else history.resetLeaf();
         history.appendModelChange(providerId, modelId);
         history.appendThinkingLevelChange(effectiveThinkingLevel);
-        history.appendCustomEntry("toonflowReasoning", { thinkingLevel: thinkingLevel ?? null });
+        history.appendCustomEntry("dramaflowReasoning", { thinkingLevel: thinkingLevel ?? null });
         session.agent.state.messages = history.buildSessionContext().messages;
         userMessageId = history.getBranch().findLast((entry) => entry.type === "message" && entry.message.role === "user")?.id;
       }
@@ -435,7 +435,7 @@ export async function run(
           session.agent.state.messages = history.buildSessionContext().messages;
         }
         // ACT: 只记录有首个内容增量的生成耗时，旧历史和未计时输出不参与速度统计。
-        if (timing.decodeMs > 0) history.appendCustomEntry("toonflowTiming", timing);
+        if (timing.decodeMs > 0) history.appendCustomEntry("dramaflowTiming", timing);
         send({ type: "stats", stats: getAgentStats(history), contextUsage: getAgentContext(history, session.model?.contextWindow) });
         if (parentFile && child) {
           const entry = history.getBranch().findLast(entry => entry.type === "message" && entry.message.role === "assistant");

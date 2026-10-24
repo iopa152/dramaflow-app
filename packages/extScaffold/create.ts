@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "@toonflow/file";
+import { mkdir, writeFile } from "@dramaflow/file";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,7 +11,7 @@ const extRoot = fileURLToPath(new URL("../ext/", import.meta.url));
 const target = resolve(extRoot, name);
 const files: Record<string, string> = {
   "package.json": `${JSON.stringify({
-    name: `@toonflow/ext-${name.toLowerCase()}`,
+    name: `@dramaflow/ext-${name.toLowerCase()}`,
     version: "0.1.0",
     private: true,
     type: "module",
@@ -22,7 +22,7 @@ const files: Record<string, string> = {
       typecheck: "vue-tsc --noEmit",
     },
     peerDependencies: { vue: "^3.5.42" },
-    dependencies: { "@toonflow/ext-scaffold": "workspace:*" },
+    dependencies: { "@dramaflow/ext-scaffold": "workspace:*" },
     devDependencies: { typescript: "~6.0.3", vite: "^8.2.2", "vue-tsc": "^3.3.11" },
   }, null, 2)}\n`,
   "tsconfig.json": `${JSON.stringify({
@@ -30,17 +30,17 @@ const files: Record<string, string> = {
     compilerOptions: { lib: ["ESNext", "DOM", "DOM.Iterable"], types: ["bun", "vite/client"] },
     include: ["src", "viteConfig.ts"],
   }, null, 2)}\n`,
-  "viteConfig.ts": `import { createExtConfig } from "@toonflow/ext-scaffold";
+  "viteConfig.ts": `import { createExtConfig } from "@dramaflow/ext-scaffold";
 import metadata from "./src/metadata.ts";
 
 export default createExtConfig(metadata, import.meta.url);
 `,
-  "src/index.ts": `import { defineExt } from "@toonflow/ext-scaffold/runtime";
+  "src/index.ts": `import { defineExt } from "@dramaflow/ext-scaffold/runtime";
 import metadata from "./metadata";
 
 export default defineExt({ ...metadata, load: () => import("./index.vue") });
 `,
-  "src/metadata.ts": `import type { ExtDefinition } from "@toonflow/ext-scaffold/runtime";
+  "src/metadata.ts": `import type { ExtDefinition } from "@dramaflow/ext-scaffold/runtime";
 
 export default {
   id: "ext-${name}",
@@ -66,7 +66,7 @@ export default {
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { ExtContext } from "@toonflow/ext-scaffold/runtime";
+import type { ExtContext } from "@dramaflow/ext-scaffold/runtime";
 
 const props = defineProps<{ context: ExtContext }>();
 const fontSize = computed(() => {

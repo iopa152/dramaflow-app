@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { AgentContext, AgentStats } from "@toonflow/server/agent/types";
+import type { AgentContext, AgentStats } from "@dramaflow/server/agent/types";
 
 const props = defineProps<{ usage?: AgentContext; stats?: AgentStats; contextWindow: number; disabled: boolean }>();
 const visible = defineModel<boolean>("visible", { default: false });

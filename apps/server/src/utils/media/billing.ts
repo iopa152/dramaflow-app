@@ -1,7 +1,7 @@
 import { createHash, createHmac, randomBytes } from "node:crypto";
 import type { Response } from "express";
 import { z } from "zod";
-import type { ProviderBalance, ProviderPrice, ProviderPriceRequest } from "@toonflow/providers";
+import type { ProviderBalance, ProviderPrice, ProviderPriceRequest } from "@dramaflow/providers";
 import conf from "@/utils/conf";
 import { getMediaProvider, loadMediaProviderSource } from "@/utils/media/provider";
 

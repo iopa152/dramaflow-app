@@ -64,7 +64,7 @@
 import { computed, nextTick, ref } from "vue";
 import { IconVideo, IconUpload, IconTransfer, IconMusic, IconLayersSubtract, IconScissors, IconMovie, IconPhotoScan, IconPlayerSkipBack, IconPlayerSkipForward } from "@tabler/icons-vue";
 import { ElButton, ElMessage, ElProgress, ElDropdown, ElDropdownMenu, ElDropdownItem } from "element-plus";
-import { nodeSkeleton, nodeTools, useNode, z, type NodeHandle } from "@toonflow/nodes-scaffold/runtime";
+import { nodeSkeleton, nodeTools, useNode, z, type NodeHandle } from "@dramaflow/nodes-scaffold/runtime";
 import videoPlayer from "./components/videoPlayer.vue";
 import videoActions from "./components/videoActions.vue";
 

@@ -1,8 +1,8 @@
-import { createNodeConfig } from "@toonflow/nodes-scaffold";
+import { createNodeConfig } from "@dramaflow/nodes-scaffold";
 
 export default createNodeConfig({
   name: "imageNode",
   displayName: "图片",
-  author: "Toonflow",
+  author: "Dramaflow",
   github: "https://github.com/HBAI-Ltd/Toonflow-app",
 }, import.meta.url);

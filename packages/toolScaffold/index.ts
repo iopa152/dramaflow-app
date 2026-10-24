@@ -1,5 +1,5 @@
-import { copyFile, mkdir, readFile } from "@toonflow/file";
-import { file, write } from "@toonflow/file/bun";
+import { copyFile, mkdir, readFile } from "@dramaflow/file";
+import { file, write } from "@dramaflow/file/bun";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { build } from "vite";
@@ -42,14 +42,14 @@ export async function createToolConfig(config: Omit<ToolMetadata, "components" |
   let clientBanner = "";
   const componentEntries = Object.entries(components ?? {});
   if (componentEntries.length) {
-    const entryId = "\0toonflowToolClient";
+    const entryId = "\0dramaflowToolClient";
     const clientResult = await build({
       configFile: false,
       root,
       css: { postcss: postcssConfig },
       plugins: [vue(), {
         name: "toolClientEntry",
-        resolveId(id) { return id === "virtual:toonflowToolClient" ? entryId : undefined; },
+        resolveId(id) { return id === "virtual:dramaflowToolClient" ? entryId : undefined; },
         load(id) {
           if (id !== entryId) return;
           const imports = componentEntries.map(([, entry], index) =>
@@ -64,23 +64,23 @@ export async function createToolConfig(config: Omit<ToolMetadata, "components" |
         assetsInlineLimit: Number.MAX_SAFE_INTEGER,
         cssCodeSplit: false,
         lib: {
-          entry: "virtual:toonflowToolClient",
-          name: `toonflowToolViews.${metadata.name}`,
+          entry: "virtual:dramaflowToolClient",
+          name: `dramaflowToolViews.${metadata.name}`,
           formats: ["umd"],
           fileName: () => `${metadata.name}.client.js`,
         },
         rolldownOptions: {
-          input: "virtual:toonflowToolClient",
+          input: "virtual:dramaflowToolClient",
           external: ["vue", "@vue/runtime-core", "@vue/runtime-dom", "element-plus", "axios", "@form-create/element-ui"],
           output: {
             exports: "default",
             globals: {
-              vue: "toonflowToolHost.vue",
-              "@vue/runtime-core": "toonflowToolHost.vue",
-              "@vue/runtime-dom": "toonflowToolHost.vue",
-              "element-plus": "toonflowToolHost.elementPlus",
-              axios: "toonflowToolHost.axios",
-              "@form-create/element-ui": "toonflowToolHost.formCreate",
+              vue: "dramaflowToolHost.vue",
+              "@vue/runtime-core": "dramaflowToolHost.vue",
+              "@vue/runtime-dom": "dramaflowToolHost.vue",
+              "element-plus": "dramaflowToolHost.elementPlus",
+              axios: "dramaflowToolHost.axios",
+              "@form-create/element-ui": "dramaflowToolHost.formCreate",
             },
           },
         },
@@ -94,7 +94,7 @@ export async function createToolConfig(config: Omit<ToolMetadata, "components" |
     const css = output.filter(item => item.type === "asset").map(item =>
       typeof item.source === "string" ? item.source : new TextDecoder().decode(item.source)).join("\n");
     const clientJson = JSON.stringify({ code: chunks[0]!.code, css }).replaceAll("/", "\\u002f");
-    clientBanner = `/*! toonflowToolClient:${clientJson} */\n`;
+    clientBanner = `/*! dramaflowToolClient:${clientJson} */\n`;
   }
   const result = await Bun.build({
     plugins: [{
@@ -103,7 +103,7 @@ export async function createToolConfig(config: Omit<ToolMetadata, "components" |
         // ACT: Bun 1.3 的 external 会保留原始路径，用虚拟转发模块保证产物引用宿主。
         build.onResolve({ filter: /^zod$/ }, () => ({ path: "zod", namespace: "toolHost" }));
         build.onLoad({ filter: /^zod$/, namespace: "toolHost" }, () => ({
-          contents: 'module.exports = require("toonflow:tool-zod");',
+          contents: 'module.exports = require("dramaflow:tool-zod");',
           loader: "js",
         }));
       },
@@ -124,13 +124,13 @@ export async function createToolConfig(config: Omit<ToolMetadata, "components" |
     target: "bun",
     format: "esm",
     packages: "bundle",
-    external: ["toonflow:tool-zod"],
+    external: ["dramaflow:tool-zod"],
     minify: true,
   });
   if (!result.success) throw new AggregateError(result.logs, `工具构建失败：${metadata.name}`);
   // Bun 会把 @bun 标记放在 banner 前，构建完成后再写入首行元数据。
   const builtPath = resolve(outDir, fileName);
-  await write(builtPath, `/*! toonflowTool:${metadataJson} */\n${clientBanner}${await result.outputs[0].text()}`);
+  await write(builtPath, `/*! dramaflowTool:${metadataJson} */\n${clientBanner}${await result.outputs[0].text()}`);
   if (process.env.NODE_ENV === "dev") {
     await mkdir(dataDir, { recursive: true });
     // ACT: Windows 的 bun --watch 占用已加载模块，开发同步直接复制覆盖，不使用 rename。

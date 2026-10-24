@@ -1,4 +1,4 @@
-import type { BrowserFfmpegCommand, BrowserFfmpegFactory, FfprobeData, WorkspaceFiles } from "@toonflow/nodes-scaffold/runtime";
+import type { BrowserFfmpegCommand, BrowserFfmpegFactory, FfprobeData, WorkspaceFiles } from "@dramaflow/nodes-scaffold/runtime";
 import { createSceneDetector } from "./sceneDetector";
 
 export type AnalysisScene = {

@@ -1,8 +1,8 @@
 import { t } from "@/lib/i18n";
-import { existsSync, mkdir, readFile, realpath, stat } from "@toonflow/file";
+import { existsSync, mkdir, readFile, realpath, stat } from "@dramaflow/file";
 import { basename, dirname, join, relative, sep } from "node:path";
 import { loadSkills, parseFrontmatter } from "@earendil-works/pi-coding-agent";
-import type { SkillContext, SkillLocation, SkillScope } from "@toonflow/tools-scaffold/runtime";
+import type { SkillContext, SkillLocation, SkillScope } from "@dramaflow/tools-scaffold/runtime";
 import conf from "@/utils/conf";
 import { directory, isEnabled } from "@/utils/skills/files";
 import { isWithin, lockWorkspaceFiles, resolveWorkspacePath, writeWorkspaceFile } from "@/utils/workspace/files";

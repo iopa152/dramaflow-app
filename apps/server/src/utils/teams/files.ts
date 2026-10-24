@@ -1,8 +1,8 @@
 import { t, validationOptions } from "@/lib/i18n";
 import { createHash } from "node:crypto";
-import { lstat, readFile, readdir, realpath } from "@toonflow/file";
+import { lstat, readFile, readdir, realpath } from "@dramaflow/file";
 import { dirname, resolve } from "node:path";
-import { teamLimits, teamNameSchema, teamSchema, validateTeamResources } from "@toonflow/teams-scaffold/runtime";
+import { teamLimits, teamNameSchema, teamSchema, validateTeamResources } from "@dramaflow/teams-scaffold/runtime";
 import conf from "@/utils/conf";
 import { decodeText, skillPath } from "@/utils/plugins/install";
 import { parseTool } from "@/utils/plugins/tools";
@@ -10,7 +10,7 @@ import { isWithin, lockWorkspaceFiles } from "@/utils/workspace/files";
 
 export const agentsDirectory = resolve(dirname(conf.path), "agents");
 export const maxBytes = teamLimits.maxTotalBytes;
-export const installRecord = ".toonflowInstall.json";
+export const installRecord = ".dramaflowInstall.json";
 export const teamNamePattern = /^[a-z][a-zA-Z0-9]{0,95}$/;
 
 let pending = Promise.resolve();

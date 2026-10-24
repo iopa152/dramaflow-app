@@ -65,17 +65,17 @@
 import { computed, onMounted, onScopeDispose, ref, watch } from "vue";
 import { ElButton, ElCard, ElLoading, ElOption, ElOptionGroup, ElSelect } from "element-plus";
 import { IconArrowUp, IconGauge, IconMusicBolt, IconPlayerStop, IconScissors, IconTransfer, IconTextRecognition } from "@tabler/icons-vue";
-import { getTargetValues, isTypeCompatible, nodeSkeleton, nodeTools, useNode, z, type NodeAudioRequest, type NodeHandle, type NodeInputValue, type NodeMediaModel } from "@toonflow/nodes-scaffold/runtime";
-import { groupNodeModels } from "@toonflow/node-shared/groupNodeModels";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
-import { useNodeGeneration } from "@toonflow/node-shared/useNodeGeneration";
-import { useAudioTranscription } from "@toonflow/node-shared/useAudioTranscription";
-import { useNodeReferences } from "@toonflow/node-shared/useNodeReferences";
-import audioPlayer from "@toonflow/node-audio/audioPlayer";
-import audioActions from "@toonflow/node-audio/audioActions";
-import promptInput from "@toonflow/node-shared/promptInput";
-import referenceItem from "@toonflow/node-shared/referenceItem";
-import mediaPrice from "@toonflow/node-shared/mediaPrice";
+import { getTargetValues, isTypeCompatible, nodeSkeleton, nodeTools, useNode, z, type NodeAudioRequest, type NodeHandle, type NodeInputValue, type NodeMediaModel } from "@dramaflow/nodes-scaffold/runtime";
+import { groupNodeModels } from "@dramaflow/node-shared/groupNodeModels";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
+import { useNodeGeneration } from "@dramaflow/node-shared/useNodeGeneration";
+import { useAudioTranscription } from "@dramaflow/node-shared/useAudioTranscription";
+import { useNodeReferences } from "@dramaflow/node-shared/useNodeReferences";
+import audioPlayer from "@dramaflow/node-audio/audioPlayer";
+import audioActions from "@dramaflow/node-audio/audioActions";
+import promptInput from "@dramaflow/node-shared/promptInput";
+import referenceItem from "@dramaflow/node-shared/referenceItem";
+import mediaPrice from "@dramaflow/node-shared/mediaPrice";
 import generationSettings from "./components/generationSettings.vue";
 import { formatOptions, languageOptions, sampleRateOptions } from "./audioSettings";
 
@@ -150,19 +150,19 @@ nodeEvent.on("canConnect", (connection, context) => {
 });
 
 onMounted(() => {
-  window.addEventListener("toonflow:plugin-installed", refreshProviderModels);
-  window.addEventListener("toonflow:provider-config-changed", refreshProviderModels);
+  window.addEventListener("dramaflow:plugin-installed", refreshProviderModels);
+  window.addEventListener("dramaflow:provider-config-changed", refreshProviderModels);
   void refreshProviderModels();
 });
 onScopeDispose(() => {
   disposed = true;
-  window.removeEventListener("toonflow:plugin-installed", refreshProviderModels);
-  window.removeEventListener("toonflow:provider-config-changed", refreshProviderModels);
+  window.removeEventListener("dramaflow:plugin-installed", refreshProviderModels);
+  window.removeEventListener("dramaflow:provider-config-changed", refreshProviderModels);
   generationController?.abort();
 });
 
 async function refreshProviderModels(event?: Event) {
-  if (event?.type === "toonflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
+  if (event?.type === "dramaflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
   modelsRefreshPending = true;
   if (disposed || busy.value) return;
   try {

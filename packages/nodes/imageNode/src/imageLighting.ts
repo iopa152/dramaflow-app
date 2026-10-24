@@ -1,4 +1,4 @@
-import { z } from "@toonflow/nodes-scaffold/runtime";
+import { z } from "@dramaflow/nodes-scaffold/runtime";
 
 export const lightingPresets = [
   { id: "film", label: "柔曝胶片", prompt: "airy high-key exposure with gently faded highlights, broad soft illumination and a subtle analogue-film finish", settings: { azimuth: 0, elevation: 25, brightness: 85, lightColor: "#fff3dd", rimLight: false } },

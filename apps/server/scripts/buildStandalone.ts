@@ -1,5 +1,5 @@
 import { $ } from "bun";
-import { readdir, rm } from "@toonflow/file";
+import { readdir, rm } from "@dramaflow/file";
 import { resolve } from "node:path";
 
 const projectDir = resolve(import.meta.dirname, "../../..");

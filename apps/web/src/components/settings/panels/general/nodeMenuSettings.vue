@@ -123,7 +123,7 @@ import axios from "axios";
 import { computed, onBeforeUnmount, onMounted, ref, watch, type Component } from "vue";
 import { ElMessage, type InputInstance } from "element-plus";
 import { IconBox, IconFolder, IconFolderOpen, IconFolderMinus, IconRestore, IconChevronRight, IconEdit, IconEye, IconEyeOff, IconPlus, IconDragDrop, IconFileText, IconPhoto, IconVideo, IconMusic, IconMusicBolt, IconCube3dSphere, IconPhotoAi, IconCameraAi } from "@tabler/icons-vue";
-import { normalizeNodeMenu, resolveNodeMenu, serializeNodeMenu, type NodeMenuItem } from "@toonflow/server/nodeMenu";
+import { normalizeNodeMenu, resolveNodeMenu, serializeNodeMenu, type NodeMenuItem } from "@dramaflow/server/nodeMenu";
 import { generalSettings, updateGeneralSettings } from "@/stores/settings";
 
 type MenuEntry = { item: NodeMenuItem; parentId: string; depth: number; siblings: NodeMenuItem[]; index: number; path: string[] };
@@ -351,7 +351,7 @@ async function loadNodes() {
   loading.value = true;
   try {
     const { data } = await axios.get<{ code: number; data: { name: string; displayName: string; enabled?: boolean }[] }>("/api/nodes/get", {
-      headers: { "Cache-Control": "no-cache", "x-toonflow-workspace": "1" },
+      headers: { "Cache-Control": "no-cache", "x-dramaflow-workspace": "1" },
     });
     if (request !== loadRequest) return;
     if (data.code !== 200 || !Array.isArray(data.data) || data.data.some(node => !node || typeof node.name !== "string" || !/^[a-z][a-zA-Z0-9]*$/.test(node.name))) {
@@ -366,17 +366,17 @@ async function loadNodes() {
   }
 }
 
-function refreshInstalled(event: WindowEventMap["toonflow:plugin-installed"]) {
+function refreshInstalled(event: WindowEventMap["dramaflow:plugin-installed"]) {
   if (event.detail.type === "node") void loadNodes();
 }
 
 onMounted(() => {
   void loadNodes();
-  window.addEventListener("toonflow:plugin-installed", refreshInstalled);
+  window.addEventListener("dramaflow:plugin-installed", refreshInstalled);
 });
 onBeforeUnmount(() => {
   loadRequest++;
-  window.removeEventListener("toonflow:plugin-installed", refreshInstalled);
+  window.removeEventListener("dramaflow:plugin-installed", refreshInstalled);
 });
 </script>
 

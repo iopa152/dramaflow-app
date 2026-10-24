@@ -1,9 +1,9 @@
-import { t, translateMessage } from "@toonflow/server/i18n";
-import type { updateSnapshot } from "@toonflow/server/desktop";
+import { t, translateMessage } from "@dramaflow/server/i18n";
+import type { updateSnapshot } from "@dramaflow/server/desktop";
 import { execFile } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
-import { copyFileSync, createWriteStream, existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, renameSync, rmSync, writeAtomicSync } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import { copyFileSync, createWriteStream, existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, renameSync, rmSync, writeAtomicSync } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { Readable, Transform } from "node:stream";
@@ -18,7 +18,7 @@ type preparedUpdate = { version: string; hash: string; archiveSha256: string };
 type updateLifecycle = { requestQuitApproval(): unknown; cancelQuitApproval(approval: unknown): void; quitAfterApproval(approval: unknown): void };
 
 export function confirmWindowsUpdateStartup(resourcesDirectory: string, failed = false) {
-  const transactionId = process.env.TOONFLOW_UPDATE_TRANSACTION;
+  const transactionId = process.env.DRAMAFLOW_UPDATE_TRANSACTION;
   if (!transactionId) return;
   if (!/^[a-f0-9]{32}$/.test(transactionId)) throw new Error(t`更新事务标识无效`);
   const extractionDirectory = resolve(resourcesDirectory, "../../self-extraction");
@@ -27,7 +27,7 @@ export function confirmWindowsUpdateStartup(resourcesDirectory: string, failed =
   if (typeof version !== "string" || !versionPattern.test(version) || typeof hash !== "string" || !hashPattern.test(hash)) throw new Error(t`桌面安装标识无效，请重新安装`);
   // ACT: 只有本次主界面首次就绪才确认更新；后续页面重载不覆盖事务结果。
   writeAtomicSync(join(extractionDirectory, `update-${transactionId}.started.json`), JSON.stringify({ transactionId, version, hash, success: !failed }), { exclusive: true });
-  delete process.env.TOONFLOW_UPDATE_TRANSACTION;
+  delete process.env.DRAMAFLOW_UPDATE_TRANSACTION;
 }
 
 // ACT: 单人桌面单进程使用一个下载任务；保留现有发布协议和 bspatch，不修改 SDK 缓存。
@@ -97,7 +97,7 @@ export default function createWindowsUpdater(resourcesDirectory: string, lifecyc
   async function getLocalInfo() {
     if (!localInfo) {
       const info = await file(join(resourcesDirectory, "version.json")).json();
-      if (!info || info.identifier !== "local.toonflow.desktop" || !["stable", "canary", "dev"].includes(info.channel)
+      if (!info || info.identifier !== "local.dramaflow.desktop" || !["stable", "canary", "dev"].includes(info.channel)
         || typeof info.version !== "string" || !versionPattern.test(info.version) || typeof info.hash !== "string" || !hashPattern.test(info.hash)
         || typeof info.baseUrl !== "string" || typeof info.name !== "string" || !/^[a-zA-Z0-9_-]+$/.test(info.name)) {
         throw new Error(t`桌面安装标识无效，请重新安装`);
@@ -297,7 +297,7 @@ export default function createWindowsUpdater(resourcesDirectory: string, lifecyc
     const transactionId = randomUUID().replaceAll("-", "");
     const planPath = join(extractionDirectory, `update-${transactionId}.json`);
     const readyPath = join(extractionDirectory, `update-${transactionId}.ready`);
-    const helperPath = join(tmpdir(), `toonflowUpdate-${transactionId}.exe`);
+    const helperPath = join(tmpdir(), `dramaflowUpdate-${transactionId}.exe`);
     let approval: unknown;
     let helperStarted = false;
     try {
@@ -306,7 +306,7 @@ export default function createWindowsUpdater(resourcesDirectory: string, lifecyc
       installError = "";
       copyFileSync(join(resourcesDirectory, "app/updateHelper.exe"), helperPath);
       // 等待最外层启动入口退出，确保兼容启动的监控进程也已释放 app 目录。
-      const parentPid = [process.env.TOONFLOW_STARTUP_PID, process.env.ELECTROBUN_LAUNCHER_PID]
+      const parentPid = [process.env.DRAMAFLOW_STARTUP_PID, process.env.ELECTROBUN_LAUNCHER_PID]
         .map(Number).find(pid => Number.isSafeInteger(pid) && pid > 0 && pid <= 0x7fffffff) ?? process.pid;
       writeAtomicSync(planPath, JSON.stringify({ schemaVersion: 1, transactionId, installDirectory, parentPid,
         identifier: localInfo.identifier, channel: localInfo.channel, ...prepared }), { exclusive: true });

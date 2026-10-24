@@ -1,5 +1,5 @@
 import { t } from "@/lib/i18n";
-import { readFile } from "@toonflow/file";
+import { readFile } from "@dramaflow/file";
 import { join } from "node:path";
 import { DefaultResourceLoader, SettingsManager, type ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { buildSystemPrompt } from "@/agent/runtime/prompt";

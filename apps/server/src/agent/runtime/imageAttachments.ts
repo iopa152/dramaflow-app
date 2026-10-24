@@ -1,12 +1,12 @@
 import type { ImageContent, TextContent } from "@earendil-works/pi-ai";
 import { formatDimensionNote, resizeImage } from "@earendil-works/pi-coding-agent";
-import { mkdir, readFile, realpath, stat, writeAtomic } from "@toonflow/file";
+import { mkdir, readFile, realpath, stat, writeAtomic } from "@dramaflow/file";
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import { resolveWorkspacePath } from "@/utils/workspace/files";
 
 export type AgentImageReference = { id: string; path: string; sourcePath: string; mimeType: string; bytes: number; note?: string };
-export type AgentImagePart = TextContent & { toonflowImage: AgentImageReference };
+export type AgentImagePart = TextContent & { dramaflowImage: AgentImageReference };
 
 export function getOffloadedImageText(reference: AgentImageReference) {
   return `图片已移出本次模型上下文，附件保留在 ${reference.sourcePath}；需要查看时可用 read 重新读取。`;
@@ -22,7 +22,7 @@ const referenceSchema = z.strictObject({
   note: z.string().max(2048).optional(),
 });
 const imagePartSchema = z.strictObject({
-  type: z.literal("text"), text: z.string(), textSignature: z.string().optional(), toonflowImage: referenceSchema,
+  type: z.literal("text"), text: z.string(), textSignature: z.string().optional(), dramaflowImage: referenceSchema,
 });
 const cacheSchema = referenceSchema.omit({ id: true });
 
@@ -36,8 +36,8 @@ function imageExtension(mimeType: string) {
 
 export function getAgentImageReference(part: unknown): AgentImageReference | undefined {
   const parsed = imagePartSchema.safeParse(part);
-  if (!parsed.success || !parsed.data.toonflowImage.path.endsWith(`.${imageExtension(parsed.data.toonflowImage.mimeType)}`)) return;
-  return parsed.data.toonflowImage;
+  if (!parsed.success || !parsed.data.dramaflowImage.path.endsWith(`.${imageExtension(parsed.data.dramaflowImage.mimeType)}`)) return;
+  return parsed.data.dramaflowImage;
 }
 
 async function saveImageBytes(cwd: string, bytes: Uint8Array, mimeType: string, signal?: AbortSignal) {
@@ -58,7 +58,7 @@ async function saveImageBytes(cwd: string, bytes: Uint8Array, mimeType: string, 
 
 export async function readAgentImage(cwd: string, reference: AgentImageReference, signal?: AbortSignal): Promise<ImageContent> {
   signal?.throwIfAborted();
-  const checked = getAgentImageReference({ type: "text", text: "", toonflowImage: reference });
+  const checked = getAgentImageReference({ type: "text", text: "", dramaflowImage: reference });
   if (!checked) throw new Error("图片附件引用无效");
   const target = await resolveWorkspacePath(await realpath(cwd), checked.path);
   const bytes = await readFile(target.path, { signal });
@@ -111,6 +111,6 @@ export async function saveAgentImage(cwd: string, image: ImageContent, id: strin
   return {
     type: "text",
     text: `[图片附件已保存；需要时可 read 原图：${sourcePath}]${cached.note ? `\n${cached.note}` : ""}`,
-    toonflowImage: { id, ...cached },
+    dramaflowImage: { id, ...cached },
   };
 }

@@ -1,10 +1,10 @@
 import { getCurrentScope, onScopeDispose } from "vue";
 import { z } from "zod";
 import { useNodeId, useVueFlow } from "@vue-flow/core";
-import type { NodeToolInfo, NodeToolsContext } from "@toonflow/tools-scaffold/runtime";
+import type { NodeToolInfo, NodeToolsContext } from "@dramaflow/tools-scaffold/runtime";
 
 export { z };
-export type { NodeToolCall, NodeToolInfo, NodeToolsContext } from "@toonflow/tools-scaffold/runtime";
+export type { NodeToolCall, NodeToolInfo, NodeToolsContext } from "@dramaflow/tools-scaffold/runtime";
 
 export interface NodeToolDefinition<Schema extends z.ZodType = z.ZodType> {
   name: string;
@@ -17,8 +17,8 @@ type RegisteredNodeTool = NodeToolInfo & Pick<NodeToolDefinition, "execute">;
 type NodeToolsIndex = { nodes: Map<string, Map<string, RegisteredNodeTool>>; version: number };
 
 // 共享 Vue Flow 实例上的注册表供各 UMD 访问，不进入画布 JSON。
-const nodeToolsKey = Symbol.for("toonflow.nodeTools");
-const nodeToolsIndexKey = Symbol.for("toonflow.nodeToolsIndex");
+const nodeToolsKey = Symbol.for("dramaflow.nodeTools");
+const nodeToolsIndexKey = Symbol.for("dramaflow.nodeToolsIndex");
 
 function getRegistry(flow: ReturnType<typeof useVueFlow>) {
   const host = flow as typeof flow & {

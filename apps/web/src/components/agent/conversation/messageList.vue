@@ -7,7 +7,7 @@
             <div class="welcomeHeader">
               <span class="welcomeIcon" aria-hidden="true"><span class="welcomeLogo" :style="{ maskImage: `url(${logoUrl})` }" /></span>
               <div>
-                <p class="welcomeLabel">你好，我是 Toonflow 助手</p>
+                <p class="welcomeLabel">你好，我是 Dramaflow 助手</p>
                 <h3>从一个想法开始</h3>
               </div>
             </div>
@@ -84,10 +84,10 @@
 import { computed, nextTick, ref, watch, type ComponentPublicInstance } from "vue";
 import { defaultRangeExtractor, measureElement, observeElementRect, useVirtualizer } from "@tanstack/vue-virtual";
 import { IconArrowDown, IconArrowUpRight, IconAtom, IconChevronDown, IconChevronRight, IconCopy, IconMovie, IconPencil, IconPhoto, IconTrash, IconUsersGroup, IconVector, IconX } from "@tabler/icons-vue";
-import logoUrl from "@toonflow/assets/logo.svg";
-import browserPanel from "@toonflow/tool-browser/panel";
-import { isBrowserTool } from "@toonflow/tool-browser/client";
-import type { AgentToolCall } from "@toonflow/server/agent/types";
+import logoUrl from "@dramaflow/assets/logo.svg";
+import browserPanel from "@dramaflow/tool-browser/panel";
+import { isBrowserTool } from "@dramaflow/tool-browser/client";
+import type { AgentToolCall } from "@dramaflow/server/agent/types";
 import chatItem from "@tdesign-vue-next/chat/es/chat-item";
 import chatReasoning from "@tdesign-vue-next/chat/es/chat-reasoning";
 import messageMarkdown from "@/components/messageMarkdown.vue";

@@ -1,4 +1,4 @@
-import { lstat, readFile } from "@toonflow/file";
+import { lstat, readFile } from "@dramaflow/file";
 import { dirname, resolve } from "node:path";
 import { z } from "zod";
 import { t } from "@/lib/i18n";
@@ -25,7 +25,7 @@ const metadataSchema = z.object({
 export function parseExt(source: string, name: string) {
   extNameSchema.parse(name);
   try {
-    const header = source.match(/^\/\*! toonflowExt:([^\r\n]*) \*\/(?:\r?\n|$)/)?.[1];
+    const header = source.match(/^\/\*! dramaflowExt:([^\r\n]*) \*\/(?:\r?\n|$)/)?.[1];
     const metadata = metadataSchema.parse(JSON.parse(header ?? ""));
     if (metadata.id !== name || (metadata.resourceKind === "file" && !metadata.extensions.length)
       || new Set(metadata.extensions).size !== metadata.extensions.length) throw new Error("metadata");

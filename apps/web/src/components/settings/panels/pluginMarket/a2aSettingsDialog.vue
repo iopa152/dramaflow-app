@@ -24,7 +24,7 @@
 import axios from "axios";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { ElMessage } from "element-plus";
-import type { ThinkingLevel } from "@toonflow/server/modelReasoning";
+import type { ThinkingLevel } from "@dramaflow/server/modelReasoning";
 import modelPopover from "@/components/modelPopover.vue";
 import workspacePicker from "@/pages/home/workspacePicker.vue";
 import { modelChoices } from "@/stores/settings";
@@ -43,7 +43,7 @@ const loading = ref(true);
 const loaded = ref(false);
 const saving = ref(false);
 const error = ref("");
-const headers = { "x-toonflow-workspace": "1" };
+const headers = { "x-dramaflow-workspace": "1" };
 const controller = new AbortController();
 onBeforeUnmount(() => controller.abort());
 onMounted(async () => {

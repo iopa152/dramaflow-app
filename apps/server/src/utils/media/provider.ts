@@ -1,11 +1,11 @@
 import { t, translateMessage, validationOptions } from "@/lib/i18n";
 
 import { createHash } from "node:crypto";
-import { lstat, mkdir, readFile, readdir, unlink } from "@toonflow/file";
+import { lstat, mkdir, readFile, readdir, unlink } from "@dramaflow/file";
 import { dirname, join } from "node:path";
 import { createContext, SourceTextModule } from "node:vm";
-import type { AudioConvertOptions, Provider, ProviderTools } from "@toonflow/providers";
-import tfRouter from "@toonflow/providers/media/tfRouter";
+import type { AudioConvertOptions, Provider, ProviderTools } from "@dramaflow/providers";
+import tfRouter from "@dramaflow/providers/media/tfRouter";
 import { parse, parseExpression } from "@babel/parser";
 import { z } from "zod";
 import conf from "@/utils/conf";
@@ -169,7 +169,7 @@ function parseProvider(source: string) {
         : target.computed && target.property.type === "StringLiteral" ? target.property.value : "";
       return ["vendor", "textRequest", "imageRequest", "videoRequest", "ttsRequest"].includes(name);
     });
-    if (legacy) invalid("检测到旧版 Toonflow 供应商 TS，无法在 Toonflow 2.0 中使用。请在「添加自定义媒体供应商」中点击「一键复制提示词」，结合旧代码和接口资料重新生成新版代码后再导入。");
+    if (legacy) invalid("检测到旧版 Dramaflow 供应商 TS，无法在 Dramaflow 2.0 中使用。请在「添加自定义媒体供应商」中点击「一键复制提示词」，结合旧代码和接口资料重新生成新版代码后再导入。");
     invalid("供应商须通过 export default 导出对象");
   }
   const object = unwrap(exported.declaration as Expression);

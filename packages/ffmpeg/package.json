@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/ffmpeg",
+  "name": "@dramaflow/ffmpeg",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,9 +14,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@toonflow/file": "workspace:*",
+    "@dramaflow/file": "workspace:*",
     "eventsource-parser": "3.1.1",
     "@renmu/fluent-ffmpeg": "2.3.3",
-    "@toonflow/i18n": "workspace:*"
+    "@dramaflow/i18n": "workspace:*"
   }
 }

@@ -23,12 +23,12 @@
 ## 插件与脚手架边界
 
 - 插件专属的组件、交互、提示词、预设和业务逻辑放在所属插件中；打光、图片编辑、视频播放器等功能通过所属插件的公开导出复用。
-- 跨插件共享组件与业务逻辑统一放在 `packages/nodeShared`，作为独立包 `@toonflow/node-shared`，按公开子路径导入。
+- 跨插件共享组件与业务逻辑统一放在 `packages/nodeShared`，作为独立包 `@dramaflow/node-shared`，按公开子路径导入。
 - `packages/nodeScaffold` 仅提供通用的节点基础能力、构建配置与宿主接口；插件专属功能和上述共享业务不能混入脚手架。
 
 ## 统一文件操作入口
 
-- 自有代码的磁盘操作统一使用 `@toonflow/file`；Bun 文件对象与写入使用 `@toonflow/file/bun`。直接调用原生 `fs`、`fs/promises`、`Bun.file`、`Bun.write` 仅限 `packages/file` 的实现，不在各模块重复封装底层操作。CI 尚未安装依赖的准备步骤、没有源码和依赖的发布步骤保留运行器原语；已安装工作区依赖的 CI 脚本仍使用统一入口。
+- 自有代码的磁盘操作统一使用 `@dramaflow/file`；Bun 文件对象与写入使用 `@dramaflow/file/bun`。直接调用原生 `fs`、`fs/promises`、`Bun.file`、`Bun.write` 仅限 `packages/file` 的实现，不在各模块重复封装底层操作。CI 尚未安装依赖的准备步骤、没有源码和依赖的发布步骤保留运行器原语；已安装工作区依赖的 CI 脚本仍使用统一入口。
 - `file` 子包只负责文件原语、原子写入和按路径协调队列。全局文件与工作区文件的统一入口放在各自业务模块，路径授权、工作区边界校验和业务冲突锁继续由模块负责。
 - 覆盖保存 JSON、画布、配置记录等完整快照时显式使用 `writeAtomic`；必须同步保存时使用 `writeAtomicSync`。仅新建使用 `exclusive` 或保留原有 `flag: "wx"`，不能用先检查存在再覆盖代替。
 - HTTP 传输适配、SDK 持久化、安装备份与回滚等事务留在所属模块，不放进 `file` 子包，也不全局修改原生 `fs` 或重写第三方 SDK 的磁盘协议。
@@ -86,7 +86,7 @@ async function renameJsonFile(path: string, target: string) {
 | `remove(path, recursive = false)` | 删除文件或空目录；显式传 `true` 才递归删除目录内容。 |
 | `mkdir(path)` | 创建目录；父目录须存在，不自动递归创建。 |
 
-- 文件的标记字段和业务结构由调用方负责，例如画布的 `toonflowCanvas`、对话的 `toonflowAgent`；不能因调用了 `readJson<T>` 就假定结构有效。
+- 文件的标记字段和业务结构由调用方负责，例如画布的 `dramaflowCanvas`、对话的 `dramaflowAgent`；不能因调用了 `readJson<T>` 就假定结构有效。
 - 所有请求错误原样抛给调用方处理，JSON 解析失败抛出 `SyntaxError`；不要吞掉写入失败或无条件重试。新增文件的自动编号只处理服务端明确返回的同名冲突。
 - 此封装只负责工作区文件；全局设置继续使用设置接口，项目列表继续由 Pinia 持久化，移除列表项不等于删除工作区文件。
 
@@ -99,7 +99,7 @@ async function renameJsonFile(path: string, target: string) {
 - 使用 Bun、TypeScript、ES Modules 和 Express，沿用现有依赖与工具，不另建服务框架。
 - `src/index.ts` 是独立 server 的启动入口，单进程监听端口。
 - `src/app.ts` 的 `createApp({ webRoot, dataDirectory?, ... })` 负责创建应用、装配中间件、静态资源、路由和统一错误处理，返回应用；传入的数据目录须在动态加载路由前设置。不要在这里启动监听或创建 worker。
-- 桌面端通过 `@toonflow/server/app` 复用应用，不导入独立 server 的启动入口，不额外启动 cluster。
+- 桌面端通过 `@dramaflow/server/app` 复用应用，不导入独立 server 的启动入口，不额外启动 cluster。
 
 ### 目录结构
 
@@ -150,7 +150,7 @@ apps/server/
 
 - server 的 `@/` 指向 `apps/server/src/`，业务代码优先使用该别名，例如 `@/utils`、`@/lib/middleware`。不要把 `@/` 当作仓库根目录，也不要使用本机绝对路径或长串 `../../` 引用业务模块。
 - 通用工具统一使用 `import u from "@/utils"`，例如 `u.conf`；具体工具的引入与导出由 `utils.ts` 管理，接口不绕过统一入口重复初始化工具。
-- 跨工作区包使用包名及其声明的 exports，例如 `@toonflow/server/app`，不要直接穿透其他包的 `src/` 路径。
+- 跨工作区包使用包名及其声明的 exports，例如 `@dramaflow/server/app`，不要直接穿透其他包的 `src/` 路径。
 - 第三方库使用包名导入，新增 Node 内置模块引用使用 `node:` 前缀；仅用于类型的引用使用 `import type`。
 - 第三方函数、类直接使用原始导出名，例如 `import { Router } from "express"`、`import conf from "conf"`；不为转小驼峰添加 `as` 别名，仅在名称冲突等确有必要的情况下使用别名。类型名保留 TypeScript 的类型命名习惯。
 - 使用双引号、分号、两空格缩进，保持现有文件格式。文件按 imports、必要声明、接口注册与导出的顺序组织；删除未使用的 import 和变量。
@@ -167,7 +167,7 @@ apps/server/
 
 - `conf` 只在 `src/utils/conf/index.ts` 初始化，通过 `src/utils.ts` 统一导出，接口使用 `u.conf`。不要在每个接口或每次请求中创建实例。
 - 配置统一存为数据目录下的 `settings.json`，保持 `configName: "settings"`、`configFileMode: 0o600`。开发环境使用仓库根目录 `data/`，该目录必须被 Git 忽略；生产环境使用安装目录下的 `data/`，不再使用默认用户配置目录。
-- 启动入口通过 `createApp` 在路由加载前确定 `TOONFLOW_DATA_DIR`，读写必须使用同一目录。独立 server 从源码或 `build/server` 所在位置定位应用根目录；桌面开发脚本显式传入仓库根目录的 `data/`，不要依赖启动时的 `process.cwd()`。
+- 启动入口通过 `createApp` 在路由加载前确定 `DRAMAFLOW_DATA_DIR`，读写必须使用同一目录。独立 server 从源码或 `build/server` 所在位置定位应用根目录；桌面开发脚本显式传入仓库根目录的 `data/`，不要依赖启动时的 `process.cwd()`。
 - Windows 桌面使用实际安装根目录的 `data/`（与可更新的 `app/` 同级），macOS 使用 `.app` 所在目录的 `data/`。不要写入可被更新替换的程序资源或应用包内部。
 - 当前保存接口接收 `{ settings: { ... } }`，使用 `z.record(z.string(), z.json())` 校验设置对象；完整覆盖保存，读取时返回 `settings`，未保存时返回 `{}`。
 - 未经相关需求，不将完整覆盖改成部分合并。工具实例与文件占用状态是进程内单例，不支持多进程并发写入同一工作区。

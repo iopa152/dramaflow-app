@@ -81,8 +81,8 @@
 import { computed, inject, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import { useNode, useVueFlow, type Node } from "@vue-flow/core";
 import { ElButton, ElDialog, ElMessage, ElProgress } from "element-plus";
-import { useNodeFiles, useNodeFfmpeg, useNodeEvent, type WorkspaceFiles, type NodeMediaValue } from "@toonflow/nodes-scaffold/runtime";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
+import { useNodeFiles, useNodeFfmpeg, useNodeEvent, type WorkspaceFiles, type NodeMediaValue } from "@dramaflow/nodes-scaffold/runtime";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
 import { processVideo } from "../videoProcessing";
 
 const props = defineProps<{ file?: NodeMediaValue; src: string; disabled?: boolean }>();

@@ -33,7 +33,7 @@ function visitRequestParts(payload: unknown, visit: (part: RequestPart, content:
     for (const part of content as RequestPart[]) {
       if (!part || typeof part !== "object" || Array.isArray(part)) continue;
       visit(part, content);
-      delete part.toonflowImageId;
+      delete part.dramaflowImageId;
       if (part.type === "tool_result") visitContent(part.content);
     }
   }
@@ -42,7 +42,7 @@ function visitRequestParts(payload: unknown, visit: (part: RequestPart, content:
     if (!Array.isArray(messages)) continue;
     for (const message of messages as RequestPart[]) {
       if (!message || typeof message !== "object" || Array.isArray(message)) continue;
-      delete message.toonflowImageId;
+      delete message.dramaflowImageId;
       visitContent(message.content);
       if (["function_call_output", "custom_tool_call_output"].includes(String(message.type))) visitContent(message.output);
     }
@@ -66,7 +66,7 @@ export function getRequestFileReferences(payload: unknown): { readonly fileId: s
 export function getRequestFiles(payload: unknown): RequestFile[] {
   const files: RequestFile[] = [];
   visitRequestParts(payload, (part, content) => {
-    const id = typeof part.toonflowImageId === "string" ? part.toonflowImageId : undefined;
+    const id = typeof part.dramaflowImageId === "string" ? part.dramaflowImageId : undefined;
     const inline = inlineFile(part);
     if (!inline) return;
     let { data, mimeType } = inline;
@@ -105,7 +105,7 @@ export function getRequestFiles(payload: unknown): RequestFile[] {
       },
       useReference(reference) {
         if (!content.includes(part)) return;
-        for (const key of ["image_url", "video_url", "file_data", "source", "filename", "toonflowImageId"]) delete part[key];
+        for (const key of ["image_url", "video_url", "file_data", "source", "filename", "dramaflowImageId"]) delete part[key];
         Object.assign(part, reference);
       },
     });

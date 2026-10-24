@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFile } from "@toonflow/file";
+import { readFile } from "@dramaflow/file";
 import { decodeTextFile, getDocumentExtension, getReadableFileMimeType, getTextMimeType } from "@/lib/documentFormats";
 
 async function loadDocumentParser() {

@@ -1,6 +1,6 @@
 # 开发与扩展指南
 
-[返回 Toonflow 首页](../README.md) · [文档目录](./readme.md) · [贡献指南](../CONTRIBUTING.md) · [开发规范](../AGENTS.md)
+[返回 Dramaflow 首页](../README.md) · [文档目录](./readme.md) · [贡献指南](../CONTRIBUTING.md) · [开发规范](../AGENTS.md)
 
 本文收录插件开发、源码运行、桌面打包和更新发布的详细说明。首次参与开发，可先阅读贡献指南。
 
@@ -19,7 +19,7 @@
 
 媒体接口包含图片、视频和音频的扩展类型，实际能力由各提供方实现；当前内置 TF-Router 媒体适配提供图片与视频生成。技能既可以全局安装，也可以放在当前工作区的 `skill/` 目录，同名时优先使用工作区版本。
 
-需要从外部 Coding 工具操作 Toonflow 时，在“设置 → MCP”开启服务并复制客户端配置，支持 HTTP 与 stdio 连接。画布和节点等界面操作需要保持 Toonflow 窗口或网页打开，详见 [MCP 接入说明](../packages/mcp/README.md)。
+需要从外部 Coding 工具操作 Dramaflow 时，在“设置 → MCP”开启服务并复制客户端配置，支持 HTTP 与 stdio 连接。画布和节点等界面操作需要保持 Dramaflow 窗口或网页打开，详见 [MCP 接入说明](../packages/mcp/README.md)。
 
 <details>
 <summary><strong>通过网页唤起桌面安装插件</strong></summary>
@@ -69,7 +69,7 @@ Windows 安装器负责注册协议；macOS 需要将应用放入 `/Applications
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install
 
 # 首次开发或修改插件后，构建节点和工具并同步到 data/
@@ -140,7 +140,7 @@ bun run build:desktop
 bun run package:desktop
 ```
 
-安装包输出到 `build/desktop/artifacts/toonflow-<版本>-Setup.exe`。
+安装包输出到 `build/desktop/artifacts/dramaflow-<版本>-Setup.exe`。
 
 **macOS**
 
@@ -166,7 +166,7 @@ bun run package:desktop
 本机默认生成未做 Developer ID 签名与公证的测试包；GitHub Actions 的 ARM 包会按下方配置自动签名并公证，Intel 仍不重签。对于自己构建且确认来源的测试应用，若被隔离属性拦截，可仅移除该应用的隔离属性，路径按实际位置调整：
 
 ```sh
-xattr -dr com.apple.quarantine "/Applications/toonflow.app"
+xattr -dr com.apple.quarantine "/Applications/dramaflow.app"
 ```
 
 **类型检查与 SDK**
@@ -212,7 +212,7 @@ git push --no-follow-tags origin refs/tags/v2.0.0:refs/tags/v2.0.0
 
 | 平台 | 安装包 | 更新文件 |
 | --- | --- | --- |
-| Windows x64 | `toonflow-<版本号>-Setup.exe` | `stable-win-x64-*` |
+| Windows x64 | `dramaflow-<版本号>-Setup.exe` | `stable-win-x64-*` |
 | macOS Intel | DMG | `stable-macos-x64-*` |
 | macOS Apple Silicon | DMG | `stable-macos-arm64-*` |
 

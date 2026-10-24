@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { join } from "node:path";
 
 if (process.env.ELECTROBUN_OS === "macos") {

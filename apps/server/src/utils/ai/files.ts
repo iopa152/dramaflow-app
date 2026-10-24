@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
-import { mkdir, readFile, unlink, writeAtomic } from "@toonflow/file";
+import { mkdir, readFile, unlink, writeAtomic } from "@dramaflow/file";
 import conf from "@/utils/conf";
 import { getRequestFiles, getRequestFileReferences } from "@/utils/ai/requestFiles";
 
@@ -65,7 +65,7 @@ const adapters: FileAdapter[] = [{
     form.set("expires_after[anchor]", "created_at");
     form.set("expires_after[seconds]", String(7 * 24 * 60 * 60));
     const extension = source.mimeType.slice(6).replace("jpeg", "jpg");
-    form.set("file", new Blob([Uint8Array.from(Buffer.from(source.data.replace(/\s/g, ""), "base64")).buffer], { type: source.mimeType }), `toonflow-${hash(source.data).slice(0, 16)}.${extension}`);
+    form.set("file", new Blob([Uint8Array.from(Buffer.from(source.data.replace(/\s/g, ""), "base64")).buffer], { type: source.mimeType }), `dramaflow-${hash(source.data).slice(0, 16)}.${extension}`);
     const response = await request(this.endpoint, { method: "POST", headers: { authorization: `Bearer ${provider.apiKey}` }, body: form, signal });
     if (!response.ok) throw Object.assign(new Error(`DeepSeek 文件上传失败（HTTP ${response.status}）：${await response.text()}`), { status: response.status });
     const file = await response.json() as { id?: unknown; expires_at?: unknown };

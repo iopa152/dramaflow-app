@@ -1,14 +1,14 @@
-import { setLocaleFallback, t, translateMessage } from "@toonflow/server/i18n";
-import { setRuntimeHost } from "@toonflow/server/platform";
-import { detectLocale, normalizeLocale } from "@toonflow/i18n";
+import { setLocaleFallback, t, translateMessage } from "@dramaflow/server/i18n";
+import { setRuntimeHost } from "@dramaflow/server/platform";
+import { detectLocale, normalizeLocale } from "@dramaflow/i18n";
 import { execFile } from "node:child_process";
-import { existsSync, writeAtomicSync } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import { existsSync, writeAtomicSync } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { resolve } from "node:path";
 import { promisify } from "node:util";
 import { dlopen, ptr } from "bun:ffi";
-import type { DesktopRuntime, PluginInstallRequest } from "@toonflow/server/desktop";
-import { showNativeSplash } from "@toonflow/startup";
+import type { DesktopRuntime, PluginInstallRequest } from "@dramaflow/server/desktop";
+import { showNativeSplash } from "@dramaflow/startup";
 import Electrobun, { ApplicationMenu, BrowserWindow, PATHS, Screen, Utils, Updater } from "electrobun/main";
 import { parseInstallUrl } from "./protocol";
 import saveFile, { selectSaveFile } from "./saveFile";
@@ -46,7 +46,7 @@ async function restoreInstallRegistration(installDirectory: string) {
       }
       const protocolLauncher = resolve(PATHS.RESOURCES_FOLDER, "app/protocolLauncher.exe");
       if (existsSync(protocolLauncher)) {
-        const protocolKey = "HKCU\\Software\\Classes\\toonflow";
+        const protocolKey = "HKCU\\Software\\Classes\\dramaflow";
         const commandKey = `${protocolKey}\\shell\\open\\command`;
         const command = `"${protocolLauncher}" "%1"`;
         let protocolExists = true;
@@ -58,7 +58,7 @@ async function restoreInstallRegistration(installDirectory: string) {
         }
         // ACT: 自动更新不经过 NSIS；仅补全缺失协议，已有注册（包括其他安装）保持不动。
         if (!protocolExists) {
-          for (const [key, value] of [[protocolKey, "URL:Toonflow Protocol"], [`${protocolKey}\\DefaultIcon`, `"${resolve(PATHS.RESOURCES_FOLDER, "app.ico")}",0`], [commandKey, command]]) {
+          for (const [key, value] of [[protocolKey, "URL:Dramaflow Protocol"], [`${protocolKey}\\DefaultIcon`, `"${resolve(PATHS.RESOURCES_FOLDER, "app.ico")}",0`], [commandKey, command]]) {
             await execFileAsync("reg.exe", ["add", key, "/ve", "/t", "REG_SZ", "/d", value, "/f"], { windowsHide: true });
           }
           await execFileAsync("reg.exe", ["add", protocolKey, "/v", "URL Protocol", "/t", "REG_SZ", "/d", "", "/f"], { windowsHide: true });
@@ -78,7 +78,7 @@ async function start() {
   try {
     // Windows 的 data 与 app 同级；macOS 的 data 与 .app 同级，避免随程序更新被替换。
     const installDirectory = resolve(PATHS.RESOURCES_FOLDER, process.platform === "darwin" ? "../../.." : "../..");
-    const dataDirectory = process.env.TOONFLOW_DATA_DIR ?? resolve(installDirectory, "data");
+    const dataDirectory = process.env.DRAMAFLOW_DATA_DIR ?? resolve(installDirectory, "data");
     // ACT: 先显示原生动画，再加载服务，避免初始化期间没有反馈。
     const startupSettings = await file(resolve(dataDirectory, "settings.json")).json().catch((error) => {
       if (error.code !== "ENOENT") console.error("读取启动设置失败，使用默认启动动画：", error);
@@ -89,7 +89,7 @@ async function start() {
     if (process.platform === "darwin") {
       // ACT: WKWebView 的 Command 编辑快捷键由原生菜单角色交给当前响应者处理。
       ApplicationMenu.setApplicationMenu([
-        { label: "Toonflow", submenu: [
+        { label: "Dramaflow", submenu: [
           { role: "about" },
           { type: "separator" },
           { role: "hide" },
@@ -125,8 +125,8 @@ async function start() {
       return;
     }
     setRuntimeHost("desktop");
-    const { createApp } = await import("@toonflow/server/app");
-    const { closeBrowsers } = await import("@toonflow/server/browser");
+    const { createApp } = await import("@dramaflow/server/app");
+    const { closeBrowsers } = await import("@dramaflow/server/browser");
     const { hash, version } = await file(resolve(PATHS.RESOURCES_FOLDER, "version.json")).json();
     if (typeof hash !== "string" || !hash) throw new Error(t`应用构建标识缺失，无法同步内置插件`);
     const app = await createApp({
@@ -161,7 +161,7 @@ async function start() {
     const width = Math.min(1280, workArea.width - 64);
     const height = Math.min(960, workArea.height - 64);
     const mainWindow = new BrowserWindow({
-      title: "Toonflow",
+      title: "Dramaflow",
       url: `http://127.0.0.1:${connection.port}/?desktop=1${connection.remote ? "&remote=1" : ""}`,
       navigationRules: JSON.stringify(getNavigationRules(connection.port)),
       // ACT: Windows SDK 未接管普通新窗口请求，在创建 WebView 弹窗前交给宿主。
@@ -287,7 +287,7 @@ async function start() {
           mainWindow.unminimize();
           mainWindow.show();
           mainWindow.activate();
-          mainWindow.webview.executeJavascript(`window.dispatchEvent(new CustomEvent("toonflow:install-plugin", { detail: ${JSON.stringify(request)} }));`);
+          mainWindow.webview.executeJavascript(`window.dispatchEvent(new CustomEvent("dramaflow:install-plugin", { detail: ${JSON.stringify(request)} }));`);
         };
         while (pendingInstalls.length) {
           deliverInstall(pendingInstalls[0]!);

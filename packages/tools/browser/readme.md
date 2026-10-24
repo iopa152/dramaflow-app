@@ -1,6 +1,6 @@
 # 浏览器
 
-让 Toonflow Agent 操作本机 Chrome 或 Edge，并在工作区中实时查看正在操作的页面。
+让 Dramaflow Agent 操作本机 Chrome 或 Edge，并在工作区中实时查看正在操作的页面。
 
 ## 使用
 
@@ -26,9 +26,9 @@
 
 ## 开发
 
-`bun run --filter @toonflow/tool-browser typecheck`
+`bun run --filter @dramaflow/tool-browser typecheck`
 
-`NODE_ENV=dev bun run --filter @toonflow/tool-browser build`
+`NODE_ENV=dev bun run --filter @dramaflow/tool-browser build`
 
 浏览器运行时与输入协议分别通过 `./host`、`./protocol` 导出。宿主持有运行时，并通过工具上下文注入调用入口，确保工具和画面接口共享同一会话。
 

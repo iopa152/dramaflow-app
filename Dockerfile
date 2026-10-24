@@ -16,7 +16,7 @@ RUN bun run build:server \
     && chown -R bun:bun data
 
 ENV NODE_ENV=production
-ENV TOONFLOW_DATA_DIR=/app/data
+ENV DRAMAFLOW_DATA_DIR=/app/data
 
 USER bun
 EXPOSE 3000

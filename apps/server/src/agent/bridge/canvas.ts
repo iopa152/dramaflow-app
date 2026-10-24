@@ -1,6 +1,6 @@
-import { canvasOperations } from "@toonflow/tool-canvas/runtime";
-import type { CanvasInfo, CanvasContext } from "@toonflow/tools-scaffold/runtime";
-import { asrRequestSchema } from "@toonflow/tools-scaffold/runtime";
+import { canvasOperations } from "@dramaflow/tool-canvas/runtime";
+import type { CanvasInfo, CanvasContext } from "@dramaflow/tools-scaffold/runtime";
+import { asrRequestSchema } from "@dramaflow/tools-scaffold/runtime";
 import type { AgentEvent } from "@/agent/runtime/types";
 
 type CanvasResult = { result?: unknown; error?: string };

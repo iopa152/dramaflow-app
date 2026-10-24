@@ -1,6 +1,6 @@
 import axios from "axios";
 import { computed, onScopeDispose, ref, watch } from "vue";
-import type { ProviderBalance } from "@toonflow/providers";
+import type { ProviderBalance } from "@dramaflow/providers";
 import { getTfApiKey } from "@/lib/tf";
 import { saveSettings, settings } from "@/stores/settings";
 import { useWorkspaceStore } from "@/stores/workspace";
@@ -14,7 +14,7 @@ export async function getProviderBalance(providerId: string, options: { apiKey?:
   const matchesAccount = options.apiKey === undefined || (providerId === "tfRouter" ? normalizeApiKey(options.apiKey) : options.apiKey) === currentApiKey;
   const { data } = await axios.post<{ code: number; data: BalanceSnapshot; message?: string }>("/api/ai/media/balance", {
     providerId, ...(options.apiKey !== undefined ? { apiKey: options.apiKey } : {}),
-  }, { signal: options.signal, timeout: 25000, headers: { "x-toonflow-workspace": "1" } });
+  }, { signal: options.signal, timeout: 25000, headers: { "x-dramaflow-workspace": "1" } });
   if (data.code !== 200) throw new Error(data.message || "余额查询失败，请重试");
   if (entry && matchesAccount && !options.signal?.aborted && providerBalances.value.includes(entry)) {
     if (entry.accountId !== data.data.accountId) entry.revision = -1;
@@ -209,13 +209,13 @@ export function useProviderBalances() {
   watch(() => providerBalances.value.map(entry => entry.accountId).join(","), scheduleSubscribe);
   watch(() => JSON.stringify([tfBalanceApiKey.value, settings.value.mediaProviderConfigs]), invalidate, { immediate: true, flush: "sync" });
   watch(() => workspaceStore.project?.lastOpenedAt, scheduleRefresh);
-  const refreshProvider = (event: WindowEventMap["toonflow:plugin-installed"]) => {
+  const refreshProvider = (event: WindowEventMap["dramaflow:plugin-installed"]) => {
     if (event.detail.type === "provider") invalidate();
   };
   window.addEventListener("pageshow", scheduleRefresh);
   window.addEventListener("focus", scheduleRefresh);
-  window.addEventListener("toonflow:plugin-installed", refreshProvider);
-  window.addEventListener("toonflow:provider-config-changed", invalidate);
+  window.addEventListener("dramaflow:plugin-installed", refreshProvider);
+  window.addEventListener("dramaflow:provider-config-changed", invalidate);
   document.addEventListener("visibilitychange", scheduleRefresh);
   onScopeDispose(() => {
     disposed = true;
@@ -227,8 +227,8 @@ export function useProviderBalances() {
     connections.clear();
     window.removeEventListener("pageshow", scheduleRefresh);
     window.removeEventListener("focus", scheduleRefresh);
-    window.removeEventListener("toonflow:plugin-installed", refreshProvider);
-    window.removeEventListener("toonflow:provider-config-changed", invalidate);
+    window.removeEventListener("dramaflow:plugin-installed", refreshProvider);
+    window.removeEventListener("dramaflow:provider-config-changed", invalidate);
     document.removeEventListener("visibilitychange", scheduleRefresh);
   });
 }

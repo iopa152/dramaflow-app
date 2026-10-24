@@ -1,4 +1,4 @@
-import type { BrowserFfmpegCommand, BrowserFfmpegFactory, FfprobeData } from "@toonflow/ffmpeg/browser";
+import type { BrowserFfmpegCommand, BrowserFfmpegFactory, FfprobeData } from "@dramaflow/ffmpeg/browser";
 
 export type VideoProcessingOptions = {
   action: "extractAudio" | "separate" | "trim";

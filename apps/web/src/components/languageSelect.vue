@@ -67,8 +67,8 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from "vue";
 import { IconCheck, IconChevronDown, IconDeviceDesktop, IconLanguage, IconWorld, IconX } from "@tabler/icons-vue";
-import { detectLocale, isRtlLocale, supportedLocales, type Locale } from "@toonflow/i18n";
-import { locale, translate } from "@toonflow/i18n/vue";
+import { detectLocale, isRtlLocale, supportedLocales, type Locale } from "@dramaflow/i18n";
+import { locale, translate } from "@dramaflow/i18n/vue";
 import { uiSettings, updateUiSettings } from "@/stores/settings";
 import languageFlags from "@/assets/languageFlags.svg?url";
 

@@ -1,4 +1,4 @@
-import { lstat, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, writeFile } from "@toonflow/file";
+import { lstat, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, writeFile } from "@dramaflow/file";
 import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
 import conf from "@/utils/conf";

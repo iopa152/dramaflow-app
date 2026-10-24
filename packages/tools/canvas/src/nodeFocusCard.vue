@@ -22,7 +22,7 @@ import { ElMessage } from "element-plus";
 import "element-plus/es/components/base/style/css";
 import "element-plus/es/components/message/style/css";
 import { IconFocus2 } from "@tabler/icons-vue";
-import type { ToolCall, CanvasContext } from "@toonflow/tools-scaffold/runtime";
+import type { ToolCall, CanvasContext } from "@dramaflow/tools-scaffold/runtime";
 
 const props = defineProps<{ tool: ToolCall; directory?: string }>();
 

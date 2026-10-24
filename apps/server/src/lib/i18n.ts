@@ -1,6 +1,6 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import { detectLocale, msg, normalizeLocale, translate } from "@toonflow/i18n";
-import type { Locale, MessageDescriptor } from "@toonflow/i18n";
+import { detectLocale, msg, normalizeLocale, translate } from "@dramaflow/i18n";
+import type { Locale, MessageDescriptor } from "@dramaflow/i18n";
 import type { RequestHandler } from "express";
 import { ar, bn, en, fa, hi, id, ja, ko, ms, ru, ta, th, tr, ur, vi, zhCN, zhTW } from "zod/locales";
 import { z } from "zod";

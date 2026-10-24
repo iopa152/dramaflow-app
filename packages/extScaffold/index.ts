@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, rename, rm } from "@toonflow/file";
+import { copyFile, mkdir, readFile, rename, rm } from "@dramaflow/file";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadConfigFromFile } from "vite";
@@ -7,23 +7,23 @@ import { z } from "zod";
 import { defineExt, type ExtDefinition } from "./src/runtime.ts";
 
 const tiptapGlobals = {
-  "@tiptap/core": "toonflowTiptapHost.core",
-  "@tiptap/vue-3": "toonflowTiptapHost.vue3",
-  "@tiptap/starter-kit": "toonflowTiptapHost.starterKit",
-  "@tiptap/markdown": "toonflowTiptapHost.markdown",
-  "@tiptap/extension-find-and-replace": "toonflowTiptapHost.findAndReplace",
-  "@tiptap/extension-highlight": "toonflowTiptapHost.highlight",
-  "@tiptap/extension-image": "toonflowTiptapHost.image",
-  "@tiptap/extension-list": "toonflowTiptapHost.list",
-  "@tiptap/extension-subscript": "toonflowTiptapHost.subscript",
-  "@tiptap/extension-superscript": "toonflowTiptapHost.superscript",
-  "@tiptap/extension-table": "toonflowTiptapHost.table",
-  "@tiptap/extension-text-align": "toonflowTiptapHost.textAlign",
-  "@tiptap/pm/model": "toonflowTiptapHost.model",
-  "@tiptap/pm/state": "toonflowTiptapHost.state",
-  "@tiptap/pm/view": "toonflowTiptapHost.view",
-  "marked": "toonflowTiptapHost.marked",
-  "dompurify": "toonflowTiptapHost.dompurify",
+  "@tiptap/core": "dramaflowTiptapHost.core",
+  "@tiptap/vue-3": "dramaflowTiptapHost.vue3",
+  "@tiptap/starter-kit": "dramaflowTiptapHost.starterKit",
+  "@tiptap/markdown": "dramaflowTiptapHost.markdown",
+  "@tiptap/extension-find-and-replace": "dramaflowTiptapHost.findAndReplace",
+  "@tiptap/extension-highlight": "dramaflowTiptapHost.highlight",
+  "@tiptap/extension-image": "dramaflowTiptapHost.image",
+  "@tiptap/extension-list": "dramaflowTiptapHost.list",
+  "@tiptap/extension-subscript": "dramaflowTiptapHost.subscript",
+  "@tiptap/extension-superscript": "dramaflowTiptapHost.superscript",
+  "@tiptap/extension-table": "dramaflowTiptapHost.table",
+  "@tiptap/extension-text-align": "dramaflowTiptapHost.textAlign",
+  "@tiptap/pm/model": "dramaflowTiptapHost.model",
+  "@tiptap/pm/state": "dramaflowTiptapHost.state",
+  "@tiptap/pm/view": "dramaflowTiptapHost.view",
+  "marked": "dramaflowTiptapHost.marked",
+  "dompurify": "dramaflowTiptapHost.dompurify",
 };
 
 export type ExtMetadata = Omit<ExtDefinition, "load">;
@@ -74,10 +74,10 @@ export function createExtConfig(config: ExtMetadata, configUrl: string) {
             css += typeof asset.source === "string" ? asset.source : new TextDecoder().decode(asset.source);
             delete bundle[name];
           }
-          const styleId = JSON.stringify(`toonflowExt-${config.id}`);
+          const styleId = JSON.stringify(`dramaflowExt-${config.id}`);
           const injectStyle = css ? `if(typeof document!=="undefined"){let style=document.getElementById(${styleId});if(!style){style=document.createElement("style");style.id=${styleId};document.head.appendChild(style)}style.textContent=${JSON.stringify(css)}}\n` : "";
           // 压缩完成后加入元数据和样式，单个 JS 即可供扩展加载器使用。
-          chunk.code = `/*! toonflowExt:${JSON.stringify({ ...metadata, configRules, version, readme }).replaceAll("/", "\\u002f")} */\n${injectStyle}${chunk.code}`;
+          chunk.code = `/*! dramaflowExt:${JSON.stringify({ ...metadata, configRules, version, readme }).replaceAll("/", "\\u002f")} */\n${injectStyle}${chunk.code}`;
         },
         async writeBundle() {
           if (!syncToData) return;
@@ -101,22 +101,22 @@ export function createExtConfig(config: ExtMetadata, configUrl: string) {
       cssCodeSplit: false,
       lib: {
         entry: resolve(root, "src/index.ts"),
-        name: `toonflowExts.${config.id}`,
+        name: `dramaflowExts.${config.id}`,
         formats: ["umd"],
         fileName: () => fileName,
       },
       rolldownOptions: {
-        external: ["vue", "@vue/runtime-core", "@vue/runtime-dom", "element-plus", "@toonflow/i18n/vue", ...Object.keys(tiptapGlobals)],
+        external: ["vue", "@vue/runtime-core", "@vue/runtime-dom", "element-plus", "@dramaflow/i18n/vue", ...Object.keys(tiptapGlobals)],
         output: {
           exports: "default",
           codeSplitting: false,
           globals: {
             ...tiptapGlobals,
-            vue: "toonflowExtHost.vue",
-            "@vue/runtime-core": "toonflowExtHost.vue",
-            "@vue/runtime-dom": "toonflowExtHost.vue",
-            "element-plus": "toonflowExtHost.elementPlus",
-            "@toonflow/i18n/vue": "toonflowExtHost.i18n",
+            vue: "dramaflowExtHost.vue",
+            "@vue/runtime-core": "dramaflowExtHost.vue",
+            "@vue/runtime-dom": "dramaflowExtHost.vue",
+            "element-plus": "dramaflowExtHost.elementPlus",
+            "@dramaflow/i18n/vue": "dramaflowExtHost.i18n",
           },
         },
       },

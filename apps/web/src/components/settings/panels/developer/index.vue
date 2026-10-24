@@ -121,14 +121,14 @@
 </template>
 
 <script setup lang="ts">
-import { locale, msg, translate, type MessageDescriptor } from "@toonflow/i18n/vue";
+import { locale, msg, translate, type MessageDescriptor } from "@dramaflow/i18n/vue";
 import { computed, defineAsyncComponent, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useDeveloperStore } from "@/stores/developer";
 import { useHelloStore } from "@/stores/hello";
 import { saveSettings, settings } from "@/stores/settings";
 import { desktopUpdateSnapshot } from "@/stores/desktopUpdate";
-import type { updateSnapshot } from "@toonflow/server/desktop";
+import type { updateSnapshot } from "@dramaflow/server/desktop";
 import saveFile from "@/lib/saveFile";
 import { isDesktop, isRemoteConnection } from "@/lib/platform";
 import { installPluginFile } from "../../installPluginFile";
@@ -294,7 +294,7 @@ async function exportStorage() {
   storageMessage.value = "";
   try {
     const data = readStorage();
-    await saveFile(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }), "toonflowLocalStorage.json");
+    await saveFile(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }), "dramaflowLocalStorage.json");
   } catch (err) {
     storageError.value = err instanceof Error ? err.message : "导出缓存失败";
   }
@@ -358,11 +358,11 @@ async function installPlugin(sourceType: "file" | "url", file?: File) {
     if (file) {
       installedName.value = await installPluginFile(type, file, forceInstall.value);
     } else {
-      const { data } = await axios.post(`/api/${type === "ext" ? "ext" : `${type}s`}/install`, { url: pluginUrl.value.trim(), force: forceInstall.value }, { headers: { "x-toonflow-workspace": "1" } });
+      const { data } = await axios.post(`/api/${type === "ext" ? "ext" : `${type}s`}/install`, { url: pluginUrl.value.trim(), force: forceInstall.value }, { headers: { "x-dramaflow-workspace": "1" } });
       if (data.code !== 200) throw new Error(data.message || "安装失败");
       installedName.value = data.data.name;
-      window.dispatchEvent(new CustomEvent("toonflow:plugin-installed", { detail: { type, name: data.data.name } }));
-      if (type === "ext") window.dispatchEvent(new CustomEvent("toonflow:ext-updated", { detail: { name: data.data.name } }));
+      window.dispatchEvent(new CustomEvent("dramaflow:plugin-installed", { detail: { type, name: data.data.name } }));
+      if (type === "ext") window.dispatchEvent(new CustomEvent("dramaflow:ext-updated", { detail: { name: data.data.name } }));
     }
   } catch (err) {
     installError.value = axios.isAxiosError<{ message?: string }>(err) ? err.response?.data.message || "安装失败，请检查网络后重试" : err instanceof Error ? err.message : "安装失败";
@@ -379,7 +379,7 @@ async function openDevTools() {
   opening.value = true;
   requestError.value = "";
   try {
-    const response = await fetch("/api/desktop/devtools", { method: "POST", headers: { "x-toonflow-desktop": "1", "Accept-Language": locale.value } });
+    const response = await fetch("/api/desktop/devtools", { method: "POST", headers: { "x-dramaflow-desktop": "1", "Accept-Language": locale.value } });
     if (!response.ok) throw new Error((await response.json()).message || "打开开发者工具失败，请重试。");
   } catch (error) {
     requestError.value = error instanceof Error ? error.message : "打开开发者工具失败，请重试。";

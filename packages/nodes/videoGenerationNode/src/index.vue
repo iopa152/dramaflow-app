@@ -103,17 +103,17 @@
 import { computed, nextTick, onMounted, onScopeDispose, ref, watch } from "vue";
 import { ElButton, ElCard, ElSelect, ElOption, ElOptionGroup, ElLoading, ElDropdown, ElDropdownMenu, ElDropdownItem } from "element-plus";
 import { IconCameraAi, IconSparkles, IconArrowUp, IconPlayerStop, IconTransfer, IconMusic, IconLayersSubtract, IconScissors, IconMovie, IconPhotoScan, IconPlayerSkipBack, IconPlayerSkipForward } from "@tabler/icons-vue";
-import { nodeSkeleton, nodeTools, useNode, z, type NodeMediaModel, type NodeVideoRequest, type NodeHandle } from "@toonflow/nodes-scaffold/runtime";
-import { groupNodeModels } from "@toonflow/node-shared/groupNodeModels";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
-import { useNodeGeneration } from "@toonflow/node-shared/useNodeGeneration";
-import { useNodeReferences } from "@toonflow/node-shared/useNodeReferences";
-import promptInput from "@toonflow/node-shared/promptInput";
-import videoPlayer from "@toonflow/node-video/videoPlayer";
-import videoActions from "@toonflow/node-video/videoActions";
-import referenceItem from "@toonflow/node-shared/referenceItem";
-import mediaHistory from "@toonflow/node-shared/mediaHistory";
-import mediaPrice from "@toonflow/node-shared/mediaPrice";
+import { nodeSkeleton, nodeTools, useNode, z, type NodeMediaModel, type NodeVideoRequest, type NodeHandle } from "@dramaflow/nodes-scaffold/runtime";
+import { groupNodeModels } from "@dramaflow/node-shared/groupNodeModels";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
+import { useNodeGeneration } from "@dramaflow/node-shared/useNodeGeneration";
+import { useNodeReferences } from "@dramaflow/node-shared/useNodeReferences";
+import promptInput from "@dramaflow/node-shared/promptInput";
+import videoPlayer from "@dramaflow/node-video/videoPlayer";
+import videoActions from "@dramaflow/node-video/videoActions";
+import referenceItem from "@dramaflow/node-shared/referenceItem";
+import mediaHistory from "@dramaflow/node-shared/mediaHistory";
+import mediaPrice from "@dramaflow/node-shared/mediaPrice";
 import generationSettings from "./components/generationSettings.vue";
 
 defineOptions({
@@ -243,19 +243,19 @@ const previewUrl = files.useFileUrl(
 );
 
 onMounted(() => {
-  window.addEventListener("toonflow:plugin-installed", refreshProviderModels);
-  window.addEventListener("toonflow:provider-config-changed", refreshProviderModels);
+  window.addEventListener("dramaflow:plugin-installed", refreshProviderModels);
+  window.addEventListener("dramaflow:provider-config-changed", refreshProviderModels);
   void loadModels().catch(error => { if (!disposed) showNodeError(error, "模型读取失败"); });
 });
 onScopeDispose(() => {
   disposed = true;
-  window.removeEventListener("toonflow:plugin-installed", refreshProviderModels);
-  window.removeEventListener("toonflow:provider-config-changed", refreshProviderModels);
+  window.removeEventListener("dramaflow:plugin-installed", refreshProviderModels);
+  window.removeEventListener("dramaflow:provider-config-changed", refreshProviderModels);
   generationController?.abort();
 });
 
 async function refreshProviderModels(event: Event) {
-  if (event.type === "toonflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
+  if (event.type === "dramaflow:plugin-installed" && (event as CustomEvent<{ type?: string }>).detail?.type !== "provider") return;
   try {
     await generation;
     if (!disposed && !deleting.value) await loadModels();

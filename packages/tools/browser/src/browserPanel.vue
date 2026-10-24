@@ -46,7 +46,7 @@ import "element-plus/es/components/base/style/css";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/dialog/style/css";
 import "element-plus/es/components/input/style/css";
-import type { ToolCall } from "@toonflow/tools-scaffold/runtime";
+import type { ToolCall } from "@dramaflow/tools-scaffold/runtime";
 import type { BrowserInput, BrowserSessionState, BrowserStreamEvent } from "./protocol";
 
 type PanelSession = Pick<BrowserSessionState, "browserSessionId"> & Partial<Omit<BrowserSessionState, "browserSessionId">>;
@@ -194,7 +194,7 @@ function resetInput() {
   if (keyboardInput.value) keyboardInput.value.value = "";
   keyboardInput.value?.blur();
   // ACT: 释放必须排在已开始的输入之后，不能随观看流一起取消，否则远端会留下按住的键或鼠标。
-  if (target) releasePending = releasePending.then(() => fetch("/api/browser/input", { method: "POST", headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" }, body: JSON.stringify({ ...target, input: { type: "release" } }), keepalive: true, signal: AbortSignal.timeout(5000) })).then(() => {}, () => {});
+  if (target) releasePending = releasePending.then(() => fetch("/api/browser/input", { method: "POST", headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" }, body: JSON.stringify({ ...target, input: { type: "release" } }), keepalive: true, signal: AbortSignal.timeout(5000) })).then(() => {}, () => {});
 }
 
 watch(expanded, resetInput);
@@ -260,7 +260,7 @@ async function connect(scope: BrowserScope, sessionId: string, controller: Abort
   let reader: ReadableStreamDefaultReader<string> | undefined;
   try {
     const query = new URLSearchParams({ ...scope, sessionId });
-    const response = await fetch(`/api/browser/stream?${query}`, { headers: { "x-toonflow-workspace": "1" }, signal: controller.signal });
+    const response = await fetch(`/api/browser/stream?${query}`, { headers: { "x-dramaflow-workspace": "1" }, signal: controller.signal });
     controller.signal.throwIfAborted();
     if (streamController !== controller) return;
     if (response.status === 404) { endSession(); return; }
@@ -344,7 +344,7 @@ async function drainInput() {
     await releasePending;
     if (controller.signal.aborted) continue;
     try {
-      const response = await fetch("/api/browser/input", { method: "POST", headers: { "Content-Type": "application/json", "x-toonflow-workspace": "1" }, body: JSON.stringify({ ...target, input }), signal: controller.signal });
+      const response = await fetch("/api/browser/input", { method: "POST", headers: { "Content-Type": "application/json", "x-dramaflow-workspace": "1" }, body: JSON.stringify({ ...target, input }), signal: controller.signal });
       const result = await response.json();
       if (controller.signal.aborted) continue;
       if (response.status === 404) { endSession(result.message); continue; }

@@ -1,4 +1,4 @@
-import type { GeneratedMedia, MediaGenerationRequest } from "@toonflow/tools-scaffold/runtime";
+import type { GeneratedMedia, MediaGenerationRequest } from "@dramaflow/tools-scaffold/runtime";
 import { error, errorFromCause, success, type ApiResponse } from "@/lib/responseFormat";
 import { generateMedia } from "@/utils/media/generation";
 

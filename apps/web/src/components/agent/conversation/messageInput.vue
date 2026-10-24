@@ -54,13 +54,13 @@
 </template>
 
 <script setup lang="ts">
-import { locale, t, translate } from "@toonflow/i18n/vue";
+import { locale, t, translate } from "@dramaflow/i18n/vue";
 import { computed, inject, ref, shallowRef, watch } from "vue";
 import { IconArrowUp, IconMicrophone, IconPaperclip, IconPhoto, IconPlayerStopFilled } from "@tabler/icons-vue";
 import { ElMessage } from "element-plus";
-import { getReadableFileMimeType, readableFileAccept } from "@toonflow/server/documentFormats";
-import type { AgentContext, AgentMention, AgentStats } from "@toonflow/server/agent/types";
-import type { CanvasContext } from "@toonflow/tool-canvas/runtime";
+import { getReadableFileMimeType, readableFileAccept } from "@dramaflow/server/documentFormats";
+import type { AgentContext, AgentMention, AgentStats } from "@dramaflow/server/agent/types";
+import type { CanvasContext } from "@dramaflow/tool-canvas/runtime";
 import modelPopover from "@/components/modelPopover.vue";
 import skillMenu from "../skillMenu.vue";
 import mentionMenu from "../mentionMenu.vue";

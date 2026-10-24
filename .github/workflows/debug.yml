@@ -214,9 +214,9 @@ jobs:
           : "${notarizationIssuerId:?请配置 MACOS_NOTARIZATION_ISSUER_ID Secret}"
           : "${notarizationKeyBase64:?请配置 MACOS_NOTARIZATION_KEY_BASE64 Secret}"
           umask 077
-          certificatePath="$RUNNER_TEMP/toonflowSigning.p12"
-          keychainPath="$RUNNER_TEMP/toonflowSigning.keychain-db"
-          notarizationKeyPath="$RUNNER_TEMP/toonflowNotarization.p8"
+          certificatePath="$RUNNER_TEMP/dramaflowSigning.p12"
+          keychainPath="$RUNNER_TEMP/dramaflowSigning.keychain-db"
+          notarizationKeyPath="$RUNNER_TEMP/dramaflowNotarization.p8"
           trap 'rm -f "$certificatePath"' EXIT
           printf '%s' "$notarizationKeyBase64" | base64 --decode > "$notarizationKeyPath"
           openssl pkey -in "$notarizationKeyPath" -passin pass: -check -noout > /dev/null
@@ -253,9 +253,9 @@ jobs:
         if: matrix.target == 'macArm64'
         run: |
           bun -e '
-          import { chmodSync, mkdirSync, readFileSync, writeFileSync } from "@toonflow/file";
+          import { chmodSync, mkdirSync, readFileSync, writeFileSync } from "@dramaflow/file";
           import { join } from "node:path";
-          const directory = join(process.env.RUNNER_TEMP, "toonflowMacTools");
+          const directory = join(process.env.RUNNER_TEMP, "dramaflowMacTools");
           mkdirSync(directory, { recursive: true });
           const target = join(directory, "xcrun");
           // ACT: 无扩展名入口保持 JavaScript 语法，并统一 LF，保证 macOS shebang 可执行。
@@ -274,8 +274,8 @@ jobs:
       - name: 清理 ARM 签名与公证凭据
         if: always() && matrix.target == 'macArm64'
         run: |
-          rm -f "$RUNNER_TEMP/toonflowSigning.p12" "$RUNNER_TEMP/toonflowNotarization.p8"
-          keychainPath="$RUNNER_TEMP/toonflowSigning.keychain-db"
+          rm -f "$RUNNER_TEMP/dramaflowSigning.p12" "$RUNNER_TEMP/dramaflowNotarization.p8"
+          keychainPath="$RUNNER_TEMP/dramaflowSigning.keychain-db"
           if [[ -f "$keychainPath" ]]; then
             security delete-keychain "$keychainPath"
           fi
@@ -292,12 +292,12 @@ jobs:
               xcrun stapler validate "$1"
             fi
           }
-          inspectionDirectory="$RUNNER_TEMP/toonflowPackageCheck"
+          inspectionDirectory="$RUNNER_TEMP/dramaflowPackageCheck"
           mkdir -p "$inspectionDirectory"
           export inspectionDirectory
           bun -e '
-          import { readdirSync } from "@toonflow/file";
-          import { file, write } from "@toonflow/file/bun";
+          import { readdirSync } from "@dramaflow/file";
+          import { file, write } from "@dramaflow/file/bun";
           import { join } from "node:path";
           const directory = process.env.releaseDirectory;
           const archives = readdirSync(directory).filter(name => name.endsWith(".tar.zst"));
@@ -305,7 +305,7 @@ jobs:
           await write(join(process.env.inspectionDirectory, "app.tar"), Bun.zstdDecompressSync(await file(join(directory, archives[0])).arrayBuffer()));
           '
           tar -xf "$inspectionDirectory/app.tar" -C "$inspectionDirectory"
-          app="$inspectionDirectory/toonflow.app"
+          app="$inspectionDirectory/dramaflow.app"
           test -s "$app/Contents/Resources/AppIcon.icns"
           test -s "$app/Contents/Resources/app/bun/index.js"
           test -x "$app/Contents/MacOS/bun"
@@ -317,8 +317,8 @@ jobs:
             verifyMacArtifact "$dmg"
             hdiutil attach "$dmg" -readonly -nobrowse -mountpoint "$mountDirectory"
             trap 'hdiutil detach "$mountDirectory"' EXIT
-            test -x "$mountDirectory/toonflow.app/Contents/MacOS/launcher"
-            verifyMacArtifact "$mountDirectory/toonflow.app"
+            test -x "$mountDirectory/dramaflow.app/Contents/MacOS/launcher"
+            verifyMacArtifact "$mountDirectory/dramaflow.app"
             hdiutil detach "$mountDirectory"
             trap - EXIT
           done
@@ -330,18 +330,18 @@ jobs:
           debugSuffix: ${{ !inputs.androidRelease && '-debug' || '' }}
         run: |
           bun -e '
-          import { copyFile, mkdir } from "@toonflow/file";
+          import { copyFile, mkdir } from "@dramaflow/file";
           import { join } from "node:path";
           const directory = process.env.releaseFolder;
-          const apkName = `toonflow-${process.env.appVersion}-android-arm64${process.env.debugSuffix}.apk`;
+          const apkName = `dramaflow-${process.env.appVersion}-android-arm64${process.env.debugSuffix}.apk`;
           await mkdir(directory, { recursive: true });
-          await copyFile("build/mobile/toonflowMobile.apk", join(directory, apkName));
+          await copyFile("build/mobile/dramaflowMobile.apk", join(directory, apkName));
           '
       - name: 上传构建产物
         id: artifact
         uses: actions/upload-artifact@v7
         with:
-          name: toonflow-${{ needs.prepare.outputs.version }}-${{ matrix.target }}
+          name: dramaflow-${{ needs.prepare.outputs.version }}-${{ matrix.target }}
           path: ${{ matrix.releaseFolder }}/${{ needs.prepare.outputs.version }}/
           if-no-files-found: error
           compression-level: 0
@@ -351,4 +351,4 @@ jobs:
           artifactUrl: ${{ steps.artifact.outputs.artifact-url }}
           artifactTarget: ${{ matrix.target }}
         run: |
-          printf '[下载 Toonflow %s · %s](%s)\n' "$appVersion" "$artifactTarget" "$artifactUrl" >> "$GITHUB_STEP_SUMMARY"
+          printf '[下载 Dramaflow %s · %s](%s)\n' "$appVersion" "$artifactTarget" "$artifactUrl" >> "$GITHUB_STEP_SUMMARY"

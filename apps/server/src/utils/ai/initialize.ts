@@ -1,5 +1,5 @@
-import tfRouter from "@toonflow/providers/language/tfRouter";
-import tfRouterMedia from "@toonflow/providers/media/tfRouter";
+import tfRouter from "@dramaflow/providers/language/tfRouter";
+import tfRouterMedia from "@dramaflow/providers/media/tfRouter";
 import conf from "@/utils/conf";
 import { fetchProviderModels } from "@/utils/ai/models";
 import { getMediaProviderApiKey, refreshMediaProviderModels } from "@/utils/media/provider";

@@ -46,14 +46,14 @@
       </div>
 
       <footer class="pageFooter">
-        <p>© {{ new Date().getFullYear() }} Toonflow · 保留所有权利。</p>
+        <p>© {{ new Date().getFullYear() }} Dramaflow · 保留所有权利。</p>
       </footer>
     </section>
     <div class="artPanel" aria-hidden="true">
       <bg class="artBg" />
       <div class="artBrand">
         <span class="artLogo" v-html="logoSvg" />
-        <span class="artName">Toonflow</span>
+        <span class="artName">Dramaflow</span>
       </div>
     </div>
     <mobileConnect v-model="mobileConnectVisible" />
@@ -66,14 +66,13 @@ import { defineAsyncComponent, onMounted, onBeforeUnmount, ref } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { IconArrowLeft, IconQrcode, IconDeviceDesktop } from "@tabler/icons-vue";
-import tfRouter from "@toonflow/providers/language/tfRouter";
-import tfRouterSource from "@toonflow/providers/media/tfRouter?raw";
-import { invalidateNodeModels } from "@toonflow/nodes-scaffold/nodeAi";
+import tfRouter from "@dramaflow/providers/language/tfRouter";
+import tfRouterSource from "@dramaflow/providers/media/tfRouter?raw";
+import { invalidateNodeModels } from "@dramaflow/nodes-scaffold/nodeAi";
 import { customProviders, saveSettings } from "@/stores/settings";
 import type { MediaProvider } from "@/components/settings/panels/mediaModel/types";
 import { useHelloStore } from "@/stores/hello";
-import anonymousData from "@/lib/anonymousData";
-import logoSvg from "@toonflow/assets/logo.svg?raw";
+import logoSvg from "@dramaflow/assets/logo.svg?raw";
 import bg from "./bg.vue";
 import languageSelect from "@/components/languageSelect.vue";
 import { deviceHubEnabled, mobileConnection, mobileConnectionLabel } from "@/lib/mobile";
@@ -107,7 +106,6 @@ async function completeSetup() {
   saving.value = true;
   try {
     await hello.complete();
-    anonymousData.track(view.value === "custom" ? "onboarding.complete" : "onboarding.skip");
     await router.replace("/home");
   } catch {
     ElMessage.error("保存引导状态失败，请重试");
@@ -184,7 +182,6 @@ async function configureProviders() {
     invalidateNodeModels("media");
     if (request.signal.aborted) return;
     await hello.complete();
-    anonymousData.track("onboarding.complete");
     loginKey.value = "";
     ElMessage.success("TF-Router API Key 已配置完成");
     await router.replace("/home");

@@ -2,7 +2,7 @@ import { inject, ref, watch, type Ref } from "vue";
 import { useNode, useNodeId } from "@vue-flow/core";
 import type { NodeDocumentContext } from "./nodeDocument";
 
-const previewObserverKey = Symbol.for("toonflow.nodePreviewObserver");
+const previewObserverKey = Symbol.for("dramaflow.nodePreviewObserver");
 type PreviewObserver = { observer: IntersectionObserver; targets: Map<Element, Set<Ref<boolean>>> };
 
 export function useNodePreviewReady() {

@@ -1,4 +1,4 @@
-import { lstat } from "@toonflow/file";
+import { lstat } from "@dramaflow/file";
 import { resolve } from "node:path";
 import { Router } from "express";
 import { z } from "zod";
@@ -25,7 +25,7 @@ export default Router().get("/", validateFields({
   if (!metadata.components?.length || !client || revision !== version) {
     return res.status(404).json(error("工具界面不存在或版本已更新", null, 404));
   }
-  const styleId = JSON.stringify(`toonflowToolStyle:${name}`);
+  const styleId = JSON.stringify(`dramaflowToolStyle:${name}`);
   const style = `\n;(() => { const id = ${styleId}; let style = document.getElementById(id); if (!style) { style = document.createElement("style"); style.id = id; document.head.append(style); } style.textContent = ${JSON.stringify(client.css)}; })();\n`;
   res.set("Cache-Control", "no-cache").type("application/javascript").send(client.code + style);
 });

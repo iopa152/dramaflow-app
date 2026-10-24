@@ -9,7 +9,7 @@
 
 拉片节点只保留视频输入端口，没有右侧输出端口。生成的独立图片、视频、音频节点可继续连接其他流程，素材分组按种类和镜头顺序排列。
 
-界面复用 Toonflow 的节点框架、视频播放器、提示词输入和按供应商分组的语言模型选择，沿用软件主题与选中后展开的底部操作卡片。“查看结果”仅放在上槽，报告沿用宿主素材预览的左侧镜头目录、右侧画面与说明布局，可切换关键帧和视频片段；仅加载当前选中的素材，关闭或切换时停止播放并释放文件引用。整段分析仅在有结果时显示，以标题和段落排版。点击视频工具栏中的“逐帧拉片”只创建并连接节点，不自动处理视频或调用模型。
+界面复用 Dramaflow 的节点框架、视频播放器、提示词输入和按供应商分组的语言模型选择，沿用软件主题与选中后展开的底部操作卡片。“查看结果”仅放在上槽，报告沿用宿主素材预览的左侧镜头目录、右侧画面与说明布局，可切换关键帧和视频片段；仅加载当前选中的素材，关闭或切换时停止播放并释放文件引用。整段分析仅在有结果时显示，以标题和段落排版。点击视频工具栏中的“逐帧拉片”只创建并连接节点，不自动处理视频或调用模型。
 
 ## 本地检测
 
@@ -45,11 +45,11 @@
 
 ```powershell
 bun install
-bun run --filter '@toonflow/node-frame-analysis' typecheck
-bun run --filter '@toonflow/node-frame-analysis' build
+bun run --filter '@dramaflow/node-frame-analysis' typecheck
+bun run --filter '@dramaflow/node-frame-analysis' build
 ```
 
-产物为 `build/nodes/frameAnalysisNode.umd.js`；根目录 `build:nodes` 会包含本节点。开发时使用 `bun run --filter '@toonflow/node-frame-analysis' build --mode development` 同步到 `data/nodes`。视频与视频生成节点的入口分别随对应节点包构建。
+产物为 `build/nodes/frameAnalysisNode.umd.js`；根目录 `build:nodes` 会包含本节点。开发时使用 `bun run --filter '@dramaflow/node-frame-analysis' build --mode development` 同步到 `data/nodes`。视频与视频生成节点的入口分别随对应节点包构建。
 
 运行产物保存在工作区 `assets/节点ID/analysis…`。本地处理取消或失败时清理尚未提交的本次文件；成功产物保留供画布撤销和素材节点使用，重复拉片生成新分组。AI 临时参考图会在处理完成、取消或失败后清理。
 

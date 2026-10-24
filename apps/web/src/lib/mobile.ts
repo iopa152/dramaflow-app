@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import axios from "axios";
-import { t, translate } from "@toonflow/i18n/vue";
+import { t, translate } from "@dramaflow/i18n/vue";
 import { isMobile, isDesktop, isRemoteConnection } from "./platform";
 
 type MobileConnection = { mode: "local" | "remote"; name?: string; url?: string; online?: boolean | null; appVersion?: string; remoteAppVersion?: string };
@@ -43,7 +43,7 @@ export async function refreshMobileConnection() {
       if (data.mode !== "local" && data.mode !== "remote") throw new Error("设备连接状态无效，请重试");
       mobileConnection.value = data;
       if (!isMobile && data.mode === "local") {
-        const status = await fetch("/api/mobileLink/status", { headers: { "x-toonflow-mobile-link": "1" }, cache: "no-store", signal: request.signal });
+        const status = await fetch("/api/mobileLink/status", { headers: { "x-dramaflow-mobile-link": "1" }, cache: "no-store", signal: request.signal });
         if (status.ok) {
           const body = await status.json() as { code?: number; data?: { enabled?: boolean; hubEnabled?: boolean } };
           if (body.code !== 200) throw new Error("无法读取共享状态，请重试");
@@ -68,8 +68,8 @@ export async function changeDeviceConnection(action: "connect" | "disconnect", b
     await refreshMobileConnection();
     if (deviceHubEnabled.value) throw new Error("请先在设置 → 设备互联中关闭“允许其他设备连接”");
   }
-  if (!deviceConnectionSupported.value) throw new Error("请使用 Toonflow 桌面端或移动客户端连接其他设备");
-  const { data } = await axios.post<{ restart: "mobile" | "host"; message?: string }>(`/api/connection/${action}`, body ?? {}, { headers: { "x-toonflow-workspace": "1" } });
+  if (!deviceConnectionSupported.value) throw new Error("请使用 Dramaflow 桌面端或移动客户端连接其他设备");
+  const { data } = await axios.post<{ restart: "mobile" | "host"; message?: string }>(`/api/connection/${action}`, body ?? {}, { headers: { "x-dramaflow-workspace": "1" } });
   if (data?.restart !== "mobile" && data?.restart !== "host") throw new Error(data?.message || "设备未返回有效的切换方式，请重试");
   if (data.restart === "mobile") window.location.href = "toonflow://restart";
 }

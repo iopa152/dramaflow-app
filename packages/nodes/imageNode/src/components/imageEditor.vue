@@ -57,8 +57,8 @@ import { computed, inject, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import { useNode, useVueFlow } from "@vue-flow/core";
 import { ElButton, ElMessage } from "element-plus";
 import { IconBrush, IconEraser, IconSquare, IconCircle, IconTypography, IconArrowBackUp, IconArrowForwardUp, IconTrash, IconCheck, IconX } from "@tabler/icons-vue";
-import { uploadNodeFile, useNodeFiles } from "@toonflow/nodes-scaffold/runtime";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
+import { uploadNodeFile, useNodeFiles } from "@dramaflow/nodes-scaffold/runtime";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
 import { useImageVariationNode } from "../useImageVariationNode";
 import { buildInpaintPrompt, type InpaintDraftInput } from "../imageInpaint";
 

@@ -1,5 +1,5 @@
 import { $ } from "bun";
-import { cpSync, existsSync, mkdirSync, realpathSync, rmSync } from "@toonflow/file";
+import { cpSync, existsSync, mkdirSync, realpathSync, rmSync } from "@dramaflow/file";
 import { dirname, resolve } from "node:path";
 import copyDocumentPackages from "../../server/scripts/copyDocumentPackages";
 import prepareMacDmg from "./macDmg";
@@ -19,7 +19,7 @@ if (mode === "typecheck") {
 if (!(isMac && ["x64", "arm64"].includes(process.arch)) && !(process.platform === "win32" && process.arch === "x64")) {
   throw new Error("桌面构建需要 Windows x64 或 macOS x64/arm64 环境。");
 }
-if (mode === "dev") process.env.TOONFLOW_DATA_DIR = resolve(projectDir, "data");
+if (mode === "dev") process.env.DRAMAFLOW_DATA_DIR = resolve(projectDir, "data");
 if (isMac) {
   const startupTarget = isIntelMac ? "macX64" : "macArm64";
   for (const name of ["libthorvg.dylib", "nativeSplash.dylib"]) {
@@ -53,8 +53,8 @@ for (const script of mode === "dev" ? ["dev:plugins"] : [
 ]) {
   await $`${process.execPath} run ${script}`.cwd(projectDir);
 }
-await $`${process.execPath} run --filter @toonflow/web build`.cwd(projectDir);
-await $`${process.execPath} run --filter @toonflow/mcp build`.cwd(projectDir);
+await $`${process.execPath} run --filter @dramaflow/web build`.cwd(projectDir);
+await $`${process.execPath} run --filter @dramaflow/mcp build`.cwd(projectDir);
 const agentDirectory = dirname(realpathSync(Bun.resolveSync("@earendil-works/pi-coding-agent", resolve(projectDir, "apps/server"))));
 const photonDirectory = dirname(Bun.resolveSync("@silvia-odwyer/photon-node", agentDirectory));
 const photonOutput = resolve(projectDir, "build/desktop/photon");

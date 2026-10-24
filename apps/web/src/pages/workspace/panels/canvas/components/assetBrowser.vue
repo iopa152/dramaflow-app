@@ -91,7 +91,7 @@
 import { computed, nextTick, ref, watch } from "vue";
 import type { InputInstance } from "element-plus";
 import { IconChevronRight, IconDots, IconFile, IconFolder, IconFolderOpen, IconFolderPlus, IconLayoutGrid, IconMusic, IconPhoto, IconPlayerPlay, IconSearch, IconVideo } from "@tabler/icons-vue";
-import { mentionAssetType } from "@toonflow/server/agent/mentionSources";
+import { mentionAssetType } from "@dramaflow/server/agent/mentionSources";
 import mentionThumbnail from "@/components/agent/mentionThumbnail.vue";
 
 type AssetEntry = { name: string; path: string; type: "file" | "directory"; children?: AssetEntry[]; draft?: boolean };

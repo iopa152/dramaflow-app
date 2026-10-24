@@ -2,7 +2,7 @@ import { Updater, Utils } from "electrobun/bun";
 import { execFile, spawn } from "node:child_process";
 import { basename, dirname, join, resolve } from "node:path";
 import { promisify } from "node:util";
-import { lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeAtomicSync } from "@toonflow/file";
+import { lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeAtomicSync } from "@dramaflow/file";
 
 const execFileAsync = promisify(execFile);
 type preparedUpdate = { version: string; hash: string; archivePath: string };
@@ -66,7 +66,7 @@ rollback() {
     fi
   fi
   trap - HUP INT TERM
-  unset TOONFLOW_INTEL_UPDATE_TRANSACTION TOONFLOW_INTEL_UPDATE_LAUNCHER
+  unset DRAMAFLOW_INTEL_UPDATE_TRANSACTION DRAMAFLOW_INTEL_UPDATE_LAUNCHER
   cd "$bundlePath/Contents/MacOS" || exit 1
   exec ./launcher
 }
@@ -80,8 +80,8 @@ set -m || exit 1
   done
   read launchOwner < "$transactionDirectory/launch" || exit 1
   case "$launchOwner" in ''|*[!0-9]*) exit 1;; esac
-  export TOONFLOW_INTEL_UPDATE_TRANSACTION="$transactionId"
-  export TOONFLOW_INTEL_UPDATE_LAUNCHER="$launchOwner"
+  export DRAMAFLOW_INTEL_UPDATE_TRANSACTION="$transactionId"
+  export DRAMAFLOW_INTEL_UPDATE_LAUNCHER="$launchOwner"
   cd "$bundlePath/Contents/MacOS" || exit 1
   exec ./launcher
 ) </dev/null >/dev/null 2>&1 &
@@ -136,13 +136,13 @@ function readSmallFile(path: string) {
 }
 
 async function readTransaction() {
-  const source = readSmallFile(join(await Updater.appDataFolder(), "toonflowUpdate.json"));
+  const source = readSmallFile(join(await Updater.appDataFolder(), "dramaflowUpdate.json"));
   if (!source) return;
   const record = JSON.parse(source);
   const bundlePath = realpathSync(resolve(dirname(process.execPath), "../.."));
   if (!/^[a-f0-9]{32}$/.test(record.transactionId) || !/^\d+\.\d+\.\d+$/.test(record.version) || !/^[a-zA-Z0-9]{1,64}$/.test(record.hash)
     || record.bundlePath !== bundlePath || typeof record.transactionDirectory !== "string"
-    || dirname(record.transactionDirectory) !== dirname(bundlePath) || !/^\.toonflowUpdate-[a-zA-Z0-9]+$/.test(basename(record.transactionDirectory))) return;
+    || dirname(record.transactionDirectory) !== dirname(bundlePath) || !/^\.dramaflowUpdate-[a-zA-Z0-9]+$/.test(basename(record.transactionDirectory))) return;
   const stat = lstatSync(record.transactionDirectory, { throwIfNoEntry: false });
   if (!stat?.isDirectory() || realpathSync(record.transactionDirectory) !== record.transactionDirectory) return;
   return record as { transactionId: string; identifier: string; channel: string; version: string; hash: string; transactionDirectory: string };
@@ -179,18 +179,18 @@ const updater = {
     try {
       const record = await readTransaction();
       const failure = record && readSmallFile(join(record.transactionDirectory, "failure")).trim();
-      const currentTransaction = record?.transactionId === process.env.TOONFLOW_INTEL_UPDATE_TRANSACTION;
+      const currentTransaction = record?.transactionId === process.env.DRAMAFLOW_INTEL_UPDATE_TRANSACTION;
       const recovered = record && (local.version === record.version && local.hash === record.hash || Bun.semver.order(local.version, record.version) > 0);
       installError = record?.identifier === local.identifier && record.channel === local.channel && failure && (currentTransaction || !recovered) ? failure : "";
     } catch (error) { console.warn("读取更新监督结果失败：", error); }
     return local;
   },
   async confirmStartup(failed = false) {
-    const transactionId = process.env.TOONFLOW_INTEL_UPDATE_TRANSACTION;
+    const transactionId = process.env.DRAMAFLOW_INTEL_UPDATE_TRANSACTION;
     if (!transactionId || startupConfirmed) return;
     const local = await startupInfo;
     const record = await readTransaction();
-    if (record?.transactionId !== transactionId || String(process.ppid) !== process.env.TOONFLOW_INTEL_UPDATE_LAUNCHER) {
+    if (record?.transactionId !== transactionId || String(process.ppid) !== process.env.DRAMAFLOW_INTEL_UPDATE_LAUNCHER) {
       throw new Error("更新启动事务不匹配，无法确认启动成功。");
     }
     const matches = record.identifier === local.identifier && record.channel === local.channel && record.version === local.version && record.hash === local.hash;
@@ -247,7 +247,7 @@ const updater = {
       const local = await Updater.getLocalInfo();
       verifyIdentity(JSON.parse(readFileSync(join(bundlePath, "Contents/Resources/version.json"), "utf8")), local, { ...target, version: local.version, hash: local.hash });
       // ACT: 暂存和备份都在安装卷，缓存与应用跨卷时也只在同卷内 rename。
-      transactionDirectory = mkdtempSync(join(dirname(bundlePath), ".toonflowUpdate-"));
+      transactionDirectory = mkdtempSync(join(dirname(bundlePath), ".dramaflowUpdate-"));
       const stagingDirectory = join(transactionDirectory, "staged");
       mkdirSync(stagingDirectory);
       const stagedPath = join(stagingDirectory, `${local.name}.app`);
@@ -265,12 +265,12 @@ const updater = {
       const transactionId = crypto.randomUUID().replaceAll("-", "");
       const quitDeadline = Date.now() + 60000;
       const quitMonotonicDeadline = performance.now() + 60000;
-      const recordPath = join(await Updater.appDataFolder(), "toonflowUpdate.json");
+      const recordPath = join(await Updater.appDataFolder(), "dramaflowUpdate.json");
       writeAtomicSync(recordPath, JSON.stringify({ transactionId, identifier: local.identifier, channel: local.channel, version: target.version, hash: target.hash, bundlePath, transactionDirectory }), { mode: 0o600 });
       const { stdout } = await execFileAsync("/bin/ps", ["-p", String(process.ppid), "-o", "comm="], { timeout: 5000 });
       const oldLauncherPid = stdout.trim() === join(bundlePath, "Contents/MacOS/launcher") ? process.ppid : 0;
       // 所有路径经独立参数传递；helper 在旧进程退出前只准备监督组，不移动应用。
-      restart = spawn("/bin/sh", ["-c", supervisorScript, "toonflowUpdate", transactionDirectory, bundlePath, stagedPath,
+      restart = spawn("/bin/sh", ["-c", supervisorScript, "dramaflowUpdate", transactionDirectory, bundlePath, stagedPath,
         String(process.pid), String(oldLauncherPid), transactionId, target.version, target.hash, String(quitDeadline)], {
         cwd: dirname(bundlePath), detached: true, stdio: "ignore",
       });

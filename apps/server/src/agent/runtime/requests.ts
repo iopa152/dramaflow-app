@@ -68,12 +68,12 @@ export function configureAgentRequests(session: AgentSession, limits?: { maxRequ
         const messageEntries = new Map(branch.flatMap(entry => entry.type === "message" ? [[contentHash(entry.message), entry.id] as const] : []));
         for (const entry of branch) {
           if (entry.type !== "custom") continue;
-          if (entry.customType === "toonflowImageAttachment") {
-            const reference = getAgentImageReference({ type: "text", text: "", toonflowImage: entry.data });
+          if (entry.customType === "dramaflowImageAttachment") {
+            const reference = getAgentImageReference({ type: "text", text: "", dramaflowImage: entry.data });
             if (!reference) throw new Error("历史图片附件记录无效");
             references.set(reference.id, reference);
           }
-          if (entry.customType === "toonflowImageOffload") {
+          if (entry.customType === "dramaflowImageOffload") {
             const data = entry.data as { images?: unknown; thinking?: unknown } | null;
             if (!data || !Array.isArray(data.images) || !data.images.every(id => typeof id === "string")
               || !Array.isArray(data.thinking) || !data.thinking.every(id => typeof id === "string")) throw new Error("历史图片卸载记录无效");
@@ -92,7 +92,7 @@ export function configureAgentRequests(session: AgentSession, limits?: { maxRequ
             .map(contentHash).filter(key => !invalidThinking.has(key));
           if (!images.length && !thinking.length) return false;
           options?.signal?.throwIfAborted();
-          history.appendCustomEntry("toonflowImageOffload", { images, thinking });
+          history.appendCustomEntry("dramaflowImageOffload", { images, thinking });
           for (const id of images) offloaded.add(id);
           for (const key of thinking) invalidThinking.add(key);
           return true;
@@ -112,15 +112,15 @@ export function configureAgentRequests(session: AgentSession, limits?: { maxRequ
             const content: (TextContent | ImageContent)[] = [];
             for (const [index, part] of message.content.entries()) {
               let reference = getAgentImageReference(part);
-              if ("toonflowImage" in part && !reference) throw new Error("图片附件引用无效");
+              if ("dramaflowImage" in part && !reference) throw new Error("图片附件引用无效");
               if (part.type === "image") {
                 const entryId = messageEntries.get(contentHash(message)) ?? contentHash(message);
                 const id = `legacy:${entryId}:${index}`;
                 reference = references.get(id);
                 if (!reference) {
                   const saved = await saveAgentImage(cwd, part, id, options?.signal);
-                  reference = saved.toonflowImage;
-                  history.appendCustomEntry("toonflowImageAttachment", reference);
+                  reference = saved.dramaflowImage;
+                  history.appendCustomEntry("dramaflowImageAttachment", reference);
                   references.set(id, reference);
                   // 附件路径文本也改变历史前缀；首次迁移时退出旧 thinking 链，后续新 thinking 正常保留。
                   if (context.messages.slice(messageIndex + 1).some(item => item.role === "assistant")) recordOffload([]);
@@ -195,10 +195,10 @@ export function configureAgentRequests(session: AgentSession, limits?: { maxRequ
                   if (!image.id) imageCursors.set(imageKey, cursor + 1);
                   const fromContext = !image.id && Boolean(reference);
                   if (!reference) {
-                    if (!image.id) throw new Error("onPayload 注入的图片必须提供稳定的 toonflowImageId，每次重新观察图片时使用新 ID");
+                    if (!image.id) throw new Error("onPayload 注入的图片必须提供稳定的 dramaflowImageId，每次重新观察图片时使用新 ID");
                     const saved = await saveAgentImage(cwd, { type: "image", data: image.data, mimeType: image.mimeType }, image.id, options?.signal);
-                    reference = saved.toonflowImage;
-                    history.appendCustomEntry("toonflowImageAttachment", reference);
+                    reference = saved.dramaflowImage;
+                    history.appendCustomEntry("dramaflowImageAttachment", reference);
                     references.set(image.id, reference);
                     const fixed = await readImage(reference);
                     if ((fixed.data !== image.data || fixed.mimeType !== image.mimeType || reference.note) && hasLaterAssistant(image.id)) {

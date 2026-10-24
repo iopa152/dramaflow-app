@@ -3,12 +3,12 @@ import { createApp } from "./app";
 import config from "../../../electrobun.config";
 
 const startTime = Date.now();
-const realPort = Number(process.env.TOONFLOW_SERVER_PORT || 3000);
-if (!Number.isInteger(realPort) || realPort < 1 || realPort > 65535) throw new Error("TOONFLOW_SERVER_PORT 必须是 1–65535 之间的整数");
+const realPort = Number(process.env.DRAMAFLOW_SERVER_PORT || 3000);
+if (!Number.isInteger(realPort) || realPort < 1 || realPort > 65535) throw new Error("DRAMAFLOW_SERVER_PORT 必须是 1–65535 之间的整数");
 // 源码位于 apps/server/src，生产构建位于 build/server，均从文件位置定位根目录。
 const fromSource = import.meta.path.endsWith(".ts");
 const appDirectory = resolve(import.meta.dirname, fromSource ? "../../.." : "../..");
-const dataDirectory = process.env.TOONFLOW_DATA_DIR ?? resolve(appDirectory, "data");
+const dataDirectory = process.env.DRAMAFLOW_DATA_DIR ?? resolve(appDirectory, "data");
 const app = await createApp({
   webRoot: resolve(appDirectory, "build/web"),
   appVersion: config.app.version,

@@ -4,10 +4,10 @@ import { hostname } from "node:os";
 import { posix } from "node:path";
 import type { AddressInfo, Socket } from "node:net";
 import type { Server } from "node:http";
-import { createRemoteConnection } from "@toonflow/server/remoteConnection";
-import { getMobileLinkConfig, getMobileLinkStatus, startMobileLinkRuntime, stopMobileLinkRuntime, suspendMobileLinkRuntime } from "@toonflow/server/mobileLink";
-import { initializeMcpRuntime, stopMcpRuntime } from "@toonflow/server/mcp";
-import { languageRequest, translateError, translateMessage } from "@toonflow/server/i18n";
+import { createRemoteConnection } from "@dramaflow/server/remoteConnection";
+import { getMobileLinkConfig, getMobileLinkStatus, startMobileLinkRuntime, stopMobileLinkRuntime, suspendMobileLinkRuntime } from "@dramaflow/server/mobileLink";
+import { initializeMcpRuntime, stopMcpRuntime } from "@dramaflow/server/mcp";
+import { languageRequest, translateError, translateMessage } from "@dramaflow/server/i18n";
 
 export default async function createDesktopConnection(app: express.Express, directory: string, mcpEntry: string,
   onNavigate: (port: number, remote: boolean) => void, onError: (error: unknown) => void) {
@@ -21,7 +21,7 @@ export default async function createDesktopConnection(app: express.Express, dire
 
   async function start() {
     const connection = await createRemoteConnection(directory, {
-      deviceName: `Toonflow ${hostname()}`,
+      deviceName: `Dramaflow ${hostname()}`,
       appVersion: app.locals.appVersion,
       validateTarget(source) {
         const target = new URL(source);

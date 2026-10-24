@@ -4,7 +4,7 @@ import { isMobile, isDesktop } from "./platform";
 
 declare global {
   interface WindowEventMap {
-    "toonflow:mobile-save": CustomEvent<{ requestId: string; saved: boolean; error?: string }>;
+    "dramaflow:mobile-save": CustomEvent<{ requestId: string; saved: boolean; error?: string }>;
   }
 }
 
@@ -21,15 +21,15 @@ export default async function saveFile(content: Blob | (() => Promise<Blob>), fi
     const target = new URL("toonflow://save");
     target.search = new URLSearchParams({ requestId, url: new URL(data.url, window.location.origin).href, fileName }).toString();
     return new Promise<boolean>((resolve, reject) => {
-      const handleSaved = (event: WindowEventMap["toonflow:mobile-save"]) => {
+      const handleSaved = (event: WindowEventMap["dramaflow:mobile-save"]) => {
         const detail = event.detail;
         if (detail?.requestId !== requestId) return;
-        window.removeEventListener("toonflow:mobile-save", handleSaved);
+        window.removeEventListener("dramaflow:mobile-save", handleSaved);
         if (detail.error) reject(new Error(detail.error));
         else if (typeof detail.saved !== "boolean") reject(new Error("保存文件返回了无效结果"));
         else resolve(detail.saved);
       };
-      window.addEventListener("toonflow:mobile-save", handleSaved);
+      window.addEventListener("dramaflow:mobile-save", handleSaved);
       window.location.href = target.href;
     });
   }
@@ -37,7 +37,7 @@ export default async function saveFile(content: Blob | (() => Promise<Blob>), fi
     const { data: selectData } = await axios.post<{ code: number; data: { token: string | null }; message?: string }>(
       "/api/desktop/selectSaveFile",
       { fileName },
-      { headers: { "x-toonflow-desktop": "1" } },
+      { headers: { "x-dramaflow-desktop": "1" } },
     );
     if (selectData.code !== 200) throw new Error(selectData.message || "选择保存位置失败");
     const token = selectData.data?.token;
@@ -45,7 +45,7 @@ export default async function saveFile(content: Blob | (() => Promise<Blob>), fi
     const blob = typeof content === "function" ? await content() : content;
     const { data } = await axios.post<{ code: number; data: { saved: boolean }; message?: string }>("/api/desktop/saveFile", blob, {
       params: { token },
-      headers: { "Content-Type": "application/octet-stream", "x-toonflow-desktop": "1" },
+      headers: { "Content-Type": "application/octet-stream", "x-dramaflow-desktop": "1" },
     });
     if (data.code !== 200 || typeof data.data?.saved !== "boolean") throw new Error(data.message || "保存文件失败");
     return data.data.saved;

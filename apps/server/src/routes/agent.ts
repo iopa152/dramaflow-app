@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import type { CanvasInfo } from "@toonflow/tools-scaffold/runtime";
+import type { CanvasInfo } from "@dramaflow/tools-scaffold/runtime";
 import type { AgentEvent } from "@/agent/runtime/types";
 import { validateFields } from "@/lib/middleware";
 import u from "@/utils";

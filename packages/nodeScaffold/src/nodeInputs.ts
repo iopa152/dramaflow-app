@@ -51,7 +51,7 @@ export function getTargetValues(targetId: string, targetHandleId: string, nodes:
   });
 }
 
-const targetEdgesKey = Symbol.for("toonflow.targetEdges");
+const targetEdgesKey = Symbol.for("dramaflow.targetEdges");
 
 export function useNodeInputs(canvas = useVueFlow()) {
   const flow = canvas as typeof canvas & { [targetEdgesKey]?: ComputedRef<Map<string, Connection[]>> };

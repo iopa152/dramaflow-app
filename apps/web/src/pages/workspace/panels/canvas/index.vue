@@ -154,7 +154,7 @@ import {
 } from "@vue-flow/core";
 import { Background } from "@vue-flow/background";
 import { useCanvasTools } from "./useCanvasTools";
-import type { CanvasContext } from "@toonflow/tool-canvas/runtime";
+import type { CanvasContext } from "@dramaflow/tool-canvas/runtime";
 import { loadNodeComponent } from "./loadNodeComponent";
 import { useCanvasHistory } from "./useCanvasHistory";
 import { copyNodeToClipboard, copyNodesToClipboard, nodeClipboardCommand, readClipboardNodes } from "./nodeClipboard";
@@ -169,16 +169,15 @@ import groupNode from "./components/groupNode.vue";
 import selectionToolbar from "./components/selectionToolbar.vue";
 import nodeSearch from "./components/nodeSearch.vue";
 import { finishGroupDrag, getSelectionTree } from "./selectionNodes";
-import type { NodeOutput } from "@toonflow/nodes-scaffold/values";
-import type { NodeConnectionFeedback, NodeHandle } from "@toonflow/nodes-scaffold/connection";
-import { useNodeEvent } from "@toonflow/nodes-scaffold/nodeEvent";
-import type { NodeDocumentContext, NodeDocumentState } from "@toonflow/nodes-scaffold/nodeDocument";
-import { useNodeToolsContext } from "@toonflow/nodes-scaffold/nodeTools";
+import type { NodeOutput } from "@dramaflow/nodes-scaffold/values";
+import type { NodeConnectionFeedback, NodeHandle } from "@dramaflow/nodes-scaffold/connection";
+import { useNodeEvent } from "@dramaflow/nodes-scaffold/nodeEvent";
+import type { NodeDocumentContext, NodeDocumentState } from "@dramaflow/nodes-scaffold/nodeDocument";
+import { useNodeToolsContext } from "@dramaflow/nodes-scaffold/nodeTools";
 import { useWorkspaceStore } from "@/stores/workspace";
 import { generalSettings } from "@/stores/settings";
 import { getShortcutBindings, shortcutLabel, shortcutMatches, shortcutPressed } from "@/lib/canvasShortcuts";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
-import anonymousData from "@/lib/anonymousData";
 import { createClipboardMediaFile, dropCanvasFiles, getClipboardMediaFiles, importCanvasFiles, isCanvasFileDrag } from "./canvasDrop";
 import "@vue-flow/core/dist/style.css";
 import "@vue-flow/core/dist/theme-default.css";
@@ -238,9 +237,6 @@ const canvasSaveError = ref("");
 const documentObservers = new Set<() => void>();
 onScopeDispose(() => { for (const release of documentObservers) release(); });
 provide("nodeDocument", nodeDocument);
-onScopeDispose(anonymousData.observeCanvas(() => props.active && canvasId.value
-  ? { nodes: flow.nodes.value, edgeCount: flow.edges.value.length }
-  : undefined));
 let dragCopy: ReturnType<InstanceType<typeof selectionToolbar>["startDragCopy"]>;
 flow.onNodeDragStart(({ event, nodes }) => {
   dragCopy = undefined;
@@ -397,9 +393,9 @@ function documentHandles(node: Node<DocumentNodeData>) {
 async function readDocumentCanvas(directory: string, canvasPath: string, nodeId: string) {
   checkDocumentDirectory(directory);
   const files = useWorkspaceFiles(directory);
-  const canvas = await files.readJson<{ toonflowCanvas?: boolean; nodes?: Node<DocumentNodeData>[] }>(canvasPath);
+  const canvas = await files.readJson<{ dramaflowCanvas?: boolean; toonflowCanvas?: boolean; nodes?: Node<DocumentNodeData>[] }>(canvasPath);
   checkDocumentDirectory(directory);
-  if (canvas?.toonflowCanvas !== true || !Array.isArray(canvas.nodes)) throw new Error("文件不是有效画布");
+  if ((canvas?.dramaflowCanvas ?? canvas?.toonflowCanvas) !== true || !Array.isArray(canvas.nodes)) throw new Error("文件不是有效画布");
   const node = canvas.nodes.find((item) => item && item.id === nodeId);
   if (!node) throw new Error("节点已删除，请刷新文件树");
   if (node.data !== undefined && (!node.data || typeof node.data !== "object" || Array.isArray(node.data))) throw new Error("节点数据无效");
@@ -565,7 +561,7 @@ const saveCanvas = debounce((directory: string, fileName: string) => {
   // ACT: 同页保存按顺序完成，防止慢请求覆盖后续修改；不处理多个客户端的并发编辑。
   saving = saving.then(async () => {
     try {
-      await useWorkspaceFiles(directory).writeJson(fileName, { toonflowCanvas: true, nodes: flow.nodes, edges: flow.edges, viewport: flow.viewport });
+      await useWorkspaceFiles(directory).writeJson(fileName, { dramaflowCanvas: true, nodes: flow.nodes, edges: flow.edges, viewport: flow.viewport });
       saveError = undefined;
       canvasSaveError.value = "";
       if (revision === saveRevision) canvasDirty.value = false;
@@ -1030,7 +1026,7 @@ function resetCanvasKeys() {
 
 watch([() => props.active, () => props.settingsVisible, () => generalSettings.value.canvasShortcuts], resetCanvasKeys, { deep: true, flush: "sync", immediate: true });
 
-function refreshInstalled(event: WindowEventMap["toonflow:plugin-installed"]) {
+function refreshInstalled(event: WindowEventMap["dramaflow:plugin-installed"]) {
   if (event.detail.type === "node") void loadRemoteNodes(event.detail.name);
 }
 
@@ -1041,8 +1037,8 @@ onMounted(() => {
   window.addEventListener("keydown", updateCanvasKeys, true);
   window.addEventListener("keyup", updateCanvasKeys, true);
   window.addEventListener("blur", resetCanvasKeys);
-  window.addEventListener("toonflow:plugin-installed", refreshInstalled);
-  window.addEventListener("toonflow:node-config-updated", refreshNodeConfig);
+  window.addEventListener("dramaflow:plugin-installed", refreshInstalled);
+  window.addEventListener("dramaflow:node-config-updated", refreshNodeConfig);
   document.addEventListener("paste", pasteNode);
   document.addEventListener("copy", copyNode);
   document.addEventListener("beforecopy", beforeClipboard);
@@ -1053,8 +1049,8 @@ onBeforeUnmount(() => {
   window.removeEventListener("keydown", updateCanvasKeys, true);
   window.removeEventListener("keyup", updateCanvasKeys, true);
   window.removeEventListener("blur", resetCanvasKeys);
-  window.removeEventListener("toonflow:plugin-installed", refreshInstalled);
-  window.removeEventListener("toonflow:node-config-updated", refreshNodeConfig);
+  window.removeEventListener("dramaflow:plugin-installed", refreshInstalled);
+  window.removeEventListener("dramaflow:node-config-updated", refreshNodeConfig);
   document.removeEventListener("paste", pasteNode);
   document.removeEventListener("copy", copyNode);
   document.removeEventListener("beforecopy", beforeClipboard);
@@ -1066,10 +1062,10 @@ onBeforeUnmount(() => {
 });
 
 const nodeWindow = window as typeof window & {
-  toonflowNodeHost?: { vue: typeof vueRuntime; vueFlow: typeof vueFlowRuntime; elementPlus: typeof elementPlusRuntime; three: typeof threeRuntime; ai: { runAgentLoop: typeof runAgentLoop; createAssistantMessageEventStream: typeof createAssistantMessageEventStream } };
-  toonflowNodes?: NodeTypesObject;
+  dramaflowNodeHost?: { vue: typeof vueRuntime; vueFlow: typeof vueFlowRuntime; elementPlus: typeof elementPlusRuntime; three: typeof threeRuntime; ai: { runAgentLoop: typeof runAgentLoop; createAssistantMessageEventStream: typeof createAssistantMessageEventStream } };
+  dramaflowNodes?: NodeTypesObject;
 };
-nodeWindow.toonflowNodeHost = { vue: vueRuntime, vueFlow: vueFlowRuntime, elementPlus: elementPlusRuntime, three: threeRuntime, ai: { runAgentLoop, createAssistantMessageEventStream } };
+nodeWindow.dramaflowNodeHost = { vue: vueRuntime, vueFlow: vueFlowRuntime, elementPlus: elementPlusRuntime, three: threeRuntime, ai: { runAgentLoop, createAssistantMessageEventStream } };
 provide("nodeConfig", (nodeType: string) => nodeConfigs.value[nodeType] ?? {});
 provide("workspaceFiles", () => {
   const directory = project.value?.directory;
@@ -1132,7 +1128,7 @@ async function loadRemoteNodes(reloadName?: string) {
   try {
     const { data } = await axios.get<{ code: number; data: { name: string; displayName: string; url: string; enabled?: boolean; config?: Record<string, unknown> }[] }>(
       "/api/nodes/get",
-      { headers: { "Cache-Control": "no-cache", "x-toonflow-workspace": "1" } }
+      { headers: { "Cache-Control": "no-cache", "x-dramaflow-workspace": "1" } }
     );
     if (requestId !== loadRequest) return;
     if (data.code !== 200 || !Array.isArray(data.data)) throw new Error("节点列表格式错误");

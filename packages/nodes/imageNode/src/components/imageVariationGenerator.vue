@@ -21,9 +21,9 @@ import { computed, onMounted, onScopeDispose, ref, watch } from "vue";
 import { useNode, useVueFlow } from "@vue-flow/core";
 import { ElButton, ElOption, ElOptionGroup, ElPopover, ElSelect } from "element-plus";
 import { IconSparkles } from "@tabler/icons-vue";
-import { useNodeAi, useNodeToolsContext, type NodeMediaModel, type NodeMediaValue } from "@toonflow/nodes-scaffold/runtime";
-import { groupNodeModels } from "@toonflow/node-shared/groupNodeModels";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
+import { useNodeAi, useNodeToolsContext, type NodeMediaModel, type NodeMediaValue } from "@dramaflow/nodes-scaffold/runtime";
+import { groupNodeModels } from "@dramaflow/node-shared/groupNodeModels";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
 import { useImageVariationNode } from "../useImageVariationNode";
 
 const props = defineProps<{

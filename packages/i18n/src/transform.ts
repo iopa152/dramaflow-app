@@ -54,7 +54,7 @@ function analyze(source: string, id: string) {
   const output = new MagicString(source);
   const messages = new Set<string>();
   const replacements: [number, number][] = [];
-  let translateName = "toonflowTranslate";
+  let translateName = "dramaflowTranslate";
   while (new RegExp(`\\b${translateName}\\b`).test(source)) translateName += "Text";
   const replace = (start: number, end: number, value: string) => {
     if (replacements.some(([left, right]) => start < right && end > left)) return;
@@ -275,13 +275,13 @@ function analyze(source: string, id: string) {
     if (descriptor.template && !descriptor.template.lang) visitTemplate(descriptor.template.content, descriptor.template.loc.start.offset);
     for (const script of [descriptor.script, descriptor.scriptSetup]) if (script && !script.src) visitScript(script.content, script.loc.start.offset);
     if (replacements.length) {
-      const importCode = `\nimport { translate as ${translateName} } from "@toonflow/i18n/vue";\n`;
+      const importCode = `\nimport { translate as ${translateName} } from "@dramaflow/i18n/vue";\n`;
       if (descriptor.scriptSetup) output.appendLeft(descriptor.scriptSetup.loc.start.offset, importCode);
       else output.prepend(`<script setup${descriptor.script?.lang ? ` lang="${descriptor.script.lang}"` : ""}>${importCode}</script>\n`);
     }
   } else {
     visitScript(source, 0);
-    if (replacements.length) output.prepend(`import { translate as ${translateName} } from "@toonflow/i18n/vue";\n`);
+    if (replacements.length) output.prepend(`import { translate as ${translateName} } from "@dramaflow/i18n/vue";\n`);
   }
   return { output, messages, changed: replacements.length > 0 };
 }

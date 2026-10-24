@@ -17,7 +17,7 @@ type NodeEventListeners = {
 };
 
 // 挂在共享画布实例上，让独立 UMD 共用注册表；不会进入画布 JSON。
-const nodeEventsKey = Symbol.for("toonflow.nodeEvents");
+const nodeEventsKey = Symbol.for("dramaflow.nodeEvents");
 
 export function useNodeEvent(nodeId = useNodeId(), canvas = useVueFlow()) {
   if (!nodeId) throw new Error("请在节点组件中使用 useNodeEvent()，或传入节点 ID");

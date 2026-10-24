@@ -1,6 +1,6 @@
 import { $ } from "bun";
-import { copyFileSync, existsSync, mkdirSync, readdirSync, realpathSync, rmSync } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, realpathSync, rmSync } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { dirname, join, resolve } from "node:path";
 import { parseArgs } from "node:util";
 import desktopConfig from "../../../electrobun.config";
@@ -94,7 +94,7 @@ if (isMac) {
   const installers = readdirSync(artifactDir).filter((name) => name.endsWith(".dmg"));
   if (installers.length !== 1) throw new Error("Mac 发布必须包含且仅包含一个 DMG 安装包。");
   names.push(installers[0]!);
-} else names.push(`toonflow-${version}-Setup.exe`);
+} else names.push(`dramaflow-${version}-Setup.exe`);
 if (previousHash) names.push(`${prefix}-${previousHash}.patch`);
 for (const name of names) {
   if (!existsSync(join(artifactDir, name))) throw new Error(`构建产物缺失，未创建发布快照：${name}`);

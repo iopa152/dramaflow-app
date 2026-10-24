@@ -1,12 +1,12 @@
 @echo off
 chcp 936 >nul
 setlocal enabledelayedexpansion
-title Toonflow 一键启动
+title Dramaflow 一键启动
 
 cd /d "%~dp0"
 
 echo ============================================================
-echo   Toonflow AI 短剧工厂 - 一键启动
+echo   Dramaflow AI 短剧工厂 - 一键启动
 echo   项目目录: %~dp0
 echo ============================================================
 echo.

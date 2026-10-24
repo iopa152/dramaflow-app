@@ -1,4 +1,4 @@
-import { z } from "@toonflow/nodes-scaffold/runtime";
+import { z } from "@dramaflow/nodes-scaffold/runtime";
 
 export const multiAnglePresets = [
   { id: "front", label: "正面", settings: { azimuth: 0, elevation: 0 } },

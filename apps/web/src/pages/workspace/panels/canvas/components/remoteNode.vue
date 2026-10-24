@@ -19,7 +19,7 @@ import { inject, onErrorCaptured, ref, watch, type Component } from "vue";
 import { useNode, useVueFlow } from "@vue-flow/core";
 import { ElButton, ElCard } from "element-plus";
 import { IconRefresh, IconTrash } from "@tabler/icons-vue";
-import { nodeSkeleton, type NodeData } from "@toonflow/nodes-scaffold/runtime";
+import { nodeSkeleton, type NodeData } from "@dramaflow/nodes-scaffold/runtime";
 
 defineOptions({ inheritAttrs: false });
 const props = defineProps<{ component?: Component | string; error?: string; loading?: boolean }>();

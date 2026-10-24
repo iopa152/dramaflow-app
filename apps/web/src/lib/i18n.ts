@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance } from "axios";
 import { computed, watch } from "vue";
-import { detectLocale, isRtlLocale } from "@toonflow/i18n";
-import { locale, setLocale, translate } from "@toonflow/i18n/vue";
+import { detectLocale, isRtlLocale } from "@dramaflow/i18n";
+import { locale, setLocale, translate } from "@dramaflow/i18n/vue";
 import { uiSettings } from "@/stores/settings";
 import type { LocaleConfig } from "vue-stream-markdown";
 import "dayjs/locale/zh-cn";

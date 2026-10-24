@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dramaflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Dramaflow" width="100%" />
 
 <p>
   <a href="https://github.com/HBAI-Ltd/Toonflow-app">
@@ -45,13 +45,13 @@
 <div align="center">
 
 <p align="center">
-  <img src="../images/logo.png" alt="Логотип Toonflow" width="120" height="120" />
+  <img src="../images/logo.png" alt="Логотип Dramaflow" width="120" height="120" />
 </p>
 
 <a href="https://git.io/typing-svg">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;%D0%98%D0%98-%D1%81%D1%82%D1%83%D0%B4%D0%B8%D1%8F%20%D0%BA%D0%BE%D1%80%D0%BE%D1%82%D0%BA%D0%B8%D1%85%20%D0%B4%D1%80%D0%B0%D0%BC;%D0%9E%D0%B6%D0%B8%D0%B2%D0%BB%D1%8F%D0%B9%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D0%B8%20%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D0%B8" />
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;%D0%98%D0%98-%D1%81%D1%82%D1%83%D0%B4%D0%B8%D1%8F%20%D0%BA%D0%BE%D1%80%D0%BE%D1%82%D0%BA%D0%B8%D1%85%20%D0%B4%D1%80%D0%B0%D0%BC;%D0%9E%D0%B6%D0%B8%D0%B2%D0%BB%D1%8F%D0%B9%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D0%B8%20%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D0%B8" alt="Toonflow · ИИ-студия коротких драм · Оживляйте свои истории" width="600" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Dramaflow;%D0%98%D0%98-%D1%81%D1%82%D1%83%D0%B4%D0%B8%D1%8F%20%D0%BA%D0%BE%D1%80%D0%BE%D1%82%D0%BA%D0%B8%D1%85%20%D0%B4%D1%80%D0%B0%D0%BC;%D0%9E%D0%B6%D0%B8%D0%B2%D0%BB%D1%8F%D0%B9%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D0%B8%20%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D0%B8" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Dramaflow;%D0%98%D0%98-%D1%81%D1%82%D1%83%D0%B4%D0%B8%D1%8F%20%D0%BA%D0%BE%D1%80%D0%BE%D1%82%D0%BA%D0%B8%D1%85%20%D0%B4%D1%80%D0%B0%D0%BC;%D0%9E%D0%B6%D0%B8%D0%B2%D0%BB%D1%8F%D0%B9%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D0%B8%20%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D0%B8" alt="Dramaflow · ИИ-студия коротких драм · Оживляйте свои истории" width="600" />
   </picture>
 </a>
 
@@ -134,12 +134,12 @@
     <tr>
       <td width="50%" align="center">
         <a href="../images/gStar.png">
-          <img src="../images/gStar.png" alt="Сертификат Toonflow AtomGit G-Star №540" width="100%" />
+          <img src="../images/gStar.png" alt="Сертификат Dramaflow AtomGit G-Star №540" width="100%" />
         </a>
       </td>
       <td width="50%" align="center">
         <a href="../images/gvp.jpg">
-          <img src="../images/gvp.jpg" alt="Сертификат Toonflow Gitee GVP" width="100%" />
+          <img src="../images/gvp.jpg" alt="Сертификат Dramaflow Gitee GVP" width="100%" />
         </a>
       </td>
     </tr>
@@ -158,7 +158,7 @@
 
 ## 1. 💛 Спонсоры и поддержка
 
-Благодарим следующих партнёров за поддержку открытого проекта Toonflow.
+Благодарим следующих партнёров за поддержку открытого проекта Dramaflow.
 
 <table>
   <tr>
@@ -168,18 +168,18 @@
       <sub>Доступная генерация видео с MiniMax H3: всего ¥0.09 за секунду в 768P и ¥0.15 за секунду в 2K (CNY, китайские юани). Поддерживаются нативное разрешение 2K, синхронизация звука и изображения, API, совместимый с протоколом OpenAI, ComfyUI и бесконечные холсты. Собственный GPU не требуется. <a href="https://metaso.cn/minimax-h3/?s=toon">Зарегистрируйтесь по специальной ссылке</a>, чтобы получить подарочные средства и эксклюзивные предложения. По вопросам сотрудничества обращайтесь в WeChat: metasota12.</sub>
     </td>
     <td width="50%" valign="top">
-      <a href="https://go.apimart.ai/gh-toonflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
+      <a href="https://go.apimart.ai/gh-dramaflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
       <br />
-      <sub>Благодарим APIMart за поддержку проекта! Это доступная API-платформа для генерации изображений и видео с ИИ. GPT-Image-2 стоит от $0.006 за изображение: более 160 изображений за $1. Для изображений и видео используется единый асинхронный API: отправьте задачу, получите её ID, а затем результат через обратный вызов. Обрабатывайте пакеты из 10 000 изображений без тайм-аутов и меняйте модели без изменения кода. Оплата по факту использования, без абонентской платы. Начать работу можно сразу после <a href="https://go.apimart.ai/gh-toonflow-app">регистрации по этой ссылке</a>.</sub>
+      <sub>Благодарим APIMart за поддержку проекта! Это доступная API-платформа для генерации изображений и видео с ИИ. GPT-Image-2 стоит от $0.006 за изображение: более 160 изображений за $1. Для изображений и видео используется единый асинхронный API: отправьте задачу, получите её ID, а затем результат через обратный вызов. Обрабатывайте пакеты из 10 000 изображений без тайм-аутов и меняйте модели без изменения кода. Оплата по факту использования, без абонентской платы. Начать работу можно сразу после <a href="https://go.apimart.ai/gh-dramaflow-app">регистрации по этой ссылке</a>.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
+      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
       <br />
       <sub>CompShare предлагает доступную генерацию видео с H3: по тексту, с заданными первым и последним кадрами, а также в универсальном режиме работы с референсами. Поддерживаются видео длительностью до 30 секунд и нативное разрешение 2K; стоимость 768P — всего 0.08 китайского юаня за секунду. Доступны API, большое число одновременных запросов для корпоративных клиентов и самостоятельное оформление счетов.</sub>
       <br /><br />
-      <sub>🎁 <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow">Зарегистрируйтесь по специальной ссылке</a> и получите 5 китайских юаней в виде бесплатных бонусных средств для пробного использования платформы!</sub>
+      <sub>🎁 <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow">Зарегистрируйтесь по специальной ссылке</a> и получите 5 китайских юаней в виде бесплатных бонусных средств для пробного использования платформы!</sub>
     </td>
     <td width="50%" valign="top"></td>
   </tr>
@@ -200,7 +200,7 @@
 
 ## 2. 🌟 Возможности
 
-Toonflow — открытая ИИ-платформа для создания коротких драм, анимированных комиксов и коротких видео. Она объединяет сценарии, материалы и видеоклипы на одном бесконечном холсте.
+Dramaflow — открытая ИИ-платформа для создания коротких драм, анимированных комиксов и коротких видео. Она объединяет сценарии, материалы и видеоклипы на одном бесконечном холсте.
 
 | Возможность | Описание |
 | --- | --- |
@@ -224,25 +224,25 @@ Toonflow — открытая ИИ-платформа для создания к
 
 <div align="center">
 
-<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Главная страница проектов Toonflow и работа с идеями" width="80%" /></a><br /><sub>Главная страница проектов и работа с идеями</sub>
+<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Главная страница проектов Dramaflow и работа с идеями" width="80%" /></a><br /><sub>Главная страница проектов и работа с идеями</sub>
 
-<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Первый запуск и быстрая настройка Toonflow" width="80%" /></a><br /><sub>Первый запуск и быстрая настройка</sub>
+<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Первый запуск и быстрая настройка Dramaflow" width="80%" /></a><br /><sub>Первый запуск и быстрая настройка</sub>
 
-<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Холст Toonflow в тёмной теме и ИИ-помощник" width="80%" /></a><br /><sub>Творческий холст · Тёмная тема</sub>
+<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Холст Dramaflow в тёмной теме и ИИ-помощник" width="80%" /></a><br /><sub>Творческий холст · Тёмная тема</sub>
 
-<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Холст Toonflow в светлой теме и ИИ-помощник" width="80%" /></a><br /><sub>Творческий холст · Светлая тема</sub>
+<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Холст Dramaflow в светлой теме и ИИ-помощник" width="80%" /></a><br /><sub>Творческий холст · Светлая тема</sub>
 
-<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Холст Toonflow с материалами персонажей, сцен и реквизита" width="80%" /></a><br /><sub>Материалы персонажей, сцен и реквизита</sub>
+<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Холст Dramaflow с материалами персонажей, сцен и реквизита" width="80%" /></a><br /><sub>Материалы персонажей, сцен и реквизита</sub>
 
-<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="3D-студия режиссёра Toonflow и предварительная визуализация кадров" width="80%" /></a><br /><sub>3D-студия режиссёра и предварительная визуализация кадров</sub>
+<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="3D-студия режиссёра Dramaflow и предварительная визуализация кадров" width="80%" /></a><br /><sub>3D-студия режиссёра и предварительная визуализация кадров</sub>
 
-<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Персонажи в трёх проекциях и генерация изображений в Toonflow" width="80%" /></a><br /><sub>Персонажи в трёх проекциях и генерация изображений</sub>
+<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Персонажи в трёх проекциях и генерация изображений в Dramaflow" width="80%" /></a><br /><sub>Персонажи в трёх проекциях и генерация изображений</sub>
 
-<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Генерация видео в Toonflow по нескольким референсам" width="80%" /></a><br /><sub>Генерация видео по нескольким референсам</sub>
+<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Генерация видео в Dramaflow по нескольким референсам" width="80%" /></a><br /><sub>Генерация видео по нескольким референсам</sub>
 
-<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Меню узлов Toonflow и операции с группами" width="80%" /></a><br /><sub>Меню узлов и операции с группами</sub>
+<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Меню узлов Dramaflow и операции с группами" width="80%" /></a><br /><sub>Меню узлов и операции с группами</sub>
 
-<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Каталог плагинов Toonflow" width="80%" /></a><br /><sub>Каталог плагинов</sub>
+<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Каталог плагинов Dramaflow" width="80%" /></a><br /><sub>Каталог плагинов</sub>
 
 </div>
 
@@ -258,25 +258,25 @@ Toonflow — открытая ИИ-платформа для создания к
 | macOS | [Релиз](https://github.com/HBAI-Ltd/Toonflow-app/releases) |
 | Android ARM64 | [Скачать APK](https://github.com/HBAI-Ltd/Toonflow-app/releases/latest) |
 
-Приложение для Android поддерживает только устройства ARM64. Скачайте и установите `toonflow-VERSION-android-arm64.apk` со страницы релиза. В приложение встроен локальный бэкенд Bun, поэтому оно может работать самостоятельно. Через «Связь устройств» на главной странице можно отсканировать QR-код или вручную подключиться к компьютеру либо удалённому бэкенду с включённым общим доступом через локальную сеть или интернет.
+Приложение для Android поддерживает только устройства ARM64. Скачайте и установите `dramaflow-VERSION-android-arm64.apk` со страницы релиза. В приложение встроен локальный бэкенд Bun, поэтому оно может работать самостоятельно. Через «Связь устройств» на главной странице можно отсканировать QR-код или вручную подключиться к компьютеру либо удалённому бэкенду с включённым общим доступом через локальную сеть или интернет.
 
 Установщик Windows автоматически проверяет наличие WebView2 и устанавливает его при необходимости. Если после установки приложение сразу закрывается, установите среду выполнения вручную со [страницы загрузки WebView2](https://developer.microsoft.com/microsoft-edge/webview2/).
 
-В macOS (Apple Silicon) перетащите Toonflow в папку «Программы» и откройте приложение. Заранее выполнять команды в терминале не требуется. Если появится предупреждение системы безопасности, последовательно выполните следующие действия.
+В macOS (Apple Silicon) перетащите Dramaflow в папку «Программы» и откройте приложение. Заранее выполнять команды в терминале не требуется. Если появится предупреждение системы безопасности, последовательно выполните следующие действия.
 
 <details>
-<summary><strong>Что делать, если Toonflow не устанавливается или не открывается в macOS</strong></summary>
+<summary><strong>Что делать, если Dramaflow не устанавливается или не открывается в macOS</strong></summary>
 
-**1. Разрешите запуск Toonflow в разделе «Конфиденциальность и безопасность»**
+**1. Разрешите запуск Dramaflow в разделе «Конфиденциальность и безопасность»**
 
-Если система сообщает, что не может проверить разработчика или что Apple не может проверить приложение на наличие вредоносного ПО, сначала попробуйте открыть Toonflow. Затем перейдите в «Системные настройки → Конфиденциальность и безопасность», найдите сообщение о блокировке Toonflow, нажмите «Всё равно открыть» и подтвердите действие. Подробнее — в [официальной инструкции Apple](https://support.apple.com/zh-cn/102445).
+Если система сообщает, что не может проверить разработчика или что Apple не может проверить приложение на наличие вредоносного ПО, сначала попробуйте открыть Dramaflow. Затем перейдите в «Системные настройки → Конфиденциальность и безопасность», найдите сообщение о блокировке Dramaflow, нажмите «Всё равно открыть» и подтвердите действие. Подробнее — в [официальной инструкции Apple](https://support.apple.com/zh-cn/102445).
 
 **2. Если запуск по-прежнему блокируется карантином системы, попробуйте удалить атрибут карантина**
 
 Убедитесь, что приложение получено с официальной страницы релизов и помещено в папку «Программы». Выполните следующую команду в терминале и попробуйте открыть приложение снова. Если имя приложения или место установки отличаются, измените путь.
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/toonflow.app
+sudo xattr -rd com.apple.quarantine /Applications/dramaflow.app
 ```
 
 **3. Крайняя мера: временно разрешить приложения из любых источников**
@@ -308,16 +308,16 @@ sudo spctl --master-disable
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 docker compose up -d --build
 ```
 
 При первой сборке устанавливаются зависимости и собираются встроенные узлы, инструменты, Web и Server. После запуска откройте `http://127.0.0.1:3000`. Для удалённого сервера используйте SSH-туннель, описанный ниже в разделе «Доступ и данные». При первом запуске инициализируются встроенные плагины и создаётся рабочая папка `myProject`.
 
-Настройки, плагины и файлы проектов хранятся в именованном томе Docker `toonflowData`, подключённом к `/app/data/` внутри контейнера. Фактическое имя тома содержит префикс проекта Compose. Данные сохраняются при остановке или пересборке контейнера. **Не используйте `docker compose down -v`: эта команда удаляет том с данными.**
+Настройки, плагины и файлы проектов хранятся в именованном томе Docker `dramaflowData`, подключённом к `/app/data/` внутри контейнера. Фактическое имя тома содержит префикс проекта Compose. Данные сохраняются при остановке или пересборке контейнера. **Не используйте `docker compose down -v`: эта команда удаляет том с данными.**
 
 ```sh
-docker compose logs -f toonflow  # Просмотр журналов
+docker compose logs -f dramaflow  # Просмотр журналов
 docker compose stop             # Остановка сервиса
 docker compose start            # Повторный запуск
 docker compose down             # Удаление контейнеров с сохранением тома данных
@@ -326,14 +326,14 @@ docker compose down             # Удаление контейнеров с с�
 Чтобы добавить папку проекта, нажмите «Новая папка» в диалоге «Выбор рабочей папки на сервере». В этом же диалоге можно переименовывать и удалять файлы и папки. Также можно создать папку из командной строки, пока сервис запущен:
 
 ```sh
-docker compose exec toonflow mkdir -p /app/data/workspaces/newProject
+docker compose exec dramaflow mkdir -p /app/data/workspaces/newProject
 ```
 
 Для резервного копирования сначала остановите сервис, скопируйте данные и запустите его снова:
 
 ```sh
 docker compose stop
-docker compose cp toonflow:/app/data ./toonflowBackup
+docker compose cp dramaflow:/app/data ./dramaflowBackup
 docker compose start
 ```
 
@@ -362,7 +362,7 @@ bun --version
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install --frozen-lockfile
 
 # Сборка встроенных узлов, инструментов, Web и Server
@@ -388,7 +388,7 @@ bun run start:server
 
 ### 4.5 Развёртывание в облаке
 
-Наш партнёр [AI Galaxy (智星云)](https://www.ai-galaxy.com/) предоставляет официально авторизованный коммерческий образ Toonflow с готовым окружением. Порядок действий описан в [иллюстрированном руководстве по развёртыванию образа](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1).
+Наш партнёр [AI Galaxy (智星云)](https://www.ai-galaxy.com/) предоставляет официально авторизованный коммерческий образ Dramaflow с готовым окружением. Порядок действий описан в [иллюстрированном руководстве по развёртыванию образа](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1).
 
 ---
 
@@ -418,19 +418,19 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
   </a>
 </p>
 
-TF-Router — официальный шлюз моделей, которым управляет команда Toonflow. Приглашаем вас воспользоваться им. Исходный код платформы полностью открыт: вы можете самостоятельно развернуть её и провести аудит. Репозиторий: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
+TF-Router — официальный шлюз моделей, которым управляет команда Dramaflow. Приглашаем вас воспользоваться им. Исходный код платформы полностью открыт: вы можете самостоятельно развернуть её и провести аудит. Репозиторий: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
 
 <details>
-<summary><strong>Письмо сообществу Toonflow (опубликовано 2026-06-08)</strong></summary>
+<summary><strong>Письмо сообществу Dramaflow (опубликовано 2026-06-08)</strong></summary>
 
-> ### Письмо сообществу Toonflow
+> ### Письмо сообществу Dramaflow
 > 130 дней.
 > Немного, но достаточно, чтобы яснее увидеть некоторые вещи.
 > С первого коммита до сегодняшнего дня прошло 130 дней. Мы выпустили 20 версий, сделали 800+ коммитов и написали 213 765 строк кода — 640 810 символов.
 > Две переработки, система провайдеров и рабочий процесс, которым мы гордимся.
 > Мы думали, что этого достаточно.
 > Но этого оказалось мало.
-> Нам писали, что хотят добавить в Toonflow свой модуль, но даже после долгих попыток не могут разобраться в коде.
+> Нам писали, что хотят добавить в Dramaflow свой модуль, но даже после долгих попыток не могут разобраться в коде.
 > Нам писали, что сообщество слишком маленькое и при возникновении проблем не у кого попросить помощи.
 > Нам писали, что коммерческие условия не позволяют реализовать проекты.
 > Мы вас услышали.
@@ -438,7 +438,7 @@ TF-Router — официальный шлюз моделей, которым у�
 > Не потому, что у нас много денег.
 > А потому, что мы считаем это дело стоящим.
 > Поэтому мы решили провести третью переработку.
-> Каждая переработка Toonflow делала проект более открытым.
+> Каждая переработка Dramaflow делала проект более открытым.
 > На этот раз мы выбираем полную открытость.
 >
 > 1. Лицензия MIT
@@ -473,9 +473,9 @@ TF-Router — официальный шлюз моделей, которым у�
 > Переработка требует времени. Всё это время серверы работают, домены нужно продлевать, команда работает по ночам, а кофе дорожает.
 > У нас нет инвестиций, рекламы или скрытых коммерческих планов.
 > Но нам нужно оставаться на плаву, чтобы довести начатое до конца.
-> Поэтому мы запустили TF-Router — официальный шлюз моделей Toonflow.
+> Поэтому мы запустили TF-Router — официальный шлюз моделей Dramaflow.
 > Честно говоря, мы долго сомневались, стоит ли его создавать.
-> Мы не хотели заниматься такой платформой и не хотели, чтобы из-за неё люди решили, будто Toonflow начал «наживаться».
+> Мы не хотели заниматься такой платформой и не хотели, чтобы из-за неё люди решили, будто Dramaflow начал «наживаться».
 > Эти опасения долго не давали нам покоя.
 > Но многие пользователи не могли получить разрешение на доступ к Seedance 2.0 и снова и снова спрашивали, можем ли мы помочь.
 > После долгих размышлений мы всё же решили создать платформу и сами заключили с Volcengine годовой рамочный договор на Seedance.
@@ -485,11 +485,11 @@ TF-Router — официальный шлюз моделей, которым у�
 > Не доверяете нам? Ничего страшного: изучите код, разверните платформу и запускайте её сами.
 > Такова наша позиция.
 > Если вы захотите попробовать платформу, это будет знаком доверия к единственному доступному нам сейчас способу продолжать работу.
-> Если не захотите — тоже ничего страшного. Продолжайте пользоваться Toonflow, критиковать нас и предлагать новые возможности.
+> Если не захотите — тоже ничего страшного. Продолжайте пользоваться Dramaflow, критиковать нас и предлагать новые возможности.
 > Мы рядом.
 > Напоследок — несколько искренних слов.
 > Мы просто обычные люди, которые верят, что инструменты для творчества должны принадлежать всем.
-> Toonflow никогда не был только нашим продуктом.
+> Dramaflow никогда не был только нашим продуктом.
 > Это история, которую мы пишем вместе.
 > Третья переработка — не финиш.
 > Это точка, с которой мы начинаем заново.
@@ -505,7 +505,7 @@ TF-Router — официальный шлюз моделей, которым у�
 
 Помощник для приглашения в группу:
 
-<img src="../images/qr.png" alt="QR-код сообщества Toonflow" height="400"/>
+<img src="../images/qr.png" alt="QR-код сообщества Dramaflow" height="400"/>
 
 Также можно нажать на значок, чтобы присоединиться к Discord:
 
@@ -517,15 +517,15 @@ TF-Router — официальный шлюз моделей, которым у�
 
 ## 8. 💌 Связаться с нами
 
-📧 Электронная почта: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 Электронная почта: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Dramaflow咨询)
 
 ---
 
 ## 9. 📜 Лицензия открытого исходного кода
 
-Toonflow распространяется по [лицензии MIT](../../LICENSE). Сторонние зависимости и материалы регулируются собственными лицензиями и уведомлениями об авторских правах.
+Dramaflow распространяется по [лицензии MIT](../../LICENSE). Сторонние зависимости и материалы регулируются собственными лицензиями и уведомлениями об авторских правах.
 
-[![История звёзд Toonflow](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
+[![История звёзд Dramaflow](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
 
 > **Отсутствие обратной силы**: пользователи, использовавшие версии до v1.0.8 по AGPL-3.0, продолжают соблюдать AGPL-3.0. Для версий с v1.0.8 по v1.1.8 сохраняются Apache-2.0 и дополнительное соглашение. Изменение лицензии на них не распространяется.
 
@@ -546,4 +546,4 @@ Copyright © 2026 北京爱阿科技有限公司
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Нижний колонтитул Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Нижний колонтитул Dramaflow" width="100%" />

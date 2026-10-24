@@ -5,9 +5,9 @@ import components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import desktopConfig from "../../electrobun.config.ts";
 import postcssConfig from "../../postcss.config.ts";
-import { i18nPlugin } from "@toonflow/i18n/vite";
+import { i18nPlugin } from "@dramaflow/i18n/vite";
 
-const serverOrigin = `http://127.0.0.1:${process.env.TOONFLOW_SERVER_PORT || 3000}`;
+const serverOrigin = `http://127.0.0.1:${process.env.DRAMAFLOW_SERVER_PORT || 3000}`;
 
 export default defineConfig({
   css: { postcss: postcssConfig },
@@ -23,7 +23,7 @@ export default defineConfig({
         changeOrigin: false,
         configure(proxy) {
           proxy.on("proxyReq", (request, incoming) => {
-            request.setHeader("x-toonflow-local-client", ["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(incoming.socket.remoteAddress ?? "") ? "1" : "0");
+            request.setHeader("x-dramaflow-local-client", ["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(incoming.socket.remoteAddress ?? "") ? "1" : "0");
           });
         },
       },

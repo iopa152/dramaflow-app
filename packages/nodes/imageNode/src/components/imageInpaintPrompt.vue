@@ -13,8 +13,8 @@
 import { onScopeDispose, ref } from "vue";
 import { ElButton, ElCard } from "element-plus";
 import { IconCheck } from "@tabler/icons-vue";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
-import promptInput from "@toonflow/node-shared/promptInput";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
+import promptInput from "@dramaflow/node-shared/promptInput";
 import type { InpaintDraftInput } from "../imageInpaint";
 
 const props = defineProps<{

@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dramaflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Dramaflow" width="100%" />
 
 <p>
   <a href="https://github.com/HBAI-Ltd/Toonflow-app">
@@ -45,13 +45,13 @@
 <div align="center">
 
 <p align="center">
-  <img src="../images/logo.png" alt="Biểu trưng Toonflow" width="120" height="120" />
+  <img src="../images/logo.png" alt="Biểu trưng Dramaflow" width="120" height="120" />
 </p>
 
 <a href="https://git.io/typing-svg">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20Ideas%20into%20Stories" />
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20Ideas%20into%20Stories" alt="Toonflow · Xưởng phim ngắn AI · Biến cảm hứng thành câu chuyện có thể nhìn thấy" width="600" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20Ideas%20into%20Stories" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20Ideas%20into%20Stories" alt="Dramaflow · Xưởng phim ngắn AI · Biến cảm hứng thành câu chuyện có thể nhìn thấy" width="600" />
   </picture>
 </a>
 
@@ -134,12 +134,12 @@
     <tr>
       <td width="50%" align="center">
         <a href="../images/gStar.png">
-          <img src="../images/gStar.png" alt="Chứng nhận Toonflow AtomGit G-Star No.540" width="100%" />
+          <img src="../images/gStar.png" alt="Chứng nhận Dramaflow AtomGit G-Star No.540" width="100%" />
         </a>
       </td>
       <td width="50%" align="center">
         <a href="../images/gvp.jpg">
-          <img src="../images/gvp.jpg" alt="Chứng nhận Toonflow Gitee GVP" width="100%" />
+          <img src="../images/gvp.jpg" alt="Chứng nhận Dramaflow Gitee GVP" width="100%" />
         </a>
       </td>
     </tr>
@@ -158,7 +158,7 @@
 
 ## 1. 💛 Tài trợ và hỗ trợ
 
-Xin cảm ơn các đối tác sau đã hỗ trợ dự án mã nguồn mở Toonflow.
+Xin cảm ơn các đối tác sau đã hỗ trợ dự án mã nguồn mở Dramaflow.
 
 <table>
   <tr>
@@ -168,18 +168,18 @@ Xin cảm ơn các đối tác sau đã hỗ trợ dự án mã nguồn mở Too
       <sub>Cung cấp dịch vụ tạo video MiniMax H3 với chi phí hợp lý: 768P chỉ 0.09 nhân dân tệ/giây, 2K chỉ 0.15 nhân dân tệ/giây; hỗ trợ 2K gốc, đồng bộ âm thanh và hình ảnh, API tương thích giao thức OpenAI, đồng thời hỗ trợ ComfyUI và canvas vô hạn mà không cần tự triển khai GPU. <a href="https://metaso.cn/minimax-h3/?s=toon">Đăng ký qua liên kết riêng</a> để nhận tín dụng tặng kèm và ưu đãi độc quyền. Liên hệ hợp tác kinh doanh qua WeChat: metasota12.</sub>
     </td>
     <td width="50%" valign="top">
-      <a href="https://go.apimart.ai/gh-toonflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
+      <a href="https://go.apimart.ai/gh-dramaflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
       <br />
-      <sub>Cảm ơn APIMart đã tài trợ cho dự án! Nền tảng API giá thấp chuyên tạo ảnh và video bằng AI, với GPT-Image-2 chỉ từ $0.006/ảnh, 1 đô la có thể tạo hơn 160 ảnh. Ảnh và video dùng chung một API bất đồng bộ: gửi tác vụ để nhận ID, nhận kết quả qua callback; xử lý 10.000 ảnh theo lô mà không hết thời gian chờ, đổi mô hình không cần sửa mã, thanh toán theo mức sử dụng và không có phí tháng. Đăng ký qua <a href="https://go.apimart.ai/gh-toonflow-app">liên kết này</a> để bắt đầu sử dụng.</sub>
+      <sub>Cảm ơn APIMart đã tài trợ cho dự án! Nền tảng API giá thấp chuyên tạo ảnh và video bằng AI, với GPT-Image-2 chỉ từ $0.006/ảnh, 1 đô la có thể tạo hơn 160 ảnh. Ảnh và video dùng chung một API bất đồng bộ: gửi tác vụ để nhận ID, nhận kết quả qua callback; xử lý 10.000 ảnh theo lô mà không hết thời gian chờ, đổi mô hình không cần sửa mã, thanh toán theo mức sử dụng và không có phí tháng. Đăng ký qua <a href="https://go.apimart.ai/gh-dramaflow-app">liên kết này</a> để bắt đầu sử dụng.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
+      <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
       <br />
       <sub>CompShare cung cấp dịch vụ tạo video H3 với chi phí hợp lý, hỗ trợ tạo video từ văn bản, chỉ định khung hình đầu và cuối, cùng chế độ tham chiếu toàn diện. Hỗ trợ video dài tối đa 30 giây với chất lượng 2K gốc; 768P chỉ 0.08 nhân dân tệ/giây. Hỗ trợ gọi API, xử lý số lượng lớn yêu cầu đồng thời cho doanh nghiệp và tự yêu cầu xuất hóa đơn.</sub>
       <br /><br />
-      <sub>🎁 <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow">Đăng ký qua liên kết riêng</a> để nhận miễn phí 5 nhân dân tệ tín dụng dùng thử trên nền tảng!</sub>
+      <sub>🎁 <a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow">Đăng ký qua liên kết riêng</a> để nhận miễn phí 5 nhân dân tệ tín dụng dùng thử trên nền tảng!</sub>
     </td>
     <td width="50%" valign="top"></td>
   </tr>
@@ -200,7 +200,7 @@ Xin cảm ơn các đối tác sau đã hỗ trợ dự án mã nguồn mở Too
 
 ## 2. 🌟 Điểm nổi bật
 
-Toonflow là nền tảng sáng tạo AI mã nguồn mở dành cho sản xuất phim ngắn nhiều tập, phim truyện tranh và video ngắn, kết hợp kịch bản, tài nguyên và các đoạn video trên cùng một canvas vô hạn.
+Dramaflow là nền tảng sáng tạo AI mã nguồn mở dành cho sản xuất phim ngắn nhiều tập, phim truyện tranh và video ngắn, kết hợp kịch bản, tài nguyên và các đoạn video trên cùng một canvas vô hạn.
 
 | Khả năng | Mô tả |
 | --- | --- |
@@ -224,25 +224,25 @@ Các ngôn ngữ được hỗ trợ: 简体中文, 繁體中文, English, 日�
 
 <div align="center">
 
-<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Trang chủ dự án và sáng tạo từ ý tưởng trong Toonflow" width="80%" /></a><br /><sub>Trang chủ dự án và sáng tạo từ ý tưởng</sub>
+<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Trang chủ dự án và sáng tạo từ ý tưởng trong Dramaflow" width="80%" /></a><br /><sub>Trang chủ dự án và sáng tạo từ ý tưởng</sub>
 
-<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Khởi động lần đầu và cấu hình nhanh Toonflow" width="80%" /></a><br /><sub>Khởi động lần đầu và cấu hình nhanh</sub>
+<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Khởi động lần đầu và cấu hình nhanh Dramaflow" width="80%" /></a><br /><sub>Khởi động lần đầu và cấu hình nhanh</sub>
 
-<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Canvas giao diện tối và trợ lý AI của Toonflow" width="80%" /></a><br /><sub>Canvas sáng tạo · Giao diện tối</sub>
+<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Canvas giao diện tối và trợ lý AI của Dramaflow" width="80%" /></a><br /><sub>Canvas sáng tạo · Giao diện tối</sub>
 
-<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Canvas giao diện sáng và trợ lý AI của Toonflow" width="80%" /></a><br /><sub>Canvas sáng tạo · Giao diện sáng</sub>
+<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Canvas giao diện sáng và trợ lý AI của Dramaflow" width="80%" /></a><br /><sub>Canvas sáng tạo · Giao diện sáng</sub>
 
-<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Canvas tài nguyên nhân vật, bối cảnh và đạo cụ của Toonflow" width="80%" /></a><br /><sub>Tài nguyên nhân vật, bối cảnh và đạo cụ</sub>
+<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Canvas tài nguyên nhân vật, bối cảnh và đạo cụ của Dramaflow" width="80%" /></a><br /><sub>Tài nguyên nhân vật, bối cảnh và đạo cụ</sub>
 
-<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Bàn đạo diễn 3D và xem trước cảnh quay trong Toonflow" width="80%" /></a><br /><sub>Bàn đạo diễn 3D và xem trước cảnh quay</sub>
+<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Bàn đạo diễn 3D và xem trước cảnh quay trong Dramaflow" width="80%" /></a><br /><sub>Bàn đạo diễn 3D và xem trước cảnh quay</sub>
 
-<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Tạo ảnh nhân vật từ ba góc nhìn trong Toonflow" width="80%" /></a><br /><sub>Nhân vật ở ba góc nhìn và tạo ảnh</sub>
+<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Tạo ảnh nhân vật từ ba góc nhìn trong Dramaflow" width="80%" /></a><br /><sub>Nhân vật ở ba góc nhìn và tạo ảnh</sub>
 
-<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Tạo video từ nhiều tư liệu tham chiếu trong Toonflow" width="80%" /></a><br /><sub>Tạo video từ nhiều tư liệu tham chiếu</sub>
+<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Tạo video từ nhiều tư liệu tham chiếu trong Dramaflow" width="80%" /></a><br /><sub>Tạo video từ nhiều tư liệu tham chiếu</sub>
 
-<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Menu nút và thao tác nhóm trong Toonflow" width="80%" /></a><br /><sub>Menu nút và thao tác nhóm</sub>
+<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Menu nút và thao tác nhóm trong Dramaflow" width="80%" /></a><br /><sub>Menu nút và thao tác nhóm</sub>
 
-<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Chợ plugin Toonflow" width="80%" /></a><br /><sub>Chợ plugin</sub>
+<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Chợ plugin Dramaflow" width="80%" /></a><br /><sub>Chợ plugin</sub>
 
 </div>
 
@@ -258,25 +258,25 @@ Các ngôn ngữ được hỗ trợ: 简体中文, 繁體中文, English, 日�
 | macOS | [Bản phát hành](https://github.com/HBAI-Ltd/Toonflow-app/releases) |
 | Android ARM64 | [Tải APK](https://github.com/HBAI-Ltd/Toonflow-app/releases/latest) |
 
-Ứng dụng Android chỉ hỗ trợ thiết bị ARM64. Tải và cài đặt `toonflow-VERSION-android-arm64.apk` từ trang phát hành. Ứng dụng tích hợp backend Bun cục bộ nên có thể chạy độc lập. Bạn cũng có thể dùng Kết nối thiết bị trên trang chủ để quét mã QR hoặc nhập thông tin kết nối tới máy tính hoặc backend từ xa đã bật chia sẻ, qua mạng nội bộ hoặc internet.
+Ứng dụng Android chỉ hỗ trợ thiết bị ARM64. Tải và cài đặt `dramaflow-VERSION-android-arm64.apk` từ trang phát hành. Ứng dụng tích hợp backend Bun cục bộ nên có thể chạy độc lập. Bạn cũng có thể dùng Kết nối thiết bị trên trang chủ để quét mã QR hoặc nhập thông tin kết nối tới máy tính hoặc backend từ xa đã bật chia sẻ, qua mạng nội bộ hoặc internet.
 
 Trình cài đặt Windows tự động kiểm tra và cài đặt WebView2. Nếu ứng dụng đóng đột ngột ngay khi mở sau khi cài đặt, hãy truy cập [trang tải WebView2](https://developer.microsoft.com/microsoft-edge/webview2/) để cài đặt môi trường chạy theo cách thủ công.
 
-Trên macOS (Apple Silicon), chỉ cần kéo Toonflow vào “Ứng dụng” rồi mở trực tiếp, không cần chạy lệnh trong Terminal trước. Nếu hệ thống hiển thị cảnh báo bảo mật, hãy thực hiện theo thứ tự sau.
+Trên macOS (Apple Silicon), chỉ cần kéo Dramaflow vào “Ứng dụng” rồi mở trực tiếp, không cần chạy lệnh trong Terminal trước. Nếu hệ thống hiển thị cảnh báo bảo mật, hãy thực hiện theo thứ tự sau.
 
 <details>
 <summary><strong>Cách xử lý khi không thể cài đặt hoặc mở trên macOS</strong></summary>
 
-**1. Cho phép Toonflow trong “Quyền riêng tư & Bảo mật”**
+**1. Cho phép Dramaflow trong “Quyền riêng tư & Bảo mật”**
 
-Nếu thấy thông báo “không thể xác minh nhà phát triển” hoặc “Apple không thể kiểm tra xem ứng dụng có chứa phần mềm độc hại hay không”, trước tiên hãy thử mở Toonflow, rồi vào “Cài đặt hệ thống → Quyền riêng tư & Bảo mật”. Tìm thông báo Toonflow bị chặn, nhấp “Vẫn mở” và xác nhận theo hướng dẫn. Xem [hướng dẫn chính thức của Apple](https://support.apple.com/zh-cn/102445) để biết chi tiết.
+Nếu thấy thông báo “không thể xác minh nhà phát triển” hoặc “Apple không thể kiểm tra xem ứng dụng có chứa phần mềm độc hại hay không”, trước tiên hãy thử mở Dramaflow, rồi vào “Cài đặt hệ thống → Quyền riêng tư & Bảo mật”. Tìm thông báo Dramaflow bị chặn, nhấp “Vẫn mở” và xác nhận theo hướng dẫn. Xem [hướng dẫn chính thức của Apple](https://support.apple.com/zh-cn/102445) để biết chi tiết.
 
 **2. Nếu vẫn không mở được do hạn chế cách ly của hệ thống, hãy thử xóa thuộc tính cách ly**
 
 Sau khi xác nhận ứng dụng đến từ trang phát hành chính thức và đã được đặt trong “Ứng dụng”, chạy lệnh sau trong Terminal rồi mở lại. Nếu tên ứng dụng hoặc vị trí cài đặt khác, hãy điều chỉnh đường dẫn cho phù hợp.
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/toonflow.app
+sudo xattr -rd com.apple.quarantine /Applications/dramaflow.app
 ```
 
 **3. Biện pháp cuối cùng: tạm thời cho phép ứng dụng từ mọi nguồn**
@@ -308,16 +308,16 @@ Sau khi sao chép mã nguồn, chạy tại thư mục gốc của kho mã:
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 docker compose up -d --build
 ```
 
 Lần build đầu tiên sẽ cài các gói phụ thuộc và biên dịch các nút, công cụ, Web và Server tích hợp sẵn. Sau khi khởi động, truy cập `http://127.0.0.1:3000`. Với máy chủ từ xa, có thể truy cập qua đường hầm SSH như mô tả trong phần “Truy cập và dữ liệu” bên dưới. Lần khởi động đầu tiên sẽ khởi tạo các plugin tích hợp sẵn và cung cấp thư mục làm việc `myProject`.
 
-Cấu hình, plugin và tệp dự án được lưu trong named volume Docker `toonflowData`, gắn vào `/app/data/` của container. Tên volume thực tế có tiền tố là tên dự án Compose. Dừng hoặc tạo lại container vẫn giữ nguyên dữ liệu. **Không dùng `docker compose down -v` vì lệnh này sẽ xóa volume dữ liệu.**
+Cấu hình, plugin và tệp dự án được lưu trong named volume Docker `dramaflowData`, gắn vào `/app/data/` của container. Tên volume thực tế có tiền tố là tên dự án Compose. Dừng hoặc tạo lại container vẫn giữ nguyên dữ liệu. **Không dùng `docker compose down -v` vì lệnh này sẽ xóa volume dữ liệu.**
 
 ```sh
-docker compose logs -f toonflow  # Xem nhật ký
+docker compose logs -f dramaflow  # Xem nhật ký
 docker compose stop             # Dừng dịch vụ
 docker compose start            # Khởi động lại
 docker compose down             # Xóa container, giữ volume dữ liệu
@@ -326,14 +326,14 @@ docker compose down             # Xóa container, giữ volume dữ liệu
 Để thêm thư mục dự án, nhấp “Tạo thư mục mới” trong hộp thoại “Chọn thư mục làm việc trên máy chủ” trên giao diện. Hộp thoại cũng hỗ trợ đổi tên và xóa tệp hoặc thư mục. Bạn cũng có thể tạo qua dòng lệnh khi dịch vụ đang chạy:
 
 ```sh
-docker compose exec toonflow mkdir -p /app/data/workspaces/newProject
+docker compose exec dramaflow mkdir -p /app/data/workspaces/newProject
 ```
 
 Khi sao lưu, dừng dịch vụ trước rồi khởi động lại sau khi sao chép xong:
 
 ```sh
 docker compose stop
-docker compose cp toonflow:/app/data ./toonflowBackup
+docker compose cp dramaflow:/app/data ./dramaflowBackup
 docker compose start
 ```
 
@@ -362,7 +362,7 @@ Sao chép mã nguồn và khởi động:
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install --frozen-lockfile
 
 # Build các nút, công cụ, Web và Server tích hợp sẵn
@@ -388,7 +388,7 @@ Khi thấy thông báo “Khởi động dịch vụ thành công” (`服务启
 
 ### 4.5 Triển khai trên nền tảng đám mây
 
-Nền tảng đối tác [AI-Galaxy (智星云)](https://www.ai-galaxy.com/) cung cấp image Toonflow thương mại được ủy quyền chính thức, cho phép sử dụng trực tiếp môi trường đã cài sẵn. Xem các bước cụ thể trong [hướng dẫn triển khai image có hình minh họa](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1).
+Nền tảng đối tác [AI-Galaxy (智星云)](https://www.ai-galaxy.com/) cung cấp image Dramaflow thương mại được ủy quyền chính thức, cho phép sử dụng trực tiếp môi trường đã cài sẵn. Xem các bước cụ thể trong [hướng dẫn triển khai image có hình minh họa](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1).
 
 ---
 
@@ -418,19 +418,19 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
   </a>
 </p>
 
-TF-Router là nền tảng trung chuyển mô hình chính thức do Toonflow tự vận hành. Chúng tôi chào đón bạn sử dụng. Toàn bộ mã nguồn nền tảng đã được mở, có thể tự triển khai và kiểm tra: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
+TF-Router là nền tảng trung chuyển mô hình chính thức do Dramaflow tự vận hành. Chúng tôi chào đón bạn sử dụng. Toàn bộ mã nguồn nền tảng đã được mở, có thể tự triển khai và kiểm tra: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
 
 <details>
-<summary><strong>Thư gửi cộng đồng Toonflow (đăng ngày 2026-06-08)</strong></summary>
+<summary><strong>Thư gửi cộng đồng Dramaflow (đăng ngày 2026-06-08)</strong></summary>
 
-> ### Thư gửi cộng đồng Toonflow
+> ### Thư gửi cộng đồng Dramaflow
 > 130 ngày.
 > Không dài, nhưng đủ để chúng tôi nhìn rõ một số điều.
 > Từ lần gửi dòng mã đầu tiên đến hôm nay, chúng tôi đã đi qua 130 ngày, phát hành 20 phiên bản, thực hiện hơn 800 commits, viết 213,765 dòng mã với 640,810 ký tự.
 > Hai lần tái cấu trúc, một hệ thống nhà cung cấp và một quy trình làm việc mà chúng tôi tự hào.
 > Chúng tôi từng nghĩ như vậy đã đủ.
 > Nhưng vẫn chưa đủ.
-> Có người nói với chúng tôi rằng họ muốn thêm mô-đun riêng vào Toonflow, nhưng sửa mã mãi vẫn không hiểu.
+> Có người nói với chúng tôi rằng họ muốn thêm mô-đun riêng vào Dramaflow, nhưng sửa mã mãi vẫn không hiểu.
 > Có người nói cộng đồng quá nhỏ, khi gặp vấn đề không biết tìm ai.
 > Có người nói các điều khoản thương mại khiến dự án của họ không thể triển khai thực tế.
 > Chúng tôi đã lắng nghe.
@@ -438,7 +438,7 @@ TF-Router là nền tảng trung chuyển mô hình chính thức do Toonflow t�
 > Không phải vì chúng tôi có nhiều tiền.
 > Mà vì chúng tôi tin việc này đáng làm.
 > Vì vậy, chúng tôi quyết định tái cấu trúc lần thứ ba.
-> Mỗi lần tái cấu trúc Toonflow đều hướng tới mã nguồn mở và sự cởi mở nhiều hơn.
+> Mỗi lần tái cấu trúc Dramaflow đều hướng tới mã nguồn mở và sự cởi mở nhiều hơn.
 > Lần này, chúng tôi chọn: mở hoàn toàn.
 > 　
 > 1. MIT License
@@ -473,9 +473,9 @@ TF-Router là nền tảng trung chuyển mô hình chính thức do Toonflow t�
 > Tái cấu trúc cần thời gian. Trong khoảng thời gian đó, máy chủ vẫn chạy, tên miền vẫn cần gia hạn, cả đội vẫn thức khuya, và cà phê vẫn tăng giá.
 > Chúng tôi không có vốn đầu tư, không quảng cáo và không có kế hoạch kinh doanh ngầm nào.
 > Nhưng chúng tôi cần tồn tại thì mới có thể tiếp tục hoàn thành việc này.
-> Vì vậy, chúng tôi đã ra mắt TF-Router, “nền tảng trung chuyển chính thức của Toonflow”.
+> Vì vậy, chúng tôi đã ra mắt TF-Router, “nền tảng trung chuyển chính thức của Dramaflow”.
 > Thành thật mà nói, chúng tôi đã do dự về nền tảng này rất lâu.
-> Đây không phải nền tảng chúng tôi muốn làm. Chúng tôi không muốn chỉ vì một dịch vụ trung chuyển mà mọi người nghĩ Toonflow bắt đầu chạy theo kiếm tiền.
+> Đây không phải nền tảng chúng tôi muốn làm. Chúng tôi không muốn chỉ vì một dịch vụ trung chuyển mà mọi người nghĩ Dramaflow bắt đầu chạy theo kiếm tiền.
 > Chúng tôi đã mang nỗi băn khoăn đó rất lâu.
 > Nhưng nhiều người dùng không có quyền truy cập theo danh sách cho phép nên không dùng được Seedance 2.0, và liên tục hỏi chúng tôi có cách nào không.
 > Chúng tôi suy nghĩ rất lâu, cuối cùng không còn cách khác nên quyết định tự xây dựng, đồng thời trực tiếp ký hợp đồng khung hằng năm về Seedance với Volcengine.
@@ -485,11 +485,11 @@ TF-Router là nền tảng trung chuyển mô hình chính thức do Toonflow t�
 > Bạn không tin chúng tôi? Không sao, bạn có thể tự xem mã, tự triển khai và tự vận hành.
 > Đó là quan điểm của chúng tôi.
 > Nếu bạn sẵn lòng dùng thử, đó là một lá phiếu tín nhiệm dành cho cách duy nhất hiện giúp chúng tôi duy trì hoạt động.
-> Nếu không muốn, cũng không sao. Hãy tiếp tục dùng Toonflow, tiếp tục phê bình và tiếp tục đề xuất tính năng.
+> Nếu không muốn, cũng không sao. Hãy tiếp tục dùng Dramaflow, tiếp tục phê bình và tiếp tục đề xuất tính năng.
 > Chúng tôi vẫn ở đây.
 > Cuối cùng, xin nói một điều thật lòng.
 > Chúng tôi chỉ là một nhóm người bình thường tin rằng “công cụ sáng tạo nên thuộc về tất cả mọi người”.
-> Toonflow chưa bao giờ là sản phẩm chỉ của riêng chúng tôi.
+> Dramaflow chưa bao giờ là sản phẩm chỉ của riêng chúng tôi.
 > Đó là câu chuyện chúng ta cùng viết.
 > Lần tái cấu trúc thứ ba không phải điểm kết thúc.
 > Mà là nơi chúng tôi bắt đầu lại.
@@ -505,7 +505,7 @@ TF-Router là nền tảng trung chuyển mô hình chính thức do Toonflow t�
 
 Trợ lý hỗ trợ tham gia nhóm:
 
-<img src="../images/qr.png" alt="Mã QR cộng đồng Toonflow" height="400"/>
+<img src="../images/qr.png" alt="Mã QR cộng đồng Dramaflow" height="400"/>
 
 Bạn cũng có thể nhấp vào biểu tượng để tham gia Discord:
 
@@ -517,15 +517,15 @@ Hoặc nhấp vào liên kết mời: [https://discord.gg/HEjKmpNpAZ](https://di
 
 ## 8. 💌 Liên hệ
 
-📧 Email: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 Email: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Dramaflow咨询)
 
 ---
 
 ## 9. 📜 Giấy phép mã nguồn mở
 
-Toonflow sử dụng [giấy phép MIT](../../LICENSE). Các gói phụ thuộc và tư liệu bên thứ ba tuân theo giấy phép và thông báo bản quyền tương ứng.
+Dramaflow sử dụng [giấy phép MIT](../../LICENSE). Các gói phụ thuộc và tư liệu bên thứ ba tuân theo giấy phép và thông báo bản quyền tương ứng.
 
-[![Lịch sử số sao của Toonflow](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
+[![Lịch sử số sao của Dramaflow](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
 
 > **Điều khoản không hồi tố**: Người dùng sử dụng theo AGPL-3.0 trước khi v1.0.8 được phát hành tiếp tục tuân theo AGPL-3.0; các phiên bản v1.0.8 ~ v1.1.8 tiếp tục tuân theo Apache-2.0 cùng thỏa thuận bổ sung, không chịu ảnh hưởng của thay đổi giấy phép này.
 
@@ -546,4 +546,4 @@ Bản quyền © 2026 北京爱阿科技有限公司
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Chân trang Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Chân trang Dramaflow" width="100%" />

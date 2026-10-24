@@ -1,8 +1,8 @@
-import { createNodeConfig } from "@toonflow/nodes-scaffold";
+import { createNodeConfig } from "@dramaflow/nodes-scaffold";
 
 export default createNodeConfig({
   name: "director3dNode",
   displayName: "3D导演台",
-  author: "Toonflow",
+  author: "Dramaflow",
   github: "https://github.com/HBAI-Ltd/Toonflow-app",
 }, import.meta.url);

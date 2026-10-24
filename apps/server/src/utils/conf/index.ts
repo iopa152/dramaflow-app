@@ -1,19 +1,19 @@
 import conf from "conf";
-import { mkdirSync, readdirSync, realpathSync } from "@toonflow/file";
+import { mkdirSync, readdirSync, realpathSync } from "@dramaflow/file";
 import { resolve } from "node:path";
-import tfRouter from "@toonflow/providers/language/tfRouter";
+import tfRouter from "@dramaflow/providers/language/tfRouter";
 import type { RemoteTeam } from "@/utils/teams";
 import type { A2aSettings } from "@/agent/a2a/settings";
 import type { desktopUpdateAttempt } from "@/types/desktop";
 import type { MobileLinkConfig } from "@/utils/mobileLink";
 import { normalizeNodeMenu, serializeNodeMenu } from "@/lib/nodeMenu";
-import type { SavedMcpServer } from "@toonflow/mcp/client";
+import type { SavedMcpServer } from "@dramaflow/mcp/client";
 
 const autoInstallProviders = [tfRouter];
-const dataDirectory = process.env.TOONFLOW_DATA_DIR ?? resolve(import.meta.dirname, "../../../../../data");
+const dataDirectory = process.env.DRAMAFLOW_DATA_DIR ?? resolve(import.meta.dirname, "../../../../../data");
 mkdirSync(dataDirectory, { recursive: true });
 const configDirectory = realpathSync(dataDirectory);
-process.env.TOONFLOW_DATA_DIR = configDirectory;
+process.env.DRAMAFLOW_DATA_DIR = configDirectory;
 
 const config = new conf<{ settings: Record<string, unknown>; disabledSkills: string[]; mcpServers: SavedMcpServer[]; mcpBundles: Record<string, string>; toolConfigs: Record<string, Record<string, unknown>>; nodeConfigs: Record<string, Record<string, unknown>>; extConfigs: Record<string, Record<string, unknown>>; remoteConnections: Record<string, RemoteTeam>; a2a: A2aSettings; desktopUpdateAttempt: desktopUpdateAttempt; mobileLink: MobileLinkConfig }>({
   cwd: configDirectory,
@@ -25,7 +25,7 @@ const config = new conf<{ settings: Record<string, unknown>; disabledSkills: str
 export function removeLegacySettings(settings: Record<string, unknown>) {
   let changed = false;
   // ACT: 只清理已废弃字段，保留其他设置和插件配置。
-  for (const [record, key] of [[settings, "developerConfirmed"], [settings.general, "systemPrompt"], [settings.stores, "toonflow.developer"]] as const) {
+  for (const [record, key] of [[settings, "developerConfirmed"], [settings.general, "systemPrompt"], [settings.stores, "dramaflow.developer"]] as const) {
     if (record && typeof record === "object" && !Array.isArray(record) && Object.hasOwn(record, key)) {
       Reflect.deleteProperty(record, key);
       changed = true;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ToolPlugin } from "@toonflow/tools-scaffold/runtime";
+import type { ToolPlugin } from "@dramaflow/tools-scaffold/runtime";
 import { assetRequestSchema } from "./runtime";
 
 const configSchema = z.object({ readOnly: z.boolean().default(false) }).strict();
@@ -26,7 +26,7 @@ const plugin: ToolPlugin = {
       async execute(id, params, signal, onUpdate, executionContext) {
         const request = assetRequestSchema.parse(params);
         if (readOnly && !["list", "read", "import"].includes(request.action)) throw new Error("全局资产管理处于只读模式，仅允许查询、读取或导入工作区副本");
-        if (!assets) throw new Error("当前宿主不支持全局资产管理工具，请升级 Toonflow");
+        if (!assets) throw new Error("当前宿主不支持全局资产管理工具，请升级 Dramaflow");
         signal?.throwIfAborted();
         return assets.execute(id, request, signal, onUpdate, executionContext);
       },

@@ -1,5 +1,5 @@
-import { t } from "@toonflow/server/i18n";
-import type { PluginInstallRequest, PluginInstallType } from "@toonflow/server/desktop";
+import { t } from "@dramaflow/server/i18n";
+import type { PluginInstallRequest, PluginInstallType } from "@dramaflow/server/desktop";
 
 export function parseInstallUrl(value: string): PluginInstallRequest {
   try {
@@ -7,7 +7,7 @@ export function parseInstallUrl(value: string): PluginInstallRequest {
     if (/[\u0000-\u001f\u007f]/.test(value)) throw new Error(t`安装链接不能包含换行或控制字符`);
     if (!URL.canParse(value)) throw new Error(t`安装链接不是有效 URL，应为 toonflow://install?type=node&url=编码后的下载地址`);
     const link = new URL(value);
-    if (link.protocol !== "toonflow:" || link.hostname !== "install" || !["", "/"].includes(link.pathname)) {
+    if (link.protocol !== "dramaflow:" || link.hostname !== "install" || !["", "/"].includes(link.pathname)) {
       throw new Error(t`安装链接格式错误，应为 toonflow://install?type=node&url=编码后的下载地址`);
     }
     if (link.username || link.password || link.port || link.hash) throw new Error(t`安装链接不能包含账号、密码、端口或 # 片段`);

@@ -1,6 +1,6 @@
 import { useNode, useVueFlow } from "@vue-flow/core";
-import { uploadNodeFile, useNodeAi, useNodeFiles, type NodeImageRequest, type NodeImageResult } from "@toonflow/nodes-scaffold/runtime";
-import { showNodeError } from "@toonflow/node-shared/showNodeError";
+import { uploadNodeFile, useNodeAi, useNodeFiles, type NodeImageRequest, type NodeImageResult } from "@dramaflow/nodes-scaffold/runtime";
+import { showNodeError } from "@dramaflow/node-shared/showNodeError";
 
 export type ImageInpaint = { source: string; original: string; guide: string; mask: string; images: NonNullable<NodeImageRequest["images"]> };
 export type InpaintDraftInput = { prompt: string; images?: NodeImageRequest["images"] };

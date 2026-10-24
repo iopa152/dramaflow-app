@@ -2,26 +2,26 @@ import express from "express";
 import { randomUUID } from "node:crypto";
 import { once } from "node:events";
 import { resolve } from "node:path";
-import { mkdir, readFile, readdir, rm, writeAtomic } from "@toonflow/file";
-import { getMissingBrowserFeatures } from "@toonflow/web/browserCapabilities";
-import { createRemoteConnection } from "@toonflow/server/remoteConnection";
-import { languageRequest, translateError, translateMessage } from "@toonflow/server/i18n";
-import { getRuntimePlatform, setRuntimeHost } from "@toonflow/server/platform";
+import { mkdir, readFile, readdir, rm, writeAtomic } from "@dramaflow/file";
+import { getMissingBrowserFeatures } from "@dramaflow/web/browserCapabilities";
+import { createRemoteConnection } from "@dramaflow/server/remoteConnection";
+import { languageRequest, translateError, translateMessage } from "@dramaflow/server/i18n";
+import { getRuntimePlatform, setRuntimeHost } from "@dramaflow/server/platform";
 import config from "../../../electrobun.config";
 
 const fromSource = import.meta.path.endsWith(".ts");
 const resources = fromSource ? resolve(import.meta.dirname, "../../../build") : import.meta.dirname;
-const directory = resolve(process.env.TOONFLOW_MOBILE_DATA_DIR ?? resolve(resources, "mobile/data"));
-const exportDirectory = resolve(process.env.TMPDIR ?? resolve(directory, "cache"), "toonflowExports");
+const directory = resolve(process.env.DRAMAFLOW_MOBILE_DATA_DIR ?? resolve(resources, "mobile/data"));
+const exportDirectory = resolve(process.env.TMPDIR ?? resolve(directory, "cache"), "dramaflowExports");
 const token = randomUUID();
 const exportId = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const app = express();
 let origin = "";
 
 setRuntimeHost("mobile");
-process.env.TOONFLOW_DATA_DIR = directory;
+process.env.DRAMAFLOW_DATA_DIR = directory;
 await mkdir(exportDirectory, { recursive: true });
-const connection = await createRemoteConnection(directory, { deviceName: process.env.TOONFLOW_MOBILE_DEVICE_NAME || "Toonflow Android", appVersion: config.app.version });
+const connection = await createRemoteConnection(directory, { deviceName: process.env.DRAMAFLOW_MOBILE_DEVICE_NAME || "Dramaflow Android", appVersion: config.app.version });
 // ACT: 临时导出不属于项目数据；应用被系统终止后，下次启动清理未完成的导出。
 for (const entry of await readdir(exportDirectory, { withFileTypes: true })) {
   if (entry.isFile() && exportId.test(entry.name)) await rm(resolve(exportDirectory, entry.name));
@@ -39,13 +39,13 @@ app.use((request, response, next) => {
   response.setHeader("Cache-Control", "no-store");
   // ACT: 一次启动凭据换同源 Cookie，覆盖 Axios、SSE、节点脚本和媒体请求，无须逐个修改前端接口。
   if (request.method === "GET" && request.path === "/" && request.query.token === token) {
-    response.cookie("toonflowMobile", token, { httpOnly: true, sameSite: "strict", path: "/" });
+    response.cookie("dramaflowMobile", token, { httpOnly: true, sameSite: "strict", path: "/" });
     const engine = request.query.engine === "gecko" ? "&engine=gecko" : "";
     response.redirect(request.query.probe === "1" ? `/?mobile=1&probe=1${engine}`
       : `/?mobile=1${engine}${connection.remote ? "&remote=1" : ""}`);
     return;
   }
-  if (!(request.get("cookie") ?? "").split(";").some(value => value.trim() === `toonflowMobile=${token}`)) {
+  if (!(request.get("cookie") ?? "").split(";").some(value => value.trim() === `dramaflowMobile=${token}`)) {
     response.sendStatus(401);
     return;
   }
@@ -65,8 +65,8 @@ app.get("/", (request, response, next) => {
   // ACT: 旧内核先执行独立小页面，避免 Vue 或依赖在能力检测前就抛错。
   // 旧内核无法解析检测函数时仍有 ES5 基线结果，让原生壳能够进入备用内核流程。
   const bridge = request.query.engine === "gecko"
-    ? `<meta name="toonflowBrowserProbe"><script>document.querySelector('meta[name="toonflowBrowserProbe"]').content=JSON.stringify(window.toonflowBrowserProbe);</script>` : "";
-  response.type("html").send(`<!doctype html><html><head><meta charset="utf-8"><title>Toonflow</title></head><body><script>window.toonflowBrowserProbe={missing:["Browser capability probe"],userAgent:navigator.userAgent};</script><script>window.toonflowBrowserProbe={missing:(${getMissingBrowserFeatures.toString()})(),userAgent:navigator.userAgent};</script>${bridge}</body></html>`);
+    ? `<meta name="dramaflowBrowserProbe"><script>document.querySelector('meta[name="dramaflowBrowserProbe"]').content=JSON.stringify(window.dramaflowBrowserProbe);</script>` : "";
+  response.type("html").send(`<!doctype html><html><head><meta charset="utf-8"><title>Dramaflow</title></head><body><script>window.dramaflowBrowserProbe={missing:["Browser capability probe"],userAgent:navigator.userAgent};</script><script>window.dramaflowBrowserProbe={missing:(${getMissingBrowserFeatures.toString()})(),userAgent:navigator.userAgent};</script>${bridge}</body></html>`);
 });
 
 app.get("/api/mobile/runtime", (_request, response) => {
@@ -100,12 +100,12 @@ app.route("/api/mobile/exports/:id")
   });
 app.use("/api/connection", connection.router);
 
-let toonflow: express.Express | undefined;
+let dramaflow: express.Express | undefined;
 if (connection.proxy) {
   app.use(connection.proxy);
 } else {
-  const { createApp } = await import("@toonflow/server/app");
-  toonflow = await createApp({
+  const { createApp } = await import("@dramaflow/server/app");
+  dramaflow = await createApp({
     webRoot: resolve(resources, "web"),
     appVersion: config.app.version,
     dataDirectory: directory,
@@ -116,7 +116,7 @@ if (connection.proxy) {
     skillsRoot: resolve(resources, "skills"),
     pluginRevision: fromSource ? undefined : (await readFile(resolve(resources, "revision.txt"), "utf8")).trim(),
   });
-  app.use(toonflow);
+  app.use(dramaflow);
 }
 app.use((error: Error & { status?: number }, _request: express.Request, response: express.Response, next: express.NextFunction) => {
   if (response.headersSent) return next(error);
@@ -129,10 +129,10 @@ await once(server, "listening");
 const address = server.address();
 if (!address || typeof address === "string") throw new Error("无法获取本地服务端口");
 origin = `http://127.0.0.1:${address.port}`;
-if (toonflow) {
-  const { initializeMcpRuntime } = await import("@toonflow/server/mcp");
-  await initializeMcpRuntime(toonflow, origin, resolve(resources, fromSource ? "mcp/stdio.js" : "stdio.js"), undefined, { Cookie: `toonflowMobile=${token}` });
+if (dramaflow) {
+  const { initializeMcpRuntime } = await import("@dramaflow/server/mcp");
+  await initializeMcpRuntime(dramaflow, origin, resolve(resources, fromSource ? "mcp/stdio.js" : "stdio.js"), undefined, { Cookie: `dramaflowMobile=${token}` });
 }
-console.log(`TOONFLOW_MOBILE_URL=${origin}/?token=${token}`);
+console.log(`DRAMAFLOW_MOBILE_URL=${origin}/?token=${token}`);
 server.on("error", error => { console.error(error); process.exit(1); });
 process.on("SIGTERM", () => { connection.stop(); server.close(() => process.exit(0)); });

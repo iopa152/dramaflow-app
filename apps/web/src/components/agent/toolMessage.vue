@@ -27,10 +27,10 @@
 
 <script setup lang="ts">
 import { computed, onErrorCaptured, ref, shallowRef, watch, type Component } from "vue";
-import { loadToolComponent } from "@toonflow/tools-scaffold/client";
+import { loadToolComponent } from "@dramaflow/tools-scaffold/client";
 import { IconChevronDown, IconChevronRight, IconCopy, IconTool } from "@tabler/icons-vue";
 import chatReasoning from "@tdesign-vue-next/chat/es/chat-reasoning";
-import type { AgentToolCall } from "@toonflow/server/agent/types";
+import type { AgentToolCall } from "@dramaflow/server/agent/types";
 import messageMarkdown from "@/components/messageMarkdown.vue";
 
 const { tool, directory, toolSessionId } = defineProps<{ tool: AgentToolCall; directory?: string; toolSessionId?: string }>();

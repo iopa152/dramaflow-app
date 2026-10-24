@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/node-shared",
+  "name": "@dramaflow/node-shared",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -28,7 +28,7 @@
     "x-sender": "1.4.6"
   },
   "devDependencies": {
-    "@toonflow/nodes-scaffold": "workspace:*",
+    "@dramaflow/nodes-scaffold": "workspace:*",
     "typescript": "~6.0.3",
     "vite": "^8.2.2",
     "vue-tsc": "^3.3.11"

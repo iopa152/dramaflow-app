@@ -43,22 +43,21 @@
 </template>
 
 <script setup lang="ts">
-import { locale, translate } from "@toonflow/i18n/vue";
+import { locale, translate } from "@dramaflow/i18n/vue";
 import { computed, inject, onBeforeUnmount, reactive, ref, watch } from "vue";
 import axios from "axios";
 import { IconLoader2 } from "@tabler/icons-vue";
 import { ElMessage } from "element-plus";
-import { getReadableFileExtension, getReadableFileMimeType } from "@toonflow/server/documentFormats";
+import { getReadableFileExtension, getReadableFileMimeType } from "@dramaflow/server/documentFormats";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
 import { writeClipboardText } from "@/lib/clipboard";
-import anonymousData from "@/lib/anonymousData";
 import { modelChoices } from "@/stores/settings";
 import { useWorkspaceStore } from "@/stores/workspace";
 import type { AgentAttachment, AgentConversation, AgentMessage } from "./types";
-import type { AgentEvent } from "@toonflow/server/agent/types";
+import type { AgentEvent } from "@dramaflow/server/agent/types";
 import { createConversationStream, readAgentEvents } from "./replyStream";
 import { mentionPlainText } from "./mentionText";
-import type { CanvasContext } from "@toonflow/tool-canvas/runtime";
+import type { CanvasContext } from "@dramaflow/tool-canvas/runtime";
 import messageList from "./conversation/messageList.vue";
 import messageInput from "./conversation/messageInput.vue";
 
@@ -139,7 +138,7 @@ async function deleteMessage(item: AgentMessage) {
           directory, sessionFile: props.sessionFile,
           ...(item.replyTo ? { replyTo: item.replyTo } : { entryIds: [item.entryId!] }),
         },
-        headers: { "x-toonflow-workspace": "1" },
+        headers: { "x-dramaflow-workspace": "1" },
       });
       if (data.code !== 200) throw new Error(data.message || "删除消息失败");
       stats.value = data.data.stats;
@@ -194,7 +193,7 @@ async function sendCanvasResult(event: Extract<AgentEvent, { type: "canvasCall" 
   if (cancelled) body = JSON.stringify({ directory, callId: event.callId, error: translate("画布操作已取消") });
   const response = await fetch("/api/agent/canvasResult", {
     method: "POST",
-    headers: { "Accept-Language": locale.value, "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+    headers: { "Accept-Language": locale.value, "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
     body,
     keepalive: cancelled,
     signal: cancelled ? AbortSignal.timeout(5000) : signal,
@@ -243,14 +242,13 @@ async function sendMessage(source?: AgentMessage) {
   const handledCanvasCalls = new Set<string>();
   const pendingQuestions = new Map<string, string>();
   const activeChildFiles = new Set<string>();
-  const finishStats = anonymousData.startAgent();
   try {
     if (!source) await instance.clearDraft();
     requestController.signal.throwIfAborted();
     await uploadAttachments(attachments, directory, requestController.signal);
     const response = await fetch("/api/agent", {
       method: "POST",
-      headers: { "Accept-Language": locale.value, "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+      headers: { "Accept-Language": locale.value, "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
       body: JSON.stringify({ prompt, mentions, attachments: attachments.map(({ name, path, mimeType }) => ({ name, path, mimeType })), directory, providerId: model.providerId, modelId: model.modelId, thinkingLevel: reasoningEffort.value || undefined, sessionFile: props.sessionFile, resendFrom, canvas: canvasContext?.id ? { id: canvasContext.id, tools: canvasContext.tools } : undefined }),
       signal: requestController.signal,
     });
@@ -305,10 +303,8 @@ async function sendMessage(source?: AgentMessage) {
       }
     }
     if (source && !accepted) throw new Error("服务端未确认重发，请重新打开对话后重试");
-    finishStats("success");
     emit("sent", mentionPlainText(prompt, mentions) || attachments[0]?.name || "新对话");
   } catch (error) {
-    finishStats(requestController.signal.aborted ? "cancelled" : "failed");
     const responseMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message;
     const message = requestController.signal.aborted ? "已停止生成" : responseMessage || (error instanceof Error ? error.message : "发送失败，请重试");
     if ((source && !accepted) || !ownsStream) { userMessage.error = message; ElMessage.error(message); }
@@ -321,7 +317,7 @@ async function sendMessage(source?: AgentMessage) {
     // ACT: Bun 的流断开事件可能不触发；主动结束仍在等待的提问，不依赖断开通知。
     for (const callId of pendingQuestions.values()) {
       void fetch("/api/agent/answer", {
-        method: "POST", headers: { "Accept-Language": locale.value, "Content-Type": "application/json", "x-toonflow-workspace": "1" },
+        method: "POST", headers: { "Accept-Language": locale.value, "Content-Type": "application/json", "x-dramaflow-workspace": "1" },
         body: JSON.stringify({ directory, callId, cancelled: true }), keepalive: true,
       }).catch(() => {});
     }

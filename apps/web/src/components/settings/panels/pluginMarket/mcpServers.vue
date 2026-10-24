@@ -86,7 +86,7 @@
             <template v-if="form.transport === 'stdio'">
               <el-form-item label="启动命令" required>
                 <el-input v-model="form.command" class="codeInput" autocomplete="off" dir="ltr" />
-                <el-text class="fieldHint" size="small" type="info">{{ localSupported ? "命令在运行 Toonflow 的电脑或服务端执行。" : "当前平台不支持本地 MCP，请改用远程连接。" }}</el-text>
+                <el-text class="fieldHint" size="small" type="info">{{ localSupported ? "命令在运行 Dramaflow 的电脑或服务端执行。" : "当前平台不支持本地 MCP，请改用远程连接。" }}</el-text>
               </el-form-item>
               <el-form-item label="参数（每行一个）">
                 <el-input v-model="form.args" class="codeInput" type="textarea" :rows="3" resize="vertical" autocomplete="off" dir="ltr" />
@@ -198,7 +198,7 @@ type McpServerConfig = {
 type TestResult = { tools: { name: string; description?: string }[]; serverName?: string };
 const { visible = true } = defineProps<{ visible?: boolean }>();
 const transportLabels = { stdio: "本地（stdio）", http: "远程（Streamable HTTP）", sse: "远程（SSE）" };
-const requestHeaders = { "x-toonflow-workspace": "1" };
+const requestHeaders = { "x-dramaflow-workspace": "1" };
 const servers = ref<(McpServerConfig & { id: string })[]>([]);
 const canManage = ref(false);
 const localSupported = ref(false);

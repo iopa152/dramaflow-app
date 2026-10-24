@@ -45,11 +45,11 @@ async function saveConfig() {
       await saveExtensionConfig(plugin.name, formApi.value.formData());
       plugin.config = extensionConfig(plugin.name);
     } else {
-      const { data } = await axios.put(`/api/${path}/save`, { name: plugin.name, config: formApi.value.formData() }, { headers: { "x-toonflow-workspace": "1" } });
+      const { data } = await axios.put(`/api/${path}/save`, { name: plugin.name, config: formApi.value.formData() }, { headers: { "x-dramaflow-workspace": "1" } });
       if (data.code !== 200) throw new Error(data.message || "保存插件配置失败");
       plugin.config = data.data;
     }
-    if (plugin.type === "node") window.dispatchEvent(new Event("toonflow:node-config-updated"));
+    if (plugin.type === "node") window.dispatchEvent(new Event("dramaflow:node-config-updated"));
     visible.value = false;
     ElMessage.success("插件配置已保存");
   } catch (error) {

@@ -3,7 +3,7 @@ import { transformSource } from "./transform.ts";
 
 export function i18nPlugin(): Plugin {
   return {
-    name: "toonflowI18n",
+    name: "dramaflowI18n",
     enforce: "pre",
     transform(source, id) {
       const path = id.replaceAll("\\", "/");

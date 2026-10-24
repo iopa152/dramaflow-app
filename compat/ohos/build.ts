@@ -1,4 +1,4 @@
-import { copyFile, cp, existsSync, mkdir, readFile, readdir, realpath, rm, writeAtomic } from "@toonflow/file";
+import { copyFile, cp, existsSync, mkdir, readFile, readdir, realpath, rm, writeAtomic } from "@dramaflow/file";
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import config from "../../electrobun.config";
 import nodeBuildPlugin from "./nodeBuildPlugin";
@@ -48,7 +48,7 @@ async function write(path: string, content: string | object) {
 
 await mkdir(buildRoot, { recursive: true });
 // ACT: SDK 强制使用的文件名只生成到 build，compat 内自有源码保持小驼峰。
-await write("oh-package.json5", { modelVersion: "6.0.0", name: "toonflowOhos", version, dependencies: {} });
+await write("oh-package.json5", { modelVersion: "6.0.0", name: "dramaflowOhos", version, dependencies: {} });
 await write("hvigor/hvigor-config.json5", { modelVersion: "6.0.0", dependencies: {}, execution: { daemon: false } });
 await write("hvigorfile.ts", 'import { appTasks } from "@ohos/hvigor-ohos-plugin";\nexport default { system: appTasks };\n');
 const signingConfig = process.env.ohosSigningConfig ? JSON.parse(await readFile(resolve(process.env.ohosSigningConfig), "utf8")) : undefined;
@@ -59,14 +59,14 @@ await write("build-profile.json5", {
   app: { signingConfigs: signingConfig ? [signingConfig] : [], products: [{ name: "default", ...(signingConfig ? { signingConfig: signingConfig.name } : {}), compatibleSdkVersion: "5.0.0(12)", targetSdkVersion: "26.0.0", runtimeOS: "HarmonyOS" }], buildModeSet: [{ name: "debug" }, { name: "release" }] },
   modules: [{ name: "entry", srcPath: "./entry", targets: [{ name: "default", applyToProducts: ["default"] }] }],
 });
-await write("AppScope/app.json5", { app: { bundleName: "com.toonflow.mobile", vendor: "Toonflow", versionCode, versionName: version, icon: "$media:logo", label: "$string:appName" } });
-await write("AppScope/resources/base/element/string.json", { string: [{ name: "appName", value: "Toonflow" }] });
+await write("AppScope/app.json5", { app: { bundleName: "com.dramaflow.mobile", vendor: "Dramaflow", versionCode, versionName: version, icon: "$media:logo", label: "$string:appName" } });
+await write("AppScope/resources/base/element/string.json", { string: [{ name: "appName", value: "Dramaflow" }] });
 await mkdir(join(staging, "AppScope/resources/base/media"), { recursive: true });
 await copyFile(join(projectRoot, "packages/assets/logo.iconset/icon_512x512.png"), join(staging, "AppScope/resources/base/media/logo.png"));
 await write("entry/hvigorfile.ts", 'import { hapTasks } from "@ohos/hvigor-ohos-plugin";\nexport default { system: hapTasks };\n');
-await write("entry/oh-package.json5", { name: "entry", version, dependencies: { "libtoonflowRuntime.so": "file:./src/main/cpp/types/libtoonflowRuntime" } });
-await write("entry/src/main/cpp/types/libtoonflowRuntime/oh-package.json5", { name: "libtoonflowRuntime.so", version: "1.0.0", types: "./index.d.ts" });
-await copyFile(join(import.meta.dir, "native/ets/runtime.d.ts"), join(staging, "entry/src/main/cpp/types/libtoonflowRuntime/index.d.ts"));
+await write("entry/oh-package.json5", { name: "entry", version, dependencies: { "libdramaflowRuntime.so": "file:./src/main/cpp/types/libdramaflowRuntime" } });
+await write("entry/src/main/cpp/types/libdramaflowRuntime/oh-package.json5", { name: "libdramaflowRuntime.so", version: "1.0.0", types: "./index.d.ts" });
+await copyFile(join(import.meta.dir, "native/ets/runtime.d.ts"), join(staging, "entry/src/main/cpp/types/libdramaflowRuntime/index.d.ts"));
 await write("entry/build-profile.json5", { apiType: "stageMode", buildOption: { externalNativeOptions: { path: "./src/main/cpp/CMakeLists.txt", arguments: "", cppFlags: "", abiFilters: [abi] } }, targets: [{ name: "default" }] });
 await write("entry/src/main/module.json5", { module: {
   name: "entry", type: "entry", mainElement: "entryAbility", deviceTypes: ["phone", "tablet"], deliveryWithInstall: true, installationFree: false,
@@ -77,21 +77,21 @@ await write("entry/src/main/module.json5", { module: {
 await write("entry/src/main/resources/base/profile/mainPages.json", { src: ["pages/index"] });
 await write("entry/src/main/resources/base/element/color.json", { color: [{ name: "startBackground", value: "#18181b" }] });
 await write("entry/src/main/cpp/CMakeLists.txt", `cmake_minimum_required(VERSION 3.5.0)
-project(toonflowRuntime)
+project(dramaflowRuntime)
 add_library(nodeRuntime SHARED IMPORTED)
 set_target_properties(nodeRuntime PROPERTIES IMPORTED_LOCATION "\${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${abi}/libnode.so")
-add_library(toonflowNodeHost SHARED nodeHost.cpp imageNative.cpp)
-target_compile_features(toonflowNodeHost PRIVATE cxx_std_20)
-target_compile_options(toonflowNodeHost PRIVATE -fvisibility=hidden)
+add_library(dramaflowNodeHost SHARED nodeHost.cpp imageNative.cpp)
+target_compile_features(dramaflowNodeHost PRIVATE cxx_std_20)
+target_compile_options(dramaflowNodeHost PRIVATE -fvisibility=hidden)
 set_source_files_properties(nodeHost.cpp PROPERTIES INCLUDE_DIRECTORIES "${nodeHeaders.replaceAll("\\", "/")}")
-target_link_libraries(toonflowNodeHost PRIVATE nodeRuntime image_source image_packer pixelmap)
-target_link_options(toonflowNodeHost PRIVATE -Wl,-z,defs)
-set_target_properties(toonflowNodeHost PROPERTIES BUILD_RPATH "$ORIGIN" INSTALL_RPATH "$ORIGIN")
-add_library(toonflowRuntime SHARED runtime.cpp)
-target_compile_features(toonflowRuntime PRIVATE cxx_std_17)
-target_compile_options(toonflowRuntime PRIVATE -fvisibility=hidden)
-target_link_libraries(toonflowRuntime PUBLIC libace_napi.z.so libhilog_ndk.z.so)
-target_link_options(toonflowRuntime PRIVATE -Wl,-z,defs)
+target_link_libraries(dramaflowNodeHost PRIVATE nodeRuntime image_source image_packer pixelmap)
+target_link_options(dramaflowNodeHost PRIVATE -Wl,-z,defs)
+set_target_properties(dramaflowNodeHost PROPERTIES BUILD_RPATH "$ORIGIN" INSTALL_RPATH "$ORIGIN")
+add_library(dramaflowRuntime SHARED runtime.cpp)
+target_compile_features(dramaflowRuntime PRIVATE cxx_std_17)
+target_compile_options(dramaflowRuntime PRIVATE -fvisibility=hidden)
+target_link_libraries(dramaflowRuntime PUBLIC libace_napi.z.so libhilog_ndk.z.so)
+target_link_options(dramaflowRuntime PRIVATE -Wl,-z,defs)
 `);
 await copyFile(join(import.meta.dir, "native/runtime.cpp"), join(staging, "entry/src/main/cpp/runtime.cpp"));
 await copyFile(join(import.meta.dir, "native/nodeHost.cpp"), join(staging, "entry/src/main/cpp/nodeHost.cpp"));
@@ -140,7 +140,7 @@ if (setup) {
   console.log(`已准备鸿蒙工程与本地 NAPI 类型：${staging}`);
   process.exit(0);
 }
-if (!existsSync(join(staging, "entry/oh_modules/libtoonflowRuntime.so"))) throw new Error("请先显式执行 bun run --cwd compat/ohos setup 准备 NAPI 类型。");
+if (!existsSync(join(staging, "entry/oh_modules/libdramaflowRuntime.so"))) throw new Error("请先显式执行 bun run --cwd compat/ohos setup 准备 NAPI 类型。");
 await run([process.execPath, "run", "build:server"], projectRoot);
 
 const payload = join(buildRoot, "payload");
@@ -166,10 +166,10 @@ const bootstrap = await Bun.build({
   entrypoints: [join(import.meta.dir, "bootstrap.ts")], target: "node", format: "cjs", outdir: payload,
   naming: "bootstrap.cjs", minify: true,
   plugins: [{ name: "ohosFetch", setup(build) {
-    build.onResolve({ filter: /^toonflow:nodeFetch$/ }, () => ({ path: fetchPath }));
-    build.onResolve({ filter: /^toonflow:webApi$/ }, () => ({ path: webApiPath }));
-    build.onResolve({ filter: /^toonflow:webRequest$/ }, () => ({ path: join(dirname(webApiPath), "lib/web/fetch/request.js") }));
-    build.onResolve({ filter: /^toonflow:webResponse$/ }, () => ({ path: join(dirname(webApiPath), "lib/web/fetch/response.js") }));
+    build.onResolve({ filter: /^dramaflow:nodeFetch$/ }, () => ({ path: fetchPath }));
+    build.onResolve({ filter: /^dramaflow:webApi$/ }, () => ({ path: webApiPath }));
+    build.onResolve({ filter: /^dramaflow:webRequest$/ }, () => ({ path: join(dirname(webApiPath), "lib/web/fetch/request.js") }));
+    build.onResolve({ filter: /^dramaflow:webResponse$/ }, () => ({ path: join(dirname(webApiPath), "lib/web/fetch/response.js") }));
   } }],
 });
 if (!bootstrap.success) throw new AggregateError(bootstrap.logs, "构建 OHOS 服务引导失败");
@@ -200,6 +200,6 @@ await writeAtomic(join(raw, "revision.txt"), payloadRevision);
 await run(["tar.exe", "--format=zip", "-cf", join(raw, "payload.zip"), "-C", payload, "."]);
 await run([node, hvigor, "--mode", "module", "-p", "product=default", "-p", "module=entry@default", "-p", "buildMode=debug", "assembleHap", "--no-daemon"]);
 const signed = signingConfig ? "signed" : "unsigned";
-const output = join(buildRoot, `toonflow-${version}-ohos-${abi}-${signed}.hap`);
+const output = join(buildRoot, `dramaflow-${version}-ohos-${abi}-${signed}.hap`);
 await copyFile(join(staging, `entry/build/default/outputs/default/entry-default-${signed}.hap`), output);
 console.log(`OHOS HAP 已生成${signingConfig ? "" : "（未签名，安装前需配置 ohosSigningConfig）"}：${output}`);

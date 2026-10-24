@@ -1,5 +1,5 @@
-import { createBrowserRuntime } from "@toonflow/tool-browser/host";
-import type { ToolContext } from "@toonflow/tools-scaffold/runtime";
+import { createBrowserRuntime } from "@dramaflow/tool-browser/host";
+import type { ToolContext } from "@dramaflow/tools-scaffold/runtime";
 import { getRuntimePlatform } from "@/lib/platform";
 
 export const browserRuntime = createBrowserRuntime();

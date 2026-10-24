@@ -1,8 +1,8 @@
-import { msg } from "@toonflow/i18n";
-import { messageError } from "@toonflow/i18n/errors";
+import { msg } from "@dramaflow/i18n";
+import { messageError } from "@dramaflow/i18n/errors";
 import { createHash } from "node:crypto";
-import { createReadStream, createWriteStream, chmod, lstat, mkdir, mkdtemp, realpath, rename, rm } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import { createReadStream, createWriteStream, chmod, lstat, mkdir, mkdtemp, realpath, rename, rm } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { basename, dirname, join, resolve } from "node:path";
 import { Readable, Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
@@ -25,7 +25,7 @@ export type DownloadState = {
 };
 
 // OHOS Bun 目前报告 linux，宿主显式标识平台，避免下载不能运行的 Linux FFmpeg。
-const platform = process.platform === "linux" && process.env.TOONFLOW_PLATFORM === "ohos" ? "ohos" : process.platform;
+const platform = process.platform === "linux" && process.env.DRAMAFLOW_PLATFORM === "ohos" ? "ohos" : process.platform;
 export const target = `${platform}-${process.arch}`;
 export const build = Object.hasOwn(builds, target) ? builds[target as keyof typeof builds] : undefined;
 const toolNames = ["ffmpeg", "ffprobe"] as const;

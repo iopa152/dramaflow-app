@@ -4,7 +4,7 @@ import type useWorkspaceFiles from "@/lib/workspaceFiles";
 import { isCanvasFile } from "@/pages/workspace/canvasFile";
 
 type Files = ReturnType<typeof useWorkspaceFiles>;
-type CanvasFile = { toonflowCanvas: true; nodes: Node[]; edges: Edge[]; viewport: ViewportTransform };
+type CanvasFile = { dramaflowCanvas: true; toonflowCanvas?: true; nodes: Node[]; edges: Edge[]; viewport: ViewportTransform };
 export type DocumentNode = { canvasPath: string; nodeId: string; label: string; nodeType?: string; parentNode?: string };
 export type DocumentNodeOptions = { canvasPath?: string; includeGroups?: boolean; signal?: AbortSignal; onError?: (path: string, error: unknown) => void };
 
@@ -26,7 +26,7 @@ export async function readCanvasFiles(files: Files, path = "", options: Omit<Doc
       if (!/\.json$/i.test(entry.name) || !await isCanvasFile(files, entry.path, signal)) continue;
       const data = await files.readJson<CanvasFile>(entry.path, signal);
       signal?.throwIfAborted();
-      if (data?.toonflowCanvas !== true || !Array.isArray(data.nodes) || !Array.isArray(data.edges) || !data.viewport
+      if ((data?.dramaflowCanvas ?? data?.toonflowCanvas) !== true || !Array.isArray(data.nodes) || !Array.isArray(data.edges) || !data.viewport
         || ![data.viewport.x, data.viewport.y, data.viewport.zoom].every(Number.isFinite) || data.viewport.zoom <= 0
         || data.nodes.some(node => !node || typeof node.id !== "string" || !node.id || /[\\/\0]/.test(node.id) || [".", ".."].includes(node.id))) {
         throw new Error(`画布文件格式无效：${entry.path}`);
@@ -46,7 +46,7 @@ export async function readCanvasFiles(files: Files, path = "", options: Omit<Doc
 export async function copyCanvasFiles(files: Files, path: string, target: string) {
   const canvases = await readCanvasFiles(files, path);
   if (!canvases.length) { await files.copy(path, target); return []; }
-  const temporary = `.toonflowCopy${crypto.randomUUID()}`;
+  const temporary = `.dramaflowCopy${crypto.randomUUID()}`;
   const root = canvases.length ? (await files.list()).entries : [];
   const assets = root.some(entry => entry.type === "directory" && entry.path === "assets") ? (await files.list("assets")).entries : [];
   const owned = new Set(assets.filter(entry => entry.type === "directory").map(entry => entry.name));

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { realpath } from "@toonflow/file";
+import { realpath } from "@dramaflow/file";
 import u from "@/utils";
 import { error, success } from "@/lib/responseFormat";
 import { getRuntimePlatform } from "@/lib/platform";
@@ -10,7 +10,7 @@ const router = Router();
 const runFile = promisify(execFile);
 
 export default router.post("/", async (req, res) => {
-  const localAddress = ["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(req.socket.remoteAddress ?? "") && req.get("x-toonflow-local-client") !== "0";
+  const localAddress = ["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(req.socket.remoteAddress ?? "") && req.get("x-dramaflow-local-client") !== "0";
   const localHost = ["localhost", "127.0.0.1", "[::1]"].includes(req.hostname);
   const native = getRuntimePlatform().nativeDevelopment && localAddress && localHost;
   res.set("Cache-Control", "no-store");

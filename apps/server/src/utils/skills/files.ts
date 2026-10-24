@@ -1,12 +1,12 @@
 import { loadSkillsFromDir } from "@earendil-works/pi-coding-agent";
-import { lstat, readdir, readFile, realpath, rm } from "@toonflow/file";
+import { lstat, readdir, readFile, realpath, rm } from "@dramaflow/file";
 import { basename, dirname, relative, resolve, sep } from "node:path";
 import conf from "@/utils/conf";
 import { isWithin, writeWorkspaceFile } from "@/utils/workspace/files";
 
 export const maxBytes = 20 * 1024 * 1024;
 // 记录附属文件的手动排序；不改动真实文件名，避免影响 SKILL.md 内部的相对链接。
-const orderFileName = ".toonflowOrder.json";
+const orderFileName = ".dramaflowOrder.json";
 
 export function directory() {
   return resolve(dirname(conf.path), "skills");

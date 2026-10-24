@@ -1,9 +1,9 @@
 import { nextTick, watch, type Ref } from "vue";
 import { useVueFlow, type XYPosition } from "@vue-flow/core";
-import { useNodeEvent, useNodeToolsContext, validateConnection } from "@toonflow/nodes-scaffold/runtime";
-import { canvasSchemas, type CanvasContext, type CanvasToolCall } from "@toonflow/tool-canvas/runtime";
-import { asrRequestSchema } from "@toonflow/tools-scaffold/runtime";
-import { isBrowserAudioAsrSupported, transcribeBrowserAudio } from "@toonflow/asr";
+import { useNodeEvent, useNodeToolsContext, validateConnection } from "@dramaflow/nodes-scaffold/runtime";
+import { canvasSchemas, type CanvasContext, type CanvasToolCall } from "@dramaflow/tool-canvas/runtime";
+import { asrRequestSchema } from "@dramaflow/tools-scaffold/runtime";
+import { isBrowserAudioAsrSupported, transcribeBrowserAudio } from "@dramaflow/asr";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
 import { useWorkspaceStore } from "@/stores/workspace";
 import { arrangeCanvas } from "./arrangeCanvas";

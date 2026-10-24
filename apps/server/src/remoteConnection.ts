@@ -4,9 +4,9 @@ import type { IncomingMessage } from "node:http";
 import { request as httpsRequest } from "node:https";
 import { resolve } from "node:path";
 import { isIP } from "node:net";
-import { readFile, rm, writeAtomic } from "@toonflow/file";
+import { readFile, rm, writeAtomic } from "@dramaflow/file";
 import { getLocale, languageRequest, translateError, translateMessage } from "./lib/i18n";
-import { isRtlLocale } from "@toonflow/i18n";
+import { isRtlLocale } from "@dramaflow/i18n";
 
 type RemoteConnection = { url: string; name: string; deviceToken: string; appVersion?: string };
 
@@ -63,7 +63,7 @@ export async function createRemoteConnection(directory: string, options: {
     heartbeatController = controller;
     try {
       const result = await fetch(`${active.url}/api/mobileLink/heartbeat`, {
-        headers: { "X-Toonflow-Device-Token": active.deviceToken, "X-Toonflow-App-Version": appVersion ?? "" }, redirect: "error",
+        headers: { "X-Dramaflow-Device-Token": active.deviceToken, "X-Dramaflow-App-Version": appVersion ?? "" }, redirect: "error",
         signal: AbortSignal.any([controller.signal, AbortSignal.timeout(3000)]),
       });
       const body = await result.json() as { code?: number; data?: { appVersion?: unknown } };
@@ -121,7 +121,7 @@ export async function createRemoteConnection(directory: string, options: {
   router.get("/connection", (_request, response) => { response.json(status()); });
   router.use(express.json({ limit: "8kb" }));
   router.use((request, response, next) => {
-    if (request.get("x-toonflow-workspace") !== "1") return void response.sendStatus(403);
+    if (request.get("x-dramaflow-workspace") !== "1") return void response.sendStatus(403);
     if (changing) return void response.status(409).json({ message: translateMessage("正在切换连接，请稍候") });
     next();
   });
@@ -130,10 +130,10 @@ export async function createRemoteConnection(directory: string, options: {
     try {
       if (request.body?.qrCode !== undefined) {
         const text = request.body.qrCode;
-        if (typeof text !== "string" || text.length > 4096) throw new Error("请扫描 Toonflow 的互联二维码");
+        if (typeof text !== "string" || text.length > 4096) throw new Error("请扫描 Dramaflow 的互联二维码");
         const value = JSON.parse(text);
-        if (value.type !== "toonflowMobile" || value.version !== 1 || typeof value.code !== "string" || !/^[\w-]{32,256}$/.test(value.code)) {
-          throw new Error("请扫描 Toonflow 的互联二维码");
+        if (value.type !== "dramaflowMobile" || value.version !== 1 || typeof value.code !== "string" || !/^[\w-]{32,256}$/.test(value.code)) {
+          throw new Error("请扫描 Dramaflow 的互联二维码");
         }
         pair = { url: serverUrl(value.url), code: value.code };
       } else {
@@ -151,7 +151,7 @@ export async function createRemoteConnection(directory: string, options: {
     try {
       const result = await fetch(`${pair.url}/api/mobileLink/pair`, {
         method: "POST", redirect: "error", signal: AbortSignal.timeout(15000),
-        headers: { "Content-Type": "application/json", "Accept-Language": request.get("accept-language") ?? "" }, body: JSON.stringify({ code: pair.code, name: options.deviceName?.trim().slice(0, 100) || "Toonflow" }),
+        headers: { "Content-Type": "application/json", "Accept-Language": request.get("accept-language") ?? "" }, body: JSON.stringify({ code: pair.code, name: options.deviceName?.trim().slice(0, 100) || "Dramaflow" }),
       });
       const body = await result.json() as { code?: number; message?: string; data?: RemoteConnection };
       if (!result.ok || body.code !== 200) throw Object.assign(new Error(body.message || "连接失败，请刷新二维码重试"), { status: result.ok ? 502 : result.status });
@@ -191,11 +191,11 @@ function remoteProxy(connection: RemoteConnection): express.RequestHandler {
     target.search = queryStart < 0 ? "" : request.originalUrl.slice(queryStart);
     const headers = { ...request.headers };
     const hopHeaders = ["connection", "keep-alive", "proxy-authenticate", "proxy-authorization", "te", "trailer", "transfer-encoding", "upgrade"];
-    for (const name of [...hopHeaders, ...(request.get("connection") ?? "").toLowerCase().split(/\s*,\s*/), "cookie", "host", "origin", "referer", "forwarded", "x-toonflow-desktop", "x-toonflow-local-client"]) delete headers[name];
+    for (const name of [...hopHeaders, ...(request.get("connection") ?? "").toLowerCase().split(/\s*,\s*/), "cookie", "host", "origin", "referer", "forwarded", "x-dramaflow-desktop", "x-dramaflow-local-client"]) delete headers[name];
     for (const name of Object.keys(headers)) if (name.startsWith("x-forwarded-")) delete headers[name];
     headers.origin = connection.url;
     headers.referer = `${connection.url}/`;
-    headers["x-toonflow-device-token"] = connection.deviceToken;
+    headers["x-dramaflow-device-token"] = connection.deviceToken;
     let upstreamResponse: IncomingMessage | undefined;
     const upstream = (target.protocol === "https:" ? httpsRequest : httpRequest)(target, { method: request.method, headers }, result => {
       upstreamResponse = result;
@@ -253,5 +253,5 @@ function showConnectionError(response: express.Response, message: string, page =
   const disconnect = Bun.escapeHTML(translateMessage("断开并独立运行"));
   const failure = Bun.escapeHTML(translateMessage("切换失败，请重试"));
   // 错误页来自本机，远端离线时仍可主动独立运行。返回200避免原生HTTP错误遮住恢复按钮。
-  response.status(200).type("html").send(`<!doctype html><html lang="${locale}" dir="${isRtlLocale(locale) ? "rtl" : "ltr"}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Toonflow</title><style>body{font:16px system-ui;background:#fff;color:#303133;text-align:center;padding:8vh 24px}button{padding:12px 20px;margin:12px;border:1px solid #dcdfe6;border-radius:8px;background:#fff;color:#409eff;font:inherit}</style></head><body><h2>${title}</h2><p>${Bun.escapeHTML(message)}</p><button onclick="location.reload()">${retry}</button><button data-error="${failure}" onclick="this.disabled=true;fetch('/api/connection/disconnect',{method:'POST',headers:{'x-toonflow-workspace':'1','Accept-Language':'${locale}'}}).then(async r=>{if(!r.ok)throw Error();if((await r.json()).restart==='mobile')location.href='toonflow://restart'}).catch(()=>{this.disabled=false;alert(this.dataset.error)})">${disconnect}</button><script>if(new URLSearchParams(location.search).get("desktop")==="1")fetch("/api/desktop/ready",{method:"POST",headers:{"x-toonflow-desktop":"1","Content-Type":"application/json"},body:JSON.stringify({failed:true})}).catch(()=>{});</script></body></html>`);
+  response.status(200).type("html").send(`<!doctype html><html lang="${locale}" dir="${isRtlLocale(locale) ? "rtl" : "ltr"}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dramaflow</title><style>body{font:16px system-ui;background:#fff;color:#303133;text-align:center;padding:8vh 24px}button{padding:12px 20px;margin:12px;border:1px solid #dcdfe6;border-radius:8px;background:#fff;color:#409eff;font:inherit}</style></head><body><h2>${title}</h2><p>${Bun.escapeHTML(message)}</p><button onclick="location.reload()">${retry}</button><button data-error="${failure}" onclick="this.disabled=true;fetch('/api/connection/disconnect',{method:'POST',headers:{'x-dramaflow-workspace':'1','Accept-Language':'${locale}'}}).then(async r=>{if(!r.ok)throw Error();if((await r.json()).restart==='mobile')location.href='toonflow://restart'}).catch(()=>{this.disabled=false;alert(this.dataset.error)})">${disconnect}</button><script>if(new URLSearchParams(location.search).get("desktop")==="1")fetch("/api/desktop/ready",{method:"POST",headers:{"x-dramaflow-desktop":"1","Content-Type":"application/json"},body:JSON.stringify({failed:true})}).catch(()=>{});</script></body></html>`);
 }

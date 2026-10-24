@@ -1,4 +1,4 @@
-import type { BrowserFfmpegCommand, BrowserFfmpegFactory, FfprobeData } from "@toonflow/ffmpeg/browser";
+import type { BrowserFfmpegCommand, BrowserFfmpegFactory, FfprobeData } from "@dramaflow/ffmpeg/browser";
 
 export type AudioSegment = { start: number; end: number };
 export type AudioProcessingOptions = { outputPath: string } & (

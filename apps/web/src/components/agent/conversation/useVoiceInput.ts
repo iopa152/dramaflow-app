@@ -1,6 +1,6 @@
 import { computed, onScopeDispose, ref, watch } from "vue";
 import { ElMessage } from "element-plus";
-import { createBrowserAsr, isBrowserAsrSupported, type BrowserAsrState } from "@toonflow/asr";
+import { createBrowserAsr, isBrowserAsrSupported, type BrowserAsrState } from "@dramaflow/asr";
 import type xSender from "x-sender";
 
 export default function useVoiceInput(options: {

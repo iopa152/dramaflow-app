@@ -21,13 +21,13 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onScopeDispose, provide, shallowReactive, shallowRef, ref, watch, type ComponentPublicInstance } from "vue";
-import type { CanvasContext } from "@toonflow/tool-canvas/runtime";
+import type { CanvasContext } from "@dramaflow/tool-canvas/runtime";
 import { waitForControlValue } from "@/lib/mcpControl";
 import canvasPanel from "./index.vue";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
 import { useWorkspaceStore } from "@/stores/workspace";
-import { createCanvasMention, mentionNodeOutputs, queryMentionNodes, type MentionCanvasSource } from "@toonflow/server/agent/mentionSources";
-import type { NodeDocumentState } from "@toonflow/nodes-scaffold/nodeDocument";
+import { createCanvasMention, mentionNodeOutputs, queryMentionNodes, type MentionCanvasSource } from "@dramaflow/server/agent/mentionSources";
+import type { NodeDocumentState } from "@dramaflow/nodes-scaffold/nodeDocument";
 import { copyCanvasFiles, readCanvasFiles, type DocumentNode, type DocumentNodeOptions } from "./canvasFiles";
 
 const props = withDefaults(defineProps<{ active?: boolean; settingsVisible?: boolean }>(), { active: true, settingsVisible: false });
@@ -85,10 +85,10 @@ async function ensureCanvas(fileName: string, signal?: AbortSignal, activate = f
   if (!canvases.value.some(canvas => canvas.id === fileName)) {
     const directory = workspaceStore.project?.directory;
     if (!directory) throw new Error("请先选择工作目录");
-    const data = await useWorkspaceFiles(directory).readJson<{ toonflowCanvas?: boolean; nodes?: unknown[]; edges?: unknown[]; viewport?: { x: number; y: number; zoom: number } }>(fileName);
+    const data = await useWorkspaceFiles(directory).readJson<{ dramaflowCanvas?: boolean; toonflowCanvas?: boolean; nodes?: unknown[]; edges?: unknown[]; viewport?: { x: number; y: number; zoom: number } }>(fileName);
     checkDirectory(directory);
     callSignal.throwIfAborted();
-    if (data?.toonflowCanvas !== true || !Array.isArray(data.nodes) || !Array.isArray(data.edges) || !data.viewport
+    if ((data?.dramaflowCanvas ?? data?.toonflowCanvas) !== true || !Array.isArray(data.nodes) || !Array.isArray(data.edges) || !data.viewport
       || ![data.viewport.x, data.viewport.y, data.viewport.zoom].every(Number.isFinite) || data.viewport.zoom <= 0) throw new Error("画布文件格式无效");
     fileName = canonicalCanvasPath(fileName);
     if (!canvases.value.some(canvas => canvas.id === fileName)) canvases.value = [...canvases.value, { id: fileName, name: canvasName(fileName) }];

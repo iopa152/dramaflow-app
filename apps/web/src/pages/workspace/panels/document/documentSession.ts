@@ -1,10 +1,10 @@
 import { markRaw, ref, shallowReactive, type Component } from "vue";
 import axios from "axios";
-import type { ExtContext, ExtDefinition, ExtResource } from "@toonflow/ext-scaffold/runtime";
+import type { ExtContext, ExtDefinition, ExtResource } from "@dramaflow/ext-scaffold/runtime";
 import useWorkspaceFiles, { type TextSnapshot } from "@/lib/workspaceFiles";
 import { writeClipboardText } from "@/lib/clipboard";
 import { extensionConfig, saveExtensionConfig } from "./extensions";
-import { t } from "@toonflow/i18n/vue";
+import { t } from "@dramaflow/i18n/vue";
 
 type NodeState = { dirty: boolean; error: string; deleted: boolean };
 type NodeObserver = (onState: (state: NodeState) => void) => Promise<{ release(): void; flushSave(): Promise<void> }>;

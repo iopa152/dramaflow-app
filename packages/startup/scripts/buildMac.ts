@@ -1,5 +1,5 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "@toonflow/file";
-import { write } from "@toonflow/file/bun";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "@dramaflow/file";
+import { write } from "@dramaflow/file/bun";
 import { join, resolve } from "node:path";
 
 const arch = process.argv[2] ?? process.arch;

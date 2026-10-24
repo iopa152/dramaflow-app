@@ -1,11 +1,11 @@
 import type { ToolDefinition } from "@earendil-works/pi-coding-agent";
 import type { Rule } from "@form-create/element-ui";
-import type { FfmpegFactory } from "@toonflow/ffmpeg/types";
-import type { Stats } from "@toonflow/file";
+import type { FfmpegFactory } from "@dramaflow/ffmpeg/types";
+import type { Stats } from "@dramaflow/file";
 import { z } from "zod";
 
 export type { ToolDefinition } from "@earendil-works/pi-coding-agent";
-export type { FfmpegFactory, FfmpegCommand, FfprobeData } from "@toonflow/ffmpeg/types";
+export type { FfmpegFactory, FfmpegCommand, FfprobeData } from "@dramaflow/ffmpeg/types";
 
 export const asrRequestSchema = z.strictObject({
   path: z.string().min(1).max(4096).refine(path => !/^(?:[\\/]|[a-z][a-z\d+.-]*:)/i.test(path)

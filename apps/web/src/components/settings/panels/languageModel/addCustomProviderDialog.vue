@@ -156,9 +156,9 @@ import {
   IconSearch,
 } from "@tabler/icons-vue";
 import { saveSettings, type CustomProvider, type CustomProviderModel } from "@/stores/settings";
-import { languageProviders } from "@toonflow/providers";
+import { languageProviders } from "@dramaflow/providers";
 import { isTfRouterProvider } from "@/lib/tf";
-import { thinkingLevels, type ThinkingLevel, type ReasoningEfforts } from "@toonflow/server/modelReasoning";
+import { thinkingLevels, type ThinkingLevel, type ReasoningEfforts } from "@dramaflow/server/modelReasoning";
 
 const props = defineProps<{ provider?: CustomProvider }>();
 const visible = defineModel<boolean>({ default: false });

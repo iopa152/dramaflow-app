@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import type { BrowserFfmpegRequest } from "@toonflow/ffmpeg";
+import type { BrowserFfmpegRequest } from "@dramaflow/ffmpeg";
 import { validateFields } from "@/lib/middleware";
 import { success } from "@/lib/responseFormat";
 import u from "@/utils";

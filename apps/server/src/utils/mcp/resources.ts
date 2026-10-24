@@ -1,7 +1,7 @@
 import { loadSkillsFromDir } from "@earendil-works/pi-coding-agent";
-import type { McpOptions } from "@toonflow/mcp";
-import { readFile } from "@toonflow/file";
-import { file } from "@toonflow/file/bun";
+import type { McpOptions } from "@dramaflow/mcp";
+import { readFile } from "@dramaflow/file";
+import { file } from "@dramaflow/file/bun";
 import { resolve } from "node:path";
 import * as skillFile from "@/utils/skills/files";
 
@@ -27,7 +27,7 @@ export const skillResources: NonNullable<McpOptions["resources"]> = {
   },
   async read(uri, signal) {
     signal.throwIfAborted();
-    const match = /^toonflow:\/\/skills\/([^/]+)\/(.+)$/.exec(uri);
+    const match = /^dramaflow:\/\/skills\/([^/]+)\/(.+)$/.exec(uri);
     if (!match) throw Object.assign(new Error("技能资源地址无效"), { status: 400 });
     const name = decodeURIComponent(match[1]!);
     if (!skillFile.isEnabled(name)) throw Object.assign(new Error("技能已禁用"), { status: 404 });

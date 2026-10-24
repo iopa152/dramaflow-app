@@ -1,4 +1,4 @@
-import type { NodeAiModel } from "@toonflow/nodes-scaffold/nodeAi";
+import type { NodeAiModel } from "@dramaflow/nodes-scaffold/nodeAi";
 
 export function groupNodeModels<T extends Pick<NodeAiModel, "providerId" | "providerLabel">>(models: readonly T[]) {
   return [...Map.groupBy(models, item => item.providerId)].map(([id, items]) => ({

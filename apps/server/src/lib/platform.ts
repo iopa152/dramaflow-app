@@ -7,7 +7,7 @@ export function setRuntimeHost(host: typeof runtimeHost) {
 
 // 宿主在启动过程中设置，每次调用读取，不在导入时缓存或初始化配置。
 export function getRuntimePlatform() {
-  const os = process.platform === "linux" && process.env.TOONFLOW_PLATFORM === "ohos" ? "ohos" : process.platform;
+  const os = process.platform === "linux" && process.env.DRAMAFLOW_PLATFORM === "ohos" ? "ohos" : process.platform;
   const development = process.env.NODE_ENV === "dev";
   const desktop = runtimeHost === "desktop";
   const mobile = runtimeHost === "mobile";

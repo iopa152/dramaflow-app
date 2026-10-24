@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
 import { homedir } from "node:os";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
-import { chmod, lstat, mkdir, realpath, rm, writeFile } from "@toonflow/file";
+import { chmod, lstat, mkdir, realpath, rm, writeFile } from "@dramaflow/file";
 import { z } from "zod";
-import { mcpServerSchema } from "@toonflow/mcp/client";
-import type { McpServerConfig } from "@toonflow/mcp/client";
+import { mcpServerSchema } from "@dramaflow/mcp/client";
+import type { McpServerConfig } from "@dramaflow/mcp/client";
 import conf from "@/utils/conf";
 import { decodeText, skillPath, skillZip } from "@/utils/plugins/install";
 import { saveImportedMcpServers } from "@/utils/mcp/servers";

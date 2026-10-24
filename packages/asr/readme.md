@@ -1,11 +1,11 @@
-# @toonflow/asr
+# @dramaflow/asr
 
-浏览器原生语音识别，兼容 `SpeechRecognition` 和 `webkitSpeechRecognition`，不依赖 Vue，不额外请求 `getUserMedia`。消费方先添加依赖 `"@toonflow/asr": "workspace:*"`。
+浏览器原生语音识别，兼容 `SpeechRecognition` 和 `webkitSpeechRecognition`，不依赖 Vue，不额外请求 `getUserMedia`。消费方先添加依赖 `"@dramaflow/asr": "workspace:*"`。
 
 ## 使用
 
 ```ts
-import { createBrowserAsr, isBrowserAsrSupported } from "@toonflow/asr";
+import { createBrowserAsr, isBrowserAsrSupported } from "@dramaflow/asr";
 
 if (!isBrowserAsrSupported()) throw new Error("当前浏览器或 WebView 未提供语音识别 API");
 
@@ -35,7 +35,7 @@ asr.start();
 ## 音频文件转文字
 
 ```ts
-import { isBrowserAudioAsrSupported, transcribeBrowserAudio } from "@toonflow/asr";
+import { isBrowserAudioAsrSupported, transcribeBrowserAudio } from "@dramaflow/asr";
 
 if (!isBrowserAudioAsrSupported()) throw new Error("当前浏览器或 WebView 不支持音频文件识别");
 const controller = new AbortController();

@@ -201,7 +201,7 @@
                 </el-button>
               </el-badge>
               <el-popconfirm
-                v-if="plugin.author !== 'Toonflow' || plugin.type === 'skill' || plugin.type === 'agent' || plugin.type === 'ext'"
+                v-if="plugin.author !== 'Dramaflow' || plugin.type === 'skill' || plugin.type === 'agent' || plugin.type === 'ext'"
                 :title="`确定卸载“${plugin.displayName}”${plugin.type === 'skill' ? '及其附属文件' : ''}吗？`"
                 width="280"
                 confirmButtonText="卸载"
@@ -265,7 +265,7 @@
 </template>
 
 <script setup lang="ts">
-import { translate } from "@toonflow/i18n/vue";
+import { translate } from "@dramaflow/i18n/vue";
 import axios from "axios";
 import parse from "semver/functions/parse";
 import { computed, defineAsyncComponent, markRaw, onMounted, onBeforeUnmount, ref, watch } from "vue";
@@ -273,8 +273,8 @@ import { IconBox, IconBook, IconTool, IconFileText, IconExternalLink, IconSparkl
 import { ElMessage, ElMessageBox } from "element-plus";
 import tf, { getTfApiKey, isTfRouterProvider } from "@/lib/tf";
 import { saveSettings } from "@/stores/settings";
-import tfRouter from "@toonflow/providers/language/tfRouter";
-import { invalidateNodeModels } from "@toonflow/nodes-scaffold/nodeAi";
+import tfRouter from "@dramaflow/providers/language/tfRouter";
+import { invalidateNodeModels } from "@dramaflow/nodes-scaffold/nodeAi";
 import saveFile from "@/lib/saveFile";
 import { writeClipboardText } from "@/lib/clipboard";
 import pluginConfigDialog from "./pluginConfigDialog.vue";
@@ -348,8 +348,8 @@ const refreshKey = ref(0);
 const refreshInstalled = () => {
   refreshKey.value++;
 };
-onMounted(() => window.addEventListener("toonflow:plugin-installed", refreshInstalled));
-onBeforeUnmount(() => window.removeEventListener("toonflow:plugin-installed", refreshInstalled));
+onMounted(() => window.addEventListener("dramaflow:plugin-installed", refreshInstalled));
+onBeforeUnmount(() => window.removeEventListener("dramaflow:plugin-installed", refreshInstalled));
 onBeforeUnmount(() => keyController?.abort());
 watch(
   () => [visible, activeTab.value],
@@ -361,7 +361,7 @@ const selectedPlugin = ref<Plugin>();
 const selectedSkill = ref<Plugin>();
 const detailsVisible = ref(false);
 const messageMarkdown = defineAsyncComponent(() => import("@/components/messageMarkdown.vue"));
-const requestHeaders = { "x-toonflow-workspace": "1" };
+const requestHeaders = { "x-dramaflow-workspace": "1" };
 
 const searchQuery = ref("");
 const appliedQuery = ref("");
@@ -670,8 +670,8 @@ async function installMarketPlugin(plugin: Plugin) {
   try {
     const { data } = await axios.post(`/api/${path}/install`, { url: plugin.url, fileName: plugin.fileName }, { headers: requestHeaders });
     if (data.code !== 200) throw new Error(data.message || "安装插件失败");
-    window.dispatchEvent(new CustomEvent("toonflow:plugin-installed", { detail: { type: plugin.type, name: data.data.name } }));
-    if (plugin.type === "ext") window.dispatchEvent(new CustomEvent("toonflow:ext-updated", { detail: { name: data.data.name } }));
+    window.dispatchEvent(new CustomEvent("dramaflow:plugin-installed", { detail: { type: plugin.type, name: data.data.name } }));
+    if (plugin.type === "ext") window.dispatchEvent(new CustomEvent("dramaflow:ext-updated", { detail: { name: data.data.name } }));
     ElMessage.success(action === "更新" ? `${plugin.displayName}已更新` : `${plugin.displayName}已安装`);
   } catch (error) {
     ElMessage.error(errorMessage(error, "安装插件失败，请重试"));
@@ -751,7 +751,7 @@ async function updatePlugin(plugin: Plugin, action: "setEnabled" | "uninstall", 
     loading.value ||
     pendingPlugins.value.has(plugin.key) ||
     exportingPlugins.value.has(plugin.key) ||
-    (action === "uninstall" && plugin.author === "Toonflow" && (plugin.type === "node" || plugin.type === "tool"))
+    (action === "uninstall" && plugin.author === "Dramaflow" && (plugin.type === "node" || plugin.type === "tool"))
   )
     return;
   pendingPlugins.value.add(plugin.key);
@@ -778,8 +778,8 @@ async function updatePlugin(plugin: Plugin, action: "setEnabled" | "uninstall", 
       ElMessage.success("插件已卸载");
     } else plugin.enabled = enabled;
     if (plugin.type === "node")
-      window.dispatchEvent(new CustomEvent("toonflow:plugin-installed", { detail: { type: plugin.type, name: plugin.name } }));
-    if (plugin.type === "ext") window.dispatchEvent(new CustomEvent("toonflow:ext-updated", { detail: { name: plugin.name } }));
+      window.dispatchEvent(new CustomEvent("dramaflow:plugin-installed", { detail: { type: plugin.type, name: plugin.name } }));
+    if (plugin.type === "ext") window.dispatchEvent(new CustomEvent("dramaflow:ext-updated", { detail: { name: plugin.name } }));
   } catch (error) {
     ElMessage.error(errorMessage(error, `${actionLabel}失败，请重试`));
   } finally {

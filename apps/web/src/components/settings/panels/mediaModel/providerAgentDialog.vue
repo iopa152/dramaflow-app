@@ -67,14 +67,14 @@
 
 <script setup lang="ts">
 import axios from "axios";
-import { translate } from "@toonflow/i18n/vue";
+import { translate } from "@dramaflow/i18n/vue";
 import { ref, shallowRef, watch } from "vue";
 import { ElMessage } from "element-plus";
 import { IconBrowser, IconDownload, IconFileCode, IconInfoCircle } from "@tabler/icons-vue";
-import type { ToolCall } from "@toonflow/tools-scaffold/runtime";
-import type { SingleAgentStatus } from "@toonflow/server/singleAgent/types";
-import browserPanel from "@toonflow/tool-browser/panel";
-import { isBrowserTool } from "@toonflow/tool-browser/client";
+import type { ToolCall } from "@dramaflow/tools-scaffold/runtime";
+import type { SingleAgentStatus } from "@dramaflow/server/singleAgent/types";
+import browserPanel from "@dramaflow/tool-browser/panel";
+import { isBrowserTool } from "@dramaflow/tool-browser/client";
 import singleAgentDialog, { type SingleAgentTool } from "@/components/singleAgentDialog.vue";
 import type { AgentMessage } from "@/components/agent/types";
 import toolMessage from "@/components/agent/toolMessage.vue";
@@ -94,7 +94,7 @@ const generatedProvider = shallowRef<MediaProvider>();
 const downloading = ref(false);
 const agentPrompt = `${providerPrompt}
 
-当前环境是 Toonflow 内置供应商生成助手。上文「三、交付后仍需带我完成导入」不适用于当前环境，以下规则替代外部 AI 的交付和操作方式：
+当前环境是 Dramaflow 内置供应商生成助手。上文「三、交付后仍需带我完成导入」不适用于当前环境，以下规则替代外部 AI 的交付和操作方式：
 - 使用 browser 工具直接读取用户提供的链接与相关接口文档，提取实际请求、响应、模型和任务查询协议，资料已经存在就自行读取，不让用户抄写。用户明确要求代找文档时可定向搜索对应平台；仍不凭空猜接口或根据搜索摘要生成代码。
 - 当前聊天仅接收文字，可粘贴接口示例或工作流 JSON，不要求上传附件或截图。先请用户提供链接或已有资料；不要自动发送欢迎问卷。需要提问时，每次只问一件事，askUser 不可用就正常在对话中提问。
 - 用户能看到右侧浏览器画面。遇到登录、验证码或需要人工操作时，说明可以暂停后点击画面或放大操作；等待 askUser 回答时也可人工操作。不要索取或代填密码、验证码、真实 API Key，不读取或导出 Cookie、令牌等登录凭据。人工操作完成后重新 snapshot/read，不能复用旧的元素引用。
@@ -112,7 +112,7 @@ const submitTool: SingleAgentTool = {
   async execute(_id, args, signal) {
     const source = args.source;
     if (typeof source !== "string" || !source.trim() || new Blob([source]).size > 1024 * 1024) throw new Error("请提交不超过 1 MB 的完整供应商源码");
-    const { data } = await axios.post<{ code: number; data: MediaProvider; message?: string }>("/api/providers/media/validate", { source }, { headers: { "x-toonflow-workspace": "1" }, signal });
+    const { data } = await axios.post<{ code: number; data: MediaProvider; message?: string }>("/api/providers/media/validate", { source }, { headers: { "x-dramaflow-workspace": "1" }, signal });
     signal.throwIfAborted();
     if (data.code !== 200 || !data.data || data.data.loadError) throw new Error(data.data?.loadError || data.message || "供应商文件检查失败");
     generatedSource.value = source;

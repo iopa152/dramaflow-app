@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Toonflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Toonflow" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Dramaflow&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=50" alt="Dramaflow" width="100%" />
 
 <p>
   <a href="https://github.com/HBAI-Ltd/Toonflow-app">
@@ -45,13 +45,13 @@
 <div align="center">
 
 <p align="center">
-  <img src="../images/logo.png" alt="Toonflow लोगो" width="120" height="120" />
+  <img src="../images/logo.png" alt="Dramaflow लोगो" width="120" height="120" />
 </p>
 
 <a href="https://git.io/typing-svg">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" />
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Toonflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" alt="Toonflow · AI लघु नाटक स्टुडिओ · कल्पनांना कथांमध्ये रूपांतरित करा" width="600" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&duration=3000&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=Dramaflow;AI%20Short%20Drama%20Studio;Turn%20ideas%20into%20stories" alt="Dramaflow · AI लघु नाटक स्टुडिओ · कल्पनांना कथांमध्ये रूपांतरित करा" width="600" />
   </picture>
 </a>
 
@@ -134,12 +134,12 @@
     <tr>
       <td width="50%" align="center">
         <a href="../images/gStar.png">
-          <img src="../images/gStar.png" alt="Toonflow AtomGit G-स्टार प्रमाणपत्र क्रमांक 540" width="100%" />
+          <img src="../images/gStar.png" alt="Dramaflow AtomGit G-स्टार प्रमाणपत्र क्रमांक 540" width="100%" />
         </a>
       </td>
       <td width="50%" align="center">
         <a href="../images/gvp.jpg">
-          <img src="../images/gvp.jpg" alt="Toonflow Gitee GVP प्रमाणपत्र" width="100%" />
+          <img src="../images/gvp.jpg" alt="Dramaflow Gitee GVP प्रमाणपत्र" width="100%" />
         </a>
       </td>
     </tr>
@@ -158,7 +158,7 @@
 
 ## 1. 💛 प्रायोजक आणि सहकार्य
 
-Toonflow ओपन-सोर्स प्रोजेक्टला समर्थन दिल्याबद्दल खालील भागीदारांचे आभार.
+Dramaflow ओपन-सोर्स प्रोजेक्टला समर्थन दिल्याबद्दल खालील भागीदारांचे आभार.
 
 <table>
   <tr>
@@ -168,18 +168,18 @@ Toonflow ओपन-सोर्स प्रोजेक्टला समर�
       <sub>किफायतशीर MiniMax H3 व्हिडिओ निर्मिती: 768P साठी फक्त ¥0.09 प्रति सेकंद आणि 2K साठी ¥0.15 प्रति सेकंद (CNY). स्वतःची GPU यंत्रणा उभारण्याची गरज नाही; नेटिव्ह 2K, समकालिक ध्वनी व व्हिडिओ, OpenAI-सुसंगत API, ComfyUI आणि अनंत कॅनव्हास यांना समर्थन आहे. बोनस क्रेडिट आणि खास सवलती मिळवण्यासाठी <a href="https://metaso.cn/minimax-h3/?s=toon">या विशेष दुव्यावरून नोंदणी करा</a>. व्यावसायिक चौकशीसाठी WeChat वर metasota12 यांच्याशी संपर्क साधा.</sub>
     </td>
     <td width="50%" valign="top">
-<a href="https://go.apimart.ai/gh-toonflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
+<a href="https://go.apimart.ai/gh-dramaflow-app"><img src="../images/sponsors/apiMart.jpg" alt="APIMart" height="28" valign="middle" /> <strong>APIMart</strong></a>
       <br />
-      <sub>या प्रकल्पाला प्रायोजकत्व दिल्याबद्दल APIMart चे आभार! APIMart हे AI प्रतिमा व व्हिडिओ निर्मितीसाठी परवडणारे API व्यासपीठ आहे. GPT-Image-2 मध्ये प्रतिमेची किंमत $0.006 पासून सुरू होते; $1 मध्ये 160+ प्रतिमा मिळतात. प्रतिमा आणि व्हिडिओंसाठी एकच असिंक्रोनस API वापरला जातो: काम पाठवा, त्याचा ID मिळवा आणि callback द्वारे परिणाम घ्या. टाइमआउट न होता 10,000 प्रतिमांच्या तुकड्यांवर प्रक्रिया करा आणि कोड न बदलता मॉडेल बदला. मासिक शुल्क नाही; जितका वापर तितकेच पैसे. सुरुवात करण्यासाठी <a href="https://go.apimart.ai/gh-toonflow-app">येथे नोंदणी करा</a>.</sub>
+      <sub>या प्रकल्पाला प्रायोजकत्व दिल्याबद्दल APIMart चे आभार! APIMart हे AI प्रतिमा व व्हिडिओ निर्मितीसाठी परवडणारे API व्यासपीठ आहे. GPT-Image-2 मध्ये प्रतिमेची किंमत $0.006 पासून सुरू होते; $1 मध्ये 160+ प्रतिमा मिळतात. प्रतिमा आणि व्हिडिओंसाठी एकच असिंक्रोनस API वापरला जातो: काम पाठवा, त्याचा ID मिळवा आणि callback द्वारे परिणाम घ्या. टाइमआउट न होता 10,000 प्रतिमांच्या तुकड्यांवर प्रक्रिया करा आणि कोड न बदलता मॉडेल बदला. मासिक शुल्क नाही; जितका वापर तितकेच पैसे. सुरुवात करण्यासाठी <a href="https://go.apimart.ai/gh-dramaflow-app">येथे नोंदणी करा</a>.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
+<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow"><img src="../images/sponsors/compShare.png" alt="CompShare" height="28" valign="middle" /> <strong>CompShare</strong></a>
       <br />
       <sub>CompShare किफायतशीर H3 व्हिडिओ निर्मिती देते. यात मजकुरावरून व्हिडिओ, पहिल्या व शेवटच्या फ्रेमचे नियंत्रण आणि एकत्रित संदर्भ मोड उपलब्ध आहेत. नेटिव्ह 2K मध्ये जास्तीत जास्त 30 सेकंदांचे व्हिडिओ तयार करा; 768P साठी किंमत फक्त CNY 0.08 प्रति सेकंद आहे. API जोडणी, उद्योगांसाठी एकाच वेळी मोठ्या संख्येने विनंत्या हाताळणे आणि स्वतः बीजक मिळवण्याची सुविधा उपलब्ध आहे.</sub>
 <br /><br />
-      <sub>🎁 व्यासपीठ वापरून पाहण्यासाठी CNY 5 मोफत क्रेडिट मिळवा—<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_toonflow">या विशेष दुव्यावरून नोंदणी करा</a>!</sub>
+      <sub>🎁 व्यासपीठ वापरून पाहण्यासाठी CNY 5 मोफत क्रेडिट मिळवा—<a href="https://www.compshare.cn/video-studio?ytag=GPU_YY_YX_git_dramaflow">या विशेष दुव्यावरून नोंदणी करा</a>!</sub>
     </td>
 <td width="50%" valign="top"></td>
   </tr>
@@ -200,7 +200,7 @@ Toonflow ओपन-सोर्स प्रोजेक्टला समर�
 
 ## 2. 🌟 ठळक मुद्दे
 
-Toonflow हे लघुनाट्ये, ॲनिमेटेड कॉमिक्स आणि लहान व्हिडिओ तयार करण्यासाठीचे मुक्त-स्रोत AI व्यासपीठ आहे. पटकथा, सर्जनशील सामग्री आणि व्हिडिओ क्लिप एका अनंत कॅनव्हासवर एकत्र आणते.
+Dramaflow हे लघुनाट्ये, ॲनिमेटेड कॉमिक्स आणि लहान व्हिडिओ तयार करण्यासाठीचे मुक्त-स्रोत AI व्यासपीठ आहे. पटकथा, सर्जनशील सामग्री आणि व्हिडिओ क्लिप एका अनंत कॅनव्हासवर एकत्र आणते.
 
 | क्षमता | वर्णन |
 | --- | --- |
@@ -224,25 +224,25 @@ Toonflow हे लघुनाट्ये, ॲनिमेटेड कॉम�
 
 <div align="center">
 
-<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Toonflow · प्रकल्पाचे मुख्यपृष्ठ आणि कल्पना निर्मिती" width="80%" /></a><br /><sub>प्रकल्पाचे मुख्यपृष्ठ आणि कल्पना निर्मिती</sub>
+<a href="../images/screenshots/projectHome.png"><img src="../images/screenshots/projectHome.png" alt="Dramaflow · प्रकल्पाचे मुख्यपृष्ठ आणि कल्पना निर्मिती" width="80%" /></a><br /><sub>प्रकल्पाचे मुख्यपृष्ठ आणि कल्पना निर्मिती</sub>
 
-<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Toonflow · पहिली सुरुवात आणि झटपट सेटअप" width="80%" /></a><br /><sub>पहिली सुरुवात आणि झटपट सेटअप</sub>
+<a href="../images/screenshots/quickStart.png"><img src="../images/screenshots/quickStart.png" alt="Dramaflow · पहिली सुरुवात आणि झटपट सेटअप" width="80%" /></a><br /><sub>पहिली सुरुवात आणि झटपट सेटअप</sub>
 
-<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Toonflow · सर्जनशील कॅनव्हास · गडद थीम" width="80%" /></a><br /><sub>सर्जनशील कॅनव्हास · गडद थीम</sub>
+<a href="../images/screenshots/canvasDark.png"><img src="../images/screenshots/canvasDark.png" alt="Dramaflow · सर्जनशील कॅनव्हास · गडद थीम" width="80%" /></a><br /><sub>सर्जनशील कॅनव्हास · गडद थीम</sub>
 
-<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Toonflow · सर्जनशील कॅनव्हास · उजळ थीम" width="80%" /></a><br /><sub>सर्जनशील कॅनव्हास · उजळ थीम</sub>
+<a href="../images/screenshots/canvasLight.png"><img src="../images/screenshots/canvasLight.png" alt="Dramaflow · सर्जनशील कॅनव्हास · उजळ थीम" width="80%" /></a><br /><sub>सर्जनशील कॅनव्हास · उजळ थीम</sub>
 
-<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Toonflow · पात्रे, दृश्ये आणि वस्तूंसाठीची सामग्री" width="80%" /></a><br /><sub>पात्रे, दृश्ये आणि वस्तूंसाठीची सामग्री</sub>
+<a href="../images/screenshots/assetCanvas.png"><img src="../images/screenshots/assetCanvas.png" alt="Dramaflow · पात्रे, दृश्ये आणि वस्तूंसाठीची सामग्री" width="80%" /></a><br /><sub>पात्रे, दृश्ये आणि वस्तूंसाठीची सामग्री</sub>
 
-<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Toonflow · 3D दिग्दर्शक स्टुडिओ आणि शॉटचे पूर्वावलोकन" width="80%" /></a><br /><sub>3D दिग्दर्शक स्टुडिओ आणि शॉटचे पूर्वावलोकन</sub>
+<a href="../images/screenshots/directorStudio.png"><img src="../images/screenshots/directorStudio.png" alt="Dramaflow · 3D दिग्दर्शक स्टुडिओ आणि शॉटचे पूर्वावलोकन" width="80%" /></a><br /><sub>3D दिग्दर्शक स्टुडिओ आणि शॉटचे पूर्वावलोकन</sub>
 
-<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Toonflow · पात्रांची तीन बाजूंनी दृश्ये आणि प्रतिमा निर्मिती" width="80%" /></a><br /><sub>पात्रांची तीन बाजूंनी दृश्ये आणि प्रतिमा निर्मिती</sub>
+<a href="../images/screenshots/characterImageGeneration.png"><img src="../images/screenshots/characterImageGeneration.png" alt="Dramaflow · पात्रांची तीन बाजूंनी दृश्ये आणि प्रतिमा निर्मिती" width="80%" /></a><br /><sub>पात्रांची तीन बाजूंनी दृश्ये आणि प्रतिमा निर्मिती</sub>
 
-<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Toonflow · अनेक संदर्भ सामग्रींसह व्हिडिओ निर्मिती" width="80%" /></a><br /><sub>अनेक संदर्भ सामग्रींसह व्हिडिओ निर्मिती</sub>
+<a href="../images/screenshots/videoGeneration.png"><img src="../images/screenshots/videoGeneration.png" alt="Dramaflow · अनेक संदर्भ सामग्रींसह व्हिडिओ निर्मिती" width="80%" /></a><br /><sub>अनेक संदर्भ सामग्रींसह व्हिडिओ निर्मिती</sub>
 
-<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Toonflow · नोड मेनू आणि गटांवरील क्रिया" width="80%" /></a><br /><sub>नोड मेनू आणि गटांवरील क्रिया</sub>
+<a href="../images/screenshots/nodeMenu.png"><img src="../images/screenshots/nodeMenu.png" alt="Dramaflow · नोड मेनू आणि गटांवरील क्रिया" width="80%" /></a><br /><sub>नोड मेनू आणि गटांवरील क्रिया</sub>
 
-<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Toonflow · प्लगइन बाजारपेठ" width="80%" /></a><br /><sub>प्लगइन बाजारपेठ</sub>
+<a href="../images/screenshots/pluginMarket.png"><img src="../images/screenshots/pluginMarket.png" alt="Dramaflow · प्लगइन बाजारपेठ" width="80%" /></a><br /><sub>प्लगइन बाजारपेठ</sub>
 
 </div>
 
@@ -258,25 +258,25 @@ Toonflow हे लघुनाट्ये, ॲनिमेटेड कॉम�
 | macOS | [Release](https://github.com/HBAI-Ltd/Toonflow-app/releases) |
 | Android ARM64 | [APK डाउनलोड](https://github.com/HBAI-Ltd/Toonflow-app/releases/latest) |
 
-Android अॅप फक्त ARM64 उपकरणांना समर्थन देते. रिलीज पृष्ठावरून `toonflow-VERSION-android-arm64.apk` डाउनलोड करून स्थापित करा. त्यात स्थानिक Bun बॅकएंड असून ते स्वतंत्रपणे चालू शकते. होम पृष्ठावरील «डिव्हाइस जोडणी» वापरून QR कोड स्कॅन करता येतो किंवा माहिती भरून स्थानिक नेटवर्क किंवा इंटरनेटवर शेअरिंग सुरू असलेल्या संगणक किंवा बॅकएंडशी जोडता येते.
+Android अॅप फक्त ARM64 उपकरणांना समर्थन देते. रिलीज पृष्ठावरून `dramaflow-VERSION-android-arm64.apk` डाउनलोड करून स्थापित करा. त्यात स्थानिक Bun बॅकएंड असून ते स्वतंत्रपणे चालू शकते. होम पृष्ठावरील «डिव्हाइस जोडणी» वापरून QR कोड स्कॅन करता येतो किंवा माहिती भरून स्थानिक नेटवर्क किंवा इंटरनेटवर शेअरिंग सुरू असलेल्या संगणक किंवा बॅकएंडशी जोडता येते.
 
 Windows इंस्टॉलर स्वयंचलितपणे WebView2 ओळखतो आणि स्थापित करतो. इंस्टॉलेशननंतर लगेच ॲप बंद झाल्यास, [WebView2 डाउनलोड पेज](https://developer.microsoft.com/microsoft-edge/webview2/) वरून रनटाइम मॅन्युअली डाउनलोड करा आणि इंस्टॉल करा.
 
-macOS (Apple Silicon) वर Toonflow ला Applications फोल्डरमध्ये ओढा आणि थेट उघडा. त्याआधी Terminal मध्ये कोणतीही कमांड चालवण्याची गरज नाही. macOS ने सुरक्षेचा इशारा दाखवल्यास खालील पायऱ्या क्रमाने करा.
+macOS (Apple Silicon) वर Dramaflow ला Applications फोल्डरमध्ये ओढा आणि थेट उघडा. त्याआधी Terminal मध्ये कोणतीही कमांड चालवण्याची गरज नाही. macOS ने सुरक्षेचा इशारा दाखवल्यास खालील पायऱ्या क्रमाने करा.
 
 <details>
-<summary><strong>macOS वर Toonflow स्थापित होत नसेल किंवा उघडत नसेल तर</strong></summary>
+<summary><strong>macOS वर Dramaflow स्थापित होत नसेल किंवा उघडत नसेल तर</strong></summary>
 
-**1. गोपनीयता आणि सुरक्षितता मध्ये Toonflow ला अनुमती द्या**
+**1. गोपनीयता आणि सुरक्षितता मध्ये Dramaflow ला अनुमती द्या**
 
-डेव्हलपरची पडताळणी केली जाऊ शकत नाही किंवा Apple दुर्भावनापूर्ण सॉफ्टवेअरसाठी ॲप तपासू शकत नाही अशी चेतावणी तुम्हाला दिसल्यास, प्रथम Toonflow उघडण्याचा प्रयत्न करा. त्यानंतर सिस्टम सेटिंग्ज → गोपनीयता आणि सुरक्षितता वर जा, Toonflow अवरोधित करण्यात आलेला संदेश शोधा, तरीही उघडा क्लिक करा आणि सूचित केल्यानुसार पुष्टी करा. पहा [Apple च्या अधिकृत सूचना](https://support.apple.com/zh-cn/102445).
+डेव्हलपरची पडताळणी केली जाऊ शकत नाही किंवा Apple दुर्भावनापूर्ण सॉफ्टवेअरसाठी ॲप तपासू शकत नाही अशी चेतावणी तुम्हाला दिसल्यास, प्रथम Dramaflow उघडण्याचा प्रयत्न करा. त्यानंतर सिस्टम सेटिंग्ज → गोपनीयता आणि सुरक्षितता वर जा, Dramaflow अवरोधित करण्यात आलेला संदेश शोधा, तरीही उघडा क्लिक करा आणि सूचित केल्यानुसार पुष्टी करा. पहा [Apple च्या अधिकृत सूचना](https://support.apple.com/zh-cn/102445).
 
 **2. अलग ठेवण्याचे निर्बंध अजूनही उघडण्यास प्रतिबंध करत असल्यास, अलग ठेवण्याचे गुणधर्म काढून टाकण्याचा प्रयत्न करा**
 
 ॲप अधिकृत प्रकाशन पृष्ठावरून आला आहे आणि अनुप्रयोगांमध्ये आहे याची पुष्टी केल्यानंतर, टर्मिनलमध्ये खालील आदेश चालवा आणि तो पुन्हा उघडण्याचा प्रयत्न करा. ॲपचे नाव किंवा इन्स्टॉलेशन स्थान वेगळे असल्यास पथ समायोजित करा.
 
 ```bash
-sudo xattr -rd com.apple.quarantine /Applications/toonflow.app
+sudo xattr -rd com.apple.quarantine /Applications/dramaflow.app
 ```
 
 **3. शेवटचा उपाय: कुठूनही ॲप्सना तात्पुरती अनुमती द्या**
@@ -308,16 +308,16 @@ sudo spctl --master-disable
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 docker compose up -d --build
 ```
 
 प्रथम बिल्ड अवलंबित्व स्थापित करते आणि एकत्रित नोड्स, टूल्स, Web आणि Server तयार करते. एकदा सुरू केल्यानंतर, `http://127.0.0.1:3000` उघडा. रिमोट होस्टसाठी, खाली "प्रवेश आणि डेटा" खाली वर्णन केल्याप्रमाणे SSH बोगदा वापरा. पहिले स्टार्टअप बंडल केलेले प्लगइन सुरू करते आणि `myProject` कार्यरत निर्देशिका प्रदान करते.
 
-सेटिंग्ज, प्लगइन आणि प्रकल्पाच्या फाइल्स `toonflowData` नावाच्या Docker volume मध्ये साठवल्या जातात. कंटेनरमध्ये तो `/app/data/` येथे जोडलेला असतो. प्रत्यक्ष volume नावाच्या सुरुवातीला Compose प्रकल्पाचे नाव असते. कंटेनर थांबवला किंवा पुन्हा तयार केला तरी डेटा सुरक्षित राहतो. **`docker compose down -v` वापरू नका: ही कमांड डेटा volume हटवते.**
+सेटिंग्ज, प्लगइन आणि प्रकल्पाच्या फाइल्स `dramaflowData` नावाच्या Docker volume मध्ये साठवल्या जातात. कंटेनरमध्ये तो `/app/data/` येथे जोडलेला असतो. प्रत्यक्ष volume नावाच्या सुरुवातीला Compose प्रकल्पाचे नाव असते. कंटेनर थांबवला किंवा पुन्हा तयार केला तरी डेटा सुरक्षित राहतो. **`docker compose down -v` वापरू नका: ही कमांड डेटा volume हटवते.**
 
 ```sh
-docker compose logs -f toonflow  # View logs
+docker compose logs -f dramaflow  # View logs
 docker compose stop             # Stop the service
 docker compose start            # Start it again
 docker compose down             # Remove containers, retaining the data volume
@@ -326,14 +326,14 @@ docker compose down             # Remove containers, retaining the data volume
 प्रोजेक्ट डिरेक्ट्री जोडण्यासाठी, "Server वर्किंग डिरेक्ट्री निवडा" डायलॉगमध्ये "नवीन फोल्डर" वर क्लिक करा. डायलॉग फायली आणि फोल्डर्सचे नाव बदलणे आणि हटविणे देखील समर्थन करतो. वैकल्पिकरित्या, सेवा चालू असताना कमांड लाइनमधून एक निर्देशिका तयार करा:
 
 ```sh
-docker compose exec toonflow mkdir -p /app/data/workspaces/newProject
+docker compose exec dramaflow mkdir -p /app/data/workspaces/newProject
 ```
 
 बॅकअपसाठी, प्रथम सेवा थांबवा, डेटा कॉपी करा, नंतर रीस्टार्ट करा:
 
 ```sh
 docker compose stop
-docker compose cp toonflow:/app/data ./toonflowBackup
+docker compose cp dramaflow:/app/data ./dramaflowBackup
 docker compose start
 ```
 
@@ -362,7 +362,7 @@ bun --version
 
 ```sh
 git clone https://github.com/HBAI-Ltd/Toonflow-app.git
-cd Toonflow-app
+cd Dramaflow-app
 bun install --frozen-lockfile
 
 # Build bundled nodes, tools, Web, and Server
@@ -388,7 +388,7 @@ bun run start:server
 
 ### 4.5 मेघ उपयोजन
 
-आमचा भागीदार [AI Galaxy (智星云)](https://www.ai-galaxy.com/) अधिकृत मान्यताप्राप्त व्यावसायिक Toonflow इमेज पुरवतो. त्यात वापरासाठी तयार वातावरण असते. पायऱ्यांसाठी [चित्रांसह इमेज स्थापनेचे मार्गदर्शन](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1) पाहा.
+आमचा भागीदार [AI Galaxy (智星云)](https://www.ai-galaxy.com/) अधिकृत मान्यताप्राप्त व्यावसायिक Dramaflow इमेज पुरवतो. त्यात वापरासाठी तयार वातावरण असते. पायऱ्यांसाठी [चित्रांसह इमेज स्थापनेचे मार्गदर्शन](https://mp.weixin.qq.com/s/lq9X1ovQ1_TKeXMOLgicKg?scene=1) पाहा.
 
 ---
 
@@ -418,19 +418,19 @@ https://github.com/user-attachments/assets/2d9fddac-dfdf-4640-b030-b09d7f7287e9
   </a>
 </p>
 
-TF-Router हे Toonflow चे अधिकृत, स्व-चालित मॉडेल गेटवे आहे. ते वापरण्यासाठी तुमचे स्वागत आहे. त्याचा संपूर्ण सोर्स कोड ओपन सोर्स आहे आणि सेल्फ होस्टिंग आणि ऑडिटिंगसाठी उपलब्ध आहे: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
+TF-Router हे Dramaflow चे अधिकृत, स्व-चालित मॉडेल गेटवे आहे. ते वापरण्यासाठी तुमचे स्वागत आहे. त्याचा संपूर्ण सोर्स कोड ओपन सोर्स आहे आणि सेल्फ होस्टिंग आणि ऑडिटिंगसाठी उपलब्ध आहे: [HBAI-Ltd/TF-Router](https://github.com/HBAI-Ltd/TF-Router).
 
 <details>
-<summary><strong>Toonflow समुदायाला पत्र (प्रकाशन: 2026-06-08)</strong></summary>
+<summary><strong>Dramaflow समुदायाला पत्र (प्रकाशन: 2026-06-08)</strong></summary>
 
-> ### Toonflow समुदायाला एक पत्र
+> ### Dramaflow समुदायाला एक पत्र
 > 130 दिवस.
 > फार मोठा काळ नाही; पण काही गोष्टी स्पष्टपणे समजण्यासाठी पुरेसा होता.
 > कोडची पहिली ओळ कमिट केल्यापासून आजपर्यंत 130 दिवस झाले. आम्ही 20 आवृत्त्या प्रसिद्ध केल्या, 800+ कमिट केले आणि 640,810 अक्षरे असलेल्या कोडच्या 213,765 ओळी लिहिल्या.
 > दोन पुनर्लेखने, एक प्रदाता प्रणाली आणि आम्हाला अभिमान वाटावा अशी कार्यपद्धती.
 > तेवढे पुरे होईल असे आम्हाला वाटले.
 > पण तसे झाले नाही.
-> काही लोकांनी आम्हाला सांगितले की त्यांना त्यांचे स्वतःचे मॉड्यूल Toonflow मध्ये जोडायचे आहे, परंतु ते कसे बदलायचे हे समजून घेण्याच्या प्रयत्नात तास घालवले.
+> काही लोकांनी आम्हाला सांगितले की त्यांना त्यांचे स्वतःचे मॉड्यूल Dramaflow मध्ये जोडायचे आहे, परंतु ते कसे बदलायचे हे समजून घेण्याच्या प्रयत्नात तास घालवले.
 > काहींनी आम्हाला सांगितले की समुदाय खूप लहान आहे आणि जेव्हा त्यांना समस्या येतात तेव्हा त्यांना मदत मिळत नाही.
 > काहींनी आम्हाला सांगितले की व्यावसायिक अटींनी त्यांना त्यांचे प्रकल्प वापरण्यापासून रोखले.
 > आम्ही तुमचे ऐकले.
@@ -438,7 +438,7 @@ TF-Router हे Toonflow चे अधिकृत, स्व-चालित �
 > आमच्याकडे भरपूर पैसा आहे म्हणून नाही.
 > पण आमचा विश्वास असल्यामुळे हे करणे योग्य आहे.
 > त्यामुळे आम्ही तिसरे पुनर्लेखन हाती घेण्याचे ठरवले आहे.
-> प्रत्येक Toonflow पुनर्लेखन अधिक मोकळेपणा आणि मुक्त स्त्रोताकडे वळले आहे.
+> प्रत्येक Dramaflow पुनर्लेखन अधिक मोकळेपणा आणि मुक्त स्त्रोताकडे वळले आहे.
 > यावेळी, आम्ही सर्वकाही उघडण्याचे निवडले आहे.
 >
 > 1. MIT License
@@ -473,9 +473,9 @@ TF-Router हे Toonflow चे अधिकृत, स्व-चालित �
 >पुनर्लेखनास वेळ लागतो. त्या काळात, सर्व्हर चालू राहतात, डोमेनचे नूतनीकरण आवश्यक असते, टीम उशिराने काम करते आणि कॉफी अधिक महाग होते.
 > आमच्याकडे कोणताही गुंतवणूक निधी नाही, कोणतीही जाहिरात नाही आणि कोणतीही छुपी व्यावसायिक योजना नाही.
 > पण सुरू केलेले काम पूर्ण करण्यासाठी आम्हाला टिकून राहता आले पाहिजे.
-> म्हणूनच आम्ही TF-Router, अधिकृत Toonflow मॉडेल गेटवे लाँच केले.
+> म्हणूनच आम्ही TF-Router, अधिकृत Dramaflow मॉडेल गेटवे लाँच केले.
 > प्रामाणिकपणे, आम्ही या व्यासपीठावर बराच काळ संकोच केला.
-> आम्हाला हा गेटवे बनवायचा नव्हता. त्याच्यामुळे Toonflow आता “पैसे कमवण्याच्या मागे लागले” असे लोकांना वाटू नये, एवढीच इच्छा होती.
+> आम्हाला हा गेटवे बनवायचा नव्हता. त्याच्यामुळे Dramaflow आता “पैसे कमवण्याच्या मागे लागले” असे लोकांना वाटू नये, एवढीच इच्छा होती.
 > ते ओझे आम्ही बराच काळ वाहून नेले.
 > परंतु अनेक वापरकर्ते Seedance 2.0 मध्ये मंजूर प्रवेश मिळवू शकले नाहीत आणि ते वापरण्याचा मार्ग आहे का ते आम्हाला विचारत राहिले.
 > खूप विचार केल्यानंतर, शेवटी आम्ही स्वतः तयार करण्याचा निर्णय घेतला आणि Volcengine सह वार्षिक Seedance फ्रेमवर्क करारावर स्वाक्षरी केली.
@@ -485,11 +485,11 @@ TF-Router हे Toonflow चे अधिकृत, स्व-चालित �
 > आमच्यावर विश्वास नसेल तरी हरकत नाही. कोड वाचा, स्वतः स्थापित करा आणि स्वतः चालवा.
 > हीच आमची भूमिका आहे.
 > जर तुम्ही प्रयत्न करायचे ठरवले तर, हे काम चालू ठेवण्यासाठी आमच्याकडे सध्याच्या एकमेव मार्गावर तुमचा विश्वास आहे.
-> तुम्ही नाही केले तर तेही ठीक आहे. Toonflow वापरत राहा, आमच्यावर टीका करत रहा आणि वैशिष्ट्ये विचारत रहा.
+> तुम्ही नाही केले तर तेही ठीक आहे. Dramaflow वापरत राहा, आमच्यावर टीका करत रहा आणि वैशिष्ट्ये विचारत रहा.
 >आम्ही इथे आहोत.
 > एक शेवटची गोष्ट, मनापासून:
 > सर्जनशील साधने प्रत्येकाकडे असली पाहिजेत असे मानणारे आम्ही फक्त सामान्य लोकांचा समूह आहोत.
-> Toonflow फक्त आमचे उत्पादन कधीच नव्हते.
+> Dramaflow फक्त आमचे उत्पादन कधीच नव्हते.
 > ही कथा आम्ही एकत्र लिहित आहोत.
 > तिसरे पुनर्लेखन अंतिम रेषा नाही.
 > इथेच आपण पुन्हा सुरुवात करतो.
@@ -505,7 +505,7 @@ TF-Router हे Toonflow चे अधिकृत, स्व-चालित �
 
 गट आमंत्रण सहाय्यकाशी संपर्क साधण्यासाठी QR कोड स्कॅन करा:
 
-<img src="../images/qr.png" alt="Toonflow समुदाय QR कोड" height="400"/>
+<img src="../images/qr.png" alt="Dramaflow समुदाय QR कोड" height="400"/>
 
 Discord मध्ये सामील होण्यासाठी तुम्ही चिन्हावर देखील क्लिक करू शकता:
 
@@ -517,15 +517,15 @@ Discord मध्ये सामील होण्यासाठी तुम
 
 ## 8. 💌 आमच्याशी संपर्क साधा
 
-📧 ईमेल: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Toonflow咨询)
+📧 ईमेल: [ltlctools@outlook.com](mailto:ltlctools@outlook.com?subject=Dramaflow咨询)
 
 ---
 
 ## 9. 📜 मुक्त-स्रोत परवाना
 
-Toonflow [MIT License](../../LICENSE) अंतर्गत परवानाकृत आहे. तृतीय-पक्ष अवलंबित्व आणि मालमत्ता त्यांच्या संबंधित परवाने आणि कॉपीराइट सूचनांच्या अधीन राहतील.
+Dramaflow [MIT License](../../LICENSE) अंतर्गत परवानाकृत आहे. तृतीय-पक्ष अवलंबित्व आणि मालमत्ता त्यांच्या संबंधित परवाने आणि कॉपीराइट सूचनांच्या अधीन राहतील.
 
-[![Toonflow स्टार इतिहास](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
+[![Dramaflow स्टार इतिहास](https://api.star-history.com/svg?repos=HBAI-Ltd/Toonflow-app&type=Date)](https://www.star-history.com/#HBAI-Ltd/Toonflow-app&Date)
 
 > **नॉन-रेट्रोएक्टिव्हिटी क्लॉज**: जे वापरकर्ते AGPL-3.0 अंतर्गत v1.0.8 आधीच्या आवृत्त्या वापरतात ते AGPL-3.0 च्या अधीन राहतील. v1.0.8 ते v1.1.8 आवृत्त्या Apache-2.0 आणि त्याच्या अतिरिक्त कराराच्या अधीन राहतील. हे वापरकर्ते या परवाना बदलास बांधील नाहीत.
 
@@ -546,4 +546,4 @@ Xi'an Zhongxing Digital Intelligence Technology Co., Ltd. (西安中星数字智
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Toonflow फूटर" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=90&section=footer" alt="Dramaflow फूटर" width="100%" />

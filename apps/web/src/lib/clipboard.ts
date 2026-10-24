@@ -1,7 +1,7 @@
 import axios from "axios";
 import { isDesktop } from "./platform";
 
-const headers = { "x-toonflow-desktop": "1" };
+const headers = { "x-dramaflow-desktop": "1" };
 
 export async function readClipboardText(): Promise<string> {
   if (!isDesktop) return navigator.clipboard.readText();

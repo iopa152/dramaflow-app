@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { ElInputNumber, ElOption, ElSelect } from "element-plus";
-import type { ExtContext } from "@toonflow/ext-scaffold/runtime";
+import type { ExtContext } from "@dramaflow/ext-scaffold/runtime";
 import { pcmToWav, type PcmFormat } from "./pcmPreview";
 
 const props = defineProps<{ context: ExtContext }>();

@@ -55,11 +55,11 @@
 </template>
 
 <script setup lang="ts">
-import { locale } from "@toonflow/i18n/vue";
+import { locale } from "@dramaflow/i18n/vue";
 import { computed, defineAsyncComponent, onBeforeUnmount, ref, shallowRef, watch, type Component } from "vue";
 import axios from "axios";
 import { IconCreditCard, IconExternalLink, IconRefresh } from "@tabler/icons-vue";
-import type { ProviderBalance } from "@toonflow/providers";
+import type { ProviderBalance } from "@dramaflow/providers";
 import { getProviderBalance, providerBalances } from "@/lib/providerBilling";
 
 const props = withDefaults(defineProps<{

@@ -1,5 +1,5 @@
 import { $ } from "bun";
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "@toonflow/file";
+import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "@dramaflow/file";
 import { dirname, relative, resolve } from "node:path";
 import sharedConfig from "../../electrobun.config";
 import prepareMacDmg from "../../apps/desktop/scripts/macDmg";
@@ -40,7 +40,7 @@ cpSync(resolve(projectDir, "apps/desktop/src"), sourceDir, { recursive: true });
 for (const target of new Bun.Glob("**/*.ts").scanSync({ cwd: sourceDir, absolute: true })) {
   const code = readFileSync(target, "utf8")
     .replace(/(["'])electrobun\/main\1/g, () => JSON.stringify(modulePath(target, resolve(generatedDir, "electrobun.ts"))))
-    .replace(/(["'])(@toonflow\/[^"']+|express)\1/g, (_match, _quote, specifier) => JSON.stringify(modulePath(target, Bun.resolveSync(specifier, resolve(projectDir, "apps/desktop")))));
+    .replace(/(["'])(@dramaflow\/[^"']+|express)\1/g, (_match, _quote, specifier) => JSON.stringify(modulePath(target, Bun.resolveSync(specifier, resolve(projectDir, "apps/desktop")))));
   writeFileSync(target, code);
 }
 const cli = resolve(compatDir, "node_modules/electrobun/bin/electrobun.cjs");

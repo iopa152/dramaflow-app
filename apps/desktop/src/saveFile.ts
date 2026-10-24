@@ -1,6 +1,6 @@
-import { t } from "@toonflow/server/i18n";
+import { t } from "@dramaflow/server/i18n";
 import { execFile } from "node:child_process";
-import { writeAtomic } from "@toonflow/file";
+import { writeAtomic } from "@dramaflow/file";
 import { isAbsolute, join } from "node:path";
 import { promisify } from "node:util";
 import { PATHS } from "electrobun/main";

@@ -81,7 +81,7 @@
 
 <script setup lang="ts">
 import axios from "axios";
-import { locale, translate } from "@toonflow/i18n/vue";
+import { locale, translate } from "@dramaflow/i18n/vue";
 import { computed, inject, nextTick, onBeforeUnmount, ref, shallowRef, watch, type ShallowRef } from "vue";
 import { Panel, useVueFlow, type FlowExportObject } from "@vue-flow/core";
 import { ElMessage, ElMessageBox, type DropdownInstance, type FilterNodeMethodFunction, type InputInstance, type LoadFunction, type TreeInstance } from "element-plus";
@@ -385,9 +385,9 @@ async function applyCanvas(canvasId: string, directory: string, signal?: AbortSi
     return;
   }
   if (!nextCanvas.flow) {
-    const data = await useWorkspaceFiles(directory).readJson<Partial<NonNullable<Canvas["flow"]>> & { toonflowCanvas?: boolean } | null>(nextCanvas.id);
+    const data = await useWorkspaceFiles(directory).readJson<Partial<NonNullable<Canvas["flow"]>> & { dramaflowCanvas?: boolean; toonflowCanvas?: boolean } | null>(nextCanvas.id);
     checkCanvasDirectory(directory, signal);
-    if (data?.toonflowCanvas !== true || !Array.isArray(data.nodes) || !Array.isArray(data.edges) || !data.viewport
+    if (!data || (data.dramaflowCanvas ?? data.toonflowCanvas) !== true || !Array.isArray(data.nodes) || !Array.isArray(data.edges) || !data.viewport
       || ![data.viewport.x, data.viewport.y, data.viewport.zoom].every(Number.isFinite) || data.viewport.zoom <= 0) throw new Error("画布文件格式无效");
     // 旧画布可能保存了临时导出进度，重新打开时任务已不存在。
     for (const node of data.nodes) if (node.type === "remote-videoNode" && node.data) delete node.data.exportProgress;
@@ -447,8 +447,8 @@ async function removeCanvas(canvas: Canvas) {
     if (nextCanvas && activeCanvasId.value === id) await applyCanvas(nextCanvas.id, directory);
     const files = useWorkspaceFiles(directory);
     const readNodes = async (canvasId: string) => {
-      const data = await files.readJson<{ toonflowCanvas?: boolean; nodes?: { id: string; data?: unknown }[] }>(canvasId);
-      if (data?.toonflowCanvas !== true || !Array.isArray(data.nodes) || data.nodes.some(node => !node || typeof node.id !== "string")) {
+      const data = await files.readJson<{ dramaflowCanvas?: boolean; toonflowCanvas?: boolean; nodes?: { id: string; data?: unknown }[] }>(canvasId);
+      if ((data?.dramaflowCanvas ?? data?.toonflowCanvas) !== true || !Array.isArray(data.nodes) || data.nodes.some(node => !node || typeof node.id !== "string")) {
         throw new Error(`无法确认 ${canvasId} 的素材引用`);
       }
       return [...data.nodes, ...getRetainedNodes(canvasId)];
@@ -495,7 +495,7 @@ async function createCanvasFile(directory: string, name?: string, signal?: Abort
     const canvasName = name ?? `画布${number}`;
     const id = `${canvasName}.json`;
     try {
-      await files.writeJson(id, { toonflowCanvas: true, ...flow }, true);
+      await files.writeJson(id, { dramaflowCanvas: true, ...flow }, true);
       return { id, name: canvasName, flow };
     } catch (err) {
       if (name !== undefined || !axios.isAxiosError<{ data?: { code?: string } }>(err) || err.response?.status !== 409 || err.response.data.data?.code !== "EEXIST") throw err;

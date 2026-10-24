@@ -45,8 +45,8 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import { customProviders, saveSettings, type CustomProvider, type CustomProviderModel } from "@/stores/settings";
 import { IconPlus, IconSettings, IconEdit, IconTrash, IconRefresh } from "@tabler/icons-vue";
-import { languageProviders } from "@toonflow/providers";
-import logoUrl from "@toonflow/assets/logo.svg";
+import { languageProviders } from "@dramaflow/providers";
+import logoUrl from "@dramaflow/assets/logo.svg";
 import tfAccount from "../../tfAccount.vue";
 import { isTfRouterProvider } from "@/lib/tf";
 

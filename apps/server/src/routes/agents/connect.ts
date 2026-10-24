@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import { createTeamA2aClient } from "@toonflow/teams-scaffold/a2a";
+import { createTeamA2aClient } from "@dramaflow/teams-scaffold/a2a";
 import u from "@/utils";
 import { validateFields } from "@/lib/middleware";
 import { error, success } from "@/lib/responseFormat";

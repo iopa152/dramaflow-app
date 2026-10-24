@@ -14,8 +14,8 @@ export function getNodeIcon(type?: string): Component | undefined {
 export function loadNodeComponent(name: string, url: string, force = false): Promise<NodeComponent> {
   const pending = requests.get(name);
   if (pending) return pending;
-  const nodeWindow = window as typeof window & { toonflowNodes?: NodeTypesObject };
-  const cached = components.get(name) ?? (Object.hasOwn(nodeWindow.toonflowNodes ?? {}, name) ? nodeWindow.toonflowNodes?.[name] : undefined);
+  const nodeWindow = window as typeof window & { dramaflowNodes?: NodeTypesObject };
+  const cached = components.get(name) ?? (Object.hasOwn(nodeWindow.dramaflowNodes ?? {}, name) ? nodeWindow.dramaflowNodes?.[name] : undefined);
   if (!force && cached && (typeof cached === "object" || typeof cached === "function")) {
     components.set(name, cached);
     return Promise.resolve(cached);
@@ -27,15 +27,15 @@ export function loadNodeComponent(name: string, url: string, force = false): Pro
     const response = await fetch(scriptUrl);
     if (!response.ok) throw new Error(`节点脚本加载失败（HTTP ${response.status}）`);
     const code = await response.text();
-    if (code.includes("toonflowTiptapHost")) await import("@/lib/tiptapHost");
+    if (code.includes("dramaflowTiptapHost")) await import("@/lib/tiptapHost");
     return new Promise<NodeComponent>((resolve, reject) => {
-      delete nodeWindow.toonflowNodes?.[name];
+      delete nodeWindow.dramaflowNodes?.[name];
       const script = document.createElement("script");
       script.src = scriptUrl;
       script.onload = () => {
         script.remove();
-        const component = nodeWindow.toonflowNodes?.[name];
-        if (!Object.hasOwn(nodeWindow.toonflowNodes ?? {}, name) || !component || (typeof component !== "object" && typeof component !== "function")) {
+        const component = nodeWindow.dramaflowNodes?.[name];
+        if (!Object.hasOwn(nodeWindow.dramaflowNodes ?? {}, name) || !component || (typeof component !== "object" && typeof component !== "function")) {
           reject(new Error(`节点脚本未导出 ${name} 组件`));
           return;
         }
@@ -43,7 +43,7 @@ export function loadNodeComponent(name: string, url: string, force = false): Pro
       };
       script.onerror = () => {
         script.remove();
-        delete nodeWindow.toonflowNodes?.[name];
+        delete nodeWindow.dramaflowNodes?.[name];
         reject(new Error("节点脚本加载失败"));
       };
       document.head.append(script);

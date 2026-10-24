@@ -10,7 +10,7 @@ import { readReference } from "@/utils/media/generation";
 import modelContextLimits from "@/utils/ai/modelContextLimits";
 import { createFileTransport, getUnsupportedFileText, type FileProvider } from "@/utils/ai/files";
 import { getRequestFiles } from "@/utils/ai/requestFiles";
-import { readFile, stat } from "@toonflow/file";
+import { readFile, stat } from "@dramaflow/file";
 import { resolveWorkspacePath } from "@/utils/workspace/files";
 import { getReadableFileMimeType } from "@/lib/documentFormats";
 import { readDocument } from "@/utils/documents";
@@ -194,7 +194,7 @@ export function streamAi(
 ) {
   const { provider, model: configuredModel, baseUrl } = configured;
   const model: Model<typeof provider.protocol> = {
-    id: configuredModel.id, name: configuredModel.label, provider: "toonflow", api: provider.protocol, baseUrl,
+    id: configuredModel.id, name: configuredModel.label, provider: "dramaflow", api: provider.protocol, baseUrl,
     reasoning: false, input: ["text", "image"],
     cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: configuredModel.contextWindow,

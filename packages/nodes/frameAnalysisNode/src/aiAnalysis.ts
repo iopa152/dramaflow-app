@@ -1,4 +1,4 @@
-import type { BrowserFfmpegFactory, NodeAiModel, NodeAiRequest, NodeAiResult, WorkspaceFiles } from "@toonflow/nodes-scaffold/runtime";
+import type { BrowserFfmpegFactory, NodeAiModel, NodeAiRequest, NodeAiResult, WorkspaceFiles } from "@dramaflow/nodes-scaffold/runtime";
 import { analysisPath, runFfmpeg } from "./videoAnalysis";
 import type { AnalysisResult, AnalysisScene } from "./videoAnalysis";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@toonflow/mobile",
+  "name": "@dramaflow/mobile",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,9 +9,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@toonflow/file": "workspace:*",
-    "@toonflow/server": "workspace:*",
-    "@toonflow/web": "workspace:*",
+    "@dramaflow/file": "workspace:*",
+    "@dramaflow/server": "workspace:*",
+    "@dramaflow/web": "workspace:*",
     "express": "^5.2.1"
   },
   "devDependencies": {

@@ -55,17 +55,17 @@
 </template>
 
 <script setup lang="ts">
-import { translate } from "@toonflow/i18n/vue";
+import { translate } from "@dramaflow/i18n/vue";
 
 import axios from "axios";
 import { computed, defineAsyncComponent, ref, shallowRef, toRaw, watch, type Component } from "vue";
 import { IconPlus, IconTrash, IconDeviceFloppy, IconEdit } from "@tabler/icons-vue";
 import formCreate, { type Api, type Options } from "../../formCreate";
-import { modelIcon } from "@toonflow/model-icons";
+import { modelIcon } from "@dramaflow/model-icons";
 import messageMarkdown from "@/components/messageMarkdown.vue";
 import type { MediaProvider, MediaProviderModel } from "./types";
 import { settings, saveSettings } from "@/stores/settings";
-import { invalidateNodeModels } from "@toonflow/nodes-scaffold/nodeAi";
+import { invalidateNodeModels } from "@dramaflow/nodes-scaffold/nodeAi";
 
 const { provider } = defineProps<{ provider?: MediaProvider }>();
 const modelEditorDialog = shallowRef<Component>();

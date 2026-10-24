@@ -1,4 +1,4 @@
-# Toonflow OHOS
+# Dramaflow OHOS
 
 独立鸿蒙兼容构建，复用 `apps/mobile/src/server.ts`、完整网页与内置插件。ArkTS UIAbility/ArkWeb 加载应用内服务在随机 localhost 端口提供的页面；服务由 C++ 桥嵌入 Node 共享库运行。构建时只转换 OHOS 所需的 Bun 接口，其他平台沿用 Bun。
 
@@ -21,7 +21,7 @@ bun run --cwd compat/ohos build
 
 `setup` 下载并校验 Node 共享库与头文件，然后用 DevEco 自带 OHPM 链接项目自己的 NAPI 类型声明。`build` 复用 `build:server` 构建前后端及插件，再为 OHOS 生成 Node 服务包、标准 Hvigor 工程、原生桥和 ArkTS，打包 HAP。SDK 强制要求的 `build-profile.json5`、`CMakeLists.txt` 等文件只生成到 `build/ohos/project`。构建不会隐式运行 `setup`。
 
-默认产物为 `build/ohos/toonflow-2.0.0-ohos-arm64-v8a-unsigned.hap`，文件名随项目版本变化。程序资源在 `build/ohos/payload`；可用 DevEco Studio 打开 `build/ohos/project` 调试和配置签名。
+默认产物为 `build/ohos/dramaflow-2.0.0-ohos-arm64-v8a-unsigned.hap`，文件名随项目版本变化。程序资源在 `build/ohos/payload`；可用 DevEco Studio 打开 `build/ohos/project` 调试和配置签名。
 
 可选环境变量：
 
@@ -48,9 +48,9 @@ $hdc = Join-Path $env:DEVECO_HOME 'sdk\default\openharmony\toolchains\hdc.exe'
 & $hdc tconn 127.0.0.1:5557
 & $hdc list targets
 & $hdc -t 127.0.0.1:5557 shell param get const.product.cpu.abilist
-& $hdc -t 127.0.0.1:5557 install -r (Resolve-Path build/ohos/toonflow-2.0.0-ohos-arm64-v8a-signed.hap).Path
-& $hdc -t 127.0.0.1:5557 shell aa start -b com.toonflow.mobile -a entryAbility
-& $hdc -t 127.0.0.1:5557 shell hilog -T ToonflowRuntime
+& $hdc -t 127.0.0.1:5557 install -r (Resolve-Path build/ohos/dramaflow-2.0.0-ohos-arm64-v8a-signed.hap).Path
+& $hdc -t 127.0.0.1:5557 shell aa start -b com.dramaflow.mobile -a entryAbility
+& $hdc -t 127.0.0.1:5557 shell hilog -T DramaflowRuntime
 ```
 
 设备地址、版本文件名按实际情况替换。Windows HDC 的本地文件参数使用 `Resolve-Path` 返回的绝对反斜杠路径。配置签名后输出 `-signed.hap`；未配置时仍可编译，但 `-unsigned.hap` 不代表可安装包。重新执行命令行 `build` 会重新生成工程配置，IDE 中的签名应按上述方式保存并传入。
@@ -61,7 +61,7 @@ $hdc = Join-Path $env:DEVECO_HOME 'sdk\default\openharmony\toolchains\hdc.exe'
 - 沿用移动端随机端口、一次启动令牌及 HttpOnly Cookie 鉴权。原生桥仅接受本机同源 `toonflow://save` 和重启请求，外部网页在系统浏览器打开。
 - 每个本机页面的脚本执行前按需补齐 `Map.groupBy`、`URL.canParse`、`Promise.withResolvers`、`AbortSignal.any`，只注入当前随机端口的本机来源。首次进入网页仍执行原有浏览器能力预检；其余 ArkWeb 能力不满足要求时显示错误。OHOS 不含 Android GeckoView。
 - 保留横屏、全屏、文件上传和系统文件保存；设备互联可手输配对码。相机授权和拍摄扫码尚未接入。
-- 本地服务随 Ability 生命周期运行，没有后台长任务保证。`TOONFLOW_PLATFORM=ohos` 用于区分鸿蒙与 Linux 功能支持；外部 CLI、FFmpeg 和 MCP stdio 仍受手机应用执行权限限制。
+- 本地服务随 Ability 生命周期运行，没有后台长任务保证。`DRAMAFLOW_PLATFORM=ohos` 用于区分鸿蒙与 Linux 功能支持；外部 CLI、FFmpeg 和 MCP stdio 仍受手机应用执行权限限制。
 - Node 使用 `--jitless`，通过已安装的 `node-fetch` 负责 HTTP 传输、Undici 提供 Web API，避开 Node 24.2 内置的 WASM HTTP 解析器。图片处理接入鸿蒙 ImageKit，支持尺寸读取、`fill` 缩放及 PNG/JPEG/WebP 编码；供应商脚本和其他 Bun 接口仍需分别验证，不能视为完整 Bun 兼容。
 - 2026-10-15 已在 OpenHarmony 5.0.5.316、API 17、ARM64 云手机验证签名安装、本地服务启动、快速开始/首页/工作区画布渲染与手机工作目录创建。现有供应商调试入口也已走通 PNG/JPEG/WebP 尺寸读取、300×300 缩放与编码；使用空 API Key 在发送供应商请求前退出，未发起付费生成。输出图片视觉效果、系统文件上传/导出以及完整生成流程尚未验收。
 - 该设备已验证文件独占创建、覆盖保存、读取、改名和两种同名冲突保护。通过界面创建的图片生成节点已保存到画布；覆盖安装最终 HAP 并冷启动后，画布与两份验证文件的 SHA256 均保持一致，项目列表也已恢复。

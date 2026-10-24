@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import { browserInputSchema } from "@toonflow/tool-browser/protocol";
+import { browserInputSchema } from "@dramaflow/tool-browser/protocol";
 import { validateFields } from "@/lib/middleware";
 import { success } from "@/lib/responseFormat";
 import u from "@/utils";

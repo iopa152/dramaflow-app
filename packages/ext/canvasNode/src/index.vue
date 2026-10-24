@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import type { ExtContext } from "@toonflow/ext-scaffold/runtime";
+import type { ExtContext } from "@dramaflow/ext-scaffold/runtime";
 
 const props = defineProps<{ context: ExtContext }>();
 const target = ref<HTMLElement>();

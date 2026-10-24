@@ -1,10 +1,10 @@
 @echo off
 chcp 936 >nul
 setlocal enabledelayedexpansion
-title Toonflow 一键关闭服务
+title Dramaflow 一键关闭服务
 
 echo ============================================================
-echo   Toonflow - 一键关闭服务
+echo   Dramaflow - 一键关闭服务
 echo ============================================================
 echo.
 
@@ -32,7 +32,7 @@ echo [检查] 正在确认端口 3000 状态...
 %SystemRoot%\System32\ping.exe -n 2 127.0.0.1 >nul
 netstat -ano | findstr ":3000 " | findstr LISTENING >nul
 if errorlevel 1 (
-    echo [完成] 端口 3000 已释放，Toonflow 服务已关闭。
+    echo [完成] 端口 3000 已释放，Dramaflow 服务已关闭。
 ) else (
     echo [警告] 端口 3000 仍在监听，请尝试以管理员身份运行本脚本。
 )

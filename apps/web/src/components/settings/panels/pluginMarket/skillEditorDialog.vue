@@ -96,7 +96,7 @@ const moving = ref(false);
 const confirming = ref(false);
 const drafts = new Map<string, string>();
 const dirtyPaths = ref(new Set<string>());
-const headers = { "x-toonflow-workspace": "1" };
+const headers = { "x-dramaflow-workspace": "1" };
 let controller = new AbortController();
 
 // 单文件技能只有主文件本身，没有可管理的附属文件目录。

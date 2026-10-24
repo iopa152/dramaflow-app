@@ -46,7 +46,7 @@ node::MultiIsolatePlatform *initializeProcess(HostState &state) {
     initializationAttempted = true;
     try {
       setEnvironment("UV_USE_IO_URING", "0");
-      initialization = node::InitializeOncePerProcess({"toonflow", "--jitless", "--experimental-vm-modules", "--stack-trace-limit=50"}, {
+      initialization = node::InitializeOncePerProcess({"dramaflow", "--jitless", "--experimental-vm-modules", "--stack-trace-limit=50"}, {
         node::ProcessInitializationFlags::kNoStdioInitialization,
         node::ProcessInitializationFlags::kNoDefaultSignalHandling,
         node::ProcessInitializationFlags::kNoAdjustResourceLimits,
@@ -250,15 +250,15 @@ extern "C" __attribute__((visibility("default"))) void runNodeHost(void *handle)
   auto &state = *static_cast<HostState *>(handle);
   try {
     if (!isStopping(state)) {
-      setEnvironment("TOONFLOW_NATIVE_DIR", state.nativeDir);
-      setEnvironment("TOONFLOW_PLATFORM", "ohos");
-      setEnvironment("TOONFLOW_MOBILE_DATA_DIR", state.dataDir);
-      setEnvironment("TOONFLOW_MOBILE_DEVICE_NAME", "Toonflow HarmonyOS");
+      setEnvironment("DRAMAFLOW_NATIVE_DIR", state.nativeDir);
+      setEnvironment("DRAMAFLOW_PLATFORM", "ohos");
+      setEnvironment("DRAMAFLOW_MOBILE_DATA_DIR", state.dataDir);
+      setEnvironment("DRAMAFLOW_MOBILE_DEVICE_NAME", "Dramaflow HarmonyOS");
       setEnvironment("TMPDIR", state.cacheDir);
       setEnvironment("HOME", state.dataDir.substr(0, state.dataDir.find_last_of('/')));
       notify(state, 0, "正在初始化 Node 进程平台");
       auto platform = initializeProcess(state);
-      const std::vector<std::string> arguments = {"toonflow", state.programDir + "/bootstrap.cjs", state.programDir + "/server.js"};
+      const std::vector<std::string> arguments = {"dramaflow", state.programDir + "/bootstrap.cjs", state.programDir + "/server.js"};
       std::vector<std::string> errors;
       const auto flags = static_cast<node::EnvironmentFlags::Flags>(node::EnvironmentFlags::kTrackUnmanagedFds |
         node::EnvironmentFlags::kNoGlobalSearchPaths | node::EnvironmentFlags::kNoCreateInspector |
@@ -285,7 +285,7 @@ extern "C" __attribute__((visibility("default"))) void runNodeHost(void *handle)
         notify(state, 0, "Node 请求退出，退出码 " + std::to_string(exitCode));
         node::Stop(current);
       });
-      node::AddLinkedBinding(environment, "toonflowNative", initializeBinding, &state);
+      node::AddLinkedBinding(environment, "dramaflowNative", initializeBinding, &state);
       if (!isStopping(state)) {
         auto loaded = node::LoadEnvironment(environment, node::StartExecutionCallback{}, [&state, environment](node::Environment *current,
           v8::Local<v8::Value> process, v8::Local<v8::Value> require) {

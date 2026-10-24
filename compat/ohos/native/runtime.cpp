@@ -84,7 +84,7 @@ NodeLibrary &loadNodeLibrary() {
   if (!dladdr(reinterpret_cast<void *>(&loadNodeLibrary), &location) || !location.dli_fname) throw std::runtime_error("无法定位应用原生库目录");
   const std::string path = location.dli_fname;
   library.directory = path.substr(0, path.find_last_of('/'));
-  library.handle = dlopen((library.directory + "/libtoonflowNodeHost.so").c_str(), RTLD_NOW | RTLD_LOCAL);
+  library.handle = dlopen((library.directory + "/libdramaflowNodeHost.so").c_str(), RTLD_NOW | RTLD_LOCAL);
   if (!library.handle) {
     const auto error = dlerror();
     throw std::runtime_error("无法加载 Node 运行时：" + std::string(error ? error : "未知动态链接错误"));
@@ -149,7 +149,7 @@ void *runHost(void *data) {
     std::lock_guard<std::mutex> lock(state->mutex);
     state->exited = true;
     if (!state->stopRequested && state->error.empty()) state->error = "本地 Node 服务已退出（退出码 " + state->exitCode + "）";
-    if (!state->stopRequested) OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "ToonflowRuntime", "%{public}s\n%{public}s", state->error.c_str(), state->outputTail.c_str());
+    if (!state->stopRequested) OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "DramaflowRuntime", "%{public}s\n%{public}s", state->error.c_str(), state->outputTail.c_str());
     state->condition.notify_all();
   }
   releaseRuntime(state);
@@ -301,7 +301,7 @@ napi_value initialize(napi_env env, napi_value exports) {
 }
 }
 
-static napi_module runtimeModule = {1, 0, nullptr, initialize, "toonflowRuntime", nullptr, {0}};
+static napi_module runtimeModule = {1, 0, nullptr, initialize, "dramaflowRuntime", nullptr, {0}};
 
 extern "C" __attribute__((constructor)) void registerRuntime() {
   napi_module_register(&runtimeModule);

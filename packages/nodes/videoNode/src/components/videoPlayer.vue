@@ -55,7 +55,7 @@ import { inject, onBeforeUnmount, ref, watch } from "vue";
 import { useNode, useVueFlow } from "@vue-flow/core";
 import { ElButton, ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessage, ElPopover, ElSlider } from "element-plus";
 import { IconPlayerPlay, IconPlayerPause, IconVolume, IconVolumeOff, IconPhotoScan, IconPlayerSkipBack, IconPlayerSkipForward } from "@tabler/icons-vue";
-import { useNodeFiles } from "@toonflow/nodes-scaffold/workspaceFiles";
+import { useNodeFiles } from "@dramaflow/nodes-scaffold/workspaceFiles";
 
 const { src, label = "节点视频", readOnly = false } = defineProps<{ src: string; label?: string; readOnly?: boolean }>();
 const emit = defineEmits<{ loadedmetadata: [event: Event] }>();

@@ -1,13 +1,13 @@
 import { t, translateMessage, validationOptions } from "@/lib/i18n";
 import { createHash } from "node:crypto";
-import { lstat, readFile, readdir } from "@toonflow/file";
+import { lstat, readFile, readdir } from "@dramaflow/file";
 import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import * as zod from "zod";
-import { toolMetadataSchema, toolNameSchema, type ToolMetadata, type ToolPlugin } from "@toonflow/tools-scaffold/runtime";
+import { toolMetadataSchema, toolNameSchema, type ToolMetadata, type ToolPlugin } from "@dramaflow/tools-scaffold/runtime";
 import conf from "@/utils/conf";
 
-export { toolNameSchema } from "@toonflow/tools-scaffold/runtime";
+export { toolNameSchema } from "@dramaflow/tools-scaffold/runtime";
 
 const { z } = zod;
 
@@ -15,7 +15,7 @@ const { z } = zod;
 Bun.plugin({
   name: "toolHost",
   setup(build) {
-    build.module("toonflow:tool-zod", () => ({ exports: zod, loader: "object" }));
+    build.module("dramaflow:tool-zod", () => ({ exports: zod, loader: "object" }));
   },
 });
 
@@ -24,7 +24,7 @@ export const toolsDirectory = resolve(dirname(conf.path), "tools");
 export function parseTool(source: string, name: string) {
   let metadata: zod.infer<typeof toolMetadataSchema>;
   try {
-    const header = source.match(/^\/\*! toonflowTool:([^\r\n]*) \*\/(?:\r?\n|$)/)?.[1];
+    const header = source.match(/^\/\*! dramaflowTool:([^\r\n]*) \*\/(?:\r?\n|$)/)?.[1];
     metadata = toolMetadataSchema.parse(JSON.parse(header ?? ""));
     if (metadata.name !== name) throw new Error("name");
   } catch {
@@ -37,9 +37,9 @@ export function parseTool(source: string, name: string) {
 
 function parseToolClient(source: string) {
   const line = source.split(/\r?\n/, 2)[1];
-  if (!line?.startsWith("/*! toonflowToolClient:")) return;
+  if (!line?.startsWith("/*! dramaflowToolClient:")) return;
   try {
-    const data = line.match(/^\/\*! toonflowToolClient:([^\r\n]*) \*\/$/)?.[1];
+    const data = line.match(/^\/\*! dramaflowToolClient:([^\r\n]*) \*\/$/)?.[1];
     const client = z.strictObject({ code: z.string().min(1).refine(code => !!code.trim()), css: z.string() }).parse(JSON.parse(data ?? ""));
     new Bun.Transpiler({ loader: "js" }).scan(client.code);
     return client;

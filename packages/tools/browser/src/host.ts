@@ -1,9 +1,9 @@
-import { access, constants, existsSync, stat } from "@toonflow/file";
+import { access, constants, existsSync, stat } from "@dramaflow/file";
 import { delimiter, isAbsolute, join, resolve } from "node:path";
 import { homedir } from "node:os";
 import type { ChildProcess } from "node:child_process";
 import puppeteer, { type Browser, type BrowserContext, type CDPSession, type ElementHandle, type KeyInput, type Page, type Protocol, type SerializedAXNode } from "puppeteer-core";
-import type { ToolDefinition } from "@toonflow/tools-scaffold/runtime";
+import type { ToolDefinition } from "@dramaflow/tools-scaffold/runtime";
 import { browserActionSchema, browserConfigSchema, browserInputSchema, type BrowserAction, type BrowserSessionState, type BrowserStreamEvent } from "./protocol";
 
 type ToolResult = Awaited<ReturnType<ToolDefinition["execute"]>>;
