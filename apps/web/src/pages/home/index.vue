@@ -45,7 +45,6 @@
         <el-main class="pageContent">
           <section class="creationPanel" data-home-section="home" aria-label="创建项目">
             <div class="brand">
-              <el-image class="brandLogo" :src="logoUrl" fit="contain" alt="Dramaflow" />
               <h1>今天要做点什么？</h1>
             </div>
             <div class="promptArea">
@@ -661,24 +660,14 @@ async function createProject(fromPrompt = true) {
           max-width: 800px;
           margin: clamp(32px, 6vh, 64px) auto 56px;
 
-          .brand {
-            display: flex;
-            align-items: center;
-            gap: clamp(8px, 1vw, 12px);
-            margin-bottom: 28px;
+            .brand {
+              display: flex;
+              align-items: center;
+              gap: clamp(8px, 1vw, 12px);
+              margin-bottom: 28px;
 
-            .brandLogo {
-              flex-shrink: 0;
-              width: clamp(28px, 3.4vw, 44px);
-              height: clamp(28px, 3.4vw, 44px);
-
-              .dark & {
-                filter: invert(1);
-              }
-            }
-
-            h1 {
-              margin: 0;
+              h1 {
+                margin: 0;
               font-size: clamp(22px, 3vw, 34px);
               font-weight: 500;
               line-height: 1.3;
