@@ -31,7 +31,7 @@ export async function isCanvasFile(files: Pick<ReturnType<typeof useWorkspaceFil
     const header = await files.readText(path, headerBytes, signal);
     signal?.throwIfAborted();
     if (!/^\s*\{/.test(header)) return false;
-    // ACT: 自有保存格式将标记置于根对象首字段；其他顺序完整解析，避免嵌套标记误判。toonflowCanvas 为改名前的旧标记。
+    // ACT: 自有保存格式将标记置于根对象首字段；其他顺序完整解析，避免嵌套标记误判。dramaflowCanvas 为改名前的旧标记。
     if (/^\s*\{\s*"(?:dramaflow|toonflow)Canvas"\s*:\s*true\s*[,}]/.test(header)) return true;
     try {
       const parsed = JSON.parse(header.trimStart()) as { dramaflowCanvas?: boolean; toonflowCanvas?: boolean } | null;

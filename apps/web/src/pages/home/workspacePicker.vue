@@ -3,15 +3,15 @@
     <span class="directoryName">{{ selectedDirectory ? selectedDirectory.split(/[\\/]/).filter(Boolean).at(-1) || selectedDirectory : '工作目录' }}</span>
     <component :is="dialogVisible ? IconChevronUp : IconChevronDown" :size="14" aria-hidden="true" />
   </el-button>
-  <el-dialog v-model="dialogVisible" :title="isMobile && !isRemoteMobile ? '选择手机工作目录' : '选择服务器工作目录'" width="min(680px, 92vw)" appendToBody :closeOnClickModal="!editing" :closeOnPressEscape="!editing" :showClose="!editing" @close="finishSelection?.(null)">
+  <el-dialog v-model="dialogVisible" :title="isLocalMobile ? '选择手机工作目录' : '选择服务器工作目录'" width="min(680px, 92vw)" appendToBody :closeOnClickModal="!editing" :closeOnPressEscape="!editing" :showClose="!editing" @close="finishSelection?.(null)">
     <div class="workspaceBrowser">
       <div class="directoryHeader">
         <el-button :icon="IconArrowLeft" circle :disabled="loading || editing || !listing?.path" aria-label="上一级目录" @click="loadDirectory(listing?.parent ?? '')" />
-        <el-text class="directoryPath" truncated :title="listing?.absolutePath">{{ isMobile && !isRemoteMobile ? '手机工作区' : '服务器工作区' }}{{ listing?.path ? ` / ${listing.path}` : '' }}</el-text>
+        <el-text class="directoryPath" truncated :title="listing?.absolutePath">{{ isLocalMobile ? '手机工作区' : '服务器工作区' }}{{ listing?.path ? ` / ${listing.path}` : '' }}</el-text>
         <el-button :icon="IconFolderPlus" :disabled="loading || editing || !listing || !!browseError" @click="manageEntry('mkdir')">新建文件夹</el-button>
       </div>
       <el-alert v-if="browseError" :title="browseError" type="error" :closable="false" />
-      <el-table v-loading="loading" :data="listing?.entries ?? []" height="300" emptyText="当前目录为空" :rowClassName="entryRowClass" @rowClick="enterDirectory">
+      <el-table v-loading="loading" :data="listing?.entries ?? []" height="300" emptyText="当前目录为空">
         <el-table-column label="名称" minWidth="160">
           <template #default="{ row }">
             <el-button v-if="row.type === 'directory'" class="entryName" link :icon="IconFolder" :title="row.name" :disabled="loading || editing" @click="loadDirectory([listing?.path, row.path].filter(Boolean).join('/'))">{{ row.name }}</el-button>
@@ -35,11 +35,12 @@
 
 <script setup lang="ts">
 import axios from "axios";
+import { translate } from "@dramaflow/i18n/vue";
 import { onBeforeUnmount, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { IconFolder, IconFolderPlus, IconFile, IconChevronDown, IconChevronUp, IconArrowLeft } from "@tabler/icons-vue";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
-import { isMobile, isDesktop, isRemoteMobile, isRemoteConnection } from "@/lib/platform";
+import { actualPlatform, isLocalMobile } from "@/lib/platform";
 
 type WorkspaceEntry = { name: string; path: string; type: "file" | "directory" };
 type DirectoryListing = {
@@ -65,7 +66,7 @@ async function chooseDirectory(): Promise<string | null> {
   if (selecting.value || loading.value || props.disabled) return null;
   selecting.value = true;
   try {
-    if (isDesktop && !isRemoteConnection) {
+    if (actualPlatform.isLocalDesktop) {
       const { data } = await axios.post<{ data: { directory: string | null } }>("/api/desktop/selectDirectory", null, { headers: { "x-dramaflow-desktop": "1" } });
       if (data.data.directory) selectedDirectory.value = data.data.directory;
       return data.data.directory;
@@ -101,17 +102,6 @@ async function loadDirectory(path: string) {
   } finally { loading.value = false; }
 }
 
-function entryRowClass({ row }: { row: WorkspaceEntry }) {
-  return row.type === "directory" ? "directoryRow" : "";
-}
-
-function enterDirectory(row: WorkspaceEntry, _column: unknown, event: MouseEvent) {
-  if (row.type !== "directory" || loading.value || editing.value) return;
-  // 行内已有独立按钮（进入、重命名、删除），只处理空白区域的点击。
-  if ((event.target as HTMLElement | null)?.closest("button")) return;
-  void loadDirectory([listing.value?.path, row.path].filter(Boolean).join("/"));
-}
-
 async function manageEntry(action: "mkdir" | "rename" | "remove", entry?: WorkspaceEntry) {
   const directory = listing.value;
   if (!directory || loading.value || editing.value || browseError.value || (action !== "mkdir" && !entry)) return;
@@ -130,7 +120,7 @@ async function manageEntry(action: "mkdir" | "rename" | "remove", entry?: Worksp
         inputValue: entry?.name ?? "新建文件夹",
         inputValidator: value => {
           const name = value?.trim();
-          return !!name && name !== "." && name !== ".." && !/[\\/:*?"<>|\u0000-\u001f]/.test(name) || "请输入有效的单个文件或文件夹名称";
+          return !!name && name !== "." && name !== ".." && !/[\\/:*?"<>|\u0000-\u001f]/.test(name) || translate("请输入有效的单个文件或文件夹名称");
         },
         confirmButtonText: action === "mkdir" ? "创建" : "保存", cancelButtonText: "取消",
       });
@@ -196,7 +186,5 @@ function confirmDirectory() {
     svg { flex-shrink: 0; color: var(--el-text-color-secondary); }
     span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   }
-
-  :deep(.directoryRow) { cursor: pointer; }
 }
 </style>

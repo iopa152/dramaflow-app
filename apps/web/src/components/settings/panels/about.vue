@@ -41,6 +41,10 @@
           </template>
         </div>
       </div>
+      <div v-if="isLocalDesktop" class="autoUpdateSetting">
+        <span>自动更新</span>
+        <el-switch :modelValue="desktopAutoUpdate" size="small" :loading="autoUpdateSaving" :disabled="!actualPlatform.isLocalDesktop" aria-label="自动更新" @change="(value) => saveAutoUpdate(value === true)" />
+      </div>
       <div v-if="!isMobile && snapshot?.hash" class="buildInfo">
         <span>构建标识</span>
         <code>{{ snapshot.hash }}</code>
@@ -123,7 +127,7 @@ import { translate, t } from "@dramaflow/i18n/vue";
 import { computed, onMounted, onBeforeUnmount, ref } from "vue";
 import axios from "axios";
 import { ElMessage } from "element-plus";
-import { isMobile, isDesktop, isRemoteConnection } from "@/lib/platform";
+import { actualPlatform, isMobile, isLocalDesktop, isRemoteConnection } from "@/lib/platform";
 import {
   IconRefresh,
   IconBrandGithub,
@@ -136,6 +140,7 @@ import {
 import logoUrl from "@dramaflow/assets/logo.svg";
 import { saveSettings } from "@/stores/settings";
 import {
+  desktopAutoUpdate,
   desktopUpdateSource as updateSource,
   desktopUpdateCustomUrl as customUpdateUrl,
   desktopUpdateSnapshot as snapshot,
@@ -144,13 +149,15 @@ import {
   desktopUpdateChecking,
   hasDesktopUpdate,
   runDesktopUpdate,
+  startDesktopUpdate,
 } from "@/stores/desktopUpdate";
 
 const repositoryUrl = "https://github.com/HBAI-Ltd/Toonflow-app";
 const clientBuild = ref<{ version: string; channel: string }>();
-const currentVersion = computed(() => isDesktop && isRemoteConnection
+const currentVersion = computed(() => actualPlatform.isDesktop && actualPlatform.isRemoteConnection
   ? clientBuild.value?.version || "" : snapshot.value?.version || import.meta.env.appVersion);
 const sourceSaving = ref(false);
+const autoUpdateSaving = ref(false);
 const checking = computed(() => desktopUpdateChecking.value);
 const working = computed(() => !!action.value);
 const updateInProgress = computed(() => working.value || !!snapshot.value?.updating);
@@ -182,9 +189,9 @@ const resultMessage = computed(() => {
 });
 
 onMounted(async () => {
-  if (!isDesktop) return;
+  if (!actualPlatform.isDesktop) return;
   try {
-    if (isRemoteConnection) {
+    if (actualPlatform.isRemoteConnection) {
       const { data } = await axios.get<{ data: { version: string; channel: string } }>("/api/desktop/update", { signal: controller.signal, timeout: 10000 });
       clientBuild.value = data.data;
       return;
@@ -203,7 +210,7 @@ function openUpdate() {
 }
 
 async function saveUpdateSource(source: string) {
-  if (isRemoteConnection) return;
+  if (actualPlatform.isRemoteConnection) return;
   if (source === updateSource.value || sourceSaving.value || working.value) return;
   if (source !== "official" && source !== "github" && (source !== "custom" || !customUpdateUrl.value)) return;
   sourceSaving.value = true;
@@ -213,6 +220,19 @@ async function saveUpdateSource(source: string) {
     ElMessage.error(getUpdateError(error));
   } finally {
     sourceSaving.value = false;
+  }
+}
+
+async function saveAutoUpdate(enabled: boolean) {
+  if (!actualPlatform.isLocalDesktop || autoUpdateSaving.value || enabled === desktopAutoUpdate.value) return;
+  autoUpdateSaving.value = true;
+  try {
+    await saveSettings(() => ({ desktopAutoUpdate: enabled }));
+    if (enabled) void startDesktopUpdate().catch(() => {});
+  } catch (error) {
+    ElMessage.error(getUpdateError(error));
+  } finally {
+    autoUpdateSaving.value = false;
   }
 }
 
@@ -227,10 +247,6 @@ function formatBytes(bytes: number) {
 async function runUpdate(nextAction: "read" | "check" | "download" | "apply") {
   if (working.value || sourceSaving.value) return;
   updateError.value = "";
-  if (!isDesktop) {
-    updateError.value = "请在桌面客户端中检查更新。";
-    return;
-  }
   try {
     await runDesktopUpdate(nextAction);
     if (snapshot.value?.channel === "dev") updateError.value = "开发版本不提供更新检查，请使用正式桌面客户端。";
@@ -319,6 +335,16 @@ async function runUpdate(nextAction: "read" | "check" | "download" | "apply") {
     }
 
     &.updateCard {
+      .autoUpdateSetting {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 8px;
+        color: var(--el-text-color-primary);
+        font-size: 13px;
+      }
+
       .cardHeader {
         .updateCopy {
           flex: 1;
@@ -417,92 +443,7 @@ async function runUpdate(nextAction: "read" | "check" | "download" | "apply") {
     }
   }
 
-  .sponsorPanel {
-    margin-top: 8px;
-    min-width: 0;
 
-    .sponsorTitle {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 8px;
-      color: var(--el-text-color-primary);
-      font-size: 16px;
-      font-weight: 600;
-
-      .sponsorHint {
-        color: var(--el-text-color-secondary);
-        font-size: 12px;
-        font-weight: 400;
-      }
-
-      .sponsorContact {
-        margin-left: auto;
-      }
-    }
-
-    .sponsorGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 110px), 1fr));
-      gap: 6px;
-
-      .sponsorEntry {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-width: 0;
-        height: 48px;
-        padding: 7px 8px;
-        border: 1px solid var(--el-border-color-lighter);
-        border-radius: var(--ui-radius);
-        background: var(--el-bg-color);
-        color: var(--el-text-color-primary);
-        font: inherit;
-        text-align: left;
-        cursor: pointer;
-
-        &:hover,
-        &[aria-expanded="true"] {
-          border-color: var(--el-border-color-darker);
-          background: var(--el-fill-color-light);
-        }
-
-        &:focus-visible {
-          outline: 2px solid var(--el-color-primary);
-          outline-offset: 2px;
-        }
-
-        .sponsorLogo {
-          display: block;
-          flex-shrink: 0;
-          width: 32px;
-          height: 32px;
-          padding: 4px;
-          box-sizing: border-box;
-          border-radius: var(--ui-radius);
-          background: #fff;
-
-          img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-          }
-        }
-
-        .sponsorName {
-          flex: 1;
-          min-width: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          font-size: 13px;
-          font-weight: 500;
-        }
-      }
-    }
-  }
 }
 
 .tips {
@@ -510,12 +451,6 @@ async function runUpdate(nextAction: "read" | "check" | "download" | "apply") {
   color: var(--el-text-color-secondary);
   font-size: 12px;
   line-height: 1.7;
-}
-
-.sponsorReadme {
-  max-height: min(320px, 50vh);
-  overflow-y: auto;
-  overflow-wrap: anywhere;
 }
 
 .updateResult {

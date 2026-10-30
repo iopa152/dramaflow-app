@@ -60,6 +60,7 @@ export const generalSettings = computed(() => {
   }));
   return {
     nodeMenu: normalizeNodeMenu(general.nodeMenu),
+    agentNotificationsEnabled: general.agentNotificationsEnabled !== false,
     canvasCompositingEnabled: general.canvasCompositingEnabled === true,
     canvasEdgeAnimationEnabled: general.canvasEdgeAnimationEnabled !== false,
     canvasEdgeColorMode: general.canvasEdgeColorMode === "none" || general.canvasEdgeColorMode === "custom" ? general.canvasEdgeColorMode : "theme",
@@ -155,7 +156,7 @@ export function saveSettings(update?: (current: Record<string, unknown>) => Reco
     if (patch && Object.hasOwn(patch, "mediaProviderConfigs")) {
       window.dispatchEvent(new Event("dramaflow:provider-config-changed"));
     }
-    if (data.data?.modelRefreshErrors?.length) ElMessage.warning(`API Key 已保存，部分模型获取失败：${data.data.modelRefreshErrors.join("；")}`);
+    if (data.data?.modelRefreshErrors?.length) ElMessage.warning(`API Key 已保存，但部分模型列表获取失败：${data.data.modelRefreshErrors.join("；")}`);
     return true;
   });
   saveQueue = saving.then(() => {}, () => {});
