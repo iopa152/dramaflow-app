@@ -1,0 +1,16 @@
+{
+  "name": "@dramaflow/multi-tenant-gateway",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./types": "./types.ts"
+  },
+  "scripts": { "typecheck": "tsc" },
+  "dependencies": {
+    "@dramaflow/multi-tenant-models": "workspace:*",
+    "@dramaflow/multi-tenant-billing": "workspace:*",
+    "zod": "^4.6.2"
+  }
+}

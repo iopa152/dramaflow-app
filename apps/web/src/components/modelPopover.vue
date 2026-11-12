@@ -3,7 +3,7 @@
     <el-popover
       v-model:visible="visible"
       trigger="click"
-      placement="top-end"
+      placement="top-start"
       :width="340"
       :offset="10"
       :showArrow="false"
@@ -12,7 +12,7 @@
       <template #reference>
         <el-button class="modelButton" text :disabled="disabled" aria-label="模型与思考强度设置">
           <modelIcon v-if="selectedModelChoice" :model="selectedModelChoice.modelId" :size="14" />
-          <span class="modelName">{{ selectedModelChoice?.label ?? "选择模型" }}</span>
+          <modelLabel class="modelName" :label="selectedModelChoice?.label ?? '选择模型'" :providerId="selectedModelChoice?.providerId" />
           <template v-if="reasoningLevels.length">
             ·
             <span class="reasoningLabel">{{ reasoningLabel }}</span>
@@ -22,27 +22,28 @@
       </template>
       <el-form class="modelOptions" labelPosition="top">
         <el-form-item label="模型">
-          <el-select v-model="selectedModel" filterable :disabled="disabled" :teleported="false" placeholder="选择模型" aria-label="选择模型" noDataText="请先在设置中添加模型" @change="reasoningEffort = ''">
+          <el-select :modelValue="selectedModelChoice ? selectedModel : ''" filterable :disabled="disabled" :teleported="false" placeholder="选择模型" aria-label="选择模型" noDataText="请先在设置中添加模型" @update:modelValue="selectedModel = $event" @change="reasoningEffort = ''">
             <template #prefix><modelIcon v-if="selectedModelChoice" :model="selectedModelChoice.modelId" :size="18" /></template>
+            <template #label="{ label }"><modelLabel :label="label" :providerId="selectedModelChoice?.providerId" /></template>
             <el-option-group v-for="provider in modelGroups" :key="provider.id" :label="provider.label">
-              <el-option v-for="model in provider.models" :key="model.id" :label="model.label" :value="JSON.stringify([provider.id, model.id])">
-                <el-space :size="8">
-                  <modelIcon :model="model.id" :size="16" />
-                  <span>{{ model.label }}</span>
-                </el-space>
+              <el-option v-for="model in provider.models" :key="model.value" :label="model.label" :value="model.value">
+                <div class="modelOption">
+                  <modelIcon :model="model.modelId" :size="16" />
+                  <modelLabel class="modelOptionLabel" :label="model.label" :providerId="provider.id" />
+                </div>
               </el-option>
             </el-option-group>
           </el-select>
         </el-form-item>
-        <el-form-item label="思考强度">
+        <el-form-item v-if="reasoningLevels.length" label="思考强度">
           <div class="reasoningSettings">
             <div class="reasoningGrid" role="radiogroup" aria-label="思考强度" :aria-describedby="`${reasoningId}Hint`" :style="{ gridTemplateColumns: `repeat(${reasoningColumns}, minmax(0, 1fr))` }">
               <label v-for="option in reasoningOptions" :key="option.value" class="reasoningOption">
-                <input v-model="reasoningEffort" type="radio" :name="reasoningId" :value="option.value" :disabled="disabled || (option.value !== '' && !reasoningLevels.length)" />
+                <input v-model="reasoningEffort" type="radio" :name="reasoningId" :value="option.value" :disabled="disabled" />
                 <span class="reasoningOptionLabel">{{ option.label }}</span>
               </label>
             </div>
-            <div :id="`${reasoningId}Hint`" class="reasoningHint">{{ reasoningLevels.length ? "默认由模型决定" : "当前模型不支持思考强度" }}</div>
+            <div :id="`${reasoningId}Hint`" class="reasoningHint">默认由模型决定</div>
           </div>
         </el-form-item>
       </el-form>
@@ -54,8 +55,10 @@
 import { computed, ref, useId, watch } from "vue";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-vue";
 import { modelIcon } from "@dramaflow/model-icons";
+import { useNodeModelSelection } from "@dramaflow/nodes-scaffold/nodeAi";
+import modelLabel from "@dramaflow/node-shared/modelLabel";
 import type { ThinkingLevel } from "@dramaflow/server/modelReasoning";
-import { customProviders, modelChoices } from "@/stores/settings";
+import { modelChoices, refreshModelChoices } from "@/stores/settings";
 
 const selectedModel = defineModel<string>({ default: "" });
 const reasoningEffort = defineModel<string>("reasoningEffort", { default: "" });
@@ -63,11 +66,18 @@ const props = withDefaults(defineProps<{ active?: boolean; disabled?: boolean }>
 const visible = ref(false);
 const reasoningId = useId();
 const reasoningLabels: Record<ThinkingLevel, string> = { off: "关闭", minimal: "最小", low: "低", medium: "中", high: "高", xhigh: "极高", max: "最高" };
-const modelGroups = computed(() => customProviders.value.toSorted((left, right) => Number(right.id === "tfRouter") - Number(left.id === "tfRouter")));
-const selectedModelChoice = computed(() => modelChoices.value.find(item => item.value === selectedModel.value));
+const selectedModelChoice = useNodeModelSelection(modelChoices, selectedModel);
+const modelGroups = computed(() => {
+  const groups = new Map<string, { id: string; label: string; models: Array<(typeof modelChoices.value)[number]> }>();
+  for (const model of modelChoices.value) {
+    const group = groups.get(model.providerId);
+    if (group) group.models.push(model);
+    else groups.set(model.providerId, { id: model.providerId, label: model.providerLabel, models: [model] });
+  }
+  return [...groups.values()];
+});
 const reasoningLevels = computed(() => selectedModelChoice.value?.reasoningLevels ?? []);
-// 模型目录未声明档位时保留旧版「默认/低/中/高」观感；不支持档位的选项置灰，避免提交后被服务端拒绝。
-const reasoningOptions = computed(() => [{ label: "默认", value: "" }, ...(reasoningLevels.value.length ? reasoningLevels.value : (["low", "medium", "high"] as const)).map(value => ({ label: reasoningLabels[value], value }))]);
+const reasoningOptions = computed(() => [{ label: "默认", value: "" }, ...reasoningLevels.value.map(value => ({ label: reasoningLabels[value], value }))]);
 const reasoningColumns = computed(() => Math.min(4, reasoningOptions.value.length > 4 ? Math.ceil(reasoningOptions.value.length / 2) : reasoningOptions.value.length));
 const reasoningLabel = computed(() => reasoningOptions.value.find(item => item.value === reasoningEffort.value)?.label ?? "默认");
 watch(modelChoices, items => {
@@ -77,6 +87,7 @@ watch([() => selectedModelChoice.value?.reasoningLevels, reasoningEffort], ([lev
   if (levels && effort && !levels.includes(effort as ThinkingLevel)) reasoningEffort.value = "";
 }, { immediate: true, flush: "post" });
 watch(() => !props.active || props.disabled, close => { if (close) visible.value = false; });
+watch(visible, value => { if (value) void refreshModelChoices().catch(() => {}); });
 </script>
 
 <style lang="scss">
@@ -131,6 +142,17 @@ watch(() => !props.active || props.disabled, close => { if (close) visible.value
       }
       .el-select {
         width: 100%;
+
+        .modelOption {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          min-width: 0;
+
+          .modelOptionLabel {
+            flex: 1;
+          }
+        }
       }
       .reasoningSettings {
         width: 100%;

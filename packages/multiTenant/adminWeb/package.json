@@ -1,0 +1,30 @@
+{
+  "name": "@dramaflow/multi-tenant-admin-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.vue",
+    "./routes": "./routes.ts"
+  },
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@dramaflow/i18n": "workspace:*",
+    "@dramaflow/multi-tenant-billing": "workspace:*",
+    "@dramaflow/multi-tenant-models": "workspace:*",
+    "@dramaflow/multi-tenant-source-mapping": "workspace:*",
+    "@dramaflow/provider-web": "workspace:*"
+  },
+  "peerDependencies": {
+    "@tabler/icons-vue": "^3.46.0",
+    "element-plus": "^2.14.5",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.1"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3",
+    "vue-tsc": "^3.3.11"
+  }
+}

@@ -2,22 +2,41 @@ import axios from "axios";
 import { normalizeLocale } from "@dramaflow/i18n";
 import { computed, nextTick, ref, watch } from "vue";
 import { ElMessage } from "element-plus";
-import { invalidateNodeModels } from "@dramaflow/nodes-scaffold/nodeAi";
+import { getNodeModelKey, invalidateNodeModels, readNodeModels, subscribeNodeModels } from "@dramaflow/nodes-scaffold/nodeAi";
 import { canvasShortcutFields, defaultCanvasShortcuts, getShortcutBindings, isShortcutAllowed, normalizeShortcut, type CanvasShortcuts } from "@/lib/canvasShortcuts";
 import { normalizeNodeMenu, type StoredNodeMenuItem } from "@dramaflow/server/nodeMenu";
+import { nodeToolPermissionsSchema } from "@dramaflow/tool-canvas/runtime";
 import type { ReasoningEfforts, ThinkingLevel } from "@dramaflow/server/modelReasoning";
+import type { ProviderSources } from "@dramaflow/server/channel";
+import http from "@/lib/http";
+import { currentUser, publicWeb } from "@/stores/multiTenant";
 import "element-plus/es/components/message/style/css";
 
 export const settings = ref<Record<string, unknown>>({});
+export const agentNodeToolPermissions = computed(() => nodeToolPermissionsSchema.parse(settings.value.agentNodeTools ?? {}));
 // ACT: 页面在 loadSettings 完成后才挂载，加载标记仅保留在设置初始化与自动保存内部。
 let settingsReady = false;
 let saveQueue = Promise.resolve();
 let applyingSettings = false;
+let multiTenantVersion = 0;
+let settingsRevision: number | undefined;
+
+export const multiTenantEnabled = computed(() => settings.value.multiTenantEnabled === true);
+
+export function applyMultiTenantEnabled(enabled: boolean) {
+  multiTenantVersion++;
+  if (settings.value.multiTenantEnabled === enabled) return;
+  const previous = applyingSettings;
+  applyingSettings = true;
+  try { settings.value = { ...settings.value, multiTenantEnabled: enabled }; }
+  finally { applyingSettings = previous; }
+}
 
 export const settingsStorage = {
   getItem(key: string) {
     const stores = settings.value.stores as Record<string, unknown> | undefined;
     if (stores && Object.hasOwn(stores, key)) return JSON.stringify(stores[key]);
+    if (publicWeb.value) return null;
     // ACT: 只迁移当前来源可读取的旧缓存，保留原值；不同端口的 localStorage 不能互读。
     const value = localStorage.getItem(key);
     if (value !== null) settingsStorage.setItem(key, value);
@@ -80,62 +99,133 @@ export function updateGeneralSettings(patch: Omit<Partial<typeof generalSettings
   settings.value = { ...settings.value, general: { ...(current && typeof current === "object" && !Array.isArray(current) ? current : {}), ...patch } };
 }
 
-export type CustomProviderModel = { id: string; label: string; contextWindow?: number; maxOutputTokens?: number; reasoningEfforts?: ReasoningEfforts };
-export type CustomProvider = { id: string; label: string; icon?: string; version?: string; apiUrl: string; apiKey: string; protocol: string; models: CustomProviderModel[] };
-export const customProviders = computed<CustomProvider[]>(() => Array.isArray(settings.value.customProviders)
-  ? settings.value.customProviders.filter((item): item is CustomProvider => !!item && typeof item.id === "string" && typeof item.label === "string" && Array.isArray(item.models)
-    && item.models.every((model: CustomProviderModel) => !!model && typeof model.id === "string" && typeof model.label === "string"))
-  : []);
+export const privacySettings = computed(() => {
+  const raw = settings.value.privacy;
+  const privacy = raw && typeof raw === "object" && !Array.isArray(raw) ? raw as Record<string, unknown> : {};
+  return {
+    dataCollectionEnabled: privacy.dataCollectionEnabled !== false,
+    anonymousId: typeof privacy.anonymousId === "string" ? privacy.anonymousId : "",
+  };
+});
 
-type ResolvedAiModel = { providerId: string; modelId: string; reasoningLevels: ThinkingLevel[] };
-const resolvedModelReasoning = ref<Partial<Record<string, ThinkingLevel[]>>>({});
-export const modelChoices = computed(() => customProviders.value.flatMap(provider => provider.models.map(model => ({
-  value: JSON.stringify([provider.id, model.id]), providerId: provider.id, modelId: model.id, label: model.label, contextWindow: model.contextWindow,
-  reasoningLevels: resolvedModelReasoning.value[JSON.stringify([provider.id, model.id])],
-}))));
+export type CustomProviderModel = { id: string; label: string; contextWindow?: number; maxOutputTokens?: number; reasoningEfforts?: ReasoningEfforts };
+export type CustomProvider = { id: string; label: string; icon?: string; version?: string; apiUrl: string; apiKey: string; headers?: Record<string, string>; protocol: string; models: CustomProviderModel[] };
+export const dramaflowAccountToken = computed(() => {
+  const account = settings.value.dramaflowAccount as { token?: unknown } | null | undefined;
+  return typeof account?.token === "string" ? account.token.trim() : "";
+});
+export const customProviders = computed<CustomProvider[]>(() => {
+  const providers = Array.isArray(settings.value.customProviders) ? [...settings.value.customProviders] : [];
+  const accountProvider = settings.value.dramaflowProvider as CustomProvider | null | undefined;
+  if (dramaflowAccountToken.value && (accountProvider?.id === "Dramaflow" || accountProvider?.id === "dramaflow")) providers.unshift(accountProvider);
+  return providers.filter((item): item is CustomProvider => !!item && typeof item.id === "string" && typeof item.label === "string" && Array.isArray(item.models)
+    && item.models.every((model: CustomProviderModel) => !!model && typeof model.id === "string" && typeof model.label === "string"));
+});
+
+export const dramaflowProviderLoading = ref(false);
+export const dramaflowProviderError = ref("");
+let providerRequest: AbortController | undefined;
+
+export async function refreshDramaflowProvider() {
+  providerRequest?.abort();
+  dramaflowProviderError.value = "";
+  dramaflowProviderLoading.value = false;
+  const token = dramaflowAccountToken.value;
+  if (multiTenantEnabled.value || !token) { providerRequest = undefined; return; }
+  const request = new AbortController();
+  providerRequest = request;
+  dramaflowProviderLoading.value = true;
+  try {
+    const sources = await http<ProviderSources>({
+      method: "GET", url: "/api/channel/provider/getSource", signal: request.signal,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    request.signal.throwIfAborted();
+    const { data } = await axios.post<{ code: number; data: { provider: CustomProvider }; message?: string }>(
+      "/api/providers/account/install", { sources, token },
+      { signal: request.signal, headers: { "x-dramaflow-workspace": "1", Authorization: `Bearer ${token}` }, timeout: 45000 },
+    );
+    if (data.code !== 200 || data.data?.provider?.id !== "Dramaflow") throw new Error(data.message || "安装账号供应商失败");
+    await saveSettings(() => request.signal.aborted || multiTenantEnabled.value || dramaflowAccountToken.value !== token
+      ? undefined : { dramaflowProvider: data.data.provider }, request.signal);
+  } catch (error) {
+    if (!request.signal.aborted && !multiTenantEnabled.value && dramaflowAccountToken.value === token) {
+      dramaflowProviderError.value = axios.isAxiosError<{ message?: string }>(error)
+        ? error.response?.data?.message || "安装账号供应商失败，请刷新重试"
+        : error instanceof Error ? error.message : "安装账号供应商失败，请刷新重试";
+    }
+  } finally {
+    if (providerRequest === request) { providerRequest = undefined; dramaflowProviderLoading.value = false; }
+  }
+}
+
+type ResolvedAiModel = { providerId: string; providerLabel: string; modelId: string; routeId?: string; label: string; contextWindow: number; reasoningLevels: ThinkingLevel[] };
+const availableModels = ref<ResolvedAiModel[]>([]);
+export const modelChoices = computed(() => availableModels.value.map(model => ({ ...model, value: getNodeModelKey(model) })));
 
 function applyModelReasoning(models: ResolvedAiModel[]) {
-  resolvedModelReasoning.value = Object.fromEntries(models.map(model => [JSON.stringify([model.providerId, model.modelId]), model.reasoningLevels]));
+  availableModels.value = models;
 }
 
-async function loadModelReasoning() {
-  const { data } = await axios.get<{ code: number; data: ResolvedAiModel[] }>(
-    "/api/ai/models", { headers: { "Cache-Control": "no-cache", "x-dramaflow-workspace": "1" } },
-  );
-  if (data.code !== 200 || !Array.isArray(data.data)) throw new Error("读取模型推理等级失败");
-  applyModelReasoning(data.data);
+export async function refreshModelChoices(fresh = false, signal?: AbortSignal) {
+  const version = multiTenantVersion;
+  const models = await readNodeModels<ResolvedAiModel>("language", signal, fresh);
+  if (version === multiTenantVersion) applyModelReasoning(models);
 }
+
+subscribeNodeModels(type => {
+  if (type !== "language" || !settingsReady) return;
+  void refreshModelChoices().catch(error => { ElMessage.error(error instanceof Error ? error.message : "读取模型推理等级失败"); });
+});
 
 export async function loadSettings() {
   if (settingsReady) return;
-  const { data } = await axios.get("/api/settings/get", { headers: { "Cache-Control": "no-cache", "x-dramaflow-workspace": "1" } });
+  const { data, headers } = await axios.get("/api/settings/get", { headers: { "Cache-Control": "no-cache", "x-dramaflow-workspace": "1" } });
   if (settingsReady) return;
   if (data.code !== 200 || !data.data || typeof data.data !== "object" || Array.isArray(data.data)) {
     throw new Error("读取设置失败");
   }
   settings.value = data.data;
-  await loadModelReasoning();
+  settingsRevision = headers["x-dramaflow-settings-revision"] === undefined ? undefined : Number(headers["x-dramaflow-settings-revision"]);
+  await refreshModelChoices();
   // 等初始化引发的监听执行完，再允许自动保存。
   await nextTick();
   settingsReady = true;
+  void refreshDramaflowProvider();
 }
 
-export function saveSettings(update?: (current: Record<string, unknown>) => Record<string, unknown> | undefined) {
+export function saveSettings(update?: (current: Record<string, unknown>) => Record<string, unknown> | undefined, signal?: AbortSignal) {
   // ACT: 队列内读取最新配置再计算变更，确认成功后发布；仅协调当前页面的保存。
   const saving = saveQueue.then(async () => {
+    signal?.throwIfAborted();
     const patch = update?.(settings.value);
     if (update && !patch) return false;
+    const requestedSettings = { ...settings.value, ...patch };
+    const requestedMultiTenantVersion = multiTenantVersion;
+    const providerFields = ["customProviders", "mediaProviderConfigs", "dramaflowProvider"] as const;
+    const requestedProviders = providerFields.map(field => JSON.stringify(requestedSettings[field]));
     const requestedNodeMenu = JSON.stringify(((patch?.general ?? settings.value.general) as { nodeMenu?: unknown } | undefined)?.nodeMenu);
-    const { data } = await axios.put<{ code: number; data: { customProviders?: CustomProvider[]; mediaProvider?: { id: string }; modelRefreshErrors?: string[]; nodeMenu?: StoredNodeMenuItem[] | null; aiModels?: ResolvedAiModel[] } | null }>(
-      "/api/settings/save", { settings: { ...settings.value, ...patch } }, { headers: { "x-dramaflow-workspace": "1" } },
+    const { data, headers } = await axios.put<{ code: number; data: { customProviders?: CustomProvider[]; mediaProviderConfigs?: Record<string, unknown>; dramaflowProvider?: CustomProvider | null; nodeMenu?: StoredNodeMenuItem[] | null; aiModels?: ResolvedAiModel[]; multiTenantEnabled?: boolean } | null }>(
+      "/api/settings/save", { settings: requestedSettings, ...(settingsRevision === undefined ? {} : { expectedRevision: settingsRevision }) }, { signal, headers: { "x-dramaflow-workspace": "1" } },
     );
+    signal?.throwIfAborted();
     if (data.code !== 200) throw new Error("保存设置失败");
-    if (data.data?.aiModels) applyModelReasoning(data.data.aiModels);
-    const providers = data.data?.customProviders;
-    if ((patch && Object.hasOwn(patch, "customProviders")) || providers) invalidateNodeModels("language");
-    if (patch || providers) {
+    if (headers["x-dramaflow-settings-revision"] !== undefined) settingsRevision = Number(headers["x-dramaflow-settings-revision"]);
+    if (typeof data.data?.multiTenantEnabled === "boolean" && requestedMultiTenantVersion === multiTenantVersion) {
+      applyMultiTenantEnabled(data.data.multiTenantEnabled);
+    }
+    const savedPatch = { ...patch };
+    delete savedPatch.multiTenantEnabled;
+    providerFields.forEach((field, index) => {
+      const value = data.data?.[field];
+      const current = JSON.stringify(settings.value[field]);
+      const changed = Object.hasOwn(savedPatch, field);
+      if (value !== undefined && (changed || current === requestedProviders[index])
+        && JSON.stringify(changed ? savedPatch[field] : settings.value[field]) !== JSON.stringify(value)) savedPatch[field] = value;
+    });
+    if (Object.keys(savedPatch).length) {
       applyingSettings = true;
-      try { settings.value = { ...settings.value, ...patch, ...(providers ? { customProviders: providers } : {}) }; }
+      try { settings.value = { ...settings.value, ...savedPatch }; }
       finally { applyingSettings = false; }
     }
     if (data.data && Object.hasOwn(data.data, "nodeMenu")
@@ -149,14 +239,12 @@ export function saveSettings(update?: (current: Record<string, unknown>) => Reco
         settings.value = { ...settings.value, general };
       } finally { applyingSettings = false; }
     }
-    if (data.data?.mediaProvider) {
-      invalidateNodeModels("media");
-      window.dispatchEvent(new CustomEvent("dramaflow:plugin-installed", { detail: { type: "provider", name: data.data.mediaProvider.id } }));
-    }
-    if (patch && Object.hasOwn(patch, "mediaProviderConfigs")) {
+    const accountChanged = Object.hasOwn(savedPatch, "dramaflowProvider") || Object.hasOwn(savedPatch, "dramaflowAccount");
+    if (accountChanged || Object.hasOwn(savedPatch, "customProviders")) invalidateNodeModels("language");
+    if (accountChanged) invalidateNodeModels("media");
+    if (accountChanged || Object.hasOwn(savedPatch, "mediaProviderConfigs")) {
       window.dispatchEvent(new Event("dramaflow:provider-config-changed"));
     }
-    if (data.data?.modelRefreshErrors?.length) ElMessage.warning(`API Key 已保存，但部分模型列表获取失败：${data.data.modelRefreshErrors.join("；")}`);
     return true;
   });
   saveQueue = saving.then(() => {}, () => {});
@@ -165,5 +253,12 @@ export function saveSettings(update?: (current: Record<string, unknown>) => Reco
 
 watch(settings, () => {
   if (!settingsReady || applyingSettings) return;
-  void saveSettings().catch(() => { ElMessage.error("设置保存失败，请稍后重试"); });
+  void saveSettings().catch(error => {
+    ElMessage.error(axios.isAxiosError(error) && error.response?.status === 409
+      ? "设置已更新，请重新读取后保存" : "设置保存失败，请稍后重试");
+  });
 }, { deep: true, flush: "sync" });
+
+watch([() => settings.value.dramaflowAccount, multiTenantEnabled], () => {
+  if (settingsReady) void refreshDramaflowProvider();
+}, { flush: "sync" });

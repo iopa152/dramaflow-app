@@ -70,8 +70,9 @@
         v-if="active && !settingsVisible && project?.directory && canvasReady && !flow.getNodes.value.length"
         :availableNodes="availableNodes"
         @create="createEmptyNode" />
+      <canvasViewportHint v-if="active && !settingsVisible && project?.directory && canvasReady" :key="canvasId" />
       <canvasMenu ref="canvasMenuRef" v-model:canvasId="canvasId" :directory="project?.directory" :initialCanvasId="initialCanvasId" :activateCanvas="activateCanvas" :flushSave="flushCanvases ?? flushCanvasSave">
-        <assetLibrary ref="assetLibraryRef" v-model="assetsVisible" :directory="project?.directory" />
+        <assetLibrary v-if="currentUser?.role !== 'user'" ref="assetLibraryRef" v-model="assetsVisible" :directory="project?.directory" />
       </canvasMenu>
       <canvasControls
         v-if="canvasId"
@@ -106,7 +107,7 @@
         :disabled="!canvasId || !project?.directory" />
       <nodeSearch ref="nodeSearchRef" :disabled="!active || settingsVisible || !canvasId || !project?.directory" />
     </vue-flow>
-    <el-dialog :modelValue="!!assetSelection" class="referenceAssetDialog" title="全局素材库" width="min(1200px, 88vw)" alignCenter appendToBody destroyOnClose @update:modelValue="finishAssetSelection()">
+    <el-dialog v-if="currentUser?.role !== 'user'" :modelValue="!!assetSelection" class="referenceAssetDialog" title="全局素材库" width="min(1200px, 88vw)" alignCenter appendToBody destroyOnClose @update:modelValue="finishAssetSelection()">
       <assetLibrary :modelValue="!!assetSelection" expanded :canSelect="canSelectAsset" :selecting="assetSelecting" @select="selectAsset" />
     </el-dialog>
     <teleport to="body">
@@ -142,6 +143,7 @@ import * as vueRuntime from "vue";
 import * as vueFlowRuntime from "@vue-flow/core";
 import * as elementPlusRuntime from "element-plus";
 import * as threeRuntime from "three";
+import * as modelIcons from "@dramaflow/model-icons";
 import { runAgentLoop } from "@earendil-works/pi-agent-core";
 import { createAssistantMessageEventStream } from "@earendil-works/pi-ai";
 import "element-plus/dist/index.css";
@@ -173,17 +175,19 @@ import remoteNode from "./components/remoteNode.vue";
 import canvasMenu from "./components/canvasMenu.vue";
 import canvasControls from "./components/canvasControls.vue";
 import canvasEmpty from "./components/canvasEmpty.vue";
+import canvasViewportHint from "./components/canvasViewportHint.vue";
 import assetLibrary from "./components/assetLibrary.vue";
 import groupNode from "./components/groupNode.vue";
 import selectionToolbar from "./components/selectionToolbar.vue";
 import nodeSearch from "./components/nodeSearch.vue";
-import { finishGroupDrag, getSelectionTree } from "./selectionNodes";
+import { finishGroupDrag, fitGroupBounds, getSelectionTree } from "./selectionNodes";
 import type { NodeOutput } from "@dramaflow/nodes-scaffold/values";
 import { validateConnection, type NodeConnectionFeedback, type NodeHandle } from "@dramaflow/nodes-scaffold/connection";
 import { useNodeEvent } from "@dramaflow/nodes-scaffold/nodeEvent";
 import type { NodeDocumentContext, NodeDocumentState } from "@dramaflow/nodes-scaffold/nodeDocument";
 import { useNodeToolsContext } from "@dramaflow/nodes-scaffold/nodeTools";
 import { useWorkspaceStore } from "@/stores/workspace";
+import { currentUser } from "@/stores/multiTenant";
 import { generalSettings } from "@/stores/settings";
 import { getShortcutBindings, shortcutLabel, shortcutMatches, shortcutPressed } from "@/lib/canvasShortcuts";
 import useWorkspaceFiles from "@/lib/workspaceFiles";
@@ -216,6 +220,7 @@ const nodeConfigs = shallowRef<Record<string, Record<string, unknown>>>({});
 const nodeOptions = ref<{ type: string; label: string }[]>([]);
 const nodeLoads = shallowReactive(new Map<string, Promise<void>>());
 const nodeReloads = new Set<string>();
+const handledPluginEvents = new WeakSet<Event>();
 const nodeErrors = ref<Record<string, string>>({});
 const availableNodes = computed(() => nodeOptions.value.filter(node => nodeTypes.value[node.type] && !nodeErrors.value[node.type]));
 const nodeListLoading = ref(true);
@@ -278,7 +283,7 @@ provide("copyNodeToClipboard", async (node: Parameters<typeof copyNodeToClipboar
 });
 provide("retainNodeFiles", true);
 provide("selectionConnection", shallowRef<NodeConnectionFeedback>());
-provide("saveNodeToAssets", (label: string, outputs: { label: string; output: NodeOutput }[]) => assetLibraryRef.value?.openSave(label, outputs));
+provide("saveNodeToAssets", currentUser.value?.role === "user" ? undefined : (label: string, outputs: { label: string; output: NodeOutput }[]) => assetLibraryRef.value?.openSave(label, outputs));
 let canvasController = new AbortController();
 let workspaceController = new AbortController();
 type AssetReference = { source: string; sourceHandle: string };
@@ -289,7 +294,7 @@ provide("selectNodeAsset", (targetId: string, targetHandleId: string) => {
   finishAssetSelection();
   const target = findNode(targetId);
   const directory = project.value?.directory;
-  if (!target || !directory || !props.active || !canvasId.value) return Promise.resolve(undefined);
+  if (currentUser.value?.role === "user" || !target || !directory || !props.active || !canvasId.value) return Promise.resolve(undefined);
   return new Promise<AssetReference | undefined>(resolve => {
     const controller = new AbortController();
     const signal = AbortSignal.any([controller.signal, canvasController.signal, workspaceController.signal]);
@@ -373,9 +378,16 @@ async function selectAsset(entry: { name: string; path: string; type: string }) 
     if (assetSelection.value === selection) assetSelecting.value = false;
   }
 }
-const createCanvasContext = useCanvasTools({
+const { createCanvasContext, getNodeRevision } = useCanvasTools({
   availableNodes,
   flushSave: flushCanvasSave,
+  async reloadPlugin(type, name) {
+    const event = new CustomEvent("dramaflow:plugin-installed", { detail: { type, name } });
+    // ACT: 当前画布等待目标节点加载，其他监听者仍通过安装事件刷新，避免本画布重复请求。
+    handledPluginEvents.add(event);
+    window.dispatchEvent(event);
+    if (type === "node") await loadRemoteNodes(name, true);
+  },
   menu() {
     if (!canvasMenuRef.value) throw new Error("画布菜单尚未就绪");
     return canvasMenuRef.value;
@@ -388,6 +400,29 @@ function getCanvasContext() {
 }
 const canvasReady = computed(() => !!canvasId.value && !nodeListLoading.value && nodeLoads.size === 0);
 provide("canvas", getCanvasContext);
+provide("nodePersistence", () => {
+  const directory = project.value?.directory;
+  const canvasPath = canvasId.value;
+  if (!directory || !canvasPath) return;
+  return {
+    directory,
+    canvasPath,
+    async save(signal?: AbortSignal) {
+      signal?.throwIfAborted();
+      if (project.value?.directory !== directory || canvasId.value !== canvasPath) throw new Error("画布已切换，无法保存节点任务");
+      let abort = () => {};
+      try {
+        const saving = flushCanvasSave();
+        await (signal ? Promise.race([saving, new Promise<never>((_resolve, reject) => {
+          abort = () => reject(signal.reason);
+          signal.addEventListener("abort", abort, { once: true });
+        })]) : saving);
+      } finally { signal?.removeEventListener("abort", abort); }
+      signal?.throwIfAborted();
+      if (project.value?.directory !== directory || canvasId.value !== canvasPath) throw new Error("画布已切换，无法确认节点任务保存结果");
+    },
+  };
+});
 defineExpose({ canvasId, canvasReady, getCanvasContext, addNodeAtPointer, readDocumentNode, saveDocumentNode, mountDocumentNode, observeDocumentNode, prepareCanvasDelete, flushSave: flushCanvasSave, cancelSave: cancelCanvasSave,
   openNodeSearch: () => nodeSearchRef.value?.open(),
   getCanvases: (signal?: AbortSignal) => {
@@ -396,6 +431,7 @@ defineExpose({ canvasId, canvasReady, getCanvasContext, addNodeAtPointer, readDo
   },
   syncCanvasPath: (previous: string, target: string) => canvasMenuRef.value?.syncCanvasPath(previous, target),
   getMentionNodes: () => flow.nodes.value, findMentionNode: flow.findNode,
+  getMentionRevision: () => `${props.runtimeKey}:${getNodeRevision()}`,
   getRetainedNodes: canvasHistory.getRetainedNodes,
   get canvasListReady() { return canvasMenuRef.value?.initialized ?? false; },
   get saveBusy() { return savePaused; }, get loadError() { return canvasMenuRef.value?.loadError ?? ""; },
@@ -741,10 +777,42 @@ watch(
             { flush: "post" }
           )
         : () => {};
+      let stopDimensions = () => {};
+      if (isNode(element)) {
+        const parents = computed(() => {
+          const result: GraphNode[] = [];
+          const visited = new Set([element.id]);
+          let parent = findNode(element.parentNode);
+          while (parent && !visited.has(parent.id)) {
+            visited.add(parent.id);
+            result.push(parent);
+            parent = findNode(parent.parentNode);
+          }
+          return result;
+        });
+        let dimensionsChanged = false;
+        stopDimensions = watch(
+          [
+            () => element.dimensions.width,
+            () => element.dimensions.height,
+            () => [element, ...parents.value].some(node => node.dragging || node.resizing),
+          ],
+          ([width, height, interacting], [previousWidth, previousHeight]) => {
+            dimensionsChanged ||= width !== previousWidth || height !== previousHeight;
+            if (!dimensionsChanged || interacting) return;
+            dimensionsChanged = false;
+            // ACT: 尺寸变化延后到拖动、缩放结束贴合，只调整祖先分组，不改变节点归属。
+            const groups = new Set(parents.value.filter(node => node.type === "canvasGroup"));
+            if (groups.size) fitGroupBounds(flow.getNodes.value, groups);
+          },
+          { flush: "post" },
+        );
+      }
       elementSaveWatchers.set(element, () => {
         stopFields();
         stopData();
         stopName();
+        stopDimensions();
       });
     }
     scheduleCanvasChange();
@@ -1129,7 +1197,7 @@ function resetCanvasKeys() {
 watch([() => props.active, () => props.settingsVisible, () => generalSettings.value.canvasShortcuts], resetCanvasKeys, { deep: true, flush: "sync", immediate: true });
 
 function refreshInstalled(event: WindowEventMap["dramaflow:plugin-installed"]) {
-  if (event.detail.type === "node") void loadRemoteNodes(event.detail.name);
+  if (event.detail.type === "node" && !handledPluginEvents.has(event)) void loadRemoteNodes(event.detail.name);
 }
 
 const refreshNodeConfig = () => { void loadRemoteNodes(); };
@@ -1164,10 +1232,10 @@ onBeforeUnmount(() => {
 });
 
 const nodeWindow = window as typeof window & {
-  dramaflowNodeHost?: { vue: typeof vueRuntime; vueFlow: typeof vueFlowRuntime; elementPlus: typeof elementPlusRuntime; three: typeof threeRuntime; ai: { runAgentLoop: typeof runAgentLoop; createAssistantMessageEventStream: typeof createAssistantMessageEventStream } };
+  dramaflowNodeHost?: { vue: typeof vueRuntime; vueFlow: typeof vueFlowRuntime; elementPlus: typeof elementPlusRuntime; three: typeof threeRuntime; modelIcons: typeof modelIcons; ai: { runAgentLoop: typeof runAgentLoop; createAssistantMessageEventStream: typeof createAssistantMessageEventStream } };
   dramaflowNodes?: NodeTypesObject;
 };
-nodeWindow.dramaflowNodeHost = { vue: vueRuntime, vueFlow: vueFlowRuntime, elementPlus: elementPlusRuntime, three: threeRuntime, ai: { runAgentLoop, createAssistantMessageEventStream } };
+nodeWindow.dramaflowNodeHost = { vue: vueRuntime, vueFlow: vueFlowRuntime, elementPlus: elementPlusRuntime, three: threeRuntime, modelIcons, ai: { runAgentLoop, createAssistantMessageEventStream } };
 provide("nodeConfig", (nodeType: string) => nodeConfigs.value[nodeType] ?? {});
 provide("workspaceFiles", () => {
   const directory = project.value?.directory;
@@ -1222,7 +1290,7 @@ async function loadNode(name: string, url: string, force = false): Promise<void>
   return nodeLoad;
 }
 
-async function loadRemoteNodes(reloadName?: string) {
+async function loadRemoteNodes(reloadName?: string, requireReload = false) {
   if (reloadName) nodeReloads.add(reloadName);
   const requestId = ++loadRequest;
   const signal = canvasController.signal;
@@ -1232,7 +1300,10 @@ async function loadRemoteNodes(reloadName?: string) {
       "/api/nodes/get",
       { headers: { "Cache-Control": "no-cache", "x-dramaflow-workspace": "1" } }
     );
-    if (requestId !== loadRequest) return;
+    if (requestId !== loadRequest) {
+      if (requireReload) throw new Error("画布正在加载或编辑，请稍后重试");
+      return;
+    }
     if (data.code !== 200 || !Array.isArray(data.data)) throw new Error("节点列表格式错误");
     const nodes = data.data.filter(node => {
       if (!node || typeof node.name !== "string" || !/^[a-z][a-zA-Z0-9]*$/.test(node.name) || node.url !== `/api/nodes/files?name=${node.name}`) {
@@ -1246,6 +1317,7 @@ async function loadRemoteNodes(reloadName?: string) {
     // 节点各自加载完成后即可出现在菜单中，不等待其他节点的脚本。
     nodeOptions.value = enabledNodes.map(node => ({ type: `remote-${node.name}`, label: node.displayName }))
       .sort((left, right) => left.type.localeCompare(right.type));
+    if (requireReload && !enabledNodes.some(node => node.name === reloadName)) throw new Error("节点类型未启用或尚未加载，请先查询 getCanvas");
     // ACT: 安装事件合并到最新列表请求，避免连续更新不同节点时丢失较早的刷新名称。
     const reloadNames = new Set(nodeReloads);
     nodeReloads.clear();
@@ -1256,6 +1328,7 @@ async function loadRemoteNodes(reloadName?: string) {
           if (nodeTypes.value[nodeType] && !nodeErrors.value[nodeType] && !reloadNames.has(node.name)) return;
           await loadNode(node.name, node.url, reloadNames.has(node.name));
         } catch (error) {
+          if (requireReload && node.name === reloadName) throw error;
           console.error("加载远端节点失败", node, error);
           // 保存拒绝时旧组件仍可用，不从节点菜单中移除；脚本加载错误仍排除。
           if (nodeTypes.value[nodeType] && !nodeErrors.value[nodeType]) {
@@ -1267,7 +1340,9 @@ async function loadRemoteNodes(reloadName?: string) {
         }
       })
     );
+    if (requireReload && !availableNodes.value.some(node => node.type === `remote-${reloadName}`)) throw new Error("远程节点未加载，请确认插件已安装并启用");
   } catch (error) {
+    if (requireReload) throw error;
     if (requestId === loadRequest) console.error("获取远端节点列表失败", error);
   } finally {
     if (requestId === loadRequest) nodeListLoading.value = false;
