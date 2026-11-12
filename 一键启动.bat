@@ -1,6 +1,10 @@
 @echo off
 chcp 936 >nul
 setlocal enabledelayedexpansion
+REM 业务渠道：yudao = 对接本地 yudao-cloud 后台（注释掉下行则回退官方 dramaflow 渠道）
+set DRAMAFLOW_CHANNEL=yudao
+REM 创作端登录联邦：开启后普通账号可用 yudao 用户名密码登录 10888 创作界面
+set DRAMAFLOW_YUDAO_AUTH=1
 title Dramaflow 一键启动
 
 cd /d "%~dp0"

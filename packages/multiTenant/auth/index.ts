@@ -22,6 +22,26 @@ function digest(value: string) { return createHash("sha256").update(value).diges
 function fail(message: string, status: number): never { throw Object.assign(new Error(message), { status }); }
 function accountKey(value: string) { return value.normalize("NFKC").toLowerCase(); }
 
+// ACT: yudao 身份源联邦——创作登录在本地 SQL 账号验证失败后尝试 yudao，成功则自动建同名普通账号。
+// 会话、authVersion、禁用与权限仍完全走本地 SQL 体系，yudao 只承担身份验证。
+// 开关与地址通过环境变量注入：DRAMAFLOW_YUDAO_AUTH=1 启用，DRAMAFLOW_YUDAO_BASE 默认本机 48080。
+const yudaoAuthBase = () => (process.env.DRAMAFLOW_YUDAO_BASE || "http://127.0.0.1:48080").replace(/\/$/, "");
+const yudaoAuthEnabled = () => process.env.DRAMAFLOW_YUDAO_AUTH === "1";
+async function verifyYudaoCredentials(userName: string, password: string): Promise<boolean> {
+  const timeout = AbortSignal.timeout(8000);
+  try {
+    const response = await fetch(yudaoAuthBase() + "/admin-api/system/auth/login", {
+      method: "POST", signal: timeout,
+      headers: { "Content-Type": "application/json", "tenant-id": process.env.DRAMAFLOW_YUDAO_TENANT?.trim() || "1" },
+      body: JSON.stringify({ username: userName, password }),
+    });
+    const body = await response.json() as { code?: unknown; data?: { accessToken?: unknown } | null };
+    return response.ok && body?.code === 0 && typeof body.data?.accessToken === "string" && !!body.data.accessToken;
+  } catch {
+    return false;
+  }
+}
+
 export function createMultiTenant(dataDirectory: string) {
   let database: Promise<AdminDatabase | undefined> | undefined;
   let queue = Promise.resolve();
@@ -216,6 +236,19 @@ export function createMultiTenant(dataDirectory: string) {
         if (ordinaryUser?.disabled) fail("账号已禁用", 403);
         if (user && user.lockedUntil > now) fail("尝试次数过多，请稍后重试", 429);
         const passwordMatches = await Bun.password.verify(password, user?.passwordHash ?? admin.passwordHash);
+        if (!isAdmin && (!user || !passwordMatches) && yudaoAuthEnabled()
+          && await verifyYudaoCredentials(account, password)) {
+          const dbUser = ordinaryUser ?? await (async () => {
+            if (!await db.getRegistrationEnabled()) fail("当前已关闭注册，请联系管理员创建账号", 403);
+            const created = { id: randomUUID(), userName: account, userNameKey: key,
+              passwordHash: await Bun.password.hash(randomBytes(32).toString("hex"), { algorithm: "argon2id" }), createdAt: now };
+            await db.createUser(created);
+            return db.getUser(key);
+          })();
+          if (!dbUser) fail("账号创建失败，请重试", 500);
+          if (!await db.completeUserLogin(dbUser.id, dbUser.authVersion, now)) fail("账号状态已变更，请重新登录", 401);
+          return createWebSession(db, { id: dbUser.id, userName: dbUser.userName, role: "user" }, dbUser.authVersion);
+        }
         if (!user || !passwordMatches) {
           if (user) {
             const attempts = user.lockedUntil ? 1 : user.failedAttempts + 1;

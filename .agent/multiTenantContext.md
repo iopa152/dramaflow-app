@@ -39,9 +39,41 @@
 | 用户余额扣费 | 本阶段明确实现 SQL 钱包、管理员给单用户增加余额、幂等预占／结算／释放与最近账目，覆盖此前暂未授权计费的限制。普通账号按 CNY／USD 自有钱包扣费，超管本人不扣内部余额；不包括在线支付、套餐、负值充值或删账。 |
 | 统一模型网关 | 最新明确不能只分包而让路由、来源与计费散在入口；独立 `gateway` 统一编排，单向依赖 `models`／`billing`。宿主只注入来源与协议能力，文本、媒体复用同一预占和 outcome 完成契约，不再复制平行门面或钱包分支。 |
 | 四类模型全链路统一 | 文本、图片、视频、音频共用 nodeAi／modelCatalog 与 gateway，稳定 routeId 在真实 HTTP 前解析当前别名；SDK 内部 turn 和三类媒体工具也沿统一账务，不开放普通 Agent、调试或个人模型搜索旁路。 |
+| 后端管理系统选型 | 最新决定（2026-11-12）：后端管理系统对接 yudao-cloud（D:/work_java_git/yudao-cloud），自研 adminWeb/auth 由其替代；账号与余额面板保留，作为对接 yudao 的前端（经 Channel 契约换源）；计费对接 yudao pay 钱包；models/gateway/sourceMapping 仍为 TS 侧领域包；业务数据仍按 Drizzle+SQLite/MySQL 基线。本决定不撤销既有目标，仅更换实现载体。 |
 | 主机与租户创作入口 | 按架构图强化一次 createApp／同一 Bun 业务后端：私有端口负责控制与 adminWeb，主机本人和租户创作都走 `10888` Web 会话。私有创作 API、公开管理／旧 providers 旁路均拒绝；主机创作 settings 只读写白名单范围，旧互联配置保留供独立模式恢复。 |
 
 数据库选型的最终口径是“默认 SQLite，同时支持 MySQL 8.0”。此前讨论过只用文件或只用 MySQL 的方案，均不能覆盖用户最后明确的默认值；SQLite 默认也不代表商业集群共享一个 SQLite 文件。
+
+## yudao-cloud 对接环境（2026-11-12 已跑通）
+
+| 项 | 值 |
+| --- | --- |
+| 源码 | `D:/work_java_git/yudao-cloud/yudao-cloud`（分支 master，Spring Boot 2.7.18） |
+| 编译环境 | JDK 17 `C:/opt/jdk-17.0.20+8` + Maven 3.9.9 `C:/opt/apache-maven-3.9.9` |
+| 容器 | yudao-mysql(`yudao-mysql`, 3306)、yudao-redis(6379)、yudao-server(48080)、yudao-admin-web(80)，网络 `yudao-local_default` |
+| 数据库 | MySQL `ruoyi-vue-pro`，账号 root/123456 |
+| 后台账号 | admin / admin123，租户 `tenant-id: 1`（已有「光影AI」「测试租户」） |
+| 已启用模块 | system、infra、pay（钱包）；member 已编译进 jar 但表结构未建，暂不使用 |
+
+### 启用 pay 的两个关键改动（复现必做）
+
+1. `yudao-server/pom.xml` 取消 `yudao-module-pay-server`、`yudao-module-member-server` 注释；
+2. **`yudao-module-pay-server/pom.xml` 与 `yudao-module-member-server/pom.xml` 的 spring-boot-maven-plugin 必须加 `<classifier>boot</classifier>`**（与 system-server 一致）。否则模块 jar 被 repackage 成 fat jar，类落进 `BOOT-INF/classes/`，单体启动时组件扫描不到，全部接口落到 `DefaultController` 的 `/admin-api/pay/**` 兜底返回 501。
+
+### pay 表结构来源
+
+官方 SQL 脚本只含 system/infra 48 张表，pay/member 的 DDL 未开源在仓库里。本轮按 `Pay*DO` 字段自动生成 14 张 pay 表并导入，**必须补充 `tenant_id bigint NOT NULL DEFAULT 1`**，否则多租户拦截器报 `Unknown column 'tenant_id'`。
+
+### 已验证接口
+
+`/admin-api/system/auth/login`、`system/user/page`、`system/tenant/page`、`infra/config/page`、`pay/wallet/get`、`pay/wallet/page`、`pay/wallet-recharge-package/page`、`pay/order/page` 均返回 `code: 0`。
+
+### yudaoChannel 对接（2026-11-12 已实现并实测）
+
+- `apps/server/src/utils/channel/yudao.ts`：新渠道实现，注册名 `yudao`，`DRAMAFLOW_CHANNEL=yudao` 切换。已实现：`login`（yudao 用户名密码 → accessToken）、`getCaptcha`（空占位，本地登录无验证码）、`getPreviewData`（get-permission-info 解析 userId → pay/wallet/get 余额（分转元）→ wallet-transaction bizType=3 聚合近 100 条消费曲线）、`getModelData` 返回空目录、`getSponsorList` 空列表、`getAdvertisements` 空结构；其余方法统一 501「yudao 渠道暂未实现」。环境变量：`DRAMAFLOW_YUDAO_BASE`（默认 http://127.0.0.1:48080）、`DRAMAFLOW_YUDAO_TENANT`（默认 1）。已写入一键启动.bat。
+- 创作鉴权联邦：`packages/multiTenant/auth/index.ts` 的 `loginWeb` 在本地 SQL 账号验证失败且 `DRAMAFLOW_YUDAO_AUTH=1` 时，尝试 yudao 登录；成功后自动建同名普通账号（受 registrationEnabled 约束）并签发**既有本地会话**（cookie、authVersion、禁用、权限全复用），超管不受影响。yudao 侧仅做身份验证，不签发创作会话。
+- 实测：渠道登录→余额→目录三接口经 Dramaflow `/api/channel/*` 全部 `code:0`；yudao 管理端给 userId=1 充值 10000 分后面板 totalPoints=100。member 表已建（11 张，含补列 tag_ids），`member/user/page` 可用。
+- 注意：`data/settings.json` 的 `dramaflowAccount.token` 在实测中被替换为 yudao 令牌，回退官方渠道需在账号与余额面板重新登录。
 
 ## 本轮采用的设计基线
 
